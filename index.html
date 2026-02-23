@@ -241,7 +241,7 @@
             background-color: rgba(23,162,184,0.1); color: var(--info-blue);
         }
         
-        .tag-paralisada {
+        .tag-paralisado {
             display: inline-block; padding: 4px 8px; border-radius: 12px;
             font-size: 11px; font-weight: 600;
             background-color: rgba(185,60,66,0.1); color: var(--accent-red);
@@ -1325,7 +1325,7 @@
                                 <input type="checkbox" id="checkAllDownloads" class="download-check" checked>
                                 <label for="checkAllDownloads" style="font-weight: 600; color: var(--primary-dark); cursor: pointer; flex: 1;">
                                     <strong>Selecionar todos os arquivos</strong>
-                                    <span style="display: block; font-size: 12px; font-weight: normal; color: #6c757d;">6 arquivos disponíveis no repositório oficial</span>
+                                    <span style="display: block; font-size: 12px; font-weight: normal; color: #6c757d;">7 arquivos disponíveis no repositório oficial</span> <!-- ATUALIZADO PARA 7 -->
                                 </label>
                                 <div class="d-flex gap-2">
                                     <button class="btn-primary-custom" id="downloadSelecionadosZip">
@@ -1387,6 +1387,15 @@
                                     <span class="download-meta">Trechos rodoviários · ~1.500 registros</span>
                                 </div>
                             </div>
+                            <!-- ===== NOVO ITEM DE DOWNLOAD: situacao.csv ===== -->
+                            <div class="download-item" data-file="situacao">
+                                <input type="checkbox" class="download-check" id="dlSituacao" checked>
+                                <div class="download-icon"><span class="material-icons">update</span></div>
+                                <div class="download-info">
+                                    <span class="download-filename">situacao.csv</span>
+                                    <span class="download-meta">Histórico de situação das obras · ~200 registros</span>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="alert alert-info mt-4 mb-0">
@@ -1439,6 +1448,7 @@
         // =============================================
         // DASHBOARD DE OBRAS - DADOS REAIS DO GITHUB
         // VERSÃO FINAL - DATA ÚNICA, SEM TOTAIS NO RODAPÉ
+        // INCLUI ARQUIVO SITUACAO.CSV COM TRATAMENTO PARA PARALISADO
         // =============================================
         const BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/obras/main/dataset/data/';
         const ARQUIVOS = {
@@ -1447,11 +1457,12 @@
             fiscais: 'fiscais.csv',
             municipios: 'municipios.csv',
             coordenadas: 'coordenadas.csv',
-            trechos: 'trechos.csv'
+            trechos: 'trechos.csv',
+            situacao: 'situacao.csv'  // <-- NOVO ARQUIVO ADICIONADO
         };
 
         // ========== ESTADO GLOBAL ==========
-        let dados = { contratos: [], obras: [], fiscais: [], municipios: [], coordenadas: [], trechos: [] };
+        let dados = { contratos: [], obras: [], fiscais: [], municipios: [], coordenadas: [], trechos: [], situacao: [] }; // <-- ADICIONADO situacao
         let dadosFiltrados = { contratos: [], fiscais: [], valores: [] };
         
         let paginacao = {
@@ -1529,7 +1540,7 @@
             document.getElementById('loadingOverlay').style.display = show ? 'flex' : 'none'; 
         }
 
-        // ========== CARREGAMENTO DOS 6 CSVS ==========
+        // ========== CARREGAMENTO DOS 7 CSVS (incluindo situacao.csv) ==========
         async function carregarTodosArquivos() {
             try {
                 const promises = Object.entries(ARQUIVOS).map(([key, filename]) =>
@@ -1567,7 +1578,7 @@
             }
         }
 
-        // ========== PROCESSAMENTO E RELACIONAMENTOS ==========
+        // ========== PROCESSAMENTO E RELACIONAMENTOS (incluindo situacao) ==========
         function processarDados() {
             // Normalização de valores numéricos - Contratos
             dados.contratos = dados.contratos.map(c => ({
@@ -1596,6 +1607,25 @@
             dados.municipios = dados.municipios.map(m => ({ ...m, contrato: m.contrato?.trim() || '' }));
             dados.coordenadas = dados.coordenadas.map(coord => ({ ...coord, contrato: coord.contrato?.trim() || '' }));
             dados.trechos = dados.trechos.map(t => ({ ...t, contrato: t.contrato?.trim() || '' }));
+            
+            // ===== NOVO: Normalização dos dados de situação =====
+            dados.situacao = dados.situacao.map(s => ({
+                ...s,
+                contrato: s.contrato?.trim() || '',
+                status: s.status?.trim() || '',
+                descricao_do_motivo: s.descricao_do_motivo?.trim() || '',
+                data: s.data?.trim() || '',
+                responsavel: s.responsavel?.trim() || ''
+            }));
+            
+            // Agrupar registros de situação por contrato (podem haver múltiplas entradas)
+            const situacaoPorContrato = {};
+            dados.situacao.forEach(s => {
+                if (!situacaoPorContrato[s.contrato]) {
+                    situacaoPorContrato[s.contrato] = [];
+                }
+                situacaoPorContrato[s.contrato].push(s);
+            });
 
             // Vincular dados aos contratos
             dados.contratos.forEach(c => {
@@ -1604,6 +1634,8 @@
                 c.fiscais_vinculados = dados.fiscais.filter(f => f.contrato === c.contrato).map(f => f.nome).filter(Boolean).join('; ');
                 c.coordenadas_vinculadas = dados.coordenadas.filter(coord => coord.contrato === c.contrato);
                 c.trechos_vinculados = dados.trechos.filter(t => t.contrato === c.contrato);
+                // ===== NOVO: Vincular situação =====
+                c.situacoes_vinculadas = situacaoPorContrato[c.contrato] || [];
             });
 
             dadosFiltrados.contratos = [...dados.contratos];
@@ -2342,6 +2374,9 @@
                 zip.file('coordenadas.csv', Papa.unparse(dados.coordenadas, { delimiter: ';' }));
             if (document.getElementById('dlTrechos').checked) 
                 zip.file('trechos.csv', Papa.unparse(dados.trechos, { delimiter: ';' }));
+            // ===== NOVO: Incluir situacao.csv no ZIP =====
+            if (document.getElementById('dlSituacao').checked) 
+                zip.file('situacao.csv', Papa.unparse(dados.situacao, { delimiter: ';' }));
             
             const content = await zip.generateAsync({ type: 'blob' }); 
             saveAs(content, 'obras_mg_dados_completos.zip'); 
@@ -2354,7 +2389,7 @@
             document.getElementById('downloadSelecionadosZip').click(); 
         });
 
-        // ========== MODAL DE DETALHES ENRIQUECIDO (COM COORDENADAS CORRIGIDAS) ==========
+        // ========== MODAL DE DETALHES ENRIQUECIDO (COM SITUAÇÃO E TRATAMENTO PARA PARALISADO) ==========
         window.verDetalhesContrato = function(contratoId) {
             let c = dados.contratos.find(c => c.contrato === contratoId); 
             if (!c) return;
@@ -2364,6 +2399,7 @@
             let municipios = dados.municipios.filter(m => m.contrato === contratoId);
             let coordenadas = dados.coordenadas.filter(coord => coord.contrato === contratoId);
             let trechos = dados.trechos.filter(t => t.contrato === contratoId);
+            let situacoes = dados.situacao.filter(s => s.contrato === contratoId); // <-- NOVO: Filtrar situações
             
             // CORREÇÃO: Filtrar coordenadas válidas (latitude e longitude não vazias)
             let primeiraCoord = coordenadas.find(coord => 
@@ -2377,6 +2413,56 @@
             let lat = primeiraCoord ? parseFloat(primeiraCoord.latitude.replace(',', '.')).toFixed(6) : null;
             let lng = primeiraCoord ? parseFloat(primeiraCoord.longitude.replace(',', '.')).toFixed(6) : null;
             
+            // ===== NOVO: Processar informações de situação para exibição =====
+            let situacaoHTML = '';
+            if (situacoes.length > 0) {
+                // Encontrar a situação mais recente (pela data) para exibir primeiro
+                situacoes.sort((a, b) => (b.data || '').localeCompare(a.data || ''));
+                
+                situacaoHTML = `
+                    <div class="info-card" style="grid-column: 1 / -1; margin-top: 10px;">
+                        <div class="info-label">Histórico de Situações</div>
+                        <div style="max-height: 200px; overflow-y: auto; margin-top: 10px;">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Status</th>
+                                        <th>Motivo / Observação</th>
+                                        <th>Responsável</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${situacoes.map(s => {
+                                        let statusClass = '';
+                                        if (s.status?.toLowerCase().includes('paralisado')) statusClass = 'tag-paralisado';
+                                        else if (s.status?.toLowerCase().includes('andamento')) statusClass = 'tag-andamento';
+                                        else if (s.status?.toLowerCase().includes('concluída')) statusClass = 'tag-concluida';
+                                        else if (s.status?.toLowerCase().includes('encerrado')) statusClass = 'tag-encerrado';
+                                        
+                                        // ===== CORREÇÃO: Aplicar a regra específica para o status "paralisado" =====
+                                        // Usando includes para capturar variações (ex: "Paralisado", "PARALISADO")
+                                        let mensagemRetorno = '';
+                                        if (s.status && s.status.toLowerCase().includes('paralisado')) {
+                                            mensagemRetorno = '<br><span style="font-size: 11px; color: var(--accent-red);">⏸️ No momento, não há data definida para a retomada da obra. A situação encontra-se em acompanhamento pelos setores competentes, e as informações serão atualizadas assim que houver definição.</span>';
+                                        }
+                                        
+                                        return `
+                                            <tr>
+                                                <td>${formatarData(s.data) || '-'}</td>
+                                                <td><span class="${statusClass}">${s.status || '-'}</span></td>
+                                                <td>${s.descricao_do_motivo || '-'} ${mensagemRetorno}</td>
+                                                <td>${s.responsavel || '-'}</td>
+                                            </tr>
+                                        `;
+                                    }).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            }
+
             let content = document.getElementById('detalhesContent');
             content.innerHTML = `
                 <div class="info-grid">
@@ -2404,6 +2490,8 @@
                         <div class="info-label mt-2">% Executado</div>
                         <div class="info-value">${((c.percentual_execucao_contrato || 0) * 100).toFixed(2)}%</div>
                     </div>
+                    
+                    ${situacaoHTML}  <!-- ===== NOVO: Incluir histórico de situações ===== -->
                 </div>
                 
                 <div class="row">
@@ -2544,7 +2632,7 @@
             if(s.includes('Andamento')) return 'tag-andamento'; 
             if(s.includes('concluída')) return 'tag-concluida'; 
             if(s.includes('Encerrado')) return 'tag-encerrado'; 
-            if(s.includes('Paralisada')) return 'tag-paralisada'; 
+            if(s.includes('Paralisado')) return 'tag-paralisado'; 
             return 'badge bg-secondary'; 
         }
         
