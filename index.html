@@ -26,66 +26,68 @@
             --hover-blue: #006a82;
         }
         
+        /* ==================== ESTILOS GERAIS - CORRIGIDO PARA IFRAME ==================== */
+        html {
+            overflow-y: hidden !important;
+            overflow-x: hidden !important;
+            height: auto !important;
+            min-height: auto !important;
+            position: relative;
+        }
+
         body {
             font-family: 'Montserrat', Segoe UI, sans-serif;
             background-color: var(--background-light);
             padding-bottom: 15px;
-            overflow-x: hidden;
+            overflow-y: hidden !important;
+            overflow-x: hidden !important;
+            min-height: auto !important;
+            height: auto !important;
+            position: relative;
+            margin: 0;
         }
         
-        .main-header {
-            background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 12px 0;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-bottom: 3px solid var(--accent-red);
+        .main-container {
+            height: auto !important;
+            min-height: auto !important;
+            overflow: visible !important;
+            position: relative;
         }
         
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo {
-            width: 45px; height: 45px;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-bright));
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: white; font-weight: bold;
+        .container {
+            height: auto !important;
+            min-height: auto !important;
+            overflow: visible !important;
+            position: relative;
         }
         
-        .header-title { font-weight: 700; font-size: 18px; margin: 0; }
-        
-        .nav-tabs-container {
-            background: white; border-radius: 10px; padding: 12px;
-            margin-bottom: 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-            overflow-x: auto;
+        .tab-content {
+            overflow: visible !important;
+            height: auto !important;
+            min-height: auto !important;
+            position: relative;
         }
         
-        .nav-tabs {
-            border: none !important; gap: 4px; flex-wrap: nowrap;
-            min-width: max-content; padding-bottom: 5px;
+        .tab-pane {
+            overflow: visible !important;
+            height: auto !important;
+            min-height: auto !important;
+            position: relative;
         }
         
-        .nav-tabs .nav-link {
-            border: none !important; border-radius: 6px !important;
-            padding: 10px 15px !important; font-weight: 600;
-            color: var(--primary-dark) !important;
-            display: inline-flex !important; align-items: center;
-            background: none !important;
-            font-size: 13px;
+        .table-container {
+            height: auto !important;
+            min-height: auto !important;
+            overflow: visible !important;
+            position: relative;
         }
         
-        .nav-tabs .nav-link:hover {
-            background-color: rgba(41,67,90,0.05) !important;
-            color: var(--accent-red) !important;
+        .row, .col, .col-*, .col-md-* {
+            overflow: visible !important;
         }
         
-        .nav-tabs .nav-link.active {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-darker)) !important;
-            color: white !important;
-        }
-        
-        .nav-tabs .nav-link .material-icons { 
-            font-size: 18px !important; 
-            margin-right: 8px;
+        .dashboard-3, .dashboard-2 {
+            overflow: visible !important;
         }
         
         .filter-container {
@@ -158,10 +160,63 @@
         
         .chart-wrapper { flex: 1; min-width: 190px; height: 190px; position: relative; }
         
-        .table-container {
-            background: white; border-radius: 10px; overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.06); border: 1px solid #dee2e6;
-            margin-bottom: 20px;
+        .main-header {
+            background: linear-gradient(135deg, var(--primary-darker) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 12px 0;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--accent-red);
+        }
+        
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo {
+            width: 45px; height: 45px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-bright));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: bold;
+        }
+        
+        .header-title { font-weight: 700; font-size: 18px; margin: 0; }
+        
+        .nav-tabs-container {
+            background: white; border-radius: 10px; padding: 12px;
+            margin-bottom: 20px; box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            overflow-x: auto;
+        }
+        
+        .nav-tabs {
+            border: none !important; gap: 4px; flex-wrap: nowrap;
+            min-width: max-content; padding-bottom: 5px;
+        }
+        
+        .nav-tabs .nav-item {
+            flex-shrink: 0;
+        }
+        
+        .nav-tabs .nav-link {
+            border: none !important; border-radius: 6px !important;
+            padding: 10px 15px !important; font-weight: 600;
+            color: var(--primary-dark) !important;
+            display: inline-flex !important; align-items: center;
+            background: none !important;
+            font-size: 13px;
+        }
+        
+        .nav-tabs .nav-link:hover {
+            background-color: rgba(41,67,90,0.05) !important;
+            color: var(--accent-red) !important;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-darker)) !important;
+            color: white !important;
+        }
+        
+        .nav-tabs .nav-link .material-icons { 
+            font-size: 18px !important; 
+            margin-right: 8px;
         }
         
         .table-fixed-header-container {
@@ -1449,6 +1504,7 @@
         // DASHBOARD DE OBRAS - DADOS REAIS DO GITHUB
         // VERSÃO FINAL - DATA ÚNICA, SEM TOTAIS NO RODAPÉ
         // INCLUI ARQUIVO SITUACAO.CSV COM TRATAMENTO PARA PARALISADO
+        // CORREÇÃO DE SCROLL PARA IFRAME
         // =============================================
         const BASE_URL = 'https://raw.githubusercontent.com/transparencia-mg/obras/main/dataset/data/';
         const ARQUIVOS = {
@@ -1481,6 +1537,71 @@
             fiscais: { column: 'fiscal', order: 'asc' },
             valores: { column: 'total', order: 'desc' }
         };
+
+        // ========== FUNÇÕES DE SCROLL E IFRAME ==========
+        function removeAllScrollIssues() {
+            console.log('Removendo problemas de scroll duplo...');
+            
+            const elements = [
+                document.body,
+                document.documentElement,
+                document.querySelector('.main-container'),
+                document.querySelector('.container'),
+                document.querySelector('.tab-content'),
+                ...document.querySelectorAll('.tab-pane'),
+                ...document.querySelectorAll('.table-container'),
+                ...document.querySelectorAll('.row'),
+                ...document.querySelectorAll('.col'),
+                ...document.querySelectorAll('.container'),
+                ...document.querySelectorAll('.container-fluid')
+            ];
+            
+            elements.forEach(el => {
+                if (el && el.style) {
+                    el.style.overflowY = 'visible';
+                    el.style.overflowX = 'visible';
+                    el.style.overflow = 'visible';
+                }
+            });
+            
+            document.body.classList.remove('overflow-auto');
+            document.documentElement.classList.remove('overflow-auto');
+            
+            document.documentElement.style.height = 'auto';
+            document.body.style.height = 'auto';
+        }
+
+        function iframeUpdateHeight() {
+            console.log('Atualizando altura do iframe...');
+            
+            document.body.style.display = 'none';
+            document.body.offsetHeight;
+            document.body.style.display = '';
+            
+            const html = document.documentElement;
+            const body = document.body;
+            
+            const scrollHeight = Math.max(
+                body.scrollHeight, 
+                html.scrollHeight,
+                body.offsetHeight, 
+                html.offsetHeight
+            );
+            
+            const finalHeight = scrollHeight + 10;
+            
+            console.log('Altura calculada:', finalHeight);
+            
+            try {
+                window.parent.postMessage({ 
+                    iframeHeight: finalHeight 
+                }, '*');
+            } catch (error) {
+                // Ignora erro se não estiver em iframe
+            }
+            
+            return finalHeight;
+        }
 
         // ========== FUNÇÕES DE COMPARTILHAMENTO ==========
         window.copiarLink = function(e) { 
@@ -1521,6 +1642,22 @@
             carregarTodosArquivos();
             configurarEventListeners();
             configurarOrdenacao();
+            removeAllScrollIssues();
+            
+            // Atualiza altura do iframe após carregar
+            setTimeout(() => {
+                iframeUpdateHeight();
+            }, 1000);
+            
+            // Atualiza altura sempre que uma aba for alterada
+            const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
+            tabButtons.forEach(button => {
+                button.addEventListener('shown.bs.tab', function() {
+                    setTimeout(() => {
+                        iframeUpdateHeight();
+                    }, 100);
+                });
+            });
         });
 
         function atualizarDataHeader() {
@@ -1571,6 +1708,11 @@
                 atualizarFiscais();
                 atualizarValores();
                 showLoading(false);
+                
+                // Atualiza altura do iframe após carregar dados
+                setTimeout(() => {
+                    iframeUpdateHeight();
+                }, 500);
             } catch (error) { 
                 console.error('Erro fatal:', error); 
                 showLoading(false); 
@@ -2111,6 +2253,9 @@
             
             atualizarPaginacao('geral', totalPages);
             atualizarIconesOrdenacao('visaoGeralTable', sortState.geral);
+            
+            // Atualiza altura do iframe após atualizar visão geral
+            setTimeout(iframeUpdateHeight, 300);
         }
 
         // ========== TABELA DE CONTRATOS ==========
@@ -2151,6 +2296,9 @@
             
             atualizarPaginacao('contratos', totalPages);
             atualizarIconesOrdenacao('contratosTable', sortState.contratos);
+            
+            // Atualiza altura do iframe após atualizar contratos
+            setTimeout(iframeUpdateHeight, 300);
         }
 
         // ========== FISCAIS ==========
@@ -2187,6 +2335,9 @@
             
             atualizarPaginacao('fiscais', totalPages);
             atualizarIconesOrdenacao('fiscaisTable', sortState.fiscais);
+            
+            // Atualiza altura do iframe após atualizar fiscais
+            setTimeout(iframeUpdateHeight, 300);
         }
 
         // ========== VALORES ==========
@@ -2242,6 +2393,9 @@
             
             // Gráficos de Valores
             atualizarGraficosValores();
+            
+            // Atualiza altura do iframe após atualizar valores
+            setTimeout(iframeUpdateHeight, 300);
         }
 
         function atualizarGraficosValores() {
@@ -2688,6 +2842,9 @@
             else if(tipo === 'contratos') atualizarTabelaContratos(); 
             else if(tipo === 'fiscais') atualizarFiscais(); 
             else if(tipo === 'valores') atualizarValores(); 
+            
+            // Atualiza altura do iframe após mudar página
+            setTimeout(iframeUpdateHeight, 300);
         };
 
         // ========== EVENT LISTENERS ==========
@@ -2810,6 +2967,10 @@
             const blob = new Blob(["\ufeff" + csv], { type: 'text/csv;charset=utf-8;' }); 
             saveAs(blob, filename); 
         }
+        
+        // ========== ATUALIZAÇÃO PERIÓDICA ==========
+        setInterval(atualizarDataHeader, 60000);
+        setInterval(iframeUpdateHeight, 3000); // Atualiza altura a cada 3 segundos
     </script>
 </body>
 </html>
