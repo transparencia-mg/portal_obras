@@ -896,6 +896,7 @@ DC-9491012/2025;Andamento;;2026-02-02;-
 DC-9492715/2025;Andamento;;2026-02-03;-
 DC-9493122/2026;Andamento;;2026-02-03;-
 DM-9493180/2026;Andamento;;2026-01-28;-
+9458873/2025;Andamento;;2026-02-25;-
 PRC-22.024/2018-E;Andamento;;2023-10-29;-
 9396616/2023;Andamento;;2023-11-20;-
 DE-033/2023;Andamento;;2023-11-06;-
@@ -945,8 +946,10 @@ DC-9447760/2025;Andamento;;2025-09-25;-
 DPEI-9480550/2025;Andamento;;2025-09-01;-
 DC-9478759/2025;Andamento;;2025-09-24;-
 DC-9481581/2025;Andamento;;2025-11-04;-
+DM-002/2024-B;Andamento;;2026-02-19;-
 DC-9492718/2025;Andamento;;2026-02-02;-
 9482952/2025;Andamento;;2026-02-02;-
+DM-001/2024-B;Andamento;;2026-02-20;-
 9447045/2024-A;Andamento;;2026-01-01;-
 DC-9492083/2025;Andamento;;2026-02-23;-
 9447043/2024-A;Andamento;;2026-01-01;-
@@ -1058,6 +1061,7 @@ DC-9468321/2025;Andamento;;2025-08-11;-
 AEST-9468573/2025;Andamento;;2025-09-01;-
 DC-9473949/2025;Andamento;;2025-09-09;-
 DC-9439838/2024;Andamento;;2025-09-09;-
+DM-028/2023-B;Andamento;;2026-02-02;-
 DC-002/2024;Andamento;;2026-02-02;-
 DM-9492723/2025;Andamento;;2026-03-01;-
 DM-008/2023;Andamento;;2023-09-01;-
@@ -1134,6 +1138,7 @@ DC-005/2024;Andamento;;2024-10-01;-
 DE-041/2023;Andamento;;2025-08-25;-
 9409758/2024;Andamento;;2026-01-13;-
 DC-024/2022;Andamento;;2025-12-29;-
+DP-024/2023;Andamento;;2026-01-20;-
 DM-036/2021;Andamento;;2023-11-27;-
 DP-008/2023;Andamento;;2023-11-14;-
 DC-019/2023;Andamento;;2023-12-28;-
@@ -1562,6 +1567,9 @@ PRC.CCE-20.012/2018 OS3;Paralisado;Outros tipos de paralisação;2020-03-27;Dire
 PRC-22.038/2012;Paralisado;Outros tipos de paralisação;2013-12-12;Diretor Geral
 PRC-22.038/2012;Paralisado;Outros tipos de paralisação;2014-02-01;Diretor Geral
 PRC-24.010/2013;Paralisado;Caso Fortuito ou Força Maior;2017-06-21;Diretor Geral
+9409758/2024;Execução concluída;;2026-01-15;-
+DC-001/2024;Execução concluída;;2025-12-09;-
+ASG-002/2021;Execução concluída;;2023-08-31;-
 DC-006/2021;Execução concluída;;2023-09-04;-
 DM-036/2021;Execução concluída;;2023-12-27;-
 PRC-22.039/2017-E;Execução concluída;;2023-12-27;-
@@ -1636,6 +1644,9 @@ DC-027/2022;Execução concluída;;2025-04-29;-
 DC-9445950/2024;Execução concluída;;2025-07-17;-
 DE-017/2022;Execução concluída;;2025-08-03;-
 DOV-004/2022-A;Execução concluída;;2025-12-08;-
+DOV-003/2022-A;Execução concluída;;2025-12-08;-
+DC-010/2023;Execução concluída;;2026-01-31;-
+DC-008/2023;Execução concluída;;2026-01-31;-
 DE-031/2021;Execução concluída;;2023-09-01;-
 DM-028/2021;Execução concluída;;2023-08-31;-
 DOV-005/2022;Execução concluída;;2024-04-08;-
@@ -1647,9 +1658,6 @@ DM-22.007/2020-D;Execução concluída;;2025-03-31;-
 DE-024/2023;Execução concluída;;2025-08-16;-
 DM-032/2023;Execução concluída;;2025-08-10;-
 DM-036/2022;Execução concluída;;2025-09-12;-
-9409758/2024;Execução concluída;;2026-01-15;-
-DC-001/2024;Execução concluída;;2025-12-09;-
-ASG-002/2021;Execução concluída;;2023-08-31;-
 DC-9447109/2024;Execução concluída;;2025-02-24;-
 DM-028/2023;Execução concluída;;2025-02-01;-
 DE-035/2022;Execução concluída;;2025-03-31;-
@@ -2108,9 +2116,6 @@ DC-012/2021;Rescindido;Caso Fortuito ou Força Maior;2022-07-01;-
 DC-010/2021;Rescindido;Caso Fortuito ou Força Maior;2022-04-19;-
 DM-016/2022;Rescindido;Outros tipos de paralisação;2023-05-23;-
 DC-011/2021;Rescindido;Problemas relacionados à contratada;2022-05-09;-
-9408672/2024;A Iniciar;;2024-01-13;-
-9445605/2024;A Iniciar;;2024-12-04;-
-DC-9444080/2024;A Iniciar;;2024-11-28;-
 DM-9445782/2024;A Iniciar;;2024-12-16;-
 DF/GTIC-9444079;A Iniciar;;2024-12-02;-
 DM-9445784/2024;A Iniciar;;2024-12-16;-
@@ -2195,11 +2200,13 @@ DC-9470224/2025;A Iniciar;;2025-06-16;-
 9471997/2025;A Iniciar;;2025-07-25;-
 DC-9473949/2025;A Iniciar;;2025-08-07;-
 DC-009473175/2025;A Iniciar;;2025-08-14;-
-DM-028/2023-B;A Iniciar;;2026-02-02;-
 DE-030/2023;A Iniciar;;2023-07-27;-
 DC-016/2023;A Iniciar;;2023-11-17;-
 DC-015/2023;A Iniciar;;2023-11-10;-
 DM-030/2023;A Iniciar;;2023-12-28;-
+9408672/2024;A Iniciar;;2024-01-13;-
+9445605/2024;A Iniciar;;2024-12-04;-
+DC-9444080/2024;A Iniciar;;2024-11-28;-
 DM-017/2024;A Iniciar;;2024-04-30;-
 DM-015/2024;A Iniciar;;2024-04-30;-
 DC-010/2024;A Iniciar;;2024-04-26;-
@@ -2250,9 +2257,7 @@ DC-9491012/2025;A Iniciar;;2025-12-26;-
 DC-9492083/2025;A Iniciar;;2025-12-26;-
 DC-9492718/2025;A Iniciar;;2026-01-02;-
 DC-9491013/2025;A Iniciar;;2025-12-24;-
-DM-002/2024-B;A Iniciar;;2026-02-19;-
 DC-9492715/2025;A Iniciar;;2026-01-21;-
-DM-001/2024-B;A Iniciar;;2026-02-20;-
 9447045/2024-A;A Iniciar;;2026-01-01;-
 9447043/2024-A;A Iniciar;;2026-01-01;-
 DC-011R/2024;A Iniciar;;2026-02-11;-

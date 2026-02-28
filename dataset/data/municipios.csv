@@ -111,6 +111,7 @@ DC-010/2022;Obra 1;Uberlândia
 DC-010/2023;Obra 1;Conceição do Mato Dentro
 DC-010/2023;Obra 1;Congonhas do Norte
 DC-010/2024;Obra 1;Pedra Bonita
+DC-011R/2024;Obra 1;Patrocínio
 DC-011/2021;Obra 1;Pintópolis
 DC-011/2021;Obra 1;Urucuia
 DC-011/2021;Obra 2;Urucuia
@@ -446,6 +447,27 @@ DM-001/2024-A;Obra 1;Santo Antônio do Retiro
 DM-001/2024-A;Obra 1;São João da Ponte
 DM-001/2024-A;Obra 1;Serranópolis de Minas
 DM-001/2024-A;Obra 1;Verdelândia
+DM-001/2024-B;Obra 1;Capitão Enéas
+DM-001/2024-B;Obra 1;Catuti
+DM-001/2024-B;Obra 1;Espinosa
+DM-001/2024-B;Obra 1;Francisco Sá
+DM-001/2024-B;Obra 1;Gameleiras
+DM-001/2024-B;Obra 1;Grão Mogol
+DM-001/2024-B;Obra 1;Jaíba
+DM-001/2024-B;Obra 1;Janaúba
+DM-001/2024-B;Obra 1;Mamonas
+DM-001/2024-B;Obra 1;Matias Cardoso
+DM-001/2024-B;Obra 1;Mato Verde
+DM-001/2024-B;Obra 1;Monte Azul
+DM-001/2024-B;Obra 1;Montes Claros
+DM-001/2024-B;Obra 1;Nova Porteirinha
+DM-001/2024-B;Obra 1;Pai Pedro
+DM-001/2024-B;Obra 1;Porteirinha
+DM-001/2024-B;Obra 1;Riacho dos Machados
+DM-001/2024-B;Obra 1;Santo Antônio do Retiro
+DM-001/2024-B;Obra 1;São João da Ponte
+DM-001/2024-B;Obra 1;Serranópolis de Minas
+DM-001/2024-B;Obra 1;Verdelândia
 DM-002/2021;Obra 1;Prudente de Morais
 DM-002/2022;Obra 1;Ribeirão das Neves
 DM-002/2023;Obra 1;Ataléia
@@ -7881,6 +7903,8 @@ PRC-29.012/2016-D;Obra 1;Belo Horizonte
 9445605/2024 OS3;Obra 1;Belo Horizonte
 9445755/2024;Obra 1;Contagem
 9447043/2024;Obra 1;Formiga
+9447043/2024-A;Obra 1;Formiga
+9447045/2024-A;Obra 1;Varginha
 9452385/2025;Obra 1;Crucilândia
 9458873/2025;Obra 1;Teófilo Otoni
 9460034/2025;Obra 1;Teófilo Otoni
