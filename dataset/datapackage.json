@@ -1,0 +1,424 @@
+{
+  "name": "portal_obras",
+  "owner_org": "departamento-de-estradas-de-rodagem-de-minas-gerais",
+  "profile": "data-package",
+  "resources": [
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "contratos",
+      "path": "data/contratos.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "portal_de_compras",
+            "type": "string"
+          },
+          {
+            "name": "objeto",
+            "type": "string"
+          },
+          {
+            "name": "data_assinatura",
+            "type": "date"
+          },
+          {
+            "name": "inicio_execucao",
+            "type": "date"
+          },
+          {
+            "name": "termino_execucao",
+            "type": "date"
+          },
+          {
+            "name": "situacao",
+            "type": "string"
+          },
+          {
+            "name": "empresa",
+            "type": "string"
+          },
+          {
+            "name": "cnpj",
+            "type": "integer"
+          },
+          {
+            "name": "orgao_entidade_contratante",
+            "type": "string"
+          },
+          {
+            "name": "setor",
+            "type": "string"
+          },
+          {
+            "name": "modalidade_de_licitacao",
+            "type": "string"
+          },
+          {
+            "name": "regime_de_execucao",
+            "type": "string"
+          },
+          {
+            "name": "classificacao",
+            "type": "string"
+          },
+          {
+            "name": "natureza_do_contrato",
+            "type": "string"
+          },
+          {
+            "name": "obras_do_contrato",
+            "type": "string"
+          },
+          {
+            "name": "municipios",
+            "type": "string"
+          },
+          {
+            "name": "dias_originais",
+            "type": "integer"
+          },
+          {
+            "name": "dias_aditados",
+            "type": "integer"
+          },
+          {
+            "name": "dias_paralisados",
+            "type": "integer"
+          },
+          {
+            "name": "dias_atuais",
+            "type": "integer"
+          },
+          {
+            "name": "valor_inicial_do_contrato",
+            "type": "string"
+          },
+          {
+            "name": "valor_em_aditivos",
+            "type": "string"
+          },
+          {
+            "name": "valor_total_do_contrato",
+            "type": "string"
+          },
+          {
+            "name": "valor_medido_precos_iniciais",
+            "type": "string"
+          },
+          {
+            "name": "valor_medido_reajuste",
+            "type": "string"
+          },
+          {
+            "name": "total_medido",
+            "type": "string"
+          },
+          {
+            "name": "saldo_contratual",
+            "type": "string"
+          },
+          {
+            "name": "percentual_execucao_contrato",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    },
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "coordenadas",
+      "path": "data/coordenadas.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "obra",
+            "type": "string"
+          },
+          {
+            "name": "latitude",
+            "type": "string"
+          },
+          {
+            "name": "longitude",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    },
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "fiscais",
+      "path": "data/fiscais.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "obra",
+            "type": "string"
+          },
+          {
+            "name": "portal_de_compras",
+            "type": "string"
+          },
+          {
+            "name": "nome",
+            "type": "string"
+          },
+          {
+            "name": "conselho",
+            "type": "string"
+          },
+          {
+            "name": "cargo",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    },
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "municipios",
+      "path": "data/municipios.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "obra",
+            "type": "string"
+          },
+          {
+            "name": "municipio",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    },
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "municipios2",
+      "path": "data/municípios.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "obra",
+            "type": "string"
+          },
+          {
+            "name": "municipio",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    },
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "obra",
+      "path": "data/obra.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "obra",
+            "type": "string"
+          },
+          {
+            "name": "detipoobra",
+            "type": "string"
+          },
+          {
+            "name": "descricao_da_obra",
+            "type": "string"
+          },
+          {
+            "name": "valor_inicial_da_obra",
+            "type": "string"
+          },
+          {
+            "name": "valor_em_aditivos",
+            "type": "string"
+          },
+          {
+            "name": "valor_total_da_obra",
+            "type": "string"
+          },
+          {
+            "name": "valor_medido_precos_iniciais",
+            "type": "string"
+          },
+          {
+            "name": "valor_medido_reajuste",
+            "type": "string"
+          },
+          {
+            "name": "saldo_de_valor_da_obra",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    },
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "situacao",
+      "path": "data/situacao.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "descricao_do_motivo",
+            "type": "any"
+          },
+          {
+            "name": "data",
+            "type": "date"
+          },
+          {
+            "name": "responsavel",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    },
+    {
+      "description": "Insira a descrição/explicação detalhada deste recurso.",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "encoding": "utf-8-sig",
+      "format": "csv",
+      "hashing": "md5",
+      "name": "trechos",
+      "path": "data/trechos.csv",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "contrato",
+            "type": "string"
+          },
+          {
+            "name": "obra",
+            "type": "string"
+          },
+          {
+            "name": "sequencia_do_trecho",
+            "type": "geopoint"
+          },
+          {
+            "name": "rodovia",
+            "type": "string"
+          },
+          {
+            "name": "descricao_rodovia",
+            "type": "string"
+          },
+          {
+            "name": "descricao_trecho",
+            "type": "string"
+          },
+          {
+            "name": "km_inicial",
+            "type": "string"
+          },
+          {
+            "name": "km_final",
+            "type": "string"
+          }
+        ]
+      },
+      "scheme": "file",
+      "title": "Insira um título humanamente legível para este recurso."
+    }
+  ],
+  "title": "Portal_obras"
+}
