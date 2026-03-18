@@ -1,11 +1,10 @@
 {
   "version": "4.16.6",
-  "time": 0.734,
+  "time": 0.569,
   "errors": [],
   "tasks": [
     {
       "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -136,7 +135,7 @@
           ]
         },
         "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
+        "title": "Contratos de Obras",
         "stats": {
           "hash": "bd9fbdd750ae4d32767ec410da31238d",
           "bytes": 652305,
@@ -144,7 +143,7 @@
           "rows": 814
         }
       },
-      "time": 0.088,
+      "time": 0.078,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -174,7 +173,6 @@
     },
     {
       "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -205,7 +203,7 @@
           ]
         },
         "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
+        "title": "Coordenadas de Obras",
         "stats": {
           "hash": "9e0ef1a34f042ff4ec41c7f470b649ce",
           "bytes": 48285,
@@ -213,7 +211,7 @@
           "rows": 1137
         }
       },
-      "time": 0.025,
+      "time": 0.023,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -243,7 +241,6 @@
     },
     {
       "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -282,7 +279,7 @@
           ]
         },
         "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
+        "title": "Fiscais de Obras",
         "stats": {
           "hash": "f7b48251eb9964c5fa4d198fb98717c5",
           "bytes": 629958,
@@ -290,7 +287,7 @@
           "rows": 6022
         }
       },
-      "time": 0.108,
+      "time": 0.097,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -320,7 +317,6 @@
     },
     {
       "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -347,7 +343,7 @@
           ]
         },
         "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
+        "title": "Municípios",
         "stats": {
           "hash": "4748c6616b6cdafa11bdf041f83ec85a",
           "bytes": 286674,
@@ -355,7 +351,7 @@
           "rows": 7947
         }
       },
-      "time": 0.105,
+      "time": 0.096,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -385,72 +381,6 @@
     },
     {
       "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
-        "dialect": {
-          "delimiter": ";"
-        },
-        "encoding": "utf-8-sig",
-        "format": "csv",
-        "hashing": "md5",
-        "name": "municipios2",
-        "path": "data/municípios.csv",
-        "profile": "tabular-data-resource",
-        "schema": {
-          "fields": [
-            {
-              "name": "contrato",
-              "type": "string"
-            },
-            {
-              "name": "obra",
-              "type": "string"
-            },
-            {
-              "name": "municipio",
-              "type": "string"
-            }
-          ]
-        },
-        "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
-        "stats": {
-          "hash": "4748c6616b6cdafa11bdf041f83ec85a",
-          "bytes": 286674,
-          "fields": 3,
-          "rows": 7947
-        }
-      },
-      "time": 0.105,
-      "scope": [
-        "hash-count-error",
-        "byte-count-error",
-        "field-count-error",
-        "row-count-error",
-        "blank-header",
-        "extra-label",
-        "missing-label",
-        "blank-label",
-        "duplicate-label",
-        "incorrect-label",
-        "blank-row",
-        "primary-key-error",
-        "foreign-key-error",
-        "extra-cell",
-        "missing-cell",
-        "type-error",
-        "constraint-error",
-        "unique-error"
-      ],
-      "partial": false,
-      "errors": [],
-      "stats": {
-        "errors": 0
-      },
-      "valid": true
-    },
-    {
-      "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -505,7 +435,7 @@
           ]
         },
         "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
+        "title": "Obra",
         "stats": {
           "hash": "7d2a9bee47598ce0d6ee03029b88181a",
           "bytes": 186126,
@@ -513,7 +443,7 @@
           "rows": 904
         }
       },
-      "time": 0.031,
+      "time": 0.028,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -543,7 +473,6 @@
     },
     {
       "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -578,7 +507,7 @@
           ]
         },
         "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
+        "title": "Situação da Obra",
         "stats": {
           "hash": "58efd844723288692e452d80ddd468b3",
           "bytes": 134391,
@@ -586,7 +515,7 @@
           "rows": 2845
         }
       },
-      "time": 0.085,
+      "time": 0.078,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -616,7 +545,6 @@
     },
     {
       "resource": {
-        "description": "Insira a descrição/explicação detalhada deste recurso.",
         "dialect": {
           "delimiter": ";"
         },
@@ -663,7 +591,7 @@
           ]
         },
         "scheme": "file",
-        "title": "Insira um título humanamente legível para este recurso.",
+        "title": "Trechos da Obra",
         "stats": {
           "hash": "9d380fadbd9907e966a4671f42417c0e",
           "bytes": 482384,
@@ -671,7 +599,7 @@
           "rows": 4972
         }
       },
-      "time": 0.112,
+      "time": 0.102,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -702,7 +630,7 @@
   ],
   "stats": {
     "errors": 0,
-    "tasks": 8
+    "tasks": 7
   },
   "valid": true
 }
