@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.533,
+  "time": 0.748,
   "errors": [],
   "tasks": [
     {
@@ -12,8 +12,8 @@
         "encoding": "utf-8-sig",
         "format": "csv",
         "hashing": "md5",
-        "name": "contratos_obras",
-        "path": "data/contratos_obras.csv",
+        "name": "contratos",
+        "path": "data/contratos.csv",
         "profile": "tabular-data-resource",
         "schema": {
           "fields": [
@@ -22,11 +22,11 @@
               "type": "string"
             },
             {
-              "name": "objeto",
+              "name": "portal_de_compras",
               "type": "string"
             },
             {
-              "name": "portal_de_compras",
+              "name": "objeto",
               "type": "string"
             },
             {
@@ -35,23 +35,23 @@
             },
             {
               "name": "inicio_execucao",
-              "type": "datetime"
+              "type": "date"
             },
             {
               "name": "termino_execucao",
-              "type": "datetime"
+              "type": "date"
             },
             {
               "name": "situacao",
               "type": "string"
             },
             {
-              "name": "empresa_principal",
+              "name": "empresa",
               "type": "string"
             },
             {
               "name": "cnpj",
-              "type": "string"
+              "type": "integer"
             },
             {
               "name": "orgao_entidade_contratante",
@@ -87,19 +87,19 @@
             },
             {
               "name": "dias_originais",
-              "type": "string"
+              "type": "integer"
             },
             {
               "name": "dias_aditados",
-              "type": "string"
+              "type": "integer"
             },
             {
               "name": "dias_paralisados",
-              "type": "string"
+              "type": "integer"
             },
             {
               "name": "dias_atuais",
-              "type": "string"
+              "type": "integer"
             },
             {
               "name": "valor_inicial_do_contrato",
@@ -130,7 +130,7 @@
               "type": "string"
             },
             {
-              "name": "percentual_de_execucao_do_contrato",
+              "name": "percentual_execucao_contrato",
               "type": "string"
             }
           ]
@@ -138,13 +138,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "ac2fb835f008d45189e73599b2a8194e",
-          "bytes": 663152,
+          "hash": "bd9fbdd750ae4d32767ec410da31238d",
+          "bytes": 652305,
           "fields": 29,
-          "rows": 812
+          "rows": 814
         }
       },
-      "time": 0.091,
+      "time": 0.087,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -166,452 +166,11 @@
         "unique-error"
       ],
       "partial": false,
-      "errors": [
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 543,
-          "rowPosition": 544,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"544\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 552,
-          "rowPosition": 553,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"553\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 554,
-          "rowPosition": 555,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"555\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 556,
-          "rowPosition": 557,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"557\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 567,
-          "rowPosition": 568,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"568\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 569,
-          "rowPosition": 570,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"570\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 571,
-          "rowPosition": 572,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"572\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 576,
-          "rowPosition": 577,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"577\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 578,
-          "rowPosition": 579,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"579\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        },
-        {
-          "cells": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "rowNumber": 580,
-          "rowPosition": 581,
-          "code": "blank-row",
-          "name": "Blank Row",
-          "tags": [
-            "#table",
-            "#row"
-          ],
-          "note": "",
-          "message": "Row at position \"581\" is completely blank",
-          "description": "This row is empty. A row should contain at least one value."
-        }
-      ],
+      "errors": [],
       "stats": {
-        "errors": 10
+        "errors": 0
       },
-      "valid": false
+      "valid": true
     },
     {
       "resource": {
@@ -622,8 +181,8 @@
         "encoding": "utf-8-sig",
         "format": "csv",
         "hashing": "md5",
-        "name": "coordenadas_obras",
-        "path": "data/coordenadas_obras.csv",
+        "name": "coordenadas",
+        "path": "data/coordenadas.csv",
         "profile": "tabular-data-resource",
         "schema": {
           "fields": [
@@ -648,13 +207,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "b838244283c87704616bcb7fe54bf87b",
-          "bytes": 47804,
+          "hash": "9e0ef1a34f042ff4ec41c7f470b649ce",
+          "bytes": 48285,
           "fields": 4,
-          "rows": 1124
+          "rows": 1137
         }
       },
-      "time": 0.024,
+      "time": 0.025,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -691,8 +250,8 @@
         "encoding": "utf-8-sig",
         "format": "csv",
         "hashing": "md5",
-        "name": "fiscais_obras",
-        "path": "data/fiscais_obras.csv",
+        "name": "fiscais",
+        "path": "data/fiscais.csv",
         "profile": "tabular-data-resource",
         "schema": {
           "fields": [
@@ -701,11 +260,11 @@
               "type": "string"
             },
             {
-              "name": "portal_de_compras",
+              "name": "obra",
               "type": "string"
             },
             {
-              "name": "obra",
+              "name": "portal_de_compras",
               "type": "string"
             },
             {
@@ -717,19 +276,7 @@
               "type": "string"
             },
             {
-              "name": "telefone",
-              "type": "string"
-            },
-            {
-              "name": "e_mail",
-              "type": "string"
-            },
-            {
               "name": "cargo",
-              "type": "string"
-            },
-            {
-              "name": "funcao_na_obra",
               "type": "string"
             }
           ]
@@ -737,13 +284,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "09ce92fc07513d95929cc196e5924e4f",
-          "bytes": 946056,
-          "fields": 9,
-          "rows": 5825
+          "hash": "f7b48251eb9964c5fa4d198fb98717c5",
+          "bytes": 629958,
+          "fields": 6,
+          "rows": 6022
         }
       },
-      "time": 0.128,
+      "time": 0.118,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -780,8 +327,8 @@
         "encoding": "utf-8-sig",
         "format": "csv",
         "hashing": "md5",
-        "name": "municipios_obras",
-        "path": "data/municipios_obras.csv",
+        "name": "municipios",
+        "path": "data/municipios.csv",
         "profile": "tabular-data-resource",
         "schema": {
           "fields": [
@@ -802,13 +349,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "1798b67b0182c5dbcce7ff56c78fbbed",
-          "bytes": 281993,
+          "hash": "4748c6616b6cdafa11bdf041f83ec85a",
+          "bytes": 286674,
           "fields": 3,
-          "rows": 7814
+          "rows": 7947
         }
       },
-      "time": 0.103,
+      "time": 0.104,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -845,8 +392,8 @@
         "encoding": "utf-8-sig",
         "format": "csv",
         "hashing": "md5",
-        "name": "trechos_obras",
-        "path": "data/trechos_obras.csv",
+        "name": "municipios2",
+        "path": "data/municípios.csv",
         "profile": "tabular-data-resource",
         "schema": {
           "fields": [
@@ -859,27 +406,7 @@
               "type": "string"
             },
             {
-              "name": "sequencia_do_trecho",
-              "type": "integer"
-            },
-            {
-              "name": "rodovia",
-              "type": "string"
-            },
-            {
-              "name": "descricao_rodovia",
-              "type": "string"
-            },
-            {
-              "name": "descricao_trecho",
-              "type": "any"
-            },
-            {
-              "name": "km_inicial",
-              "type": "string"
-            },
-            {
-              "name": "km_final",
+              "name": "municipio",
               "type": "string"
             }
           ]
@@ -887,13 +414,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "4f9c45a51bec8d4000875208280d66d9",
-          "bytes": 404383,
-          "fields": 8,
-          "rows": 4417
+          "hash": "4748c6616b6cdafa11bdf041f83ec85a",
+          "bytes": 286674,
+          "fields": 3,
+          "rows": 7947
         }
       },
-      "time": 0.094,
+      "time": 0.104,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -930,8 +457,8 @@
         "encoding": "utf-8-sig",
         "format": "csv",
         "hashing": "md5",
-        "name": "valores_obras",
-        "path": "data/valores_obras.csv",
+        "name": "obra",
+        "path": "data/obra.csv",
         "profile": "tabular-data-resource",
         "schema": {
           "fields": [
@@ -944,7 +471,7 @@
               "type": "string"
             },
             {
-              "name": "tipo_de_obra",
+              "name": "detipoobra",
               "type": "string"
             },
             {
@@ -974,9 +501,78 @@
             {
               "name": "saldo_de_valor_da_obra",
               "type": "string"
+            }
+          ]
+        },
+        "scheme": "file",
+        "title": "Insira um título humanamente legível para este recurso.",
+        "stats": {
+          "hash": "7d2a9bee47598ce0d6ee03029b88181a",
+          "bytes": 186126,
+          "fields": 10,
+          "rows": 904
+        }
+      },
+      "time": 0.031,
+      "scope": [
+        "hash-count-error",
+        "byte-count-error",
+        "field-count-error",
+        "row-count-error",
+        "blank-header",
+        "extra-label",
+        "missing-label",
+        "blank-label",
+        "duplicate-label",
+        "incorrect-label",
+        "blank-row",
+        "primary-key-error",
+        "foreign-key-error",
+        "extra-cell",
+        "missing-cell",
+        "type-error",
+        "constraint-error",
+        "unique-error"
+      ],
+      "partial": false,
+      "errors": [],
+      "stats": {
+        "errors": 0
+      },
+      "valid": true
+    },
+    {
+      "resource": {
+        "description": "Insira a descrição/explicação detalhada deste recurso.",
+        "dialect": {
+          "delimiter": ";"
+        },
+        "encoding": "utf-8-sig",
+        "format": "csv",
+        "hashing": "md5",
+        "name": "situacao",
+        "path": "data/situacao.csv",
+        "profile": "tabular-data-resource",
+        "schema": {
+          "fields": [
+            {
+              "name": "contrato",
+              "type": "string"
             },
             {
-              "name": "percentual_de_execucao_da_obra",
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "descricao_do_motivo",
+              "type": "any"
+            },
+            {
+              "name": "data",
+              "type": "date"
+            },
+            {
+              "name": "responsavel",
               "type": "string"
             }
           ]
@@ -984,13 +580,98 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "79719fc1b318b021608471e4dba61ca9",
-          "bytes": 197870,
-          "fields": 11,
-          "rows": 892
+          "hash": "58efd844723288692e452d80ddd468b3",
+          "bytes": 134391,
+          "fields": 5,
+          "rows": 2845
         }
       },
-      "time": 0.041,
+      "time": 0.085,
+      "scope": [
+        "hash-count-error",
+        "byte-count-error",
+        "field-count-error",
+        "row-count-error",
+        "blank-header",
+        "extra-label",
+        "missing-label",
+        "blank-label",
+        "duplicate-label",
+        "incorrect-label",
+        "blank-row",
+        "primary-key-error",
+        "foreign-key-error",
+        "extra-cell",
+        "missing-cell",
+        "type-error",
+        "constraint-error",
+        "unique-error"
+      ],
+      "partial": false,
+      "errors": [],
+      "stats": {
+        "errors": 0
+      },
+      "valid": true
+    },
+    {
+      "resource": {
+        "description": "Insira a descrição/explicação detalhada deste recurso.",
+        "dialect": {
+          "delimiter": ";"
+        },
+        "encoding": "utf-8-sig",
+        "format": "csv",
+        "hashing": "md5",
+        "name": "trechos",
+        "path": "data/trechos.csv",
+        "profile": "tabular-data-resource",
+        "schema": {
+          "fields": [
+            {
+              "name": "contrato",
+              "type": "string"
+            },
+            {
+              "name": "obra",
+              "type": "string"
+            },
+            {
+              "name": "sequencia_do_trecho",
+              "type": "geopoint"
+            },
+            {
+              "name": "rodovia",
+              "type": "string"
+            },
+            {
+              "name": "descricao_rodovia",
+              "type": "string"
+            },
+            {
+              "name": "descricao_trecho",
+              "type": "string"
+            },
+            {
+              "name": "km_inicial",
+              "type": "string"
+            },
+            {
+              "name": "km_final",
+              "type": "string"
+            }
+          ]
+        },
+        "scheme": "file",
+        "title": "Insira um título humanamente legível para este recurso.",
+        "stats": {
+          "hash": "9d380fadbd9907e966a4671f42417c0e",
+          "bytes": 482384,
+          "fields": 8,
+          "rows": 4972
+        }
+      },
+      "time": 0.111,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -1020,8 +701,8 @@
     }
   ],
   "stats": {
-    "errors": 10,
-    "tasks": 6
+    "errors": 0,
+    "tasks": 8
   },
-  "valid": false
+  "valid": true
 }
