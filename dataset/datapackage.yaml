@@ -2,8 +2,7 @@ name: portal_obras
 owner_org: departamento-de-estradas-de-rodagem-de-minas-gerais
 profile: data-package
 resources:
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
+  - dialect:
       delimiter: ;
     encoding: utf-8-sig
     format: csv
@@ -72,9 +71,8 @@ resources:
         - name: percentual_execucao_contrato
           type: string
     scheme: file
-    title: Insira um título humanamente legível para este recurso.
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
+    title: Contratos de Obras
+  - dialect:
       delimiter: ;
     encoding: utf-8-sig
     format: csv
@@ -93,9 +91,8 @@ resources:
         - name: longitude
           type: string
     scheme: file
-    title: Insira um título humanamente legível para este recurso.
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
+    title: Coordenadas de Obras
+  - dialect:
       delimiter: ;
     encoding: utf-8-sig
     format: csv
@@ -118,9 +115,8 @@ resources:
         - name: cargo
           type: string
     scheme: file
-    title: Insira um título humanamente legível para este recurso.
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
+    title: Fiscais de Obras
+  - dialect:
       delimiter: ;
     encoding: utf-8-sig
     format: csv
@@ -137,28 +133,8 @@ resources:
         - name: municipio
           type: string
     scheme: file
-    title: Insira um título humanamente legível para este recurso.
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
-      delimiter: ;
-    encoding: utf-8-sig
-    format: csv
-    hashing: md5
-    name: municipios2
-    path: data/municípios.csv
-    profile: tabular-data-resource
-    schema:
-      fields:
-        - name: contrato
-          type: string
-        - name: obra
-          type: string
-        - name: municipio
-          type: string
-    scheme: file
-    title: Insira um título humanamente legível para este recurso.
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
+    title: Municípios 
+  - dialect:
       delimiter: ;
     encoding: utf-8-sig
     format: csv
@@ -189,9 +165,8 @@ resources:
         - name: saldo_de_valor_da_obra
           type: string
     scheme: file
-    title: Insira um título humanamente legível para este recurso.
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
+    title: Obra
+  - dialect:
       delimiter: ;
     encoding: utf-8-sig
     format: csv
@@ -212,9 +187,8 @@ resources:
         - name: responsavel
           type: string
     scheme: file
-    title: Insira um título humanamente legível para este recurso.
-  - description: Insira a descrição/explicação detalhada deste recurso.
-    dialect:
+    title: Situação da Obra
+  - dialect:
       delimiter: ;
     encoding: utf-8-sig
     format: csv
@@ -241,5 +215,5 @@ resources:
         - name: km_final
           type: string
     scheme: file
-    title: Insira um título humanamente legível para este recurso.
-title: Portal_obras
+    title: Trechos da Obra
+title: Contratos de Obras
