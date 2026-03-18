@@ -734,69 +734,163 @@
             justify-content: flex-start;
         }
 
-        /* ==================== METADADOS E DICIONÁRIO ==================== */
-        .metadata-card {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            border-left: 4px solid var(--info-blue);
-        }
-        .metadata-item { 
-            font-size: 13px; 
-            padding: 8px 0; 
-            border-bottom: 1px dashed #eee; 
-        }
-        .metadata-item strong { 
-            color: var(--primary-dark); 
-            width: 180px; 
-            display: inline-block; 
-        }
-        
-        .table-bordered {
-            border: 1px solid #dee2e6;
-            width: 100%;
-        }
-        
-        .table-bordered th,
-        .table-bordered td {
-            border: 1px solid #dee2e6;
-            padding: 12px;
-            vertical-align: top;
-        }
+/* ==================== METADADOS ==================== */
+.metadata-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    border-left: 4px solid var(--info-blue);
+}
+.metadata-item { 
+    font-size: 13px; 
+    padding: 8px 0; 
+    border-bottom: 1px dashed #eee; 
+}
+.metadata-item strong { 
+    color: var(--primary-dark); 
+    width: 180px; 
+    display: inline-block; 
+}
 
-        .modern-select {
-            border: 1.5px solid #dfe5ec !important;
-            border-radius: 8px !important;
-            padding: 10px 12px !important;
-            font-size: 16px !important;
-            height: 48px !important;       
-            line-height: 1.5 !important;
-            background-color: #fff;
-            transition: all 0.2s ease;
-            width: 100%;
-        }
-        .modern-select:focus {
-            border-color: #1a3a5c !important;
-            box-shadow: 0 0 0 2px rgba(26,58,92,0.1);
-        }
+/* TABELAS DE METADADOS - ESTILO CORRIGIDO */
+.metadata-card .table-bordered {
+    border: 1px solid #dee2e6;
+    width: 100%;
+}
 
-        .progresso-barra {
-            width: 80px; height: 6px; background-color: #e9ecef;
-            border-radius: 3px; overflow: hidden;
-        }
-        .progresso-preenchimento {
-            height: 100%; background-color: var(--success-green);
-            border-radius: 3px;
-        }
-        .objeto-cell {
-            max-width: 200px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .text-right { text-align: right; }
-        .text-center { text-align: center; }
+.metadata-card .table-bordered th,
+.metadata-card .table-bordered td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    vertical-align: top;
+}
+
+/* CABEÇALHO DAS TABELAS DE METADADOS - PRIMARK DARK */
+.metadata-card .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #1e1e1e !important;  /* PRETO PRIMARK */
+    color: white !important;
+    font-weight: 600;
+    border-color: #555555 !important;
+}
+
+/* LINHAS DO CORPO DAS TABELAS */
+.metadata-card .table tbody tr {
+    background-color: white !important;
+}
+
+.metadata-card .table tbody tr:hover {
+    background-color: #f5f8ff !important;
+    transition: 0.2s;
+}
+
+.metadata-card .table tbody td {
+    background-color: white;
+}
+
+/* GARANTIR QUE AS BORDAS FIQUEM CINZA */
+.metadata-card .table-bordered th,
+.metadata-card .table-bordered td {
+    border-color: #dee2e6 !important;
+}
+
+/* PARA TABELAS ESPECÍFICAS DE METADADOS */
+.table-metadata thead th {
+    background-color: #1e1e1e !important;
+    color: white !important;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.me-2 {
+    margin-right: 0.5rem;
+}
+
+.material-icons {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+h5 {
+    font-size: 1.25rem;
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--info-blue);
+    padding-bottom: 10px;
+}
+
+.modern-select {
+    border: 1.5px solid #dfe5ec !important;
+    border-radius: 8px !important;
+    padding: 10px 12px !important;
+    font-size: 16px !important;
+    height: 48px !important;       
+    line-height: 1.5 !important;
+    background-color: #fff;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+.modern-select:focus {
+    border-color: #1a3a5c !important;
+    box-shadow: 0 0 0 2px rgba(26,58,92,0.1);
+}
+
+.tooltip-inner {
+    background-color: #2f3b45 !important;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    max-width: 250px;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #2f3b45 !important;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #2f3b45 !important;
+}
+
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: #2f3b45 !important;
+}
+
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #2f3b45 !important;
+}    
+
+.info-icon {
+    font-size: 18px;
+    color: white;
+    background-color: #1a3a5c;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; 
+}
+
 
         /* ==================== LINKS CARDS ==================== */
         .links-grid-3 {
@@ -2830,71 +2924,266 @@
         const container = document.getElementById('downloads-content');
         if (!container) return;
 
-        container.innerHTML = `
-            <div class="filter-container">
-                <h4 class="mb-4"><span class="material-icons me-2">link</span> Links Úteis</h4>
-                
-                <div class="links-grid-3">
-                    <div class="link-card">
-                        <div class="link-icon"><span class="material-icons">dashboard</span></div>
-                        <h5 class="link-title">Painel de Obras</h5>
-                        <p class="link-desc">Relatórios Trimestrais, medições e fotos, com acompanhamento físico-financeiro</p>
-                        <a href="https://app.powerbi.com/view?r=eyJrIjoiMzkwZGM3MGItZGUyNS00NGMzLThkY2YtNTNhYzk0OGYwMzM5IiwidCI6IjUyZTU3MzMxLWYyNzgtNGNhMC05NmZkLTk0YzVhYjFmODUyNCJ9" target="_blank" class="link-button">
-                            <span class="material-icons">open_in_new</span> Acessar Painel
+container.innerHTML = `
+    <div class="filter-container">
+       
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="card-stats p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="fw-bold text-start mb-3"><i class="material-icons me-2"></i> Painel de Obras com Fotos e Relatórios</h4>
+                    <p class="text-muted text-justify" style="font-size: 13px; text-align: justify;">
+                        Relatórios Trimestrais, medições e fotos, com acompanhamento físico-financeiro das obras.
+                    </p>
+                    <div class="mt-4 text-end">
+                        <a href="https://app.powerbi.com/view?r=eyJrIjoiMzkwZGM3MGItZGUyNS00NGMzLThkY2YtNTNhYzk0OGYwMzM5IiwidCI6IjUyZTU3MzMxLWYyNzgtNGNhMC05NmZkLTk0YzVhYjFmODUyNCJ9" 
+                           target="_blank" 
+                           class="btn-export text-decoration-none fw-bold d-inline-block px-4 py-2">
+                            <i class="material-icons me-2" style="font-size: 16px; vertical-align: middle;"></i>Acessar Painel de Obras DER
                         </a>
-                    </div>
-                    <div class="link-card">
-                        <div class="link-icon"><span class="material-icons">map</span></div>
-                        <h5 class="link-title">Mapa de Obras - DER</h5>
-                        <p class="link-desc">Visualização georreferenciada de todas as obras rodoviárias</p>
-                        <a href="https://portal.der.mg.gov.br/obras-gov-map/#/map" target="_blank" class="link-button">
-                            <span class="material-icons">map</span> Acessar Mapa
-                        </a>
-                    </div>
-                    <div class="link-card">
-                        <div class="link-icon"><span class="material-icons">gavel</span></div>
-                        <h5 class="link-title">Editais de Licitação</h5>
-                        <p class="link-desc">Concorrências 2026 - DER/MG</p>
-                        <a href="https://www.der.mg.gov.br/transparencia/licitacoes/concorrencias-2026" target="_blank" class="link-button">
-                            <span class="material-icons">description</span> Acessar Editais
-                        </a>
-                    </div>
-                </div>
-
-                <div class="metadata-card mt-4">
-                    <h5 class="mb-3">Dicionário de Dados</h5>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Campo</th>
-                                    <th>Descrição</th>
-                                    <th>Tipo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>contrato</td><td>Número do contrato</td><td>Texto</td></tr>
-                                <tr><td>portal_de_compras</td><td>Número do processo no portal de compras</td><td>Texto</td></tr>
-                                <tr><td>orgao_entidade_contratante</td><td>Órgão responsável pelo contrato</td><td>Texto</td></tr>
-                                <tr><td>empresa</td><td>Empresa contratada</td><td>Texto</td></tr>
-                                <tr><td>objeto</td><td>Descrição do objeto do contrato</td><td>Texto</td></tr>
-                                <tr><td>situacao</td><td>Situação atual do contrato</td><td>Texto</td></tr>
-                                <tr><td>data_assinatura</td><td>Data de assinatura do contrato</td><td>Data</td></tr>
-                                <tr><td>termino_execucao</td><td>Data prevista para término</td><td>Data</td></tr>
-                                <tr><td>valor_inicial_do_contrato</td><td>Valor inicial do contrato</td><td>Número</td></tr>
-                                <tr><td>valor_em_aditivos</td><td>Valor total de aditivos</td><td>Número</td></tr>
-                                <tr><td>valor_total_do_contrato</td><td>Valor total após aditivos</td><td>Número</td></tr>
-                                <tr><td>valor_medido_precos_iniciais</td><td>Valor medido a preços iniciais</td><td>Número</td></tr>
-                                <tr><td>valor_medido_reajuste</td><td>Valor medido com reajuste</td><td>Número</td></tr>
-                                <tr><td>total_medido</td><td>Total medido da obra</td><td>Número</td></tr>
-                                <tr><td>saldo_contratual</td><td>Saldo contratual restante</td><td>Número</td></tr>
-                                <tr><td>percentual_execucao_contrato</td><td>Percentual de execução do contrato</td><td>Número</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
-        `;
+            
+            <div class="col-md-6 mb-3">
+                <div class="card-stats p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="fw-bold text-start mb-3"><i class="material-icons me-2"></i> Mapa de Obras - DER</h4>
+                    <p class="text-muted text-justify" style="font-size: 13px; text-align: justify;">
+                        Visualização georreferenciada de todas as obras rodoviárias do DER/MG.
+                    </p>
+                    <div class="mt-4 text-end">
+                        <a href="https://portal.der.mg.gov.br/obras-gov-map/#/map" 
+                           target="_blank" 
+                           class="btn-export text-decoration-none fw-bold d-inline-block px-4 py-2">
+                            <i class="material-icons me-2" style="font-size: 16px; vertical-align: middle;"></i>Acessar Mapa de Obras
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="card-stats p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="fw-bold text-start mb-3"><i class="material-icons me-2"></i> Editais de Licitação</h4>
+                    <p class="text-muted text-justify" style="font-size: 13px; text-align: justify;">
+                        Concorrências 2026 - DER/MG. Acesse os editais e documentos de licitação.
+                    </p>
+                    <div class="mt-4 text-end">
+                        <a href="https://www.der.mg.gov.br/transparencia/licitacoes/concorrencias-2026" 
+                           target="_blank" 
+                           class="btn-export text-decoration-none fw-bold d-inline-block px-4 py-2">
+                            <i class="material-icons me-2" style="font-size: 16px; vertical-align: middle;"></i>Acessar Editais de Licitação
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <div class="card-stats p-4 bg-white rounded shadow-sm h-100">
+                    <h4 class="fw-bold text-start mb-3"><i class="material-icons me-2"></i> Portal de Dados Abertos</h4>
+                    <p class="text-muted text-justify" style="font-size: 13px; text-align: justify;">
+                        Acesse o conjunto de dados de Obras Públicas no Portal de Dados Abertos de Minas Gerais.
+                    </p>
+                    <div class="mt-4 text-end">
+                        <a href="https://dados.mg.gov.br/dataset/portal_obras" 
+                           target="_blank" 
+                           class="btn-export text-decoration-none fw-bold d-inline-block px-4 py-2">
+                            <i class="material-icons me-2" style="font-size: 16px; vertical-align: middle;"></i>Acessar Portal Dados MG
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="metadata-card mt-4">
+            <h5 class="mb-3">METADADOS - ESTRUTRA DE DADOS</h5>
+
+            <style>
+                /* Estilo Primark Dark para cabeçalhos */
+                .table thead.tr-meta-dark th {
+                    background-color: #1e1e1e !important;
+                    color: #ffffff !important;
+                    font-weight: 600;
+                    border-color: #555555 !important;
+                }
+                /* Remover linhas verticais vermelhas e azuis */
+                .table-bordered th, 
+                .table-bordered td {
+                    border-left: none !important;
+                    border-right: none !important;
+                }
+                .table-bordered {
+                    border-left: none !important;
+                    border-right: none !important;
+                }
+            </style>
+            
+            <!-- contratos.csv -->
+            <h6 class="mt-4 mb-2 fw-bold">CONTRATOS</h6>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>contrato</td><td>Número do contrato da obra</td><td>Texto</td></tr>
+                        <tr><td>portal_de_compras</td><td>Número do processo no portal de compras</td><td>Texto</td></tr>
+                        <tr><td>orgao_entidade_contratante</td><td>Órgão ou entidade responsável pelo contrato</td><td>Texto</td></tr>
+                        <tr><td>empresa</td><td>Empresa contratada para execução da obra</td><td>Texto</td></tr>
+                        <tr><td>objeto</td><td>Descrição detalhada do objeto do contrato</td><td>Texto</td></tr>
+                        <tr><td>situacao</td><td>Situação atual do contrato (Ativo, Concluído, etc.)</td><td>Texto</td></tr>
+                        <tr><td>data_assinatura</td><td>Data de assinatura do contrato</td><td>Data (AAAA-MM-DD)</td></tr>
+                        <tr><td>termino_execucao</td><td>Data prevista para término da execução</td><td>Data (AAAA-MM-DD)</td></tr>
+                        <tr><td>valor_inicial_do_contrato</td><td>Valor inicial do contrato em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_em_aditivos</td><td>Valor total de aditivos ao contrato em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_total_do_contrato</td><td>Valor total do contrato após aditivos em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_medido_precos_iniciais</td><td>Valor medido a preços iniciais em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_medido_reajuste</td><td>Valor medido com reajuste em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>total_medido</td><td>Total medido da obra em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>saldo_contratual</td><td>Saldo contratual restante em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>percentual_execucao_contrato</td><td>Percentual de execução do contrato</td><td>Número (Decimal)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- coordenadas.csv -->
+            <h6 class="mt-4 mb-2 fw-bold">COORDENADAS</h6>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>contrato</td><td>Número do contrato associado às coordenadas</td><td>Texto</td></tr>
+                        <tr><td>obra</td><td>Identificador da obra (Obra 1, Obra 2, etc.)</td><td>Texto</td></tr>
+                        <tr><td>latitude</td><td>Latitude do ponto georreferenciado</td><td>Número (Decimal)</td></tr>
+                        <tr><td>longitude</td><td>Longitude do ponto georreferenciado</td><td>Número (Decimal)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- fiscais.csv -->
+            <h6 class="mt-4 mb-2 fw-bold">FISCAIS</h6>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>contrato</td><td>Número do contrato onde atua o fiscal</td><td>Texto</td></tr>
+                        <tr><td>obra</td><td>Identificador da obra</td><td>Texto</td></tr>
+                        <tr><td>portal_de_compras</td><td>Número do processo no portal de compras</td><td>Texto</td></tr>
+                        <tr><td>nome</td><td>Nome completo do fiscal responsável</td><td>Texto</td></tr>
+                        <tr><td>conselho</td><td>Número de registro no conselho profissional (CREA, etc.)</td><td>Texto</td></tr>
+                        <tr><td>cargo</td><td>Cargo ou função do fiscal na obra</td><td>Texto</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- municipios.csv -->
+            <h6 class="mt-4 mb-2 fw-bold">MUNICÍPIOS</h6>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>contrato</td><td>Número do contrato</td><td>Texto</td></tr>
+                        <tr><td>obra</td><td>Identificador da obra</td><td>Texto</td></tr>
+                        <tr><td>municipio</td><td>Nome do município onde a obra está localizada</td><td>Texto</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- obra.csv -->
+            <h6 class="mt-4 mb-2 fw-bold">OBRAS</h6>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>contrato</td><td>Número do contrato da obra</td><td>Texto</td></tr>
+                        <tr><td>obra</td><td>Identificador da obra</td><td>Texto</td></tr>
+                        <tr><td>detipoobra</td><td>Tipo detalhado da obra (Recuperação Funcional, Hospital, Escola, etc.)</td><td>Texto</td></tr>
+                        <tr><td>descricao_da_obra</td><td>Descrição detalhada do escopo da obra</td><td>Texto</td></tr>
+                        <tr><td>valor_inicial_da_obra</td><td>Valor inicial contratado para a obra em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_em_aditivos</td><td>Valor total de aditivos da obra em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_total_da_obra</td><td>Valor total da obra após aditivos em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_medido_precos_iniciais</td><td>Valor medido a preços iniciais em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>valor_medido_reajuste</td><td>Valor medido com reajuste em R$</td><td>Número (Decimal)</td></tr>
+                        <tr><td>saldo_de_valor_da_obra</td><td>Saldo restante do valor da obra em R$</td><td>Número (Decimal)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- situacao.csv -->
+            <h6 class="mt-4 mb-2 fw-bold">SITUAÇÃO</h6>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>contrato</td><td>Número do contrato</td><td>Texto</td></tr>
+                        <tr><td>status</td><td>Status atual da obra (Andamento, etc.)</td><td>Texto</td></tr>
+                        <tr><td>descricao_do_motivo</td><td>Descrição do motivo quando há alteração de status</td><td>Texto</td></tr>
+                        <tr><td>data</td><td>Data da atualização do status</td><td>Data (AAAA-MM-DD)</td></tr>
+                        <tr><td>responsavel</td><td>Responsável pela atualização do status</td><td>Texto</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- trechos.csv -->
+            <h6 class="mt-4 mb-2 fw-bold">TRECHOS</h6>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>contrato</td><td>Número do contrato</td><td>Texto</td></tr>
+                        <tr><td>obra</td><td>Identificador da obra</td><td>Texto</td></tr>
+                        <tr><td>sequencia_do_trecho</td><td>Número de sequência do trecho</td><td>Número</td></tr>
+                        <tr><td>rodovia</td><td>Código da rodovia (MG, LMG, CMG, etc.)</td><td>Texto</td></tr>
+                        <tr><td>descricao_rodovia</td><td>Descrição do percurso da rodovia</td><td>Texto</td></tr>
+                        <tr><td>descricao_trecho</td><td>Descrição específica do trecho</td><td>Texto</td></tr>
+                        <tr><td>km_inicial</td><td>Quilometragem inicial do trecho</td><td>Número (Decimal)</td></tr>
+                        <tr><td>km_final</td><td>Quilometragem final do trecho</td><td>Número (Decimal)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+`;
     }
 
     // ============================================
