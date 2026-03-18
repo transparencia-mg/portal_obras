@@ -4,7 +4,6 @@
   "profile": "data-package",
   "resources": [
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
       "dialect": {
         "delimiter": ";"
       },
@@ -135,10 +134,9 @@
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Contratos de Obras"
     },
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
       "dialect": {
         "delimiter": ";"
       },
@@ -169,10 +167,9 @@
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Coordenadas de Obras"
     },
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
       "dialect": {
         "delimiter": ";"
       },
@@ -211,10 +208,9 @@
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Fiscais de Obras"
     },
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
       "dialect": {
         "delimiter": ";"
       },
@@ -241,40 +237,9 @@
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Municípios"
     },
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
-      "dialect": {
-        "delimiter": ";"
-      },
-      "encoding": "utf-8-sig",
-      "format": "csv",
-      "hashing": "md5",
-      "name": "municipios2",
-      "path": "data/municípios.csv",
-      "profile": "tabular-data-resource",
-      "schema": {
-        "fields": [
-          {
-            "name": "contrato",
-            "type": "string"
-          },
-          {
-            "name": "obra",
-            "type": "string"
-          },
-          {
-            "name": "municipio",
-            "type": "string"
-          }
-        ]
-      },
-      "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
-    },
-    {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
       "dialect": {
         "delimiter": ";"
       },
@@ -329,10 +294,9 @@
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Obra"
     },
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
       "dialect": {
         "delimiter": ";"
       },
@@ -367,10 +331,9 @@
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Situação da Obra"
     },
     {
-      "description": "Insira a descrição/explicação detalhada deste recurso.",
       "dialect": {
         "delimiter": ";"
       },
@@ -417,8 +380,8 @@
         ]
       },
       "scheme": "file",
-      "title": "Insira um título humanamente legível para este recurso."
+      "title": "Trechos da Obra"
     }
   ],
-  "title": "Portal_obras"
+  "title": "Contratos de Obras"
 }
