@@ -273,7 +273,9 @@ DC-9492715/2025;Obra 1;São Francisco
 DC-9492718/2025;Obra 1;Pintópolis
 DC-9492718/2025;Obra 1;Urucuia
 DC-9493122/2026;Obra 1;Manga
+DC-9493122/2026;Obra 1;Matias Cardoso
 DC-9493529/2026;Obra 1;Santa Rita do Itueto
+DC-9495596/2026;Obra 1;Igaratinga
 DC-9496643/2026;Obra 1;Belo Horizonte
 DC-9496643/2026;Obra 1;Lagoa Santa
 DC-9496643/2026;Obra 2;Belo Horizonte
@@ -629,6 +631,24 @@ DM-005/2024;Obra 1;Uberaba
 DM-005/2024;Obra 1;Uberlândia
 DM-005/2024;Obra 1;Veríssimo
 DM-005/2024;Obra 1;Água Comprida
+DM-005/2024-A;Obra 1;Campina Verde
+DM-005/2024-A;Obra 1;Campo Florido
+DM-005/2024-A;Obra 1;Comendador Gomes
+DM-005/2024-A;Obra 1;Conceição das Alagoas
+DM-005/2024-A;Obra 1;Conquista
+DM-005/2024-A;Obra 1;Delta
+DM-005/2024-A;Obra 1;Frutal
+DM-005/2024-A;Obra 1;Itapagipe
+DM-005/2024-A;Obra 1;Iturama
+DM-005/2024-A;Obra 1;Nova Ponte
+DM-005/2024-A;Obra 1;Pirajuba
+DM-005/2024-A;Obra 1;Planura
+DM-005/2024-A;Obra 1;Sacramento
+DM-005/2024-A;Obra 1;São Francisco de Sales
+DM-005/2024-A;Obra 1;Uberaba
+DM-005/2024-A;Obra 1;Uberlândia
+DM-005/2024-A;Obra 1;Veríssimo
+DM-005/2024-A;Obra 1;Água Comprida
 DM-006/2021;Obra 1;Crucilândia
 DM-006/2021;Obra 1;Itaguara
 DM-006/2021;Obra 1;Oliveira
@@ -3433,10 +3453,15 @@ DM-9493180/2026;Obra 1;Viçosa
 DM-9493202/2026;Obra 1;Jequitinhonha
 DM-9493202/2026;Obra 1;Palmópolis
 DM-9493202/2026;Obra 1;Rio do Prado
+DM-9497685/2026;Obra 1;Barbacena
+DM-9497685/2026;Obra 1;Capela Nova
+DM-9497685/2026;Obra 1;Carandaí
 DO-001/2021;Obra 2;Belo Horizonte
 DO-001/2021;Obra 2;Minas Gerais
-DO-001/2021-ANO 2;Obra 2;Belo Horizonte
-DO-001/2021-ANO 2;Obra 2;Minas Gerais
+DO-001/2021- B;Obra 2;Belo Horizonte
+DO-001/2021- B;Obra 2;Minas Gerais
+DO-001/2021- C;Obra 2;Belo Horizonte
+DO-001/2021- C;Obra 2;Minas Gerais
 DOV-001/2021;Obra 1;Aguanil
 DOV-001/2021;Obra 1;Alpinópolis
 DOV-001/2021;Obra 1;Alvinópolis
