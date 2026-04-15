@@ -28,6 +28,31 @@ ATA RP-LOTE 3;Obra 1;Jequitinhonha
 ATA RP-LOTE 4;Obra 1;Cataguases
 ATA RP-LOTE 5;Obra 1;Luz
 ATA RP-LOTE 6;Obra 1;Varginha
+D0-009482032/2025;Obra 1;Açucena
+D0-009482032/2025;Obra 1;Caputira
+D0-009482032/2025;Obra 1;Cataguases
+D0-009482032/2025;Obra 1;Dionísio
+D0-009482032/2025;Obra 1;Dom Silvério
+D0-009482032/2025;Obra 1;Faria Lemos
+D0-009482032/2025;Obra 1;Guiricema
+D0-009482032/2025;Obra 1;Inhapim
+D0-009482032/2025;Obra 1;Itabira
+D0-009482032/2025;Obra 1;Muriaé
+D0-009482032/2025;Obra 1;Mutum
+D0-009482032/2025;Obra 1;Nova Era
+D0-009482032/2025;Obra 1;Ouro Preto
+D0-009482032/2025;Obra 1;Paula Cândido
+D0-009482032/2025;Obra 1;Piraúba
+D0-009482032/2025;Obra 1;Raul Soares
+D0-009482032/2025;Obra 1;Reduto
+D0-009482032/2025;Obra 1;Rio Piracicaba
+D0-009482032/2025;Obra 1;Santa Maria de Itabira
+D0-009482032/2025;Obra 1;São Domingos das Dores
+D0-009482032/2025;Obra 1;São Geraldo
+D0-009482032/2025;Obra 1;São Pedro dos Ferros
+D0-009482032/2025;Obra 1;Tabuleiro
+D0-009482032/2025;Obra 1;Teixeiras
+D0-009482032/2025;Obra 1;Viçosa
 DC-001/2022;Obra 1;Januária
 DC-001/2022;Obra 1;Mirabela
 DC-001/2022;Obra 2;Januária
@@ -276,6 +301,7 @@ DC-9492718/2025;Obra 1;Pintópolis
 DC-9492718/2025;Obra 1;Urucuia
 DC-9493122/2026;Obra 1;Manga
 DC-9493122/2026;Obra 1;Matias Cardoso
+DC-9493529/2026;Obra 1;Itueta
 DC-9493529/2026;Obra 1;Santa Rita do Itueto
 DC-9495596/2026;Obra 1;Igaratinga
 DC-9496643/2026;Obra 1;Belo Horizonte
@@ -3404,6 +3430,7 @@ DM-9473312/2025;Obra 1;Juiz de Fora
 DM-9474704/2025;Obra 1;Bom Jardim de Minas
 DM-9474704/2025;Obra 1;Juiz de Fora
 DM-9474704/2025;Obra 1;Santa Rita de Jacutinga
+DM-9485591/2025;Obra 1;Abre Campo
 DM-9485591/2025;Obra 1;Ponte Nova
 DM-9485591/2025;Obra 1;Sericita
 DM-9485592/2025;Obra 1;Ponte Nova
@@ -3464,8 +3491,125 @@ DO-001/2021- B;Obra 2;Belo Horizonte
 DO-001/2021- B;Obra 2;Minas Gerais
 DO-001/2021- C;Obra 2;Belo Horizonte
 DO-001/2021- C;Obra 2;Minas Gerais
+DO-009482014/2025;Obra 1;Abaeté
+DO-009482014/2025;Obra 1;Bambuí
 DO-009482014/2025;Obra 1;Belo Horizonte
-DO-009482046/2025;Obra 1;Belo Horizonte
+DO-009482014/2025;Obra 1;Bom Sucesso
+DO-009482014/2025;Obra 1;Brumadinho
+DO-009482014/2025;Obra 1;Campo Belo
+DO-009482014/2025;Obra 1;Cláudio
+DO-009482014/2025;Obra 1;Confins
+DO-009482014/2025;Obra 1;Contagem
+DO-009482014/2025;Obra 1;Desterro de Entre Rios
+DO-009482014/2025;Obra 1;Divinópolis
+DO-009482014/2025;Obra 1;Ilicínea
+DO-009482014/2025;Obra 1;Inhaúma
+DO-009482014/2025;Obra 1;Itabirito
+DO-009482014/2025;Obra 1;Itapecerica
+DO-009482014/2025;Obra 1;Itaúna
+DO-009482014/2025;Obra 1;Jaboticatubas
+DO-009482014/2025;Obra 1;Lagoa da Prata
+DO-009482014/2025;Obra 1;Lavras
+DO-009482014/2025;Obra 1;Luz
+DO-009482014/2025;Obra 1;Ouro Preto
+DO-009482014/2025;Obra 1;Pequi
+DO-009482014/2025;Obra 1;Perdigão
+DO-009482014/2025;Obra 1;Sarzedo
+DO-009482014/2025;Obra 1;São Sebastião do Oeste
+DO-009482014/2025;Obra 1;Vespasiano
+DO-009482017/2025;Obra 1;Abadia dos Dourados
+DO-009482017/2025;Obra 1;Alpinópolis
+DO-009482017/2025;Obra 1;Alterosa
+DO-009482017/2025;Obra 1;Arceburgo
+DO-009482017/2025;Obra 1;Campina Verde
+DO-009482017/2025;Obra 1;Capetinga
+DO-009482017/2025;Obra 1;Conceição da Aparecida
+DO-009482017/2025;Obra 1;Coromandel
+DO-009482017/2025;Obra 1;Cássia
+DO-009482017/2025;Obra 1;Delta
+DO-009482017/2025;Obra 1;Ibiá
+DO-009482017/2025;Obra 1;Ituiutaba
+DO-009482017/2025;Obra 1;Monte Carmelo
+DO-009482017/2025;Obra 1;Paracatu
+DO-009482017/2025;Obra 1;Presidente Olegário
+DO-009482017/2025;Obra 1;Sacramento
+DO-009482017/2025;Obra 1;Serra do Salitre
+DO-009482017/2025;Obra 1;Tapira
+DO-009482017/2025;Obra 1;Uberaba
+DO-009482017/2025;Obra 1;Uberlândia
+DO-009482017/2025;Obra 1;Unaí
+DO-009482046/2025;Obra 1;Aiuruoca
+DO-009482046/2025;Obra 1;Antônio Carlos
+DO-009482046/2025;Obra 1;Barbacena
+DO-009482046/2025;Obra 1;Boa Esperança
+DO-009482046/2025;Obra 1;Bocaina de Minas
+DO-009482046/2025;Obra 1;Brazópolis
+DO-009482046/2025;Obra 1;Cambuí
+DO-009482046/2025;Obra 1;Campo do Meio
+DO-009482046/2025;Obra 1;Careaçu
+DO-009482046/2025;Obra 1;Conceição do Rio Verde
+DO-009482046/2025;Obra 1;Delfim Moreira
+DO-009482046/2025;Obra 1;Entre Rios de Minas
+DO-009482046/2025;Obra 1;Espírito Santo do Dourado
+DO-009482046/2025;Obra 1;Itajubá
+DO-009482046/2025;Obra 1;Jesuânia
+DO-009482046/2025;Obra 1;Lagoa Dourada
+DO-009482046/2025;Obra 1;Pouso Alegre
+DO-009482046/2025;Obra 1;Rio Espera
+DO-009482046/2025;Obra 1;São João Del Rei
+DO-009482046/2025;Obra 1;São João da Mata
+DO-009482046/2025;Obra 1;São Tomé das Letras
+DO-009482046/2025;Obra 1;Três Corações
+DO-009482055/2025;Obra 1;Araçuaí
+DO-009482055/2025;Obra 1;Capelinha
+DO-009482055/2025;Obra 1;Carbonita
+DO-009482055/2025;Obra 1;Carlos Chagas
+DO-009482055/2025;Obra 1;Coluna
+DO-009482055/2025;Obra 1;Conceição do Mato Dentro
+DO-009482055/2025;Obra 1;Diamantina
+DO-009482055/2025;Obra 1;Dom Joaquim
+DO-009482055/2025;Obra 1;Fronteira dos Vales
+DO-009482055/2025;Obra 1;Fruta de Leite
+DO-009482055/2025;Obra 1;Gouvea
+DO-009482055/2025;Obra 1;Governador Valadares
+DO-009482055/2025;Obra 1;Jacinto
+DO-009482055/2025;Obra 1;José Gonçalves de Minas
+DO-009482055/2025;Obra 1;José Raydan
+DO-009482055/2025;Obra 1;Malacacheta
+DO-009482055/2025;Obra 1;Mata Verde
+DO-009482055/2025;Obra 1;Montezuma
+DO-009482055/2025;Obra 1;Nanuque
+DO-009482055/2025;Obra 1;Ponto dos Volantes
+DO-009482055/2025;Obra 1;Rio Pardo de Minas
+DO-009482055/2025;Obra 1;Salinas
+DO-009482055/2025;Obra 1;Senhora do Porto
+DO-009482055/2025;Obra 1;São João do Manteninha
+DO-009482055/2025;Obra 1;Umburatiba
+DO-009482055/2025;Obra 1;Virginópolis
+DO-009482055/2025;Obra 1;Água Boa
+DO-9481987/2025;Obra 1;Belo Horizonte
+DO-9493205/2026;Obra 1;Bocaiúva
+DO-9493205/2026;Obra 1;Bonfinópolis de Minas
+DO-9493205/2026;Obra 1;Buritis
+DO-9493205/2026;Obra 1;Curvelo
+DO-9493205/2026;Obra 1;Felixlândia
+DO-9493205/2026;Obra 1;Francisco Sá
+DO-9493205/2026;Obra 1;Grão Mogol
+DO-9493205/2026;Obra 1;Icaraí de Minas
+DO-9493205/2026;Obra 1;Januária
+DO-9493205/2026;Obra 1;Japonvar
+DO-9493205/2026;Obra 1;João Pinheiro
+DO-9493205/2026;Obra 1;Lagoa dos Patos
+DO-9493205/2026;Obra 1;Lassance
+DO-9493205/2026;Obra 1;Mirabela
+DO-9493205/2026;Obra 1;Monte Azul
+DO-9493205/2026;Obra 1;Montes Claros
+DO-9493205/2026;Obra 1;Pedras de Maria da Cruz
+DO-9493205/2026;Obra 1;Ponto Chique
+DO-9493205/2026;Obra 1;Porteirinha
+DO-9493205/2026;Obra 1;Riacho dos Machados
+DO-9493205/2026;Obra 1;Unaí
+DO-9493205/2026;Obra 1;Várzea da Palma
 DOV-001/2021;Obra 1;Aguanil
 DOV-001/2021;Obra 1;Alpinópolis
 DOV-001/2021;Obra 1;Alvinópolis
