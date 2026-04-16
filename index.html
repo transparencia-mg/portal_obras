@@ -768,13 +768,8 @@
         try { if (window.parent && window.parent !== window) window.parent.postMessage({ iframeHeight: h, type: 'resize' }, '*'); } catch(e) {}
     }
 
-    function voltarAoTopo() {
-        const container = document.querySelector('.main-container');
-        if (container) {
-            container.scrollTo({ top: 0, behavior: 'smooth' });
-    	} else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-    	}
+    window.voltarAoTopo = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function copiarLinkDireto() {
@@ -1212,7 +1207,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         renderizarGraficosSituacao({ andamento, concluidas, encerradas, outras: totalContratos-andamento-concluidas-encerradas });
@@ -1348,7 +1343,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         document.getElementById('filtroAnoContrato').value       = filtrosAtivos.contratos.ano||'';
@@ -1458,7 +1453,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         document.getElementById('filtroFiscalNome').value     = filtrosAtivos.fiscais.nome||'';
@@ -1587,7 +1582,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         document.getElementById('filtroAnoValores').value      = filtrosAtivos.valores.ano||'';
@@ -1932,7 +1927,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
         setTimeout(iframeUpdateHeight, 300);
     }
@@ -2068,6 +2063,19 @@
         document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
             tab.addEventListener('shown.bs.tab', () => setTimeout(iframeUpdateHeight, 300));
         });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.btn-topo')) {
+            console.log("clicou");
+
+            const container = document.querySelector('.main-container');
+            if (container) {
+                container.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
     });
 
     // Iframe resize observer
