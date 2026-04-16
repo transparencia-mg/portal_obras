@@ -769,7 +769,12 @@
     }
 
     function voltarAoTopo() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const container = document.querySelector('.main-container');
+        if (container) {
+            container.scrollTo({ top: 0, behavior: 'smooth' });
+    	} else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+    	}
     }
 
     function copiarLinkDireto() {
