@@ -364,6 +364,7 @@
         .modal-creative .modal-header .modal-title { color: white !important; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; }
         .modal-creative .modal-header .btn-close { filter: brightness(0) invert(1); opacity: 1; }
         .modal-creative .modal-header .btn-close:hover { opacity: 0.8; }
+        .modal-creative .modal-header .btn-export:hover { background-color: rgba(255,255,255,0.3) !important; border-color: rgba(255,255,255,0.7) !important; color: white !important; }
 
         .info-card {
             background: #f8fafd;
@@ -643,7 +644,18 @@
                 <h5 class="modal-title">
                     <span class="material-icons">assignment</span> Detalhes do Contrato
                 </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+                    <button type="button" class="btn-export" onclick="exportarModalCSV()" title="Exportar CSV" style="height:30px;font-size:11px;color:white;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.12);">
+                        <span class="material-icons" style="font-size:13px">description</span> CSV
+                    </button>
+                    <button type="button" class="btn-export" onclick="exportarModalPDF()" title="Exportar PDF" style="height:30px;font-size:11px;color:white;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.12);">
+                        <span class="material-icons" style="font-size:13px">print</span> PDF
+                    </button>
+                    <button type="button" class="btn-export" onclick="copiarLinkModal()" title="Copiar link" style="height:30px;font-size:11px;color:white;border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.12);">
+                        <span class="material-icons" style="font-size:13px">link</span> Link
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="margin-left:4px;"></button>
+                </div>
             </div>
             <div class="modal-body" id="detalhesContent"></div>
             <div class="modal-footer" style="gap:8px;">
@@ -721,6 +733,7 @@
     };
     const chartPalette = ['#2f4b63','#39a585','#5f6f7f','#f28c28','#7aa6c2','#8e44ad','#c0392b','#16a085','#d35400','#2980b9'];
     let charts = {};
+    let modalContratoAtual = null; // contrato atualmente aberto no modal
 
     // Cache global para dados de licitações (numero_contrato → {edital, contrato})
     let licitacoesCache = null;
@@ -768,8 +781,25 @@
         try { if (window.parent && window.parent !== window) window.parent.postMessage({ iframeHeight: h, type: 'resize' }, '*'); } catch(e) {}
     }
 
-    window.voltarAoTopo = function() {
+    function voltarAoTopo() {
+        // Tenta scroll direto no pai (same-origin)
+        try {
+            if (window.parent && window.parent !== window) {
+                window.parent.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+        } catch(e) {}
+        // Cross-origin: envia mensagem postMessage para o pai fazer o scroll
+        try {
+            if (window.parent && window.parent !== window) {
+                window.parent.postMessage({ action: 'scrollToTop' }, '*');
+                return;
+            }
+        } catch(e) {}
+        // Fallback: scroll no próprio documento
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
     }
 
     function copiarLinkDireto() {
@@ -1207,7 +1237,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         renderizarGraficosSituacao({ andamento, concluidas, encerradas, outras: totalContratos-andamento-concluidas-encerradas });
@@ -1343,7 +1373,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         document.getElementById('filtroAnoContrato').value       = filtrosAtivos.contratos.ano||'';
@@ -1453,7 +1483,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         document.getElementById('filtroFiscalNome').value     = filtrosAtivos.fiscais.nome||'';
@@ -1582,7 +1612,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
         document.getElementById('filtroAnoValores').value      = filtrosAtivos.valores.ano||'';
@@ -1636,6 +1666,7 @@
     window.verDetalhesContrato = async function(contratoId) {
         const contrato = currentDisplayData.contratos.find(c => c.contrato === contratoId);
         if (!contrato) return;
+        modalContratoAtual = contrato; // guarda referência para exportações
         const obras        = currentDisplayData.obras.filter(o => o.contrato === contratoId);
         const fiscais      = currentDisplayData.fiscais.filter(f => f.contrato === contratoId);
         const municipios   = currentDisplayData.municipios.filter(m => m.contrato === contratoId);
@@ -1927,7 +1958,7 @@
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
-            <button class="btn-topo" id="btnTopo"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
         setTimeout(iframeUpdateHeight, 300);
     }
@@ -1998,6 +2029,73 @@
     };
 
     // ============================================================
+    // EXPORTAÇÕES DO MODAL
+    // ============================================================
+    window.exportarModalCSV = function() {
+        if (!modalContratoAtual) return;
+        const c = modalContratoAtual;
+        const cabecalhos = ['contrato','portal_de_compras','ano_assinatura','orgao_entidade_contratante','empresa','objeto','data_assinatura','termino_execucao','situacao','valor_inicial_do_contrato','valor_em_aditivos','valor_total_do_contrato','valor_medido_precos_iniciais','valor_medido_reajuste','total_medido','saldo_contratual','percentual_execucao_contrato'];
+        const linha = cabecalhos.map(h => `"${String(c[h]||'').replace(/"/g,'""')}"`).join(';');
+        const blob = new Blob(['\uFEFF' + [cabecalhos.join(';'), linha].join('\n')], {type:'text/csv'});
+        saveAs(blob, `contrato_${(c.contrato||'detalhe').replace(/[^a-zA-Z0-9]/g,'_')}.csv`);
+    };
+    window.exportarModalPDF = function() {
+        if (!modalContratoAtual) return;
+        const c = modalContratoAtual;
+        const {jsPDF} = window.jspdf;
+        const doc = new jsPDF({ orientation: 'portrait' });
+        doc.setFontSize(13); doc.text(`Detalhes do Contrato: ${c.contrato||'-'}`, 14, 14);
+        doc.setFontSize(9);
+        const campos = [
+            ['Órgão Contratante', c.orgao_entidade_contratante||'-'],
+            ['Empresa', c.empresa||'-'],
+            ['Portal de Compras', c.portal_de_compras||'-'],
+            ['Situação', c.situacao||'-'],
+            ['Data Assinatura', formatarData(c.data_assinatura)],
+            ['Término Execução', formatarData(c.termino_execucao)],
+            ['Objeto', c.objeto||'-'],
+            ['Valor Inicial', 'R$ '+formatarMoeda(c.valor_inicial_do_contrato)],
+            ['Aditivos', 'R$ '+formatarMoeda(c.valor_em_aditivos)],
+            ['Valor Total', 'R$ '+formatarMoeda(c.valor_total_do_contrato)],
+            ['Total Medido', 'R$ '+formatarMoeda(c.total_medido)],
+            ['Saldo Contratual', 'R$ '+formatarMoeda(c.saldo_contratual)],
+            ['% Executado', c.percentual_execucao_contrato.toFixed(2)+'%'],
+        ];
+        doc.autoTable({
+            head: [['Campo','Valor']],
+            body: campos,
+            startY: 20,
+            styles: { fontSize: 9 },
+            headStyles: { fillColor: [32, 68, 93] },
+            columnStyles: { 0: { fontStyle:'bold', cellWidth: 60 } },
+            didDrawPage: () => { doc.setFontSize(8); doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`, 14, doc.internal.pageSize.height-5); }
+        });
+        doc.save(`contrato_${(c.contrato||'detalhe').replace(/[^a-zA-Z0-9]/g,'_')}.pdf`);
+    };
+    window.copiarLinkModal = function() {
+        if (!modalContratoAtual) return;
+        const url = `${window.location.href.split('?')[0]}?contrato=${encodeURIComponent(modalContratoAtual.contrato||'')}`;
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                const toast = document.getElementById('toastSucesso');
+                toast.style.display = 'flex';
+                toast.style.animation = 'fadeInUp 0.3s ease';
+                setTimeout(() => { toast.style.display = 'none'; }, 3000);
+            })
+            .catch(() => {
+                // fallback para ambientes sem clipboard API
+                const ta = document.createElement('textarea');
+                ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+                document.body.appendChild(ta); ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                const toast = document.getElementById('toastSucesso');
+                toast.style.display = 'flex';
+                setTimeout(() => { toast.style.display = 'none'; }, 3000);
+            });
+    };
+
+    // ============================================================
     // EXPORTAÇÕES
     // ============================================================
     window.exportarVisaoGeralCSV = function() {
@@ -2063,19 +2161,6 @@
         document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
             tab.addEventListener('shown.bs.tab', () => setTimeout(iframeUpdateHeight, 300));
         });
-    });
-
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.btn-topo')) {
-            console.log("clicou");
-
-            const container = document.querySelector('.main-container');
-            if (container) {
-                container.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
     });
 
     // Iframe resize observer
