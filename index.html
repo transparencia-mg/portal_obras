@@ -722,6 +722,38 @@
     const chartPalette = ['#2f4b63','#39a585','#5f6f7f','#f28c28','#7aa6c2','#8e44ad','#c0392b','#16a085','#d35400','#2980b9'];
     let charts = {};
 
+    // Cache global para dados de licitações (numero_contrato → {edital, contrato})
+    let licitacoesCache = null;
+    const LICITACOES_URLS = [
+        'https://raw.githubusercontent.com/transparencia-mg/portal_licitacoes_mg/refs/heads/main/dataset/data/licitacoes2026.csv',
+        'https://raw.githubusercontent.com/transparencia-mg/portal_licitacoes_mg/refs/heads/main/dataset/data/licitacoes2025.csv',
+        'https://raw.githubusercontent.com/transparencia-mg/portal_licitacoes_mg/refs/heads/main/dataset/data/licitacoes2024.csv',
+        'https://raw.githubusercontent.com/transparencia-mg/portal_licitacoes_mg/refs/heads/main/dataset/data/licitacoes2023.csv',
+        'https://raw.githubusercontent.com/transparencia-mg/portal_licitacoes_mg/refs/heads/main/dataset/data/licitacoes2022.csv'
+    ];
+    async function carregarLicitacoes() {
+        if (licitacoesCache !== null) return licitacoesCache;
+        licitacoesCache = {};
+        const promises = LICITACOES_URLS.map(url => new Promise(resolve => {
+            Papa.parse(url, { download: true, header: true, skipEmptyLines: true,
+                complete: results => {
+                    results.data.forEach(row => {
+                        const num = (row.numero_contrato || '').trim();
+                        if (num) licitacoesCache[num] = { edital: (row.edital_retificacao_arquivos||'').trim(), contrato: (row.contrato_termoaditivos_arquivos||'').trim() };
+                    });
+                    resolve();
+                }, error: () => resolve()
+            });
+        }));
+        await Promise.all(promises);
+        return licitacoesCache;
+    }
+    function extrairNumeroContrato(contratoStr) {
+        if (!contratoStr) return null;
+        const m = contratoStr.match(/(\d+)\//);
+        return m ? m[1] : null;
+    }
+
     // ============================================================
     // AUXILIARES
     // ============================================================
@@ -847,7 +879,7 @@
         if (dataCache.municipios) currentDisplayData.municipios = dataCache.municipios.map(m => ({ ...m, contrato: m.contrato?.trim()||'', municipio: m.municipio?.trim()||'' }));
         if (dataCache.coordenadas) currentDisplayData.coordenadas = dataCache.coordenadas.map(coord => ({ ...coord, contrato: coord.contrato?.trim()||'', latitude: coord.latitude?.trim()||'', longitude: coord.longitude?.trim()||'' }));
         if (dataCache.trechos)    currentDisplayData.trechos    = dataCache.trechos.map(t    => ({ ...t, contrato: t.contrato?.trim()||'' }));
-        if (dataCache.situacao)   currentDisplayData.situacao   = dataCache.situacao.map(s   => ({ ...s, contrato: s.contrato?.trim()||'', status: s.status?.trim()||'', descricao_do_motivo: s.descricao_do_motivo?.trim()||'', data: s.data?.trim()||'', responsavel: s.responsavel?.trim()||'' }));
+        if (dataCache.situacao)   currentDisplayData.situacao   = dataCache.situacao.map(s   => ({ ...s, contrato: s.contrato?.trim()||'', status: s.status?.trim()||'', descricao_do_motivo: s.descricao_do_motivo?.trim()||'', data: s.data?.trim()||'', responsavel: (s.responsavel?.trim()||'').replace(/\bDiretor Geral\b(?!\s*-\s*DRE)/g, 'Diretor Geral - DRE') }));
 
         const situacaoPorContrato = {};
         currentDisplayData.situacao.forEach(s => { if (!situacaoPorContrato[s.contrato]) situacaoPorContrato[s.contrato] = []; situacaoPorContrato[s.contrato].push(s); });
@@ -1076,7 +1108,7 @@
             </div>
             <div class="botoes-abaixo">
                 <button class="btn-pesquisa" onclick="aplicarFiltrosVG()"><span class="material-icons">search</span> Pesquisar</button>
-                <button class="btn-secondary-custom" onclick="limparFiltrosVG()"><span class="material-icons">clear</span> Limpar</button>
+                <button class="btn-secondary-custom" onclick="limparFiltrosVG()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
 
@@ -1268,7 +1300,7 @@
             </div>
             <div class="consulta-buttons-row">
                 <button class="btn-pesquisa" onclick="aplicarFiltrosContratos()"><span class="material-icons">search</span> Pesquisar</button>
-                <button class="btn-secondary-custom" onclick="limparFiltrosContratos()"><span class="material-icons">clear</span> Limpar</button>
+                <button class="btn-secondary-custom" onclick="limparFiltrosContratos()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
 
@@ -1382,7 +1414,7 @@
             </div>
             <div class="consulta-buttons-row">
                 <button class="btn-pesquisa" onclick="aplicarFiltrosFiscais()"><span class="material-icons">search</span> Pesquisar</button>
-                <button class="btn-secondary-custom" onclick="limparFiltrosFiscais()"><span class="material-icons">clear</span> Limpar</button>
+                <button class="btn-secondary-custom" onclick="limparFiltrosFiscais()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
 
@@ -1494,7 +1526,7 @@
             </div>
             <div class="consulta-buttons-row">
                 <button class="btn-pesquisa" onclick="aplicarFiltrosValores()"><span class="material-icons">search</span> Pesquisar</button>
-                <button class="btn-secondary-custom" onclick="limparFiltrosValores()"><span class="material-icons">clear</span> Limpar</button>
+                <button class="btn-secondary-custom" onclick="limparFiltrosValores()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
 
@@ -1602,7 +1634,7 @@
     // ============================================================
     // MODAL DE DETALHES
     // ============================================================
-    window.verDetalhesContrato = function(contratoId) {
+    window.verDetalhesContrato = async function(contratoId) {
         const contrato = currentDisplayData.contratos.find(c => c.contrato === contratoId);
         if (!contrato) return;
         const obras        = currentDisplayData.obras.filter(o => o.contrato === contratoId);
@@ -1620,13 +1652,14 @@
                 <div class="info-label">Histórico de Situações</div>
                 <div style="max-height:200px;overflow-y:auto;margin-top:8px;">
                     <table class="table table-sm" style="font-size:11px">
-                        <thead><tr><th>Data</th><th>Status</th><th>Motivo</th><th>Responsável</th></tr></thead>
+                        <thead><tr><th>Data</th><th>Status</th><th>Motivo</th><th>Responsável</th><th>Previsão de Retorno</th></tr></thead>
                         <tbody>${situacoes.map(s=>`
                             <tr>
                                 <td>${formatarData(s.data)||'-'}</td>
                                 <td><span class="${getSituacaoClass(s.status)}">${s.status||'-'}</span></td>
                                 <td>${s.descricao_do_motivo||'-'}</td>
                                 <td>${s.responsavel||'-'}</td>
+                                <td>${(s.status||'').toLowerCase().includes('paralisad') ? '<span style="font-size:10px;color:#555">No momento, não há data definida para a retomada da obra. A paralisação encontra-se devidamente motivada e registrada no processo administrativo, com acompanhamento contínuo pelos setores competentes, que realizam avaliações periódicas quanto à sua evolução. Ressalta-se que a situação poderá ensejar, conforme o caso, a adoção de medidas contratuais cabíveis, como reequilíbrio econômico-financeiro, prorrogação de prazos ou eventual rescisão contratual, nos termos da legislação vigente.</span>' : '-'}</td>
                             </tr>`).join('')}</tbody>
                     </table>
                 </div>
@@ -1706,12 +1739,18 @@
                             <span class="material-icons" style="font-size:26px;color:#ffc107">photo_library</span>
                         </div>
                         <div>
-                            <div style="font-size:10px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;letter-spacing:0.8px;margin-bottom:3px">Acompanhamento da Obra</div>
-                            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:8px">Relatórios Trimestrais e Fotos</div>
-                            <a href="https://app.powerbi.com/view?r=eyJrIjoiMzkwZGM3MGItZGUyNS00NGMzLThkY2YtNTNhYzk0OGYwMzM5IiwidCI6IjUyZTU3MzMxLWYyNzgtNGNhMC05NmZkLTk0YzVhYjFmODUyNCJ9" target="_blank"
-                               style="display:inline-flex;align-items:center;gap:6px;background:#ffc107;color:#1a3a5c;padding:7px 16px;border-radius:6px;font-weight:700;font-size:12px;text-decoration:none;">
-                                <span class="material-icons" style="font-size:14px">open_in_new</span> Acessar Relatórios e Fotos
-                            </a>
+                        <div style="font-size:10px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;letter-spacing:0.8px;margin-bottom:3px">Acompanhamento da Obra</div>
+                            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">Relatórios Trimestrais e Fotos</div>
+                            <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-bottom:10px">Copie o número <strong style="color:#ffc107">${contrato.contrato||''}</strong> para acessar Relatórios Trimestrais e Fotos da Obra.</div>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                                <button onclick="navigator.clipboard.writeText('${(contrato.contrato||'').replace(/'/g,"\\'")}').then(()=>{const t=document.getElementById('toastSucesso');t.style.display='flex';setTimeout(()=>t.style.display='none',2500);})" style="display:inline-flex;align-items:center;gap:6px;background:#ffc107;color:#1a3a5c;padding:7px 16px;border-radius:6px;font-weight:700;font-size:12px;border:none;cursor:pointer;">
+                                    <span class="material-icons" style="font-size:14px">content_copy</span> Copiar Número
+                                </button>
+                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMzkwZGM3MGItZGUyNS00NGMzLThkY2YtNTNhYzk0OGYwMzM5IiwidCI6IjUyZTU3MzMxLWYyNzgtNGNhMC05NmZkLTk0YzVhYjFmODUyNCJ9" target="_blank"
+                                   style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.18);color:#fff;padding:7px 16px;border-radius:6px;font-weight:700;font-size:12px;text-decoration:none;">
+                                    <span class="material-icons" style="font-size:14px">open_in_new</span> Acessar Painel
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1727,6 +1766,32 @@
                     </div>
                 </div>
             </div>`;
+
+        // Busca dados de licitação correspondentes ao número do contrato
+        const numContrato = extrairNumeroContrato(contrato.contrato);
+        const lic = await carregarLicitacoes();
+        const dadosLic = numContrato ? lic[numContrato] : null;
+
+        const licitacoesHTML = (() => {
+            const edital  = dadosLic?.edital  || '';
+            const contLink = dadosLic?.contrato || '';
+            if (!edital && !contLink) {
+                return `<div class="info-card mt-3" style="border-left:4px solid #e0e0e0;">
+                    <div class="info-label" style="margin-bottom:6px"><span class="material-icons" style="font-size:14px;vertical-align:middle;margin-right:4px">gavel</span>Processo Licitatório e Contrato</div>
+                    <div style="font-size:12px;color:#6c757d;">Não foram encontrados dados de licitação para este contrato nas planilhas disponíveis.</div>
+                </div>`;
+            }
+            const btnEdital  = edital  ? `<a href="${edital}"  target="_blank" class="btn-export" style="font-size:12px;"><span class="material-icons" style="font-size:13px">description</span> Edital / Processo Licitatório</a>`  : '';
+            const btnContrato = contLink ? `<a href="${contLink}" target="_blank" class="btn-export" style="font-size:12px;"><span class="material-icons" style="font-size:13px">article</span> Contrato / Termos Aditivos</a>` : '';
+            return `<div class="info-card mt-3" style="border-left:4px solid #20445d;">
+                <div class="info-label" style="margin-bottom:8px"><span class="material-icons" style="font-size:14px;vertical-align:middle;margin-right:4px">gavel</span>Processo Licitatório e Contrato</div>
+                <div style="font-size:12px;color:#444;margin-bottom:10px;">Documentos do processo de compra referente ao contrato <strong>${contrato.contrato||''}</strong> (nº <strong>${numContrato}</strong>):</div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">${btnEdital}${btnContrato}</div>
+            </div>`;
+        })();
+
+        // Injeta o bloco de licitação antes do fechamento do conteúdo
+        document.getElementById('detalhesContent').innerHTML += licitacoesHTML;
 
         new bootstrap.Modal(document.getElementById('detalhesModal')).show();
     };
