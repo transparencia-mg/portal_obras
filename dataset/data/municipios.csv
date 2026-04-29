@@ -309,6 +309,9 @@ DC-9496643/2026;Obra 1;Lagoa Santa
 DC-9496643/2026;Obra 2;Belo Horizonte
 DC-9497471/2026;Obra 1;Iturama
 DC-9498666/2026;Obra 1;Belo Horizonte
+DC-9501601/2026;Obra 1;Pintópolis
+DC-9501601/2026;Obra 2;Pintópolis
+DC-9501601/2026;Obra 3;Pintópolis
 DER-30.014/2025;Obra 1;Uberaba
 DF-012/2021-A;Obra 1;Belo Horizonte
 DF/GTIC-9444079;Obra 1;Belo Horizonte
@@ -777,6 +780,17 @@ DM-008/2024;Obra 1;Sacramento
 DM-008/2024;Obra 1;Santa Juliana
 DM-008/2024;Obra 1;Serra do Salitre
 DM-008/2024;Obra 1;Tapira
+DM-008/2024-A;Obra 1;Araxá
+DM-008/2024-A;Obra 1;Ibiá
+DM-008/2024-A;Obra 1;Patrocínio
+DM-008/2024-A;Obra 1;Pedrinópolis
+DM-008/2024-A;Obra 1;Perdizes
+DM-008/2024-A;Obra 1;Pratinha
+DM-008/2024-A;Obra 1;Rio Paranaíba
+DM-008/2024-A;Obra 1;Sacramento
+DM-008/2024-A;Obra 1;Santa Juliana
+DM-008/2024-A;Obra 1;Serra do Salitre
+DM-008/2024-A;Obra 1;Tapira
 DM-009/2021;Obra 1;Bocaiúva
 DM-009/2021;Obra 1;Couto de Magalhães de Minas
 DM-009/2021;Obra 1;Diamantina
@@ -928,6 +942,23 @@ DM-009/2024;Obra 1;São Gotardo
 DM-009/2024;Obra 1;Tiros
 DM-009/2024;Obra 1;Varjão de Minas
 DM-009/2024;Obra 1;Vazante
+DM-009/2024-A;Obra 1;Arapuá
+DM-009/2024-A;Obra 1;Carmo do Paranaíba
+DM-009/2024-A;Obra 1;Cruzeiro da Fortaleza
+DM-009/2024-A;Obra 1;Lagamar
+DM-009/2024-A;Obra 1;Lagoa Formosa
+DM-009/2024-A;Obra 1;Lagoa Grande
+DM-009/2024-A;Obra 1;Matutina
+DM-009/2024-A;Obra 1;Patos de Minas
+DM-009/2024-A;Obra 1;Presidente Olegário
+DM-009/2024-A;Obra 1;Rio Paranaíba
+DM-009/2024-A;Obra 1;Santa Rosa da Serra
+DM-009/2024-A;Obra 1;Serra do Salitre
+DM-009/2024-A;Obra 1;São Gonçalo do Abaeté
+DM-009/2024-A;Obra 1;São Gotardo
+DM-009/2024-A;Obra 1;Tiros
+DM-009/2024-A;Obra 1;Varjão de Minas
+DM-009/2024-A;Obra 1;Vazante
 DM-010/2021;Obra 1;Arcos
 DM-010/2021;Obra 1;Bambuí
 DM-010/2021;Obra 1;Formiga
@@ -978,6 +1009,46 @@ DM-010/2024;Obra 1;São João do Manteninha
 DM-010/2024;Obra 1;Tarumirim
 DM-010/2024;Obra 1;Tumiritinga
 DM-010/2024;Obra 1;Virgolândia
+DM-010/2024-A;Obra 1;Alpercata
+DM-010/2024-A;Obra 1;Alvarenga
+DM-010/2024-A;Obra 1;Campanário
+DM-010/2024-A;Obra 1;Capitão Andrade
+DM-010/2024-A;Obra 1;Central de Minas
+DM-010/2024-A;Obra 1;Conselheiro Pena
+DM-010/2024-A;Obra 1;Cuparaque
+DM-010/2024-A;Obra 1;Divino das Laranjeiras
+DM-010/2024-A;Obra 1;Dom Cavati
+DM-010/2024-A;Obra 1;Engenheiro Caldas
+DM-010/2024-A;Obra 1;Fernandes Tourinho
+DM-010/2024-A;Obra 1;Frei Inocêncio
+DM-010/2024-A;Obra 1;Galiléia
+DM-010/2024-A;Obra 1;Goiabeira
+DM-010/2024-A;Obra 1;Governador Valadares
+DM-010/2024-A;Obra 1;Itabirinha de Mantena
+DM-010/2024-A;Obra 1;Itanhomi
+DM-010/2024-A;Obra 1;Itueta
+DM-010/2024-A;Obra 1;Jampruca
+DM-010/2024-A;Obra 1;Mantena
+DM-010/2024-A;Obra 1;Marilac
+DM-010/2024-A;Obra 1;Mathias Lobato
+DM-010/2024-A;Obra 1;Mendes Pimentel
+DM-010/2024-A;Obra 1;Nacip Raydan
+DM-010/2024-A;Obra 1;Nova Belém
+DM-010/2024-A;Obra 1;Nova Módica
+DM-010/2024-A;Obra 1;Periquito
+DM-010/2024-A;Obra 1;Pescador
+DM-010/2024-A;Obra 1;Resplendor
+DM-010/2024-A;Obra 1;Santa Maria do Suaçuí
+DM-010/2024-A;Obra 1;Santa Rita do Itueto
+DM-010/2024-A;Obra 1;Sobrália
+DM-010/2024-A;Obra 1;São Félix de Minas
+DM-010/2024-A;Obra 1;São Geraldo do Baixio
+DM-010/2024-A;Obra 1;São José da Safira
+DM-010/2024-A;Obra 1;São José do Divino
+DM-010/2024-A;Obra 1;São João do Manteninha
+DM-010/2024-A;Obra 1;Tarumirim
+DM-010/2024-A;Obra 1;Tumiritinga
+DM-010/2024-A;Obra 1;Virgolândia
 DM-011/2021;Obra 1;Cambuí
 DM-011/2021;Obra 1;Itajubá
 DM-011/2021;Obra 1;Pouso Alegre
@@ -1004,6 +1075,18 @@ DM-011/2024;Obra 1;Ponto Chique
 DM-011/2024;Obra 1;Santa Fé de Minas
 DM-011/2024;Obra 1;São Romão
 DM-011/2024;Obra 1;Várzea da Palma
+DM-011/2024-A;Obra 1;Buritizeiro
+DM-011/2024-A;Obra 1;Coração de Jesus
+DM-011/2024-A;Obra 1;Corinto
+DM-011/2024-A;Obra 1;Ibiaí
+DM-011/2024-A;Obra 1;João Pinheiro
+DM-011/2024-A;Obra 1;Lagoa dos Patos
+DM-011/2024-A;Obra 1;Lassance
+DM-011/2024-A;Obra 1;Pirapora
+DM-011/2024-A;Obra 1;Ponto Chique
+DM-011/2024-A;Obra 1;Santa Fé de Minas
+DM-011/2024-A;Obra 1;São Romão
+DM-011/2024-A;Obra 1;Várzea da Palma
 DM-012/2021;Obra 1;Dom Viçoso
 DM-012/2021;Obra 1;Itajubá
 DM-012/2021;Obra 1;Pouso Alegre
@@ -1025,6 +1108,21 @@ DM-012/2024;Obra 1;Pompéu
 DM-012/2024;Obra 1;Quartel Geral
 DM-012/2024;Obra 1;Serra da Saudade
 DM-012/2024;Obra 1;São Gotardo
+DM-012/2024-A;Obra 1;Abaeté
+DM-012/2024-A;Obra 1;Biquinhas
+DM-012/2024-A;Obra 1;Bom Despacho
+DM-012/2024-A;Obra 1;Cedro do Abaeté
+DM-012/2024-A;Obra 1;Curvelo
+DM-012/2024-A;Obra 1;Dores do Indaiá
+DM-012/2024-A;Obra 1;Estrela do Indaiá
+DM-012/2024-A;Obra 1;Luz
+DM-012/2024-A;Obra 1;Martinho Campos
+DM-012/2024-A;Obra 1;Morada Nova de Minas
+DM-012/2024-A;Obra 1;Paineiras
+DM-012/2024-A;Obra 1;Pompéu
+DM-012/2024-A;Obra 1;Quartel Geral
+DM-012/2024-A;Obra 1;Serra da Saudade
+DM-012/2024-A;Obra 1;São Gotardo
 DM-013/2021;Obra 1;Conceição de Ipanema
 DM-013/2021;Obra 1;Ipanema
 DM-013/2021;Obra 1;Manhuaçu
@@ -1131,6 +1229,26 @@ DM-016/2024;Obra 1;São João da Ponte
 DM-016/2024;Obra 1;São João do Pacuí
 DM-016/2024;Obra 1;Ubaí
 DM-016/2024;Obra 1;Varzelândia
+DM-016/2024-A;Obra 1;Brasília de Minas
+DM-016/2024-A;Obra 1;Campo Azul
+DM-016/2024-A;Obra 1;Chapada Gaúcha
+DM-016/2024-A;Obra 1;Coração de Jesus
+DM-016/2024-A;Obra 1;Ibiaí
+DM-016/2024-A;Obra 1;Ibiracatu
+DM-016/2024-A;Obra 1;Icaraí de Minas
+DM-016/2024-A;Obra 1;Japonvar
+DM-016/2024-A;Obra 1;Lontra
+DM-016/2024-A;Obra 1;Luislândia
+DM-016/2024-A;Obra 1;Mirabela
+DM-016/2024-A;Obra 1;Patis
+DM-016/2024-A;Obra 1;Pedras de Maria da Cruz
+DM-016/2024-A;Obra 1;Pintópolis
+DM-016/2024-A;Obra 1;Ponto Chique
+DM-016/2024-A;Obra 1;São Francisco
+DM-016/2024-A;Obra 1;São João da Ponte
+DM-016/2024-A;Obra 1;São João do Pacuí
+DM-016/2024-A;Obra 1;Ubaí
+DM-016/2024-A;Obra 1;Varzelândia
 DM-017/2021;Obra 1;Oliveira Fortes
 DM-017/2022;Obra 1;Lagamar
 DM-017/2022;Obra 1;Patos de Minas
@@ -1172,6 +1290,15 @@ DM-018/2024;Obra 1;Riachinho
 DM-018/2024;Obra 1;Unaí
 DM-018/2024;Obra 1;Uruana de Minas
 DM-018/2024;Obra 1;Urucuia
+DM-018/2024-A;Obra 1;Arinos
+DM-018/2024-A;Obra 1;Buritis
+DM-018/2024-A;Obra 1;Chapada Gaúcha
+DM-018/2024-A;Obra 1;Formoso
+DM-018/2024-A;Obra 1;Pintópolis
+DM-018/2024-A;Obra 1;Riachinho
+DM-018/2024-A;Obra 1;Unaí
+DM-018/2024-A;Obra 1;Uruana de Minas
+DM-018/2024-A;Obra 1;Urucuia
 DM-019/2022;Obra 1;Belo Horizonte
 DM-019/2023;Obra 1;Governador Valadares
 DM-019/2023;Obra 1;Nova Módica
@@ -3435,6 +3562,7 @@ DM-9485591/2025;Obra 1;Ponte Nova
 DM-9485591/2025;Obra 1;Sericita
 DM-9485592/2025;Obra 1;Ponte Nova
 DM-9485592/2025;Obra 1;Santa Cruz do Escalvado
+DM-9485592/2025;Obra 1;Urucânia
 DM-9492723/2025;Obra 1;Araporã
 DM-9492723/2025;Obra 1;Tupaciguara
 DM-9492723/2025;Obra 1;Uberlândia
@@ -3485,6 +3613,7 @@ DM-9493202/2026;Obra 1;Rio do Prado
 DM-9497685/2026;Obra 1;Barbacena
 DM-9497685/2026;Obra 1;Capela Nova
 DM-9497685/2026;Obra 1;Carandaí
+DM-9502116/2026;Obra 1;Belo Horizonte
 DO-001/2021;Obra 2;Belo Horizonte
 DO-001/2021;Obra 2;Minas Gerais
 DO-001/2021- B;Obra 2;Belo Horizonte
@@ -3560,6 +3689,7 @@ DO-009482046/2025;Obra 1;São João Del Rei
 DO-009482046/2025;Obra 1;São João da Mata
 DO-009482046/2025;Obra 1;São Tomé das Letras
 DO-009482046/2025;Obra 1;Três Corações
+DO-009482055/2025;Obra 1;Alvorada de Minas
 DO-009482055/2025;Obra 1;Araçuaí
 DO-009482055/2025;Obra 1;Capelinha
 DO-009482055/2025;Obra 1;Carbonita

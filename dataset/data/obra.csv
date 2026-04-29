@@ -265,7 +265,7 @@ DM-030/2022;Obra 1;Recuperação Funcional ;Recuperação funcional do pavimento
 DC-22.016/2020;Obra 1;Rodovia;Entr° BR/116 (p/ Teófilo Otoni) - Pavão, com 76,30 km de extensão, na Rodovia MG/409;22742271,07;0,0;22742271,07;0,0;0,0;22742271,07
 DC-013/2022;Obra 1;Rodovia;Supervisão de obras de implantação, pavimentação e recuperação no Contorno do Município do Serro (Bairro Machadinho, Contorno Sul e Rodovia MG-010);1061327,09;54322,34;1115649,43;1030864,95;115821,17;84784,48
 DM-033/2022;Obra 1;Manutenção Rodoviária;Estabilização de talude de Corte na Rodovia MG-442, km 5,0 e 5, 4, trecho Entrº BR-040 - Belo Vale.;528049,11;130555,3;658604,41;602261,76;52549,17;56342,65
-DP-004/2023;Obra 1;Consultoria;SERVIÇOS DE APOIO TÉCNICO AO DER/MG, PARA ANÁLISE E DESENVOLVIMENTO DE PROJETOS RODOVIÁRIOS;19915653,29;4949860,74;24865514,03;19863600,32;1987435,56;5001913,71
+DP-004/2023;Obra 1;Consultoria;SERVIÇOS DE APOIO TÉCNICO AO DER/MG, PARA ANÁLISE E DESENVOLVIMENTO DE PROJETOS RODOVIÁRIOS;19915653,29;4949860,74;24865514,03;20353151,07;2062875,33;4512362,96
 DM-22.006/2019-B;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotineira e periódica, serviços de urgência e pequenos melhoramentos, bem como reparações do corpo estradal, na 11ª CRG.;5475805,68;-0,02;5475805,66;5459417,7;1773463,29;16387,96
 DC-005/2023;Obra 1;Rodovia;Implantação variante na Rodovia MGC-262 (Estaca 0 a 15+11,390),km 286 (Caeté) ;1062943,58;310889,96;1373833,54;1313373,11;-4779,25;60460,43
 PRC-22.019/2017-E;Obra 1;Manutenção Rodoviária;MANUTENÇÃO DAS RODOVIAS DA 33ª URG PIRAPORA;3111344,36;771901,91;3883246,27;3510061,23;1555978,26;373185,04
@@ -310,7 +310,7 @@ DM-006/2021;Obra 1;Recuperação Funcional ;Recuperação funcional MG-040, trec
 PRC-22.030/2017-D;Obra 1;Manutenção Rodoviária;MANUTENÇÃO DAS RODOVIAS DA 13ª URG - BRASÍLIA DE MINAS;5426465,71;24232,75;5450698,46;4174912,09;1438335,85;1275786,37
 PRC-22.017/2017-C;Obra 1;Conservação;Manut. rodov., conserv. rotineira e periódica, serviços de urgência e pequenos melhoramentos, bem como reparações do corpo estradal, na 22ª URG.;3854732,17;35239,49;3889971,66;3604675,08;567657,89;285296,58
 DM-019/2022;Obra 1;Recuperação Funcional ;Recuperação Funcional MG-040, Funil (Km 44,0) Brumadinho (Km 50,2);2221505,63;0,0;2221505,63;0,0;0,0;2221505,63
-PRC-24.014/2018;Obra 1;Rodovia;Elaboração de Projeto de Engenharia Rodoviária de Melhoramentos e Pavimentação do trecho Entr. MG308 (Capelinha) - Itamarandiba;2816620,4;107223,46;2923843,86;957623,32;363466,8;1966220,54
+PRC-24.014/2018;Obra 1;Rodovia;Elaboração de Projeto de Engenharia Rodoviária de Melhoramentos e Pavimentação do trecho Entr. MG308 (Capelinha) - Itamarandiba;2816620,4;107223,46;2923843,86;1056691,25;405055,51;1867152,61
 DM-036/2021;Obra 1;Corretiva;Recuperação ambiental (Recomposição do solo para plantio, Plantio de cobertura e Desassoreamento) - Rodovia LMG-799;1165583,1;0,0;1165583,1;1001894,99;218329,03;163688,11
 PRC-24.010/2013;Obra 6;Supervisão;Apoio à supervisão de obras rodoviárias e OAE's no trecho Sete Lagoas - Entrº MG/010;2702071,08;-320912,86;2381158,22;0,0;0,0;2381158,22
 PRC-24.017/2018;Obra 1;Rodovia;Elaboração de Projeto de Engenharia Rodoviária de Melhoramentos e Pavimentação do trecho Ipoema - Entr. LMG 776 (Senhora do Carmo), em rodovia municip;1182945,52;0,0;1182945,52;0,0;0,0;1182945,52
@@ -370,8 +370,8 @@ DM-008/2021;Obra 1;Recuperação Funcional ;Recuperação funcional MG-265, trec
 DM-22.005/2020-C;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotineira e periódica, serviços de urgência e pequenos melhoramentos, bem como reparações do corpo estradal, na 31ª URG.;4590818,95;0,0;4590818,95;3625425,84;1482543,61;965393,11
 PRC-22.004/2018-E;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotineira e periódica, serviços de urgência e pequenos melhoramentos, bem como reparações do corpo estradal, na 08ª URG.;5094207,67;31139,34;5125347,01;4146468,16;2128042,93;978878,85
 DC-010/2023;Obra 1;Rodovia;Recuperação funcional do pavimento no trecho Congonhas do Norte - Conceição do Mato Dentro, com 43,30 km de extensão,  rodovia LMG-739.;55658076,71;2652146,62;58310223,33;48172212,36;4308809,74;10138010,97
-DC-007/2023;Obra 1;Rodovia;Melhoramentos e Pavimentação na Rodovia MG-415, trecho Morada Nova de Minas - Entrº BR-040, subtrecho Morada Nova de Minas - Porto Novo (Represa);31971734,14;4284169,43;36255903,57;29711129,82;1540999,36;6544773,75
-DC-007/2023;Obra 2;Rodovia;Melhoramentos e Pavimentação na Rodovia MG-415, trecho Morada Nova de Minas - Entrº BR-040, subtrecho Porto Novo (Represa) - Entr° BR-040;26788767,31;7546844,17;34335611,48;1356813,1;49985,28;32978798,38
+DC-007/2023;Obra 1;Rodovia;Melhoramentos e Pavimentação na Rodovia MG-415, trecho Morada Nova de Minas - Entrº BR-040, subtrecho Morada Nova de Minas - Porto Novo (Represa);31971734,14;4284169,43;36255903,57;29941304,59;1567645,61;6314598,98
+DC-007/2023;Obra 2;Rodovia;Melhoramentos e Pavimentação na Rodovia MG-415, trecho Morada Nova de Minas - Entrº BR-040, subtrecho Porto Novo (Represa) - Entr° BR-040;26788767,31;7546844,17;34335611,48;1770020,06;64501,74;32565591,42
 DC-009/2023;Obra 1;Rodovia;Apoio à supervisão de obras de melhoramentos e pavimentação na rodovia MG-414, trecho Araguari (distrito de Amanhece) - divisa MG/GO, extensão de 24,3;3606475,63;123693,78;3730169,41;2425345,18;228375,35;1304824,23
 PRC-22.043/2017-E;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotineira e periódica, serviços de urgência e pequenos melhoramentos, bem como reparações do corpo estradal, na 39ª URG.;4475567,74;689689,44;5165257,18;5015202,64;2688942,93;150054,54
 PRC-22.013/2018-E;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotineira e periódica, serviços de urgência e pequenos melhoramentos, bem como reparações do corpo estradal, na 10ª URG.;8854310,29;-0,02;8854310,27;8008278,7;4691870,9;846031,57
@@ -385,7 +385,7 @@ DP-009/2023;Obra 1;Rodovia;REGISTRO DE PREÇOS PARA A CONTRATAÇÃO DE SERVIÇOS
 DM-003/2023;Obra 1;Corretiva;Recuperação de pontos críticos e passivo ambiental;22242891,04;3650816,4;25893707,44;21041411,65;170518,4;4852295,79
 DM-004/2023;Obra 1;Corretiva;Recuperação de pontos críticos e passivo ambiental ;22571023,53;3505505,04;26076528,57;10508518,84;95181,57;15568009,73
 DM-005/2023;Obra 1;Corretiva;Recuperação de pontos críticos e passivo ambiental;17664590,02;3529891,8;21194481,82;16160378,6;35637,76;5034103,22
-DP-005/2023;Obra 1;Obra de Arte Especial;Elaboração de Projeto da Ponte sobre o Rio São Francisco e Variante;3655796,23;0,0;3655796,23;2018694,35;288245,56;1637101,88
+DP-005/2023;Obra 1;Obra de Arte Especial;Elaboração de Projeto da Ponte sobre o Rio São Francisco e Variante;3655796,23;0,0;3655796,23;2122647,3;304264,7;1533148,93
 DM-22.010/2020-C;Obra 1;Supervisão;Execução de natureza continuada dos serviços de supervisão geral e monitoramento mediante Concessão Outorgada da Rodovia BR-135;2088009,04;0,0;2088009,04;2087070,13;518272,11;938,91
 PRC-24.010/2018-E;Obra 1;Consultoria;SUPERVISAO GERAL E MONITORAMENTO PPP MG/050;3775679,38;0,0;3775679,38;2747075,14;832126,78;1028604,24
 DM-006/2023;Obra 1;Recuperação Funcional ;Recuperação funcional LMG-827, trecho Pratinha - Entrº BR-262;10619128,58;326541,16;10945669,74;10361528,39;0,0;584141,35
@@ -407,14 +407,14 @@ DM-22.006/2019-D;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotinei
 DP-027/2023;Obra 1;Consultoria;Córrego Novo - Bom Jesus do Galho;892404,95;0,0;892404,95;0,0;0,0;892404,95
 DP-027/2023;Obra 5;Consultoria;Dionísio - Entr. LMG 760;1142931,11;0,0;1142931,11;0,0;0,0;1142931,11
 DP-027/2023;Obra 3;Consultoria;Raul Soares - Caputira e Contorno de Raul Soares;2565909,95;0,0;2565909,95;0,0;0,0;2565909,95
-DP-027/2023;Obra 2;Consultoria;São Domingos do Prata - Dom Silvério;2249576,78;350945,74;2600522,52;1507542,69;175162,04;1092979,83
+DP-027/2023;Obra 2;Consultoria;São Domingos do Prata - Dom Silvério;2249576,78;350945,74;2600522,52;1603853,4;190003,52;996669,12
 DP-027/2023;Obra 4;Consultoria;Vermelho Novo - Entr. BR116;1039058,88;0,0;1039058,88;0,0;0,0;1039058,88
 DPEI - 028/2023;Obra 1;Consultoria; Prestação de serviços técnicos, pela FUNDAÇÃO GETÚLIO VARGAS, por intermédio de seu Instituto Brasileiro de Economia ? IBRE, ao Departamento de Estra;13669645,75;0,0;13669645,75;13669645,75;422142,02;0,0
 PRC-22.024/2018-E;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotineira e periódica, serviços de urgência e pequenos melhoramentos, bem como reparações do corpo estradal, na 05ª URG.;8270263,86;2067234,75;10337498,61;10059124,12;6615578,76;278374,49
 DP-014/2023;Obra 1;Consultoria;REGISTRO DE PREÇOS PARA A CONTRATAÇÃO DE SERVIÇOS COMUNS DE ENGENHARIA PARA A REALIZAÇÃO DE SONDAGENS, AMOSTRAGENS E ENSAIOS GEOTÉCNICOS PARA ATENDER ;740000,0;0,0;740000,0;232889,38;11225,25;507110,62
 DC-015/2023;Obra 1;Obra de Arte Especial;Ponte sobre o rio Uberabinha, 78,00 x 14,80 m,no trecho Contorno Sul de Uberlândia, estaca 511+14, rodovia LMG-503;5983122,86;880325,33;6863448,19;6314051,5;-18583,11;549396,69
-DC-016/2023;Obra 1;Trevo de Acesso;Acesso CMAA (Trevo de CANÁPOLIS, com 2,86 km de extensão);9434565,19;373371,27;9807936,46;5043747,34;203448,59;4764189,12
-DPEI-031/2023;Obra 1;Consultoria;CONTRATAÇÃO DE SERVIÇOS COMUNS DE ENGENHARIA DE APOIO TÉCNICO PARA SUPERVISÃO, ANÁLISE E EXECUÇÃO DE PROJETOS RODOVIÁRIOS E APOIO NA EXECUÇÃO DE POLÍT;7576922,1;0,0;7576922,1;4097169,68;403537,68;3479752,42
+DC-016/2023;Obra 1;Trevo de Acesso;Acesso CMAA (Trevo de CANÁPOLIS, com 2,86 km de extensão);9434565,19;373371,27;9807936,46;8514031,87;552492,78;1293904,59
+DPEI-031/2023;Obra 1;Consultoria;CONTRATAÇÃO DE SERVIÇOS COMUNS DE ENGENHARIA DE APOIO TÉCNICO PARA SUPERVISÃO, ANÁLISE E EXECUÇÃO DE PROJETOS RODOVIÁRIOS E APOIO NA EXECUÇÃO DE POLÍT;7576922,1;0,0;7576922,1;4239229,08;423752,72;3337693,02
 DM-017/2023;Obra 1;Recuperação Funcional ;Recuperação funcional MG-164, Bom Despacho - Martinho Campos e AMG-900, Entrº BR/352 Albert Isaacson;27748875,44;0,0;27748875,44;24803909,23;792453,76;2944966,21
 DM-020/2023;Obra 1;Recuperação Funcional ;Recuperação funcional MG-443, Entrº MG-030 - Ouro Branco / Implantação de bueiro e correção erosões;4879173,06;83764,32;4962937,38;4006217,89;155284,55;956719,49
 DP-008/2023;Obra 1;Rodovia;REGISTRO DE PREÇOS PARA A CONTRATAÇÃO DE SERVIÇOS COMUNS DE ENGENHARIA PARA A REALIZAÇÃO DE SONDAGENS, AMOSTRAGENS E ENSAIOS GEOTÉCNICOS PARA ATENDER ;535000,0;30618,6;565618,6;95740,4;4614,67;469878,2
@@ -430,90 +430,90 @@ DM-22.003/2020-D;Obra 1;Manutenção Rodoviária;Manut. rodov., conserv. rotinei
 DM-006/2024;Obra 1;Corretiva;"Traçado e drenagem MGC-367; Pavimentação do perímetro urbano de Virgem da Lapa; Recuperação erosões MG-114";5949066,1;1452711,47;7401777,57;5220100,07;106045,04;2181677,5
 DC-004/2024;Obra 1;Rodovia;Encabeçamento da Ponte sobre o Rio São Domingos na Rodovia MGC-265, trecho Entrº Mercês - Rio Pomba, com 1,050km de extensão.;2738832,55;683271,63;3422104,18;3269566,5;187192,78;152537,68
 DPEI-001/2024;Obra 1;Rodovia;Registro de Preços para contratação de serviço comum de engenharia para a realização de estudos topográficos (levantamento topográfico e cadastral) pa;1247750,0;0,0;1247750,0;765667,95;21869,32;482082,05
-DM-010/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 23ª URG;35181084,91;3637945,05;38819029,96;33638673,8;2021305,47;5180356,16
+DM-010/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 23ª URG;35181084,91;3637945,05;38819029,96;34740432,66;2122047,18;4078597,3
 DPEI-003/2024;Obra 1;Rodovia;Registro de Preços para contratação de serviço comum de engenharia para a realização de estudos topográficos (levantamento topográfico e cadastral) pa;1224000,0;0,0;1224000,0;0,0;0,0;1224000,0
 DPEI-030/2023;Obra 1;Consultoria;MAR DE ESPANHA - DIVISA MG/RJ;1259081,21;0,0;1259081,21;459255,79;57694,97;799825,42
 DPEI-030/2023;Obra 2;Consultoria;Cataguases - Laranjal;1821061,74;0,0;1821061,74;0,0;0,0;1821061,74
 DPEI-002/2024;Obra 1;Rodovia;Registro de Preços para contratação de serviço comum de engenharia para a realização de estudos topográficos (levantamento topográfico e cadastral) pa;1244600,0;0,0;1244600,0;161369,78;5019,03;1083230,22
 DPEI-004/2024;Obra 1;Rodovia;Registro de Preços para contratação de serviço comum de engenharia para a realização de estudos topográficos (levantamento topográfico e cadastral) pa;1000000,0;0,0;1000000,0;124423,11;7341,71;875576,89
-DPEI-007/2024;Obra 1;Consultoria;Contratação de empresa especializada, com vistas à realização de pesquisa de preços de mercado para os insumos utilizados no Sistema de Custos e Orçam;1425000,0;0,0;1425000,0;1004477,76;56210,2;420522,24
+DPEI-007/2024;Obra 1;Consultoria;Contratação de empresa especializada, com vistas à realização de pesquisa de preços de mercado para os insumos utilizados no Sistema de Custos e Orçam;1425000,0;0,0;1425000,0;1051152,96;60859,04;373847,04
 DPEI-030/2023;Obra 3;Consultoria;Itamarati de Minas - Descoberto;1345838,42;0,0;1345838,42;0,0;0,0;1345838,42
 DPEI-006/2024;Obra 1;Rodovia;Registro de Preços para contratação de serviço comum de engenharia para a realização de estudos topográficos (levantamento topográfico e cadastral) pa;1100000,0;0,0;1100000,0;405277,94;16001,82;694722,06
 DPEI-030/2023;Obra 4;Consultoria;ENTR MG447 (MIRAÍ) - ENTR BR120(A) (GUIDOVAL);1394910,17;0,0;1394910,17;332644,45;41896,01;1062265,72
-DPEI-005/2024;Obra 1;Rodovia;Registro de Preços para contratação de serviço comum de engenharia para a realização de estudos topográficos (levantamento topográfico e cadastral) pa;797999,85;0,0;797999,85;391292,63;26931,97;406707,22
-DM-011/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 33ª URG;25098045,16;2998553,73;28096598,89;26154150,05;1298454,05;1942448,84
+DPEI-005/2024;Obra 1;Rodovia;Registro de Preços para contratação de serviço comum de engenharia para a realização de estudos topográficos (levantamento topográfico e cadastral) pa;797999,85;0,0;797999,85;400277,37;27793,59;397722,48
+DM-011/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 33ª URG;25098045,16;2998553,73;28096598,89;26999282,29;1385505,74;1097316,6
 DC-006/2024;Obra 1;Obra de Arte Especial;Recuperação Estrutural da Ponte sobre o Rio Paracatu no trecho João Pinheiro - Brasílândia de Minas;469485,7;56702,96;526188,66;469485,7;28351,87;56702,96
-DM-008/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 07ª URG;31307061,77;686980,1;31994041,87;28815897,11;1776195,35;3178144,76
-DM-007/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 04ª URG;41801980,63;0,0;41801980,63;36859439,52;2588739,03;4942541,11
-DM-009/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 14ª URG;30648355,12;0,0;30648355,12;16551136,84;1112171,11;14097218,28
-DM-012/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 35ª URG;29715772,52;0,0;29715772,52;23090287,3;1177613,07;6625485,22
+DM-008/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 07ª URG;31307061,77;686980,1;31994041,87;29342447,39;1839385,71;2651594,48
+DM-007/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 04ª URG;41801980,63;0,0;41801980,63;37778568,04;2690060,18;4023412,59
+DM-009/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 14ª URG;30648355,12;0,0;30648355,12;17173368,49;1180122,02;13474986,63
+DM-012/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 35ª URG;29715772,52;0,0;29715772,52;23439872,67;1224383,25;6275899,85
 DOV-002/2022-A;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - lote 02;27994383,03;0,0;27994383,03;18713554,37;3070775,51;9280828,66
 DM-016/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 13ª URG;33479427,94;0,0;33479427,94;19221395,57;1019396,32;14258032,37
 DOV-004/2022-A;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do trânsito - lote 04;18925224,07;0,0;18925224,07;14412875,77;2363288,12;4512348,3
 DM-019/2024;Obra 1;Segurança Viária;Revitalização da sinalização horizontal, vertical e dispositivos de segurança viária: MG-010, LMG-800, Marginais (LD/LE), MG-424;8049000,0;1684372,53;9733372,53;9157941,73;43460,63;575430,8
-DM-015/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 06ª URG;33230906,95;490717,32;33721624,27;17120516,56;972473,9;16601107,71
-DM-017/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 21ª URG;32023158,45;0,0;32023158,45;26705330,6;1191342,54;5317827,85
+DM-015/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 06ª URG;33230906,95;490717,32;33721624,27;17654827,84;1026710,9;16066796,43
+DM-017/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 21ª URG;32023158,45;0,0;32023158,45;27938707,57;1300896,83;4084450,88
 DOV-005/2022-A;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - lote 05;14999561,15;0,0;14999561,15;5250008,42;873146,44;9749552,73
 DC-010/2024;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio Matipó e Implantação de Interseção na Rodovia LMG-840;4819049,42;863749,51;5682798,93;5647957,77;100815,76;34841,16
-DM-022/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 16ª URG;42788655,89;0,0;42788655,89;26817950,04;1413131,04;15970705,85
-DM-020/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 28ª URG;34984519,25;0,0;34984519,25;29104302,64;1506627,07;5880216,61
+DM-022/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 16ª URG;42788655,89;0,0;42788655,89;27461062,39;1481599,91;15327593,5
+DM-020/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 28ª URG;34984519,25;0,0;34984519,25;30596587,45;1638048,83;4387931,8
 DC-008/2024;Obra 1;Rodovia;Apoio a supervisão de obras rodoviárias no trecho Morada Nova de Minas - Entr. BR/040, COM 37,00km de extensão;3345699,13;0,0;3345699,13;2283579,27;183253,44;1062119,86
 PRC-29.008/2017-ANO 4;Obra 1;Supervisão;serviços de engenharia de natureza continua, apio ao gerenciamento, operação e fiscalização do transito.;4216866,09;0,0;4216866,09;2145807,78;966192,29;2071058,31
-DM-9437231;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 02ª URG;50256753,54;0,0;50256753,54;40609650,97;1467687,93;9647102,57
+DM-9437231;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 02ª URG;50256753,54;0,0;50256753,54;41981889,57;1522076,2;8274863,97
 DG/AMA-009436677/2024;Obra 1;Melhoramento ambiental;Prestação de Serviços de Elaboração de Projeto de Recuperação de Áreas Degradadas na rodovia MG-161, trecho: São Romão - Santa Fé de Minas;118125,23;0,0;118125,23;118125,23;0,0;0,0
 DC-011/2024;Obra 1;Rodovia;Interseção para Patrocínio - Trevo de Enxó, Km 105, no trecho Entrº MG-187 - Entrº BR-365, na Rodovia MG-230.;3238823,49;0,0;3238823,49;402738,85;14191,93;2836084,64
-DM-9440657/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 11ª URG;47634588,04;0,0;47634588,04;25655505,35;1123267,81;21979082,69
+DM-9440657/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 11ª URG;47634588,04;0,0;47634588,04;26881215,87;1223574,14;20753372,17
 PRC-24.001/2019-ANO 6;Obra 1;Rodovia;Prestação de serviços de Apoio Técnico do DEER/MG, de forma continuada, na área de Projetos de Engenharia Rodoviária, Edificações e Equipamentos Públi;1347097,56;89616,12;1436713,68;1015229,98;356151,31;421483,7
-DM-9440650/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 05ª URG;52604103,19;0,0;52604103,19;31955189,39;1394191,19;20648913,8
-DM-9440662/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 39 URG;45531020,31;237926,14;45768946,45;18109441,46;822203,95;27659504,99
-DM-9440654/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 09 URG;46337191,41;0,0;46337191,41;29530146,27;1334902,9;16807045,14
-AMA-9441725/2024;Obra 1;Consultoria;ELABORAÇÃO DE PROJETOS DE MEIO AMBIENTE - ESTUDOS AMBIENTAIS (LICENÇA DE OPERAÇÃO CORRETIVA COM EIA/RIMA) NA RODOVIA LMG-827. INCLUSO NO PPAG.;859769,01;0,0;859769,01;584820,63;18452,61;274948,38
+DM-9440650/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 05ª URG;52604103,19;0,0;52604103,19;33806452,17;1522593,9;18797651,02
+DM-9440662/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 39 URG;45531020,31;237926,14;45768946,45;20394072,15;967683,63;25374874,3
+DM-9440654/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 09 URG;46337191,41;0,0;46337191,41;29856106,57;1357169,26;16481084,84
+AMA-9441725/2024;Obra 1;Consultoria;ELABORAÇÃO DE PROJETOS DE MEIO AMBIENTE - ESTUDOS AMBIENTAIS (LICENÇA DE OPERAÇÃO CORRETIVA COM EIA/RIMA) NA RODOVIA LMG-827. INCLUSO NO PPAG.;859769,01;0,0;859769,01;688450,69;26141,96;171318,32
 DC-9441306/2024;Obra 1;Rodovia;Melhoramento e Pavimentação do trecho Rio Pardo de Minas Entrº LMG-635 (Mato Verde), Rodovia LMG-629 Extensão 9,500Km.;22681408,72;5596138,87;28277547,59;24320830,23;970501,73;3956717,36
 DC-9441355/2024 ;Obra 1;Trevo de Acesso;Melhoramento e pavimentação da interseção de acesso ao Hospital Regional de Teófilo Otoni, na rodovia BR-116;13364474,24;1483273,72;14847747,96;12039698,42;499642,92;2808049,54
 DC-9444080/2024;Obra 2;Rodovia;Complementação do melhoramento e pavimentação de Variante de acesso à Ponte sobre o Rio São Francisco, com 3,06 km;12752614,39;-1770212,62;10982401,77;2486659,38;101795,87;8495742,39
-DF/GTIC-9444079;Obra 1;Informática;Serviços de Informatica;24309955,5;0,0;24309955,5;13284295,25;74469,48;11025660,25
+DF/GTIC-9444079;Obra 1;Informática;Serviços de Informatica;24309955,5;0,0;24309955,5;15133680,75;170125,57;9176274,75
 DM-9445784/2024;Obra 1;Recuperação Funcional ;Recup. Funcional MG-350, Delfim Moreira - Entrº BR-459 / Final Perímetro Urb. de Marmelópolis - Delfim Moreira e AMG-1915 Delfim Moreira - Div. MG/SP;27567480,53;0,0;27567480,53;24673211,15;275838,67;2894269,38
 DC-9444080/2024;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio São Francisco, dimensões 1.120,00mx13,80m;145747385,61;6428844,12;152176229,73;61434407,65;2379545,29;90741822,08
 DM-9445782/2024;Obra 1;Recuperação Funcional ;Recuperação Funcional AMG-900, Entrº MG-173 - Início Perímetro Urbano de Gonçalves;8336287,82;-138182,68;8198105,14;7177595,78;257250,87;1020509,36
 DC-9447109/2024;Obra 1;Consultoria; ESTUDO DE PLANEJAMENTO, CAPEX E DESENVOLVIMENTO DE PLANILHA ORÇAMENTÁRIA PARA OBRA DE ARTE ESPECIAL - PONTE SOBRE O RIO SÃO FRANCISCO- ENTR. MGC/135 ;516050,86;0,0;516050,86;516050,86;3686,65;0,0
 DM-9447057/2024;Obra 1;Recuperação Funcional ;Recuperação funcional MG-347, Entrº BR-460 (Carmo de Minas) Entrº p/ Cristina;8742912,96;0,0;8742912,96;0,0;0,0;8742912,96
-DPEI-9447985;Obra 1;Consultoria;Contratação de empresa especializada para a execução de serviços de estudos geotécnicos (coletas de amostras, ensaios de solo, agregado e asfalto e do;2540551,02;0,0;2540551,02;117040,09;5015,29;2423510,93
-AMA-9447965/2025;Obra 1;Melhoramento ambiental;Elaboração de Projetos de Meio Ambiente - Estudos Ambientais (Licença de Operação Corretiva com RCA/PCA) na Rodovia MG-129, em toda a sua extensão. ;924684,42;0,0;924684,42;647541,22;28643,38;277143,2
-DM-9453530;Obra 1;Recuperação Funcional ;Recuperação Funcional AMG-1615, Cristais - Entrº MGC-369;7109673,15;0,0;7109673,15;0,0;0,0;7109673,15
+DPEI-9447985;Obra 1;Consultoria;Contratação de empresa especializada para a execução de serviços de estudos geotécnicos (coletas de amostras, ensaios de solo, agregado e asfalto e do;2540551,02;0,0;2540551,02;129788,89;5961,25;2410762,13
+AMA-9447965/2025;Obra 1;Melhoramento ambiental;Elaboração de Projetos de Meio Ambiente - Estudos Ambientais (Licença de Operação Corretiva com RCA/PCA) na Rodovia MG-129, em toda a sua extensão. ;924684,42;0,0;924684,42;664376,46;29892,55;260307,96
+DM-9453530;Obra 1;Recuperação Funcional ;Recuperação Funcional AMG-1615, Cristais - Entrº MGC-369;7109673,15;0,0;7109673,15;134831,17;4696,72;6974841,98
 DM-9459013/2025;Obra 1;Recuperação Funcional ; Recuperação funcional MG-188, Guarda-Mor - Coromandel;44482154,94;0,0;44482154,94;17027419,71;515574,38;27454735,23
-DC-9458861/2025;Obra 1;Rodovia;Complementação dos serviços de melhoramento e pavimentação, no Contorno Sul de Uberlândia e Adequação com a MGC-455, na rodovia LMG-503, com 19,040 km;24981452,5;3973616,9;28955069,4;14314001,61;337730,55;14641067,79
-DC-9459023/2025;Obra 1;Rodovia;Complementação e pavimentação do trecho Pimenta - Entr. BR-265 (Guapé), entre as estacas 1503 à 2127 - LOTE 2;29576179,41;0,0;29576179,41;1039591,93;60971,02;28536587,48
+DC-9458861/2025;Obra 1;Rodovia;Complementação dos serviços de melhoramento e pavimentação, no Contorno Sul de Uberlândia e Adequação com a MGC-455, na rodovia LMG-503, com 19,040 km;24981452,5;3973616,9;28955069,4;14841369,03;351155,7;14113700,37
+DC-9459023/2025;Obra 1;Rodovia;Complementação e pavimentação do trecho Pimenta - Entr. BR-265 (Guapé), entre as estacas 1503 à 2127 - LOTE 2;29576179,41;0,0;29576179,41;1373835,81;73245,01;28202343,6
 DC-9458476/2025;Obra 1;Rodovia;Melhoramento e pavimentação Entrº MG/416 (Peçanha) à LMG/744 (Coroaci) - MG-314, extensão de 36,910 Km;78647423,75;17014249,18;95661672,93;12480224,9;540755,11;83181448,03
-DC-9459022/2025;Obra 1;Rodovia;Complementação e pavimentação do trecho Pimenta - Entr° BR-265 (Guapé), entre a estaca 845 à estaca 926, estaca 1168+0 à estaca 1186+0 e estaca 1401+0;9817558,64;1752347,31;11569905,95;6145327,29;186278,45;5424578,66
+DC-9459022/2025;Obra 1;Rodovia;Complementação e pavimentação do trecho Pimenta - Entr° BR-265 (Guapé), entre a estaca 845 à estaca 926, estaca 1168+0 à estaca 1186+0 e estaca 1401+0;9817558,64;1752347,31;11569905,95;6271540,57;190178,79;5298365,38
 DC-9459021/2025;Obra 1;Rodovia;Melhoramento e pavimentação do trecho Curral de Dentro - Entrº p/ Berizal - Mirandópolis - LMG-626, extensão de 17,880 km;35900000,0;7889355,88;43789355,88;34319619,39;452643,71;9469736,49
-DPEI-9470883;Obra 1;Rodovia;apoio à supervisão dos contratos relacionados aos estudos geotécnicos, geológicos e topográficos, bem como ao levantamento objetivo da malha rodoviári;25953920,64;4918151,66;30872072,3;3148412,06;69280,47;27723660,24
+DPEI-9470883;Obra 1;Rodovia;apoio à supervisão dos contratos relacionados aos estudos geotécnicos, geológicos e topográficos, bem como ao levantamento objetivo da malha rodoviári;25953920,64;4918151,66;30872072,3;3733445,15;90400,15;27138627,15
 DOV-003/2021-B;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 03;10364111,47;0,0;10364111,47;2579642,02;713477,2;7784469,45
-PRC-29.008/2017-D;Obra 1;Supervisão;serviços de engenharia de natureza continua, apio ao gerenciamento, operação e fiscalização do transito.;3900717,4;0,0;3900717,4;1587630,07;810167,57;2313087,33
-AEST-9468704/2025;Obra 1;Consultoria;LOTE 2: Contratação de consultoria técnica para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias do DER-MG;9147934,25;0,0;9147934,25;1566140,15;34789,89;7581794,1
-DM-9471835/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 34ª URG;44573000,0;0,0;44573000,0;4087799,31;50292,73;40485200,69
-DPEI-9470151;Obra 1;Rodovia;Prestação de serviço de engenharia especializado para atualização do cadastro geral das rodovias para fins de gestão dos ativos rodoviários da malha e;22458906,7;0,0;22458906,7;1152827,26;23447,85;21306079,44
+PRC-29.008/2017-D;Obra 1;Supervisão;serviços de engenharia de natureza continua, apio ao gerenciamento, operação e fiscalização do transito.;3900717,4;0,0;3900717,4;1798925,05;917991,39;2101792,35
+AEST-9468704/2025;Obra 1;Consultoria;LOTE 2: Contratação de consultoria técnica para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias do DER-MG;9147934,25;0,0;9147934,25;1867887,53;45682,96;7280046,72
+DM-9471835/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 34ª URG;44573000,0;0,0;44573000,0;4670098,83;66649,77;39902901,17
+DPEI-9470151;Obra 1;Rodovia;Prestação de serviço de engenharia especializado para atualização do cadastro geral das rodovias para fins de gestão dos ativos rodoviários da malha e;22458906,7;0,0;22458906,7;1487538,65;35530,91;20971368,05
 DM-9473312/2025;Obra 1;Corretiva;Cortina Atirantada AMG-3085, Km 0,80, trecho: Entº BR-040 (Barreira do Triunfo) - Entrº MG-353 (Goianá);7074995,71;0,0;7074995,71;0,0;0,0;7074995,71
-DC-9473949/2025;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio casca - Trecho: Entrº MG-329 - Santo Antônio do Grama;5978999,99;0,0;5978999,99;2550950,75;2027,55;3428049,24
+DC-9473949/2025;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio casca - Trecho: Entrº MG-329 - Santo Antônio do Grama;5978999,99;0,0;5978999,99;3278560,72;1944,54;2700439,27
 DC-009473175/2025;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio São Francisco, dimensões 1.160,00x13,80 m -  Entr. MGC-135 (Manga) - Porto de Matias Cardoso, na rodovia MG-401;181409015,0;0,0;181409015,0;22060526,99;310021,94;159348488,01
 DC-009473175/2025;Obra 2;Rodovia;Melhoramento e Pavimentação de Variante de acesso à Ponte sobre o  Rio São Francisco , com 4,1km, no trecho Manga - Porto de Matias  Cardoso;26080985,0;0,0;26080985,0;107185,1;1792,3;25973799,9
 DC-9473951/2025;Obra 1;Rodovia;Recuperação funcional pavimento MG-010, Conceição do Mato Dentro - Serro (Distr. Mato Grosso), 44,300km / Recomposição de Talude Erodido ;45918998,95;0,0;45918998,95;1575614,78;26742,86;44343384,17
-DM-9474704/2025;Obra 1;Corretiva;Escavação de material sobre rocha, muro em gabião e implantação de drenagem MG-457, Km 33, trecho: Bom Jardim de Minas - Santa Rita de Jacutinga;7710000,0;1924126,24;9634126,24;3808666,66;68016,04;5825459,58
-DPEI-9480550/2025;Obra 1;Outros;REVISÃO, CRIAÇÃO E MANUTENÇÃO DE COMPOSIÇÕES DE CUSTOS, CÁLCULO DE PREÇOS REFERENCIAIS E ESTUDOS ESPECIAIS;21429526,4;0,0;21429526,4;2490585,68;0,0;18938940,72
-DC-9472752/2025;Obra 1;Rodovia;Entr. AMG0155 - Brumadinho e contorno de Mario Campos, na rodovia MG-040;5903947,49;0,0;5903947,49;327634,99;8666,06;5576312,5
+DM-9474704/2025;Obra 1;Corretiva;Escavação de material sobre rocha, muro em gabião e implantação de drenagem MG-457, Km 33, trecho: Bom Jardim de Minas - Santa Rita de Jacutinga;7710000,0;1924126,24;9634126,24;4736694,87;90981,29;4897431,37
+DPEI-9480550/2025;Obra 1;Outros;REVISÃO, CRIAÇÃO E MANUTENÇÃO DE COMPOSIÇÕES DE CUSTOS, CÁLCULO DE PREÇOS REFERENCIAIS E ESTUDOS ESPECIAIS;21429526,4;0,0;21429526,4;2750527,43;0,0;18678998,97
+DC-9472752/2025;Obra 1;Rodovia;Entr. AMG0155 - Brumadinho e contorno de Mario Campos, na rodovia MG-040;5903947,49;0,0;5903947,49;344480,73;9274,19;5559466,76
 DC-9472752/2025;Obra 2;Rodovia;Entr. AMG0155 (Mário Campos) - Betim;1152374,25;0,0;1152374,25;130152,94;3781,96;1022221,31
-DPEI-9478941/2025;Obra 1;Prestação de Serviços;Prestação de Serviços de Desenvolvimentos Metodológicos, nos Eixos Inteligência Geográfica e Tráfego Rodoviário, para auxílio na tomada de decisão ace;2401689,3;0,0;2401689,3;764724,91;0,0;1636964,39
-DC-9478759/2025;Obra 1;Obra de Arte Especial;Encabeçamento e ponte sobre o rio Paranaíba - Trecho Rochinha - Lagamar - Rodovia LMG-722 - extensão de 96,000m;14619000,0;0,0;14619000,0;2398334,49;8420,89;12220665,51
-DC-9481581/2025;Obra 1;Regularização expropriatória de faixa de domínio;Serviço Técnico Especializado de Apoio ao DER-MG para Desapropriação e RegularizaçãoExpropriatória;21860486,4;0,0;21860486,4;2841863,22;23244,98;19018623,18
-AEST-9470136/2025;Obra 1;Consultoria;Serviços técnicos especializados de consultoria para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias DER-MG;9410345,89;0,0;9410345,89;816218,07;22458,58;8594127,82
-AEST-9468567/2025;Obra 1;Consultoria;Serviços técnicos especializados de consultoria para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias DER-MG;9200787,87;0,0;9200787,87;1133906,65;31496,39;8066881,22
+DPEI-9478941/2025;Obra 1;Prestação de Serviços;Prestação de Serviços de Desenvolvimentos Metodológicos, nos Eixos Inteligência Geográfica e Tráfego Rodoviário, para auxílio na tomada de decisão ace;2401689,3;0,0;2401689,3;1355674,86;0,0;1046014,44
+DC-9478759/2025;Obra 1;Obra de Arte Especial;Encabeçamento e ponte sobre o rio Paranaíba - Trecho Rochinha - Lagamar - Rodovia LMG-722 - extensão de 96,000m;14619000,0;0,0;14619000,0;4429527,64;20772,43;10189472,36
+DC-9481581/2025;Obra 1;Regularização expropriatória de faixa de domínio;Serviço Técnico Especializado de Apoio ao DER-MG para Desapropriação e RegularizaçãoExpropriatória;21860486,4;0,0;21860486,4;3570546,1;46489,96;18289940,3
+AEST-9470136/2025;Obra 1;Consultoria;Serviços técnicos especializados de consultoria para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias DER-MG;9410345,89;0,0;9410345,89;1006178,54;29316,14;8404167,35
+AEST-9468567/2025;Obra 1;Consultoria;Serviços técnicos especializados de consultoria para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias DER-MG;9200787,87;0,0;9200787,87;1400596,05;41123,86;7800191,82
 9473911/2024;Obra 1;Supervisão;	Execução de natureza continuada dos serviços de supervisão geral e monitoramento mediante Concessão Outorgada da Rodovia BR-135;5206233,96;0,0;5206233,96;0,0;0,0;5206233,96
-DC-9445668/2024;Obra 1;Rodovia;Elaboração de Projeto de Engenharia Rodoviária de Melhoramentos e Pavimentação do trecho Contorno de Caeté;2086583,52;0,0;2086583,52;120945,94;7631,67;1965637,58
-DP-021/2023;Obra 1;Rodovia;Carrancas - Minduri;1361070,69;0,0;1361070,69;250889,08;26889,6;1110181,61
+DC-9445668/2024;Obra 1;Rodovia;Elaboração de Projeto de Engenharia Rodoviária de Melhoramentos e Pavimentação do trecho Contorno de Caeté;2086583,52;0,0;2086583,52;152799,08;9641,6;1933784,44
+DP-021/2023;Obra 1;Rodovia;Carrancas - Minduri;1361070,69;0,0;1361070,69;262527,9;28683,14;1098542,79
 DM-016/2023;Obra 1;Recuperação Funcional ;Recuperação funcional MG-417, Itabirinha - Mendes Pimentel;8307299,29;1438459,02;9745758,31;9592830,98;289292,26;152927,33
 DC-013/2023;Obra 1;Rodovia;Pavimentação em tratamento superficial simples na rodovia CCH-080, trecho Carlos Chagas - distrito de Presidente Pena;4287147,79;1030091,83;5317239,62;5251368,11;196225,17;65871,51
 DM-015/2023;Obra 1;Recuperação Funcional ;Recuperação funcional LMG-774, Goiabeira - Entrº BR-259;8661575,54;1540146,97;10201722,51;10087994,78;322070,32;113727,73
-DP-021/2023;Obra 3;Rodovia;Major Porto - Quintinos;864235,72;0,0;864235,72;212331,48;21206,44;651904,24
-DP-021/2023;Obra 4;Rodovia;Luminárias - São Bento do Abade;634467,04;0,0;634467,04;156039,26;16322,6;478427,78
+DP-021/2023;Obra 3;Rodovia;Major Porto - Quintinos;864235,72;0,0;864235,72;217419,54;21990,51;646816,18
+DP-021/2023;Obra 4;Rodovia;Luminárias - São Bento do Abade;634467,04;0,0;634467,04;157025,26;16474,54;477441,78
 DP-020/2023;Obra 3;Rodovia;Natalândia - Entrº BR/251;1131117,06;0,0;1131117,06;748993,38;82329,13;382123,68
 DP-020/2023;Obra 1;Rodovia;Cabeceira Grande - Divisa MG/DF;1537948,08;0,0;1537948,08;0,0;0,0;1537948,08
 DP-020/2023;Obra 4;Rodovia;Contorno de Unaí ;652711,56;0,0;652711,56;0,0;0,0;652711,56
@@ -521,19 +521,19 @@ DP-020/2023;Obra 2;Rodovia;Entrº BR/479 (Cabeceira da Mata) - Entrº LMG-628 (G
 DP-021/2023;Obra 2;Rodovia;Contorno de Ibiá;410983,4;0,0;410983,4;106722,12;10749,95;304261,28
 DP-022/2023;Obra 3;Consultoria;Ravena (Entr. BR-381) - Sabará;942766,88;0,0;942766,88;0,0;0,0;942766,88
 DM-007/2023;Obra 1;Recuperação Funcional ;"Recuperação funcional LMG-733, Entrº MGC-455 (Pirajuba) - Frutal; MGC-455, Campo Florido - Pirajuba; MGC-455, Trevo de Pirajuba";6881322,88;0,0;6881322,88;6340589,26;0,0;540733,62
-DP-024/2023;Obra 3;Consultoria;Rubim - Rio do Prado;1792375,62;0,0;1792375,62;602790,09;73971,58;1189585,53
+DP-024/2023;Obra 3;Consultoria;Rubim - Rio do Prado;1792375,62;0,0;1792375,62;629697,18;78117,96;1162678,44
 DP-023/2023;Obra 2;Consultoria;Entr. Cachoeira do Manteiga - Entr. BR-365;2254266,5;0,0;2254266,5;0,0;0,0;2254266,5
-DP-024/2023;Obra 1;Consultoria;Araçuaí - Novo Cruzeiro;3721286,23;0,0;3721286,23;1763047,69;201189,08;1958238,54
-DP-022/2023;Obra 2;Consultoria;Entr. MG-129 (Catas Altas) - Fonseca - Alvinópolis;2451612,34;0,0;2451612,34;1561028,2;194555,8;890584,14
-DP-023/2023;Obra 1;Consultoria;Coração de Jesus - Ibiaí;1750107,91;0,0;1750107,91;178536,39;27512,43;1571571,52
-DP-022/2023;Obra 4;Consultoria;Ponte Nova - Barra Longa;1584639,21;0,0;1584639,21;999355,53;129460,11;585283,68
+DP-024/2023;Obra 1;Consultoria;Araçuaí - Novo Cruzeiro;3721286,23;0,0;3721286,23;1776371,55;203242,28;1944914,68
+DP-022/2023;Obra 2;Consultoria;Entr. MG-129 (Catas Altas) - Fonseca - Alvinópolis;2451612,34;0,0;2451612,34;1748367,35;223424,76;703244,99
+DP-023/2023;Obra 1;Consultoria;Coração de Jesus - Ibiaí;1750107,91;0,0;1750107,91;226431,45;34893,05;1523676,46
+DP-022/2023;Obra 4;Consultoria;Ponte Nova - Barra Longa;1584639,21;0,0;1584639,21;1036278,58;135149,95;548360,63
 DP-022/2023;Obra 1;Consultoria;Caeté - Morro Vermelho - Raposos;1194954,41;0,0;1194954,41;0,0;0,0;1194954,41
 DP-024/2023;Obra 2;Consultoria;Novo Cruzeiro - Ladainha;1539491,06;0,0;1539491,06;33616,25;2477,5;1505874,81
-DP-026/2023;Obra 4;Consultoria;Alvarenga - Conselheiro Pena;2363126,32;0,0;2363126,32;787663,08;75322,98;1575463,24
+DP-026/2023;Obra 4;Consultoria;Alvarenga - Conselheiro Pena;2363126,32;0,0;2363126,32;795161,12;76478,42;1567965,2
 DP-026/2023;Obra 2;Consultoria;Central de Minas - Mendes Pimentel;788177,57;0,0;788177,57;0,0;0,0;788177,57
 DP-026/2023;Obra 3;Consultoria;Tarumirim - Itanhomi;1146136,77;0,0;1146136,77;255789,77;30022,32;890347,0
 DP-026/2023;Obra 5;Consultoria;São José do Divino - São Félix de Minas;1134671,02;0,0;1134671,02;0,0;0,0;1134671,02
-DP-026/2023;Obra 1;Consultoria;Marilac - Nacip Raydan (Entr. para São José da Safira);891896,45;0,0;891896,45;475525,93;52344,82;416370,52
+DP-026/2023;Obra 1;Consultoria;Marilac - Nacip Raydan (Entr. para São José da Safira);891896,45;0,0;891896,45;542488,23;62663,71;349408,22
 DOV-001/2021-A;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 01;12039590,27;376218,44;12415808,71;9238358,21;2217090,09;3177450,5
 DC-022/2023;Obra 1;Rodovia;Melhoramento e pavimentação, trecho Entr. LMG-690 (Paracatu) - Entr. Entre Ribeiros - Segmento 1 (0 a 835), extensão 16,700 km;17469338,81;0,0;17469338,81;479348,6;16958,48;16989990,21
 DC-022/2023;Obra 2;Rodovia;Melhoramento e pavimentação, trecho Entr. LMG-690 (Paracatu) - Entr. Entre Ribeiros - Segmento 2 (835 a 1250), extensão 8,300 km;8643034,93;0,0;8643034,93;27911,89;622,42;8615123,04
@@ -541,10 +541,10 @@ DOV-004/2021-A;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de
 PRC-24.001/2019-ANO 5;Obra 1;Rodovia;Prestação de serviços de Apoio Técnico do DEER/MG, de forma continuada, na área de Projetos de Engenharia Rodoviária, Edificações e Equipamentos Públi;1365885,84;226593,36;1592479,2;1393004,42;423407,26;199474,78
 DM-018/2023;Obra 1;Recuperação Funcional ;Recuperação funcional AMG-1105, Entrº BR- 365 - Indianópolis;6195326,86;0,0;6195326,86;5827870,45;146740,6;367456,41
 DM-013/2023;Obra 1;Recuperação Funcional ;Recuperação funcional MG-188, Paracatu - Guarda-Mor;14406877,41;3451609,57;17858486,98;15778848,59;494028,88;2079638,39
-DP-025/2023;Obra 4;Consultoria;ATALÉIA - DIVISA MG/ES;583263,13;0,0;583263,13;214660,85;24681,64;368602,28
+DP-025/2023;Obra 4;Consultoria;ATALÉIA - DIVISA MG/ES;583263,13;0,0;583263,13;240213,31;28619,27;343049,82
 DP-025/2023;Obra 2;Consultoria;Ouro Verde - Ataléia;690199,16;0,0;690199,16;190058,59;21496,36;500140,57
 DP-025/2023;Obra 3;Consultoria;Pavão - Carlos Chagas;1751884,3;0,0;1751884,3;529817,23;58347,78;1222067,07
-DP-025/2023;Obra 1;Consultoria;ENTR.MGC/418 (CARLOS CHAGAS) - DIVISA MG/ES (VILA PEREIRA);1040213,01;0,0;1040213,01;331496,98;39155,67;708716,03
+DP-025/2023;Obra 1;Consultoria;ENTR.MGC/418 (CARLOS CHAGAS) - DIVISA MG/ES (VILA PEREIRA);1040213,01;0,0;1040213,01;358875,1;43374,63;681337,91
 DM-021/2023;Obra 1;Recuperação Funcional ;Recuperação funcional LMG-634, Jordânia - Almenara e LMG-630, Bandeira - Entrº LMG-634;51911237,26;984834,64;52896071,9;52161884,54;1767343,56;734187,36
 DC-017/2023;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio São Domingos na Rodovia MGC-265, trecho Entrº Mercês - Rio Pomba ;2012604,68;0,0;2012604,68;1910516,02;-6990,91;102088,66
 DC-017/2023;Obra 2;Rodovia;Reforço de Fundação da Ponte sobre o Rio Pomba na Rodovia MG-133, trecho Rio Pomba - Tabuleiro;361601,26;34711,71;396312,97;336505,7;-605,12;59807,27
@@ -565,10 +565,10 @@ DM-002/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 12ª 
 DM-003/2024;Obra 1;Recuperação Funcional ;Recuperação funcional LMG-601, Entrº LMG-634 p/ Almenara - Mata Verde / Estabilidade de taludes;46770710,65;4162315,92;50933026,57;49836904,18;2044526,09;1096122,39
 DC-020/2023;Obra 1;Rodovia;Complementação do melhoramento e pavimentação no trecho Fronteira dos Vales - Entr. MG-205 (Joaíma), com 13,60 km de extensão, na Rodovia MG-105.;19945867,8;4870963,74;24816831,54;22156413,77;819866,45;2660417,77
 DM-004/2024;Obra 1;Corretiva;Recuperação erosão na LMG-808 - km 17, Nova Contagem Entrº MG-432 (Caracóis);948728,78;0,0;948728,78;878228,3;0,0;70500,48
-DM-005/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 25ª URG;33128884,09;0,0;33128884,09;29938521,01;1905593,01;3190363,08
+DM-005/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 25ª URG;33128884,09;0,0;33128884,09;30703508,45;1985017,74;2425375,64
 DP-029/2023;Obra 3;Consultoria;Cipotânea - Rio Espera;800185,84;0,0;800185,84;0,0;0,0;800185,84
-DC-002/2024;Obra 1;Rodovia;Complementação do Melhoramento e pavimentação do trecho Pintópolis - Urucuia , extensão de 21,753 km (lote 01);27306386,23;6520490,82;33826877,05;28979164,65;1329854,23;4847712,4
-DC-003/2024;Obra 1;Rodovia;Complementação do Melhoramento e pavimentação do trecho Pintópolis - Urucuia (Lote 2), extensão de 51,440 km, na rodovia MG-402.;65748419,13;9534505,1;75282924,23;49530165,98;2871590,78;25752758,25
+DC-002/2024;Obra 1;Rodovia;Complementação do Melhoramento e pavimentação do trecho Pintópolis - Urucuia , extensão de 21,753 km (lote 01);27306386,23;6520490,82;33826877,05;29210734,29;1346526,87;4616142,76
+DC-003/2024;Obra 1;Rodovia;Complementação do Melhoramento e pavimentação do trecho Pintópolis - Urucuia (Lote 2), extensão de 51,440 km, na rodovia MG-402.;65748419,13;9534505,1;75282924,23;50964371,23;2994474,72;24318553,0
 DP-029/2023;Obra 5;Consultoria;Presidente Bernardes - Brás Pires;696154,05;0,0;696154,05;0,0;0,0;696154,05
 DP-029/2023;Obra 4;Consultoria;Oratórios - Amparo do Serra;653673,46;0,0;653673,46;0,0;0,0;653673,46
 DP-029/2023;Obra 2;Consultoria;CIPOTÂNEA - BRÁS PIRES;879996,76;0,0;879996,76;0,0;0,0;879996,76
@@ -590,21 +590,21 @@ DC-005/2024;Obra 1;Rodovia;Interseção de Acesso para Fabrica McCAIN na Rodovia
 DM-013/2024;Obra 1;Recuperação Funcional ;Recuperação funcional MGC-496 e aterro sobre solo mole no km 102, Entrº BR-365 (Pirapora) - Entrº BR-135 (Corinto);67381496,97;10482014,96;77863511,93;76653076,04;2335880,25;1210435,89
 DOV-003/2022-A;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - Lote 03;22291262,17;0,0;22291262,17;16210528,06;2653967,93;6080734,11
 DC-007/2024;Obra 1;Consultoria;Serro - Trinta Réis;1922644,28;0,0;1922644,28;391652,73;35338,15;1530991,55
-DM-014/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 03ª URG;37310856,76;0,0;37310856,76;29934224,39;1561880,22;7376632,37
+DM-014/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 03ª URG;37310856,76;0,0;37310856,76;30828416,26;1645889,91;6482440,5
 DM-018/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 36ª URG;37153801,63;0,0;37153801,63;30132401,34;1413980,61;7021400,29
 DM-9440647/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 1ª URG - SUL;47556790,26;0,0;47556790,26;31001351,31;1306191,62;16555438,95
-DM-9440658/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 15 URG;47005570,55;0,0;47005570,55;23005707,02;1065585,4;23999863,53
-DM-9440655/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 10 URG;51333755,33;0,0;51333755,33;21600091,6;1130458,87;29733663,73
-DM-9440661/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 19 URG;49967975,38;94078,9;50062054,28;24152609,14;1146491,71;25909445,14
-DM-9440653/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 08 URG;49131721,25;0,0;49131721,25;24194469,19;919247,1;24937252,06
+DM-9440658/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 15 URG;47005570,55;0,0;47005570,55;23528643,71;1104146,56;23476926,84
+DM-9440655/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 10 URG;51333755,33;0,0;51333755,33;23304932,85;1252057,26;28028822,48
+DM-9440661/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 19 URG;49967975,38;94078,9;50062054,28;26145936,44;1281115,95;23916117,84
+DM-9440653/2024;Obra 1;Manutenção Rodoviária;Manutenção periódica e rotineira de 08 URG;49131721,25;0,0;49131721,25;25075761,49;984837,09;24055959,76
 9439923;Obra 1;Obras de Edificações;Reparos preventivos e corretivos, instalações, adaptações, recuperação e modernização de edificações;0,0;0,0;0,0;0,0;0,0;0,0
-DM-9440649/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 1ª URG - NORTE;47758833,23;0,0;47758833,23;27758013,78;1159437,88;20000819,45
+DM-9440649/2024;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 1ª URG - NORTE;47758833,23;0,0;47758833,23;29365376,04;1263434,93;18393457,19
 DC-9439838/2024;Obra 1;Obra de Arte Especial;Ponte sobre o Ribeirão Perdição, no trecho Tapiraí - Entr. BR-354 (Bambuí), na rodovia AMG-900, com 42,200 m;3876550,0;458904,81;4335454,81;3636946,16;-811627,54;698508,65
-DC-9439921/2024;Obra 1;Rodovia;Melhoramento e pavimentação do trecho Consolação - Cambuí, com 4,880 km de extensão, na rodovia MG-295.;11650000,0;2085008,46;13735008,46;12277111,63;827898,05;1457896,83
-AMA-9445113/2024;Obra 1;Rodovia;ELABORAÇÃO DE PROJETOS DE MEIO AMBIENTE - ESTUDOS AMBIENTAIS (LICENÇA DE OPERAÇÃO CORRETIVA COM EIA/RIMA) NA RODOVIA MG-010, EM TODA A SUA EXTENSÃO;1484780,82;0,0;1484780,82;759251,79;26700,76;725529,03
+DC-9439921/2024;Obra 1;Rodovia;Melhoramento e pavimentação do trecho Consolação - Cambuí, com 4,880 km de extensão, na rodovia MG-295.;11650000,0;2085008,46;13735008,46;12437651,25;845771,19;1297357,21
+AMA-9445113/2024;Obra 1;Rodovia;ELABORAÇÃO DE PROJETOS DE MEIO AMBIENTE - ESTUDOS AMBIENTAIS (LICENÇA DE OPERAÇÃO CORRETIVA COM EIA/RIMA) NA RODOVIA MG-010, EM TODA A SUA EXTENSÃO;1484780,82;0,0;1484780,82;923251,2;38869,51;561529,62
 DM-9445781/2024;Obra 1;Recuperação Funcional ;Recuperação Funcional LMG-886, Final do Per. Urbano de Monte Verde - Início do Per. Urbano de Camanducaia;8686533,45;114295,68;8800829,13;8605020,1;182206,62;195809,03
 DM-9445821/2024;Obra 1;Recuperação Funcional ;Recuperação Funcional e Tratamento de Erosões MG-424,Entrº MG-010 - Sete Lagoas;56465035,05;5356438,16;61821473,21;46257291,3;1387864,19;15564181,91
-9442805;Obra 1;Informática;Serviços de continuidade tecnológica e expansão do licenciamento de uso de software para o Departamento de Estradas de Rodagem de Minas Gerais ;9885230,82;0,0;9885230,82;4675593,17;0,0;5209637,65
+9442805;Obra 1;Informática;Serviços de continuidade tecnológica e expansão do licenciamento de uso de software para o Departamento de Estradas de Rodagem de Minas Gerais ;9885230,82;0,0;9885230,82;4953180,67;0,0;4932050,15
 DM-030/2023-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 40ª URG;12172064,26;2951406,61;15123470,87;15020765,16;802664,76;102705,71
 DM-028/2023-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 37ª URG;13375792,1;0,0;13375792,1;9920529,5;694838,84;3455262,6
 DM-002/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 12ª URG;15487402,45;0,0;15487402,45;15486997,79;979092,86;404,66
@@ -616,65 +616,65 @@ DC-9445587/2024;Obra 1;Rodovia;Restauração e Aumento de Capacidade do trecho M
 DC-9445592/2024;Obra 1;Rodovia;Restauração e aumento de capacidade do trecho Entrº MG255/426 (Iturama) - Entrº BR461(B), na rodovia MGC-497, extensão de 7,5km (lote 03);6960514,31;1454007,89;8414522,2;6222059,81;239685,67;2192462,39
 DC-9445591/2024;Obra 1;Rodovia;Restauração e Aumento de Capacidade do trecho Entrº MG-410 - Entr° BR365 (Patos de Minas) na rodovia MGC-354, extensão 47,1 km;34061078,07;8220163,62;42281241,69;40491145,19;1737807,72;1790096,5
 DC-9445950/2024;Obra 1;Rodovia;Restauração do trecho Nova Contagem - Entrº MG-432 (Caracóis), na rodovia LMG-808, com extensão de 8,5km;5642000,0;0,0;5642000,0;5377492,34;223151,34;264507,66
-DM-9447456/2024;Obra 1;Recuperação Funcional ;Recuperação funcional AMG-1935,Borda da Mata - Tocos do Moji;4917800,43;0,0;4917800,43;0,0;0,0;4917800,43
+DM-9447456/2024;Obra 1;Recuperação Funcional ;Recuperação funcional AMG-1935,Borda da Mata - Tocos do Moji;4917800,43;0,0;4917800,43;208430,57;10175,13;4709369,86
 DC-9448965/2025;Obra 1;Rodovia;Implantação e pavimentação em pista dupla no trecho Anel Viário de Sete Lagoas (Avenida Norte/Sul - MG/238 - MG/424);4553800,0;862794,0;5416594,0;4724748,3;52311,24;691845,7
 AEST-9441233/2024;Obra 1;Informática;Prestação de Serviços de desenvolvimento de soluções tecnológicas para a avaliação da conservação de rodovias;5947278,86;0,0;5947278,86;3734042,86;177666,48;2213236,0
-DM-9452477/2025;Obra 1;Recuperação Funcional ;Recuperação funcional MG-188, Coromandel a Patrocínio;39334571,99;0,0;39334571,99;8620630,61;251344,61;30713941,38
+DM-9452477/2025;Obra 1;Recuperação Funcional ;Recuperação funcional MG-188, Coromandel a Patrocínio;39334571,99;0,0;39334571,99;10734557,59;315285,64;28600014,4
 DPEI-9446143;Obra 1;Prestação de Serviços;Contratação de empresa especializada para a execução de serviços de estudos geotécnicos;2246097,6;0,0;2246097,6;164119,62;6728,85;2081977,98
-DM-9454417/2025;Obra 1;Recuperação Funcional ;"Rec. func. LMG-682, Bertópolis-Machacalis, Machacalis-Águas Formosas; LMG-686, Umburatiba-Machacalis; AMG-900, Santa Helena de Minas-Entr LMG-682";28746887,36;2901116,99;31648004,35;27179395,08;334304,68;4468609,27
-DC-9453556/2025;Obra 1;Consultoria;Execução de Vistoria e elaboração de projeto para recuperação de Obras de Artes Especiais - OAE's - localizadas em rodovias sob jurisdição do DER/MG e;9659997,08;0,0;9659997,08;153335,0;14183,47;9506662,08
+DM-9454417/2025;Obra 1;Recuperação Funcional ;"Rec. func. LMG-682, Bertópolis-Machacalis, Machacalis-Águas Formosas; LMG-686, Umburatiba-Machacalis; AMG-900, Santa Helena de Minas-Entr LMG-682";28746887,36;2901116,99;31648004,35;27221408,52;335837,84;4426595,83
+DC-9453556/2025;Obra 1;Consultoria;Execução de Vistoria e elaboração de projeto para recuperação de Obras de Artes Especiais - OAE's - localizadas em rodovias sob jurisdição do DER/MG e;9659997,08;0,0;9659997,08;206968,35;19144,55;9453028,73
 DM-22.010/2019-E;Obra 1;Conservação;Manutenção Linha Verde e Complexo Viário Cidade Administrativa;6752186,96;0,0;6752186,96;6752175,97;3298266,65;10,99
-AEST-009440673/2024;Obra 1;Consultoria;SERVIÇOS ESPECIAIS DE APOIO À COORDENAÇÃO E APOIO TÉCNICO NO PLANEJAMENTO, MONITORAMENTO E AVALIAÇÃO DO PORTIFÓLIO DE EMPREENDIMENTOS DO DER-MG;5774752,44;0,0;5774752,44;1744569,6;66890,26;4030182,84
-DC-9447760/2025;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio Sapucaí (estaca 269+11), dimensão 114,0x10,0m, no trecho Cordislândia - Carvalhópolis (Lote 01);8415499,81;0,0;8415499,81;2407110,85;82826,58;6008388,96
+AEST-009440673/2024;Obra 1;Consultoria;SERVIÇOS ESPECIAIS DE APOIO À COORDENAÇÃO E APOIO TÉCNICO NO PLANEJAMENTO, MONITORAMENTO E AVALIAÇÃO DO PORTIFÓLIO DE EMPREENDIMENTOS DO DER-MG;5774752,44;0,0;5774752,44;1912436,46;77533,01;3862315,98
+DC-9447760/2025;Obra 1;Obra de Arte Especial;Construção da Ponte sobre o Rio Sapucaí (estaca 269+11), dimensão 114,0x10,0m, no trecho Cordislândia - Carvalhópolis (Lote 01);8415499,81;0,0;8415499,81;2984135,57;105011,73;5431364,24
 DC-9447761/2025;Obra 1;Obra de Arte Especial;Construção Ponte sobre o Rio Dourado (estaca 772+19), dimensão 56,0x10,0m, no trecho Cordislândia - Carvalhópolis (Lote 02), rodovia MGC-267;4776981,58;0,0;4776981,58;2916164,28;93313,15;1860817,3
 DER-30.014/2025;Obra 1;Rodovia;"Recuperação funcional na rodovia estadual LMG&#8208;724, trecho Entr. BR&#8208;050 ? Acesso à Usina Vale do Tijuco, com extensão de 17,3 km.";4425292,28;0,0;4425292,28;0,0;0,0;4425292,28
 DPEI-9447050;Obra 1;Rodovia;CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA A EXECUÇÃO DE SERVIÇOS DE SONDAGENS SPT, ROTATIVA, MISTA, MISTA EM BALSA E PDL PARA INVESTIGAÇÃO DO SOLO EM ;1346346,46;0,0;1346346,46;131945,13;5409,74;1214401,33
 AMA-9461425/2025;Obra 1;Consultoria;Elaboração de projeto de descomissionamento dos postos de abastecimento de combustíveis das unidades regionais do DER-MG (lote 1);38863,58;0,0;38863,58;38863,58;702,51;0,0
-AMA-9458828/2025;Obra 1;Rodovia; Elaboração de Projetos de Meio Ambiente - Estudos Ambientais (Licença de Operação Corretiva com EIA-RIMA) na Rodovia MG-238;803371,39;0,0;803371,39;263096,11;10984,67;540275,28
+AMA-9458828/2025;Obra 1;Rodovia; Elaboração de Projetos de Meio Ambiente - Estudos Ambientais (Licença de Operação Corretiva com EIA-RIMA) na Rodovia MG-238;803371,39;0,0;803371,39;307553,14;13149,72;495818,25
 DOV-001/2021-B;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 01;13934048,38;0,0;13934048,38;4685070,0;1294868,36;9248978,38
 DOV-002/2021-B;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 02;9104897,41;0,0;9104897,41;2625143,15;726351,11;6479754,26
 DOV-004/2021-B;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 04;15276741,09;0,0;15276741,09;4187262,13;1157069,81;11089478,96
 AMA-9461425/2025;Obra 2;Consultoria;Descomissionamento (OU DESATIVAÇÃO) dos postos de abastecimento de combustíveis 40ªURG DER-MG - Coronel fabriciano (lote 02);31713,27;0,0;31713,27;31713,27;551,22;0,0
-DM-9471832/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 24ª URG;49093539,45;0,0;49093539,45;4634384,99;33669,31;44459154,46
+DM-9471832/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 24ª URG;49093539,45;0,0;49093539,45;5181810,35;41982,04;43911729,1
 DC-9470224/2025;Obra 1;Rodovia;Melhoramento e pavimentação do Trecho Itapagipe - Entrº 364 (Campina Verde), MGC 154 - extensão 9,500km - Lote 01 ;19446841,31;0,0;19446841,31;0,0;0,0;19446841,31
 DC-9468321/2025;Obra 1;Obra de Arte Especial;Alargamento da ponte sobre o Rio Paraibuna Rodovia LMG-874 - dimensão (35,2 x 10,30)m, trecho Matias Barbosa - Juiz de Fora;2380000,0;496761,94;2876761,94;2383339,88;99049,57;493422,06
-DC-9471605/2025;Obra 1;Obra de Arte Especial;Recuperação da ponte sobre o Rio Jequitinhonha, no trecho Diamantina - Couto Magalhães de Minas, rodovia MGC-367,  extensão de 186,00m;9522992,29;0,0;9522992,29;2703721,53;43602,39;6819270,76
-DM-9471880/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 26ª URG;51814575,44;0,0;51814575,44;5982264,67;74117,68;45832310,77
-DM-9471834/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 31ª URG;50960749,38;0,0;50960749,38;5226168,65;39243,01;45734580,73
-DM-9471881/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 30ª URG;53356791,72;0,0;53356791,72;8108338,48;107589,5;45248453,24
-DM-9471879/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 18ª URG;53241874,38;0,0;53241874,38;10278516,91;103589,31;42963357,47
-DM-9473163/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 29ª URG;59299394,97;0,0;59299394,97;22747695,41;197398,65;36551699,56
+DC-9471605/2025;Obra 1;Obra de Arte Especial;Recuperação da ponte sobre o Rio Jequitinhonha, no trecho Diamantina - Couto Magalhães de Minas, rodovia MGC-367,  extensão de 186,00m;9522992,29;0,0;9522992,29;2955353,01;51034,6;6567639,28
+DM-9471880/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 26ª URG;51814575,44;0,0;51814575,44;6832001,61;97809,87;44982573,83
+DM-9471834/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 31ª URG;50960749,38;0,0;50960749,38;5881370,48;49202,31;45079378,9
+DM-9471881/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 30ª URG;53356791,72;0,0;53356791,72;9603132,49;146432,54;43753659,23
+DM-9471879/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 18ª URG;53241874,38;0,0;53241874,38;11593843,28;129819,98;41648031,1
+DM-9473163/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 29ª URG;59299394,97;0,0;59299394,97;24082394,71;225294,14;35217000,26
 DM-9471830/2025;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 20ª URG;53573999,99;0,0;53573999,99;6093202,3;63545,71;47480797,69
-DC-9472756/2025;Obra 1;Outros;Revisão de projetos de obras de arte especiais;1655673,22;0,0;1655673,22;261385,0;4014,01;1394288,22
- AEST-9469794/2025;Obra 1;Consultoria;LOTE 4: Contratação de consultoria técnica para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias do DER-MG;9284408,86;0,0;9284408,86;1295218,13;32866,19;7989190,73
-AEST-9468573/2025;Obra 1;Consultoria;serviços técnicos especializados de consultoria  para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias do DE -LOTE 3;9218472,49;0,0;9218472,49;829896,92;25417,53;8388575,57
-DM-9493180/2026;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 17ª URG;64984305,34;0,0;64984305,34;1000383,75;34560,42;63983921,59
-DM-026/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 27ª URG;14704896,91;0,0;14704896,91;805855,44;73274,23;13899041,47
-DM-029/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 38ª URG;12403029,87;0,0;12403029,87;896838,31;69963,45;11506191,56
-DC-9492065/2025;Obra 1;Rodovia;Apoio a supervisão de obra rodoviária no trecho Pimenta - Entr° BR-265 (Guapé), na rodovia MG170, extensão de 15,20 km;2624909,09;0,0;2624909,09;155585,6;3067,68;2469323,49
+DC-9472756/2025;Obra 1;Outros;Revisão de projetos de obras de arte especiais;1655673,22;0,0;1655673,22;375709,28;8141,11;1279963,94
+ AEST-9469794/2025;Obra 1;Consultoria;LOTE 4: Contratação de consultoria técnica para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias do DER-MG;9284408,86;0,0;9284408,86;1544810,85;41876,47;7739598,01
+AEST-9468573/2025;Obra 1;Consultoria;serviços técnicos especializados de consultoria  para levantamentos e avaliações de serviços de engenharia rodoviária nas rodovias do DE -LOTE 3;9218472,49;0,0;9218472,49;1041486,75;33055,91;8176985,74
+DM-9493180/2026;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 17ª URG;64984305,34;0,0;64984305,34;2647093,02;76958,82;62337212,32
+DM-026/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 27ª URG;14704896,91;0,0;14704896,91;1937021,67;213905,91;12767875,24
+DM-029/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 38ª URG;12403029,87;0,0;12403029,87;1614142,18;134082,77;10788887,69
+DC-9492065/2025;Obra 1;Rodovia;Apoio a supervisão de obra rodoviária no trecho Pimenta - Entr° BR-265 (Guapé), na rodovia MG170, extensão de 15,20 km;2624909,09;0,0;2624909,09;258309,25;6344,56;2366599,84
 DOV-003/2022-B;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - Lote 03;22167830,47;0,0;22167830,47;2304211,64;491722,4;19863618,83
-DM-025/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 22ª URG;12585961,98;0,0;12585961,98;792234,27;71680,64;11793727,71
-DOV-002/2022-B;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - lote 02;27994383,03;0,0;27994383,03;1555732,35;331506,92;26438650,68
-DM-030/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 40ª URG;12159273,83;0,0;12159273,83;2524796,62;189478,08;9634477,21
+DM-025/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 22ª URG;12585961,98;0,0;12585961,98;1511276,19;138325,23;11074685,79
+DOV-002/2022-B;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - lote 02;27994383,03;0,0;27994383,03;2365248,99;504016,44;25629134,04
+DM-030/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 40ª URG;12159273,83;0,0;12159273,83;3823205,97;313522,25;8336067,86
 DOV-004/2022-B;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do trânsito - lote 04;18749931,77;0,0;18749931,77;2160121,29;458510,34;16589810,48
 DC-9479677/2025;Obra 1;Rodovia;Melhoramento e pavimentação do trecho Rio Pardo de Minas - Entrº LMG-635 - (Lote 2 - Estaca 554+0 a Estaca 1659+7,74), com 22,100km;57467603,75;0,0;57467603,75;0,0;0,0;57467603,75
-DOV-005/2022-B;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - lote 05;14929346,95;0,0;14929346,95;551298,7;118361,5;14378048,25
+DOV-005/2022-B;Obra 1;Supervisão;Serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - lote 05;14929346,95;0,0;14929346,95;833120,19;178892,04;14096226,76
 DC-9492715/2025;Obra 1;Rodovia;Apoio técnico a supervisão da ponte sobre o Rio São Francisco, no município São Francisco/MG, com dimensões 1.120,00m x 13,80 m;3028048,96;0,0;3028048,96;151508,22;4833,11;2876540,74
-DM-002/2024-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 12ª URG;15304996,19;0,0;15304996,19;593834,61;72067,83;14711161,58
-DM-9485591/2025;Obra 1;Recuperação Funcional ;Recuperação funcional LMG-845, Sericita - Entr° 262;6199729,76;0,0;6199729,76;0,0;0,0;6199729,76
-DM-9485592/2025;Obra 1;Recuperação Funcional ;Recuperação funcional AMG-1705, Santa Cruz do Escalvado - Entr° MG-329;10929975,56;0,0;10929975,56;0,0;0,0;10929975,56
+DM-002/2024-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 12ª URG;15304996,19;0,0;15304996,19;1636050,93;184473,31;13668945,26
+DM-9485591/2025;Obra 1;Recuperação Funcional ;Recuperação funcional LMG-845, Sericita - Entr° 262;6199729,76;0,0;6199729,76;289152,96;0,0;5910576,8
+DM-9485592/2025;Obra 1;Recuperação Funcional ;Recuperação funcional AMG-1705, Santa Cruz do Escalvado - Entr° MG-329;10929975,56;0,0;10929975,56;405673,71;0,0;10524301,85
 DOV-001/2022-B;Obra 2;Supervisão;serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito - lote 01 ;24492723,16;0,0;24492723,16;0,0;0,0;24492723,16
-DM-9492723/2025;Obra 1;Recuperação Funcional ;Recuperação funcional MGC-452, Tupaciguara - Araporã;41984578,11;0,0;41984578,11;0,0;0,0;41984578,11
+DM-9492723/2025;Obra 1;Recuperação Funcional ;Recuperação funcional MGC-452, Tupaciguara - Araporã;41984578,11;0,0;41984578,11;3794113,75;0,0;38190464,36
 DOV-001/2022-B;Obra 1;Supervisão;serviços de engenharia de natureza continua, apoio ao gerenciamento, operação e fiscalização do transito. (CCOP) - lote 01;9306630,2;0,0;9306630,2;0,0;0,0;9306630,2
 DC-9492718/2025;Obra 1;Rodovia;Apoio à supervisão de obras de melhoramento, pavimentação e OAE's no trecho Pintópolis - Urucuia, 73,14 km de extensão, na rodovia MG-402;3187539,16;0,0;3187539,16;82179,63;2621,53;3105359,53
 DC-9491012/2025;Obra 1;Rodovia;Apoio a Supervisão de Obras Rodoviárias,  trecho Entrº MG/416 (Peçanha) à LMG/744 (Coroaci) - MG-314, com 36,91 de extensão;4324285,68;0,0;4324285,68;70934,85;2262,82;4253350,83
-DC-9491013/2025;Obra 1;Obra de Arte Especial;Implantação de Variante e Ponte sobre o Rio Paraopeba no trecho Inhaúma - Papagaios;20125000,0;0,0;20125000,0;0,0;0,0;20125000,0
-DC-9492083/2025;Obra 1;Rodovia;Complementação dos Serviços de Melhoramento e Pavimentação do trecho Araguari (Distrito de Amanhece) - Divisa MG/GO, rodovia MG-414;59889999,58;0,0;59889999,58;0,0;0,0;59889999,58
+DC-9491013/2025;Obra 1;Obra de Arte Especial;Implantação de Variante e Ponte sobre o Rio Paraopeba no trecho Inhaúma - Papagaios;20125000,0;0,0;20125000,0;865117,08;36023,22;19259882,92
+DC-9492083/2025;Obra 1;Rodovia;Complementação dos Serviços de Melhoramento e Pavimentação do trecho Araguari (Distrito de Amanhece) - Divisa MG/GO, rodovia MG-414;59889999,58;0,0;59889999,58;897085,83;47341,54;58992913,75
 DC-9493122/2026;Obra 1;Rodovia;Apoio à Supervisão de Obras Rodoviárias, no trecho Manga - Porto de Matias Cardoso. Trecho: Entrº MGC-135 (Manga) - Porto de Matias Cardoso (Variante);6677404,33;0,0;6677404,33;119550,83;3813,67;6557853,5
 DM-9493137/2026;Obra 1;Corretiva;Contenção e Cortina Atirantada MG-383, Entrº p/ Maria da Fé - Início do Perímetro Urbano de Itajubá;10619818,83;0,0;10619818,83;0,0;0,0;10619818,83
 DM-9493202/2026;Obra 1;Corretiva;Recuperação de erosões MG-406, Palmópolis - Rio do Prado e Estabilização de aterro de encabeçamento de ponte MG-205, Ponte Ribeirão José Ferreira;4557819,64;0,0;4557819,64;0,0;0,0;4557819,64
-DM-028/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 37ª URG;13190992,89;0,0;13190992,89;592401,33;71211,29;12598591,56
-DM-001/2024-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 32ª URG;14398046,07;0,0;14398046,07;318583,52;30598,96;14079462,55
+DM-028/2023-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 37ª URG;13190992,89;0,0;13190992,89;1124617,17;126675,2;12066375,72
+DM-001/2024-B;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 32ª URG;14398046,07;0,0;14398046,07;647838,1;75894,34;13750207,97
 9447045/2024-A;Obra 1;Consultoria;Supervisão Geral do desempenho da Concessionária, no que tange às obras e serviços de apoio à fiscalização do Lote 3;5328591,49;0,0;5328591,49;0,0;0,0;5328591,49
 DC-011R/2024;Obra 1;Rodovia;Interseção para Patrocínio - Trevo de Enxó, Km 105, no trecho Entrº MG-187 - Entrº BR-365, na Rodovia MG-230.;2962697,76;0,0;2962697,76;0,0;0,0;2962697,76
 9447043/2024-A;Obra 1;Consultoria;Supervisão Geral do desempenho da Concessionária, no que tange às obras e serviços de apoio à fiscalização na MG-050;5760127,9;0,0;5760127,9;0,0;0,0;5760127,9
@@ -683,6 +683,13 @@ DC-9496643/2026;Obra 1;Obra de Arte Especial;Implantação de Passarela na Rodov
 DC-9498666/2026;Obra 1;Consultoria;Prestação de serviços especiais de apoio à coordenação e apoio técnico na Diretoria de Construção - Lote 1 - Supervisão de Projetos;23052682,68;0,0;23052682,68;0,0;0,0;23052682,68
 DC-9497471/2026;Obra 1;Trevo de Acesso;Melhoramento e Pavimentação da interseção de acesso ao Presídio de Iturama, na via Municipal - Extensão 2,000km;3700000,0;0,0;3700000,0;0,0;0,0;3700000,0
 DC-9495596/2026;Obra 1;Obra de Arte Especial;Projeto executivo de engenharia e execução das obras Encabeçamento e ponte sobre o Rio São João, Rodovia MG-430, no trecho Igaratinga - Entr. MG-252;12246076,65;0,0;12246076,65;0,0;0,0;12246076,65
+DM-012/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 35ª URG;29302939,12;0,0;29302939,12;0,0;0,0;29302939,12
+DM-018/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 36ª URG;36954174,97;0,0;36954174,97;0,0;0,0;36954174,97
+DM-9502116/2026;Obra 1;Consultoria;Apoio à supervisão e gestão dos contratos de conservação/manutenção e recuperação funcional;5342582,88;0,0;5342582,88;0,0;0,0;5342582,88
+DM-016/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 13ª URG;33205062,4;0,0;33205062,4;0,0;0,0;33205062,4
+DC-9501601/2026;Obra 2;Obra de Arte Especial;Implantação da Ponte sobre o Córrego das Tabocas, dimensões  59,0m x 10,0m (Estaca 3.514+6,00);4005503,13;0,0;4005503,13;0,0;0,0;4005503,13
+DC-9501601/2026;Obra 1;Obra de Arte Especial;Implantação da Ponte sobre o Ribeirão das Pedras, dimensões  33,0 x 10,0m (Estaca 2.796+15,00);2520936,14;0,0;2520936,14;0,0;0,0;2520936,14
+DC-9501601/2026;Obra 3;Obra de Arte Especial;Implantação da Ponte sobre o Córrego  da Gameleiras, dimensões  39,0m x 10,0m (Estaca 3.161+16,00);3287560,73;0,0;3287560,73;0,0;0,0;3287560,73
 DC-9493529/2026;Obra 1;Rodovia;Complementação obras melhoramentos e pavimentação, trecho Santa Rita do Itueto - Entr° BR-259 (Resplendor), rodovia AMG-2320, extensão de 13,400km;37600000,0;0,0;37600000,0;0,0;0,0;37600000,0
 DO-001/2021- C;Obra 2;Prestação de Serviços;Prestação de Serviços de natureza continuada de Fornecimento de Solução Informatizada para a lavratura e impressão de Autos de Infração de Trânsito.;1099724,43;0,0;1099724,43;0,0;0,0;1099724,43
 DO-009482017/2025;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 03;47349998,43;0,0;47349998,43;0,0;0,0;47349998,43
@@ -691,6 +698,10 @@ D0-009482032/2025;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito
 DO-9481987/2025;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 07;23434999,8;0,0;23434999,8;0,0;0,0;23434999,8
 DO-009482055/2025;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 05;32097999,96;0,0;32097999,96;0,0;0,0;32097999,96
 DM-9497685/2026;Obra 1;Recuperação Funcional ;Recuperação funcional MG-275, Capela Nova - Entrº BR-040 (Carandaí);14264750,82;0,0;14264750,82;0,0;0,0;14264750,82
-DM-005/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 25ª URG;32998445,8;0,0;32998445,8;0,0;0,0;32998445,8
+DM-005/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 25ª URG;32998445,8;0,0;32998445,8;604883,63;62432,08;32393562,17
 DO-009482046/2025;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 02;45188997,86;0,0;45188997,86;0,0;0,0;45188997,86
 DO-009482014/2025;Obra 1;Prestação de Serviços;Serviços de Eng. de Trânsito,de forma contínua,de acordo com as qntds.,especific.técnicas e demais condições expressas no Edital e seus Anexos-Lote 01;77898894,3;0,0;77898894,3;0,0;0,0;77898894,3
+DM-011/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 33ª URG;24832463,21;0,0;24832463,21;0,0;0,0;24832463,21
+DM-010/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 23ª URG;34422078,35;0,0;34422078,35;0,0;0,0;34422078,35
+DM-009/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 14ª URG;30603197,87;0,0;30603197,87;0,0;0,0;30603197,87
+DM-008/2024-A;Obra 1;Manutenção Rodoviária;MANUTENÇÃO E CONSERVAÇÃO - 07ª URG;31172534,58;0,0;31172534,58;0,0;0,0;31172534,58
