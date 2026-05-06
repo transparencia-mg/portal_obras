@@ -4642,8 +4642,7 @@ DM-9474704/2025;Obra 1;230176200525;Davidsson Canesso de Oliveira;CREA MG 68756/
 DC-9472752/2025;Obra 1;230152000825;Andrea de Oliveira Prado;CREAMG - 109.983/D;Representante do Meio Ambiente
 DC-9472752/2025;Obra 1;230152000825;Diogo Miranda Amaral;CREA 105715/D;Representante do Serviço de Medições
 DC-9472752/2025;Obra 1;230152000825;Jefferson Taffarel Guimarães Nogueira;CREA 160592/D;Gerente
-DC-9472752/2025;Obra 1;230152000825;Willian Barros Valamiel;CREA 57.228/D;Fiscal do Contrato
-DC-9472752/2025;Obra 1;230152000825;CAMILA HILARIO BETHONICO DE MELO ;CREA 184928/D;Representante do Serviço de Medições
+DC-9472752/2025;Obra 1;230152000825;Willian Barros Valamiel;CREA 57.228/D;Gerente
 DC-9472752/2025;Obra 1;230152000825;BRUNO ALBERTO VIANA ROCHA;CREA 183272/D;Representante do Serviço de Medições
 DC-9472752/2025;Obra 1;230152000825;André Luis Cairo de Azevedo;CREA 6.052-6;Diretor
 DC-9472752/2025;Obra 1;230152000825;José Eustáquio Ferreira Caldas;CREA 30.791;Fiscal do Contrato
@@ -4653,8 +4652,7 @@ DC-9472752/2025;Obra 2;230152000825;Felipe Dutra de Resende;128102/04-D;Represen
 DC-9472752/2025;Obra 2;230152000825;Andrea de Oliveira Prado;CREAMG - 109.983/D;Representante do Meio Ambiente
 DC-9472752/2025;Obra 2;230152000825;Diogo Miranda Amaral;CREA 105715/D;Representante do Serviço de Medições
 DC-9472752/2025;Obra 2;230152000825;Jefferson Taffarel Guimarães Nogueira;CREA 160592/D;Gerente
-DC-9472752/2025;Obra 2;230152000825;Willian Barros Valamiel;CREA 57.228/D;Fiscal do Contrato
-DC-9472752/2025;Obra 2;230152000825;CAMILA HILARIO BETHONICO DE MELO ;CREA 184928/D;Representante do Serviço de Medições
+DC-9472752/2025;Obra 2;230152000825;Willian Barros Valamiel;CREA 57.228/D;Gerente
 DC-9472752/2025;Obra 2;230152000825;BRUNO ALBERTO VIANA ROCHA;CREA 183272/D;Representante do Serviço de Medições
 DC-9472752/2025;Obra 2;230152000825;André Luis Cairo de Azevedo;CREA 6.052-6;Diretor
 DPEI-9478941/2025;Obra 1;Não Disponível;Henrique de Medeiros Pereira;MG-174.905/D;Diretor
@@ -4812,6 +4810,7 @@ DOV-005/2022-B;Obra 1;230190109/21;Gabrielly Alves de Moura Pires;CREA 202010272
 DOV-005/2022-B;Obra 1;230190109/21;Aneliza de Souza Braga;CREA/MG 122188/D;Fiscal do Contrato
 DOV-005/2022-B;Obra 1;230190109/21;Darllan Robert Pereira de Oliveira;CREA-MG: 142032927-8;Fiscal do Contrato
 DOV-005/2022-B;Obra 1;230190109/21;Rodrigo Santos Colares;DER: X601872;Diretor
+DOV-005/2022-B;Obra 1;230190109/21;Flávio Fogaca Botelho Junior;CREA 2017662585;Representante da Firma
 DOV-004/2022-B;Obra 1;230190109/21;Cristiano Francisco F. S. Coelho;174451/D;Diretor
 DOV-004/2022-B;Obra 1;230190109/21;Beatriz A. B. Pinheiro;141763/D;Gerente
 DOV-004/2022-B;Obra 1;230190109/21;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
@@ -4838,6 +4837,7 @@ DC-9492718/2025;Obra 1;230152002225;Leandro Carvalho Guimarães;MASP 5669908;Rep
 DC-9492718/2025;Obra 1;230152002225;Renato Yukio Rodrigues Sato;CREA-MG 85930/D;Operador do Sistema - CQM para fazer Revisão
 DC-9492718/2025;Obra 1;230152002225;Herick Mendes Vieira;RNP-1421518279;Representante da Firma
 DC-9492718/2025;Obra 1;230152002225;Luiz Carlos Vasco de Matos;99.933/D;Representante da Firma
+DC-9492718/2025;Obra 1;230152002225;Victor Ferreira Braga de Souza;102868/D      ;Operador do Sistema - CQM para fazer Revisão
 DC-9491012/2025;Obra 1;230152002425;Hudson Oliveira Leal;79.403/D;Coordenador Regional da 23ª CRG
 DC-9491012/2025;Obra 1;230152002425;Custódio Lucas Borges;CREA:  MG339187;Chefe de Núcleo Técnico
 DC-9491012/2025;Obra 1;230152002425;Roberto Navarro de Castro;101417/D;Representante da Diretoria de Construção de Obras Rodoviárias
@@ -4945,41 +4945,42 @@ DO-001/2021- C;Obra 2;Não Disponível;Roberto Paixão e Silva;136751/D;Represen
 DO-001/2021- C;Obra 2;Não Disponível;André Rocha Baeta;57.942/D;Representante da Firma
 DO-001/2021- C;Obra 2;Não Disponível;Eriênio Jaderson de Souza ;1231114-8;Gerente
 DO-001/2021- C;Obra 2;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
-DO-009482046/2025;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
-DO-009482046/2025;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
-DO-009482046/2025;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
-DO-009482046/2025;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
-DO-009482046/2025;Obra 1;Não Disponível;Carlos Eduardo Sehnem;2215528966;Representante da Firma
-DO-009482014/2025;Obra 1;2301901 1/2025;Rodrigo Santos Colares;DER: X601872;Diretor
-DO-009482014/2025;Obra 1;2301901 1/2025;Beatriz A. B. Pinheiro;141763/D;Gerente
-DO-009482014/2025;Obra 1;2301901 1/2025;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
-DO-009482014/2025;Obra 1;2301901 1/2025;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
-DO-009482014/2025;Obra 1;2301901 1/2025;Daniel Avelar Maia da Silva;79598/D;Representante da Firma
-DO-009482017/2025;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
-DO-009482017/2025;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
-DO-009482017/2025;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
-DO-009482017/2025;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
-DO-009482017/2025;Obra 1;Não Disponível;Roberto Paixão e Silva;136751/D;Representante da Firma
-DO-9493205/2026;Obra 1;230190100125;Rodrigo Santos Colares;DER: X601872;Diretor
-DO-9493205/2026;Obra 1;230190100125;Beatriz A. B. Pinheiro;141763/D;Gerente
-DO-9493205/2026;Obra 1;230190100125;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
-DO-9493205/2026;Obra 1;230190100125;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
-DO-9493205/2026;Obra 1;230190100125;Arthur Zagonel;2514073642;Representante da Firma
-DO-009482055/2025;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
-DO-009482055/2025;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
-DO-009482055/2025;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
-DO-009482055/2025;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
-DO-009482055/2025;Obra 1;Não Disponível;Rodrigo Alves de Miranda;1020752769;Representante da Firma
-D0-009482032/2025;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
-D0-009482032/2025;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
-D0-009482032/2025;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
-D0-009482032/2025;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
-D0-009482032/2025;Obra 1;Não Disponível;Charbel Rodrigues Calil Daher;CREA 2603068601;Representante da Firma
-DO-9481987/2025;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
-DO-9481987/2025;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
-DO-9481987/2025;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
-DO-9481987/2025;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
-DO-9481987/2025;Obra 1;Não Disponível;Carlos Tiago dos Santos;1416497307;Representante da Firma
+DO-009482046/2025-L2;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
+DO-009482046/2025-L2;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
+DO-009482046/2025-L2;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+DO-009482046/2025-L2;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+DO-009482046/2025-L2;Obra 1;Não Disponível;Carlos Eduardo Sehnem;2215528966;Representante da Firma
+DO-009482014/2025-L1;Obra 1;2301901 1/2025;Rodrigo Santos Colares;DER: X601872;Diretor
+DO-009482014/2025-L1;Obra 1;2301901 1/2025;Beatriz A. B. Pinheiro;141763/D;Gerente
+DO-009482014/2025-L1;Obra 1;2301901 1/2025;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+DO-009482014/2025-L1;Obra 1;2301901 1/2025;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+DO-009482014/2025-L1;Obra 1;2301901 1/2025;Daniel Avelar Maia da Silva;79598/D;Representante da Firma
+DO-009482014/2025-L1;Obra 1;2301901 1/2025;Marcela Cardoso Bastos;CREA 82739D;Chefe de Núcleo Técnico
+DO-009482017/2025-L3;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
+DO-009482017/2025-L3;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
+DO-009482017/2025-L3;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+DO-009482017/2025-L3;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+DO-009482017/2025-L3;Obra 1;Não Disponível;Roberto Paixão e Silva;136751/D;Representante da Firma
+DO-9493205/2026-L4;Obra 1;230190100125;Rodrigo Santos Colares;DER: X601872;Diretor
+DO-9493205/2026-L4;Obra 1;230190100125;Beatriz A. B. Pinheiro;141763/D;Gerente
+DO-9493205/2026-L4;Obra 1;230190100125;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+DO-9493205/2026-L4;Obra 1;230190100125;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+DO-9493205/2026-L4;Obra 1;230190100125;Arthur Zagonel;2514073642;Representante da Firma
+DO-009482055/2025-L5;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
+DO-009482055/2025-L5;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
+DO-009482055/2025-L5;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+DO-009482055/2025-L5;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+DO-009482055/2025-L5;Obra 1;Não Disponível;Rodrigo Alves de Miranda;1020752769;Representante da Firma
+D0-009482032/2025-L6;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
+D0-009482032/2025-L6;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
+D0-009482032/2025-L6;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+D0-009482032/2025-L6;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+D0-009482032/2025-L6;Obra 1;Não Disponível;Charbel Rodrigues Calil Daher;CREA 2603068601;Representante da Firma
+DO-9481987/2025-L7;Obra 1;Não Disponível;Rodrigo Santos Colares;DER: X601872;Diretor
+DO-9481987/2025-L7;Obra 1;Não Disponível;Beatriz A. B. Pinheiro;141763/D;Gerente
+DO-9481987/2025-L7;Obra 1;Não Disponível;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+DO-9481987/2025-L7;Obra 1;Não Disponível;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+DO-9481987/2025-L7;Obra 1;Não Disponível;Carlos Tiago dos Santos;1416497307;Representante da Firma
 DM-010/2024-A;Obra 1;230176203623;Hudson Oliveira Leal;79.403/D;Coordenador Regional da 23ª CRG
 DM-010/2024-A;Obra 1;230176203623;Custódio Lucas Borges;CREA:  MG339187;Chefe de Núcleo Técnico
 DM-010/2024-A;Obra 1;230176203623;Victor Miranda Braga;170.231/D;Representante da Diretoria de Manutenção
@@ -5027,3 +5028,27 @@ DM-9502116/2026;Obra 1;230176202625;Marcelo José Candido Rocha;1419404199/D;Rep
 DM-9502116/2026;Obra 1;230176202625;Marcela Drumond Braga;CREA-MG 179.397/D;Representante da Diretoria de Manutenção
 DM-9502116/2026;Obra 1;230176202625;João Filipe Mariano Gonçalves;149.586/D;Gerente DM/GMR
 DM-9502116/2026;Obra 1;230176202625;Davidsson Canesso de Oliveira;CREA MG 68756/D;Diretor de Manutenção
+AMA-9499286/2026;Obra 1;Não Disponível;Felipe Dutra de Resende;128102/04-D;Assessor
+AMA-9499286/2026;Obra 1;Não Disponível;Rogério Pedersoli de Lima;CRBIO - 128.139 / 04 d;Gerente
+AMA-9499286/2026;Obra 1;Não Disponível;José Francisco Tavares Quadros;CREA/MG 23.664/D;Fiscal de Obra
+AMA-9499286/2026;Obra 1;Não Disponível;Douglas Gomes Cardoso;CREA 96.902/D;Representante do Meio Ambiente
+DM-014/2024-A;Obra 1;230176205123;Alípio Augusto Caram Guedes;CREA-MG 99.807/D;Coordenador Regional da 03ª CRG
+DM-014/2024-A;Obra 1;230176205123;Geraldo Alves Pereira;CREA-MG 59.983/D;Chefe de Núcleo Técnico
+DM-014/2024-A;Obra 1;230176205123;Ivan Elídio de Pinho Tavares;214.175;Representante da Diretoria de Manutenção
+DM-014/2024-A;Obra 1;230176205123;João Jacques Viana Vaz;CREA/MG 28134D;Representante da Firma
+DM-014/2024-A;Obra 1;230176205123;João Filipe Mariano Gonçalves;149.586/D;Gerente DM/GMR
+DM-014/2024-A;Obra 1;230176205123;Davidsson Canesso de Oliveira;CREA MG 68756/D;Diretor de Manutenção
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Beatriz A. B. Pinheiro;141763/D;Fiscal de Transportes e Obras Rodoviárias
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Daniel Freitas Caputo Oliveira;167857/D;Fiscal de Transportes e Obras Rodoviárias
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Marcela Cardoso Bastos;CREA 82739D;Fiscal de Transportes e Obras Rodoviárias
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Flávia Cristina Teixeira Guimarães;CREA 168283D;Fiscal do Contrato
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Daniel Avelar Maia da Silva;79598/D;Representante da Firma
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Aneliza de Souza Braga;CREA/MG 122188/D;Fiscal do Contrato
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Darllan Robert Pereira de Oliveira;CREA-MG: 142032927-8;Fiscal do Contrato
+PRC-29.008/2017-E;Obra 1;2301762000016/17;Rodrigo Santos Colares;DER: X601872;Diretor
+DM-017/2024-A;Obra 1;230176205123;Vinicius Gatti Queiroga;6.119-0;Coordenador Regional da 21ª CRG
+DM-017/2024-A;Obra 1;230176205123;Júlio César de Almeida;254996/D;Chefe Núcleo Técnico Rodoviário
+DM-017/2024-A;Obra 1;230176205123;Victor Miranda Braga;170.231/D;Representante da Diretoria de Manutenção
+DM-017/2024-A;Obra 1;230176205123;Renato  de Souza Botelho;162160/D;Representante da Firma
+DM-017/2024-A;Obra 1;230176205123;João Filipe Mariano Gonçalves;149.586/D;Gerente DM/GMR
+DM-017/2024-A;Obra 1;230176205123;Davidsson Canesso de Oliveira;CREA MG 68756/D;Diretor de Manutenção
