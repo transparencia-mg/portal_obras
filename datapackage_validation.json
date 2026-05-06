@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.585,
+  "time": 0.582,
   "errors": [],
   "tasks": [
     {
@@ -143,7 +143,7 @@
           "rows": 618
         }
       },
-      "time": 0.072,
+      "time": 0.08,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -287,7 +287,7 @@
           "rows": 5028
         }
       },
-      "time": 0.096,
+      "time": 0.092,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -351,7 +351,7 @@
           "rows": 8012
         }
       },
-      "time": 0.121,
+      "time": 0.106,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -443,7 +443,7 @@
           "rows": 706
         }
       },
-      "time": 0.033,
+      "time": 0.031,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -515,7 +515,7 @@
           "rows": 2024
         }
       },
-      "time": 0.055,
+      "time": 0.066,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -593,13 +593,13 @@
         "scheme": "file",
         "title": "Trechos da Obra",
         "stats": {
-          "hash": "305b7d926a542ddd3ca3a3244b3f952b",
-          "bytes": 476911,
+          "hash": "049da8e982803e69f720d7b15c45ea30",
+          "bytes": 477047,
           "fields": 8,
-          "rows": 4774
+          "rows": 4778
         }
       },
-      "time": 0.119,
+      "time": 0.11,
       "scope": [
         "hash-count-error",
         "byte-count-error",
