@@ -563,6 +563,40 @@
             .consulta-filter-group { flex: 1 1 100%; }
         }
 
+        /* ============================================================
+           22. MODAL CREATIVE (ABAS)
+        ============================================================ */
+        .modal-creative .modal-header { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%); color: white !important; padding: 15px 20px; border-bottom: none; }
+        .modal-creative .modal-header .modal-title { color: white !important; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+        .modal-creative .modal-header .btn-close { filter: brightness(0) invert(1); opacity: 1; }
+        .info-label { font-size: 10px; text-transform: uppercase; color: #64748b; font-weight: 600; margin-bottom: 3px; }
+        .info-value { font-size: 13px; font-weight: 500; color: #1e293b; word-break: break-word; }
+        .info-value.highlight { font-size: 15px; color: var(--primary-dark); font-weight: 700; }
+        .modal { overflow-y: auto !important; }
+        .modal-open { overflow: hidden !important; padding-right: 0 !important; }
+        body.modal-open { position: static !important; overflow: hidden !important; }
+
+        /* ============================================================
+           23. DICIONÁRIO DE DADOS
+        ============================================================ */
+        .metadata-container { background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.06); overflow: hidden; margin-bottom: 20px; }
+        .metadata-header { background: #20445d; color: white; padding: 12px 16px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .metadata-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .metadata-table thead th { background-color: #54697b !important; color: white !important; padding: 10px; font-size: 11px; text-transform: uppercase; font-weight: 600; }
+        .metadata-table tbody tr:nth-child(even) { background: #f8fafd; }
+        .metadata-table tbody td { padding: 9px 10px; border-bottom: 1px solid #f0f4f8; vertical-align: top; color: #334155; }
+        .metadata-table code { background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-size: 11px; }
+        .dic-search-box { background: white; border-radius: 8px; padding: 15px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .dic-tab-btn { background: #f0f4f8; border: none; padding: 7px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; color: #1a3a5c; cursor: pointer; transition: all 0.2s; }
+        .dic-tab-btn.active, .dic-tab-btn:hover { background: #1a3a5c; color: white; }
+        .dic-row-highlight { background: #fff8dc !important; }
+
+        /* ============================================================
+           24. LINK DE COMPRA
+        ============================================================ */
+        .compra-link { color: #006a82; text-decoration: none; font-size: 12px; display: inline-flex; align-items: center; gap: 3px; }
+        .compra-link:hover { color: var(--accent-red); text-decoration: underline; }
+
     </style>
 </head>
 <body class="iframe-mode">
@@ -597,6 +631,11 @@
                     </button>
                 </li>
                 <li class="nav-item">
+                    <button class="nav-link" id="dicionario-tab" data-bs-toggle="tab" data-bs-target="#dicionario">
+                        <span class="material-icons">menu_book</span>Dicionário de Dados
+                    </button>
+                </li>
+                <li class="nav-item">
                     <button class="nav-link" id="downloads-tab" data-bs-toggle="tab" data-bs-target="#downloads">
                         <span class="material-icons">download</span>Downloads
                     </button>
@@ -626,6 +665,9 @@
             <div class="tab-pane fade" id="valores" role="tabpanel">
                 <div id="valores-content"></div>
             </div>
+            <div class="tab-pane fade" id="dicionario" role="tabpanel">
+                <div id="dicionario-content"></div>
+            </div>
             <div class="tab-pane fade" id="downloads" role="tabpanel">
                 <div id="downloads-content"></div>
             </div>
@@ -635,7 +677,7 @@
 </div>
 
 <!-- ============================================================
-     MODAL DE DETALHES DO CONTRATO
+     MODAL DE DETALHES DO CONTRATO (COM ABAS)
 ============================================================ -->
 <div class="modal fade" id="detalhesModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -657,7 +699,9 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" style="margin-left:4px;"></button>
                 </div>
             </div>
-            <div class="modal-body" id="detalhesContent"></div>
+            <div class="modal-body" style="padding-top:12px">
+                <div id="detalhesContent"></div>
+            </div>
             <div class="modal-footer" style="gap:8px;">
                 <button type="button" class="btn-secondary-custom" data-bs-dismiss="modal">
                     <span class="material-icons">close</span> Fechar
@@ -702,13 +746,14 @@
         municipios: 'municipios.csv',
         coordenadas: 'coordenadas.csv',
         trechos: 'trechos.csv',
-        situacao: 'situacao.csv'
+        situacao: 'situacao.csv',
+        painel: 'painel.csv'
     };
 
     const dataCache = {};
     let currentDisplayData = {
         contratos: [], obras: [], fiscais: [], municipios: [],
-        coordenadas: [], trechos: [], situacao: [],
+        coordenadas: [], trechos: [], situacao: [], painel: [],
         metrica: { totalContratos: 0, totalAndamento: 0, totalConcluidas: 0, totalEncerradas: 0, valorTotal: 0 }
     };
     let dadosFiltrados = { contratos: [], fiscais: [], valores: [] };
@@ -728,7 +773,7 @@
     let filtrosAtivos = {
         visaoGeral: { ano: '', situacao: '', orgao: '', municipio: '' },
         contratos:  { ano: '', situacao: '', numero: '', portal: '', empresa: '', orgao: '', municipio: '', objeto: '', buscaTabela: '' },
-        fiscais:    { nome: '', contrato: '', orgao: '', buscaTabela: '' },
+        fiscais:    { ano: '', nome: '', conselho: '', cargo: '', contrato: '', portal: '', orgao: '', buscaTabela: '' },
         valores:    { ano: '', contrato: '', situacao: '', buscaTabela: '' }
     };
     const chartPalette = ['#2f4b63','#39a585','#5f6f7f','#f28c28','#7aa6c2','#8e44ad','#c0392b','#16a085','#d35400','#2980b9'];
@@ -752,7 +797,20 @@
                 complete: results => {
                     results.data.forEach(row => {
                         const num = (row.numero_contrato || '').trim();
-                        if (num) licitacoesCache[num] = { edital: (row.edital_retificacao_arquivos||'').trim(), contrato: (row.contrato_termoaditivos_arquivos||'').trim() };
+                        if (num) licitacoesCache[num] = {
+                            edital: (row.edital_retificacao_arquivos||'').trim(),
+                            contrato: (row.contrato_termoaditivos_arquivos||'').trim(),
+                            objeto: (row.objeto_processo||'').trim(),
+                            modalidade: (row.procedimento_contratacao_detalhamento_1||'').trim(),
+                            grupo: (row.procedimento_contratacao_grupo||'').trim(),
+                            situacao: (row.situacao_processo||'').trim(),
+                            numero_processo: (row.numero_processo_formatado||'').trim(),
+                            ano_criacao: (row.ano_criacao_pedido||'').trim(),
+                            data_licitacao: (row.data_licitacao||'').trim(),
+                            criterio: (row.criterio_julgamento||'').trim(),
+                            valor_referencia: (row.valor_total_referencia_item_processo||'').trim(),
+                            valor_homologado: (row.valor_total_homologado||'').trim()
+                        };
                     });
                     resolve();
                 }, error: () => resolve()
@@ -761,10 +819,58 @@
         await Promise.all(promises);
         return licitacoesCache;
     }
+
+    /**
+     * Extrai o número limpo do contrato a partir de formatos como:
+     *   DC-9493122/2026  →  9493122
+     *   9493122/2026     →  9493122
+     *   CT-0012345/2025  →  0012345
+     */
     function extrairNumeroContrato(contratoStr) {
         if (!contratoStr) return null;
-        const m = contratoStr.match(/(\d+)\//);
+        // Remove prefixos de letras/traços: ex. "DC-", "CT-", "CA-" etc.
+        const semPrefixo = String(contratoStr).replace(/^[A-Za-z]+-?/i, '').trim();
+        // Extrai a parte numérica antes da barra
+        const m = semPrefixo.match(/^(\d+)/);
         return m ? m[1] : null;
+    }
+
+    /**
+     * Transforma o campo portal_de_compras do formato compacto para o formato legível
+     * e gera a URL do ComprasMG.
+     *
+     * Lógica confirmada pelos exemplos reais:
+     *   230152003425  →  2301520 000034/2025
+     *   23017620125   →  2301762 000001/2025
+     *
+     *   - Últimos 2 dígitos           = sufixo do ano  (ex: 25 → 2025)
+     *   - Primeiros 7 dígitos         = código da unidade compradora
+     *   - Dígitos entre pos 7 e -2    = número do processo (pad até 6 dígitos)
+     *
+     * URL: https://www1.compras.mg.gov.br/processocompra/processo/consultaProcessoCompra.html
+     *       ?metodo=pesquisar&codigoUnidadeCompra=2301520&numero=000034&ano=2025
+     */
+    function transformarPortalCompras(raw) {
+        if (!raw) return { texto: null, url: null };
+        const s = String(raw).replace(/\D/g, ''); // só dígitos
+
+        // Já está no formato legível "2301520 000034/2025"
+        const mLeg = String(raw).match(/(\d+)\s+(\d+)\/(\d{4})/);
+        if (mLeg) {
+            const unidade = mLeg[1], numero = mLeg[2].padStart(6, '0'), ano = mLeg[3];
+            const url = `https://www1.compras.mg.gov.br/processocompra/processo/consultaProcessoCompra.html?metodo=pesquisar&codigoUnidadeCompra=${unidade}&numero=${numero}&ano=${ano}`;
+            return { texto: `${unidade} ${numero}/${ano}`, url };
+        }
+
+        // Formato compacto: mínimo 9 dígitos (7 unidade + ≥0 numero + 2 ano)
+        if (s.length < 9) return { texto: raw || null, url: null };
+
+        const ano     = '20' + s.slice(-2);           // últimos 2 → ano completo
+        const unidade = s.slice(0, 7);                 // primeiros 7 → unidade
+        const numero  = s.slice(7, -2).padStart(6, '0'); // meio → número processo
+
+        const url = `https://www1.compras.mg.gov.br/processocompra/processo/consultaProcessoCompra.html?metodo=pesquisar&codigoUnidadeCompra=${unidade}&numero=${numero}&ano=${ano}`;
+        return { texto: `${unidade} ${numero}/${ano}`, url };
     }
 
     // ============================================================
@@ -872,6 +978,7 @@
             renderizarContratos();
             renderizarFiscais();
             renderizarValores();
+            renderizarDicionario();
             renderizarDownloads();
             setTimeout(iframeUpdateHeight, 300);
         } catch(erro) {
@@ -909,9 +1016,15 @@
         if (dataCache.coordenadas) currentDisplayData.coordenadas = dataCache.coordenadas.map(coord => ({ ...coord, contrato: coord.contrato?.trim()||'', latitude: coord.latitude?.trim()||'', longitude: coord.longitude?.trim()||'' }));
         if (dataCache.trechos)    currentDisplayData.trechos    = dataCache.trechos.map(t    => ({ ...t, contrato: t.contrato?.trim()||'' }));
         if (dataCache.situacao)   currentDisplayData.situacao   = dataCache.situacao.map(s   => ({ ...s, contrato: s.contrato?.trim()||'', status: s.status?.trim()||'', descricao_do_motivo: s.descricao_do_motivo?.trim()||'', data: s.data?.trim()||'', responsavel: (s.responsavel?.trim()||'').replace(/\bDiretor Geral\b(?!\s*-\s*DRE)/g, 'Diretor Geral - DRE') }));
+        if (dataCache.painel)     currentDisplayData.painel     = dataCache.painel.map(p => ({ ...p, contrato: p.contrato?.trim()||'' }));
 
         const situacaoPorContrato = {};
         currentDisplayData.situacao.forEach(s => { if (!situacaoPorContrato[s.contrato]) situacaoPorContrato[s.contrato] = []; situacaoPorContrato[s.contrato].push(s); });
+
+        const painelPorContrato = {};
+        if (currentDisplayData.painel) {
+            currentDisplayData.painel.forEach(p => { if (!painelPorContrato[p.contrato]) painelPorContrato[p.contrato] = []; painelPorContrato[p.contrato].push(p); });
+        }
 
         currentDisplayData.contratos.forEach(c => {
             c.obras_vinculadas       = currentDisplayData.obras.filter(o => o.contrato === c.contrato);
@@ -920,6 +1033,7 @@
             c.coordenadas_vinculadas = currentDisplayData.coordenadas.filter(coord => coord.contrato === c.contrato);
             c.trechos_vinculados     = currentDisplayData.trechos.filter(t => t.contrato === c.contrato);
             c.situacoes_vinculadas   = situacaoPorContrato[c.contrato] || [];
+            c.painel_vinculado       = painelPorContrato[c.contrato] || [];
         });
 
         dadosFiltrados.contratos = [...currentDisplayData.contratos];
@@ -964,7 +1078,7 @@
     }
 
     function ordenarArray(array, coluna, direcao) {
-        const mapas = { orgao: 'orgao_entidade_contratante', portal: 'portal_de_compras', ano: 'ano_assinatura', empresa: 'empresa', objeto: 'objeto', inicio: 'data_assinatura', termino: 'termino_execucao', situacao: 'situacao', fiscal: 'nome', conselho: 'conselho', cargo: 'cargo', obra: 'obra' };
+        const mapas = { orgao: 'orgao_entidade_contratante', portal: 'portal_de_compras', ano: 'ano_assinatura', empresa: 'empresa', objeto: 'objeto', inicio: 'data_assinatura', termino: 'termino_execucao', situacao: 'situacao', fiscal: 'nome', conselho: 'conselho', cargo: 'cargo', obra: 'obra', processo_compra: 'portal_de_compras' };
         const numericCols = new Set(['total','andamento','concluidas','encerradas','valor','valor_inicial_do_contrato','valor_em_aditivos','valor_total_do_contrato','valor_medido_precos_iniciais','valor_medido_reajuste','total_medido','saldo_contratual','percentual_execucao_contrato']);
         const mult = direcao === 'asc' ? 1 : -1;
         array.sort((a, b) => {
@@ -1001,7 +1115,20 @@
         let f = [...currentDisplayData.fiscais];
         const ff = filtrosAtivos.fiscais;
         if (ff.nome)     f = f.filter(x => x.nome?.toLowerCase().includes(ff.nome.toLowerCase()));
+        if (ff.conselho) f = f.filter(x => x.conselho?.toLowerCase().includes(ff.conselho.toLowerCase()));
+        if (ff.cargo)    f = f.filter(x => x.cargo?.toLowerCase().includes(ff.cargo.toLowerCase()));
         if (ff.contrato) f = f.filter(x => x.contrato?.toLowerCase().includes(ff.contrato.toLowerCase()));
+        if (ff.ano) {
+            const contratosPorAno = currentDisplayData.contratos.filter(c => c.ano_assinatura === ff.ano).map(c => c.contrato);
+            f = f.filter(x => contratosPorAno.includes(x.contrato));
+        }
+        if (ff.portal) {
+            const contratosPorPortal = currentDisplayData.contratos.filter(c => {
+                const pt = transformarPortalCompras(c.portal_de_compras);
+                return pt.texto?.toLowerCase().includes(ff.portal.toLowerCase()) || c.portal_de_compras?.toLowerCase().includes(ff.portal.toLowerCase());
+            }).map(c => c.contrato);
+            f = f.filter(x => contratosPorPortal.includes(x.contrato));
+        }
         if (ff.orgao)    { const ocs = currentDisplayData.contratos.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(ff.orgao.toLowerCase())).map(c => c.contrato); f = f.filter(x => ocs.includes(x.contrato)); }
         if (ff.buscaTabela) { const t = ff.buscaTabela.toLowerCase(); f = f.filter(x => x.nome?.toLowerCase().includes(t)||x.contrato?.toLowerCase().includes(t)); }
         dadosFiltrados.fiscais = f;
@@ -1136,7 +1263,7 @@
                 </div>
             </div>
             <div class="botoes-abaixo">
-                <button class="btn-pesquisa" onclick="aplicarFiltrosVG()"><span class="material-icons">search</span> Pesquisar</button>
+                <button class="btn-pesquisa" onclick="aplicarFiltrosVG()"><span class="material-icons">tune</span> Atualizar Filtros</button>
                 <button class="btn-secondary-custom" onclick="limparFiltrosVG()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
@@ -1215,7 +1342,7 @@
                     <tbody>
                         ${dadosPagina.map(item=>`
                         <tr>
-                            <td><a class="orgao-link" href="#" onclick="irParaContratos('${item.orgao.replace(/'/g,"\\'")}','${fvg.ano}');return false;">${item.orgao}</a></td>
+                            <td><a class="orgao-link" href="#" onclick="irParaContratos('${item.orgao.replace(/'/g,"\\'")}','${fvg.ano}','${(fvg.municipio||'').replace(/'/g,"\\'")}');return false;">${item.orgao}</a></td>
                             <td class="text-center fw-bold">${item.total}</td>
                             <td class="text-center"><span class="tag-andamento">${item.andamento}</span></td>
                             <td class="text-center"><span class="tag-concluida">${item.concluidas}</span></td>
@@ -1304,7 +1431,7 @@
                     <input type="text" class="form-control" id="filtroNumeroContrato" placeholder="Digite o número...">
                 </div>
                 <div class="consulta-filter-group">
-                    <label class="filter-label">Portal Compras</label>
+                    <label class="filter-label">Processo de Compras</label>
                     <input type="text" class="form-control" id="filtroPortalContrato" placeholder="Nº processo...">
                 </div>
                 <div class="consulta-filter-group">
@@ -1328,7 +1455,7 @@
                 </div>
             </div>
             <div class="consulta-buttons-row">
-                <button class="btn-pesquisa" onclick="aplicarFiltrosContratos()"><span class="material-icons">search</span> Pesquisar</button>
+                <button class="btn-pesquisa" onclick="aplicarFiltrosContratos()"><span class="material-icons">tune</span> Atualizar Filtros</button>
                 <button class="btn-secondary-custom" onclick="limparFiltrosContratos()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
@@ -1356,7 +1483,7 @@
                 <table class="table">
                     <thead><tr>
                         <th class="sortable-header" onclick="ordenarTabela('contratos','contrato')">Contrato <span class="material-icons">${iconCol('contrato')}</span></th>
-                        <th class="sortable-header" onclick="ordenarTabela('contratos','portal')">Portal Compras <span class="material-icons">${iconCol('portal')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabela('contratos','portal')">Processo de Compras <span class="material-icons">${iconCol('portal')}</span></th>
                         <th class="sortable-header text-center" onclick="ordenarTabela('contratos','ano','number')">Ano <span class="material-icons">${iconCol('ano')}</span></th>
                         <th class="sortable-header" onclick="ordenarTabela('contratos','orgao')">Órgão <span class="material-icons">${iconCol('orgao')}</span></th>
                         <th class="sortable-header" onclick="ordenarTabela('contratos','empresa')">Empresa <span class="material-icons">${iconCol('empresa')}</span></th>
@@ -1395,10 +1522,15 @@
         const pp = paginacao.contratos.itemsPerPage, page = paginacao.contratos.page;
         const totalPags = Math.ceil(total/pp), inicio = (page-1)*pp, fim = Math.min(inicio+pp,total);
         const tbody = document.getElementById('contratosTableBody');
-        if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(c=>`
+        if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(c=>{
+            const pt = transformarPortalCompras(c.portal_de_compras);
+            const portalCell = pt.url
+                ? `<a href="${pt.url}" target="_blank" class="compra-link" title="Acessar no ComprasMG">${pt.texto}</a>`
+                : (pt.texto || '-');
+            return `
             <tr>
                 <td><strong>${c.contrato||'-'}</strong></td>
-                <td>${c.portal_de_compras||'-'}</td>
+                <td>${portalCell}</td>
                 <td class="text-center">${c.ano_assinatura||'-'}</td>
                 <td>${truncate(c.orgao_entidade_contratante,30)}</td>
                 <td>${truncate(c.empresa,25)}</td>
@@ -1407,7 +1539,8 @@
                 <td class="text-center">${formatarData(c.termino_execucao)}</td>
                 <td class="text-center"><span class="${getSituacaoClass(c.situacao)}">${c.situacao||'-'}</span></td>
                 <td class="text-center"><button class="btn-action" title="Ver detalhes" onclick="verDetalhesContrato('${c.contrato}')"><span class="material-icons" style="font-size:15px">visibility</span></button></td>
-            </tr>`).join('');
+            </tr>`;
+        }).join('');
         const badge = document.getElementById('totalContratosBadge');
         if (badge) badge.textContent = `${total} contratos`;
         renderizarPaginacao('contratos', totalPags, inicio, fim, total);
@@ -1427,22 +1560,36 @@
         <div class="filter-container">
             <div class="consulta-filters-row">
                 <div class="consulta-filter-group">
+                    <label class="filter-label">Ano</label>
+                    <select class="form-select modern-select" id="filtroFiscalAno">
+                        <option value="">Todos</option>
+                        ${opcoesCache.anos.map(a=>`<option value="${a}">${a}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="consulta-filter-group">
                     <label class="filter-label">Fiscal</label>
                     <input class="form-control" list="fiscaisList" id="filtroFiscalNome" placeholder="Digite o nome...">
                     <datalist id="fiscaisList">${opcoesCache.fiscais.map(f=>`<option value="${f}">`).join('')}</datalist>
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Conselho</label>
+                    <input class="form-control" id="filtroFiscalConselho" placeholder="Nº do conselho...">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Cargo</label>
+                    <input class="form-control" id="filtroFiscalCargo" placeholder="Cargo ou função...">
                 </div>
                 <div class="consulta-filter-group">
                     <label class="filter-label">Contrato</label>
                     <input class="form-control" id="filtroFiscalContrato" placeholder="Ex: DE-011/2021">
                 </div>
                 <div class="consulta-filter-group">
-                    <label class="filter-label">Órgão</label>
-                    <input class="form-control" list="orgaosListFiscal" id="filtroFiscalOrgao" placeholder="Digite...">
-                    <datalist id="orgaosListFiscal">${opcoesCache.orgaos.map(o=>`<option value="${o}">`).join('')}</datalist>
+                    <label class="filter-label">Processo de Compras</label>
+                    <input class="form-control" id="filtroFiscalPortal" placeholder="Nº processo...">
                 </div>
             </div>
             <div class="consulta-buttons-row">
-                <button class="btn-pesquisa" onclick="aplicarFiltrosFiscais()"><span class="material-icons">search</span> Pesquisar</button>
+                <button class="btn-pesquisa" onclick="aplicarFiltrosFiscais()"><span class="material-icons">tune</span> Atualizar Filtros</button>
                 <button class="btn-secondary-custom" onclick="limparFiltrosFiscais()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
@@ -1472,8 +1619,9 @@
                         <th class="sortable-header" onclick="ordenarTabela('fiscais','fiscal')">Fiscal <span class="material-icons">${iconCol('fiscal')}</span></th>
                         <th class="sortable-header" onclick="ordenarTabela('fiscais','conselho')">Conselho <span class="material-icons">${iconCol('conselho')}</span></th>
                         <th class="sortable-header" onclick="ordenarTabela('fiscais','cargo')">Cargo <span class="material-icons">${iconCol('cargo')}</span></th>
+                        <th class="sortable-header text-center" onclick="ordenarTabela('fiscais','ano')">Ano <span class="material-icons">${iconCol('ano')}</span></th>
                         <th class="sortable-header" onclick="ordenarTabela('fiscais','contrato')">Contrato <span class="material-icons">${iconCol('contrato')}</span></th>
-                        <th class="sortable-header" onclick="ordenarTabela('fiscais','obra')">Obra <span class="material-icons">${iconCol('obra')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabela('fiscais','processo_compra')">Processo de Compras <span class="material-icons">${iconCol('processo_compra')}</span></th>
                         <th class="text-center">Ações</th>
                     </tr></thead>
                     <tbody id="fiscaisTableBody"></tbody>
@@ -1486,9 +1634,12 @@
             <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
+        document.getElementById('filtroFiscalAno').value      = filtrosAtivos.fiscais.ano||'';
         document.getElementById('filtroFiscalNome').value     = filtrosAtivos.fiscais.nome||'';
+        document.getElementById('filtroFiscalConselho').value = filtrosAtivos.fiscais.conselho||'';
+        document.getElementById('filtroFiscalCargo').value    = filtrosAtivos.fiscais.cargo||'';
         document.getElementById('filtroFiscalContrato').value = filtrosAtivos.fiscais.contrato||'';
-        document.getElementById('filtroFiscalOrgao').value    = filtrosAtivos.fiscais.orgao||'';
+        document.getElementById('filtroFiscalPortal').value   = filtrosAtivos.fiscais.portal||'';
         document.getElementById('buscaTabelaFiscais').value   = filtrosAtivos.fiscais.buscaTabela||'';
         renderizarTabelaFiscais();
     }
@@ -1500,15 +1651,24 @@
         const pp = paginacao.fiscais.itemsPerPage, page = paginacao.fiscais.page;
         const totalPags = Math.ceil(total/pp), inicio = (page-1)*pp, fim = Math.min(inicio+pp,total);
         const tbody = document.getElementById('fiscaisTableBody');
-        if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(f=>`
+        if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(f=>{
+            const contrato = currentDisplayData.contratos.find(c => c.contrato === f.contrato);
+            const ano = contrato?.ano_assinatura || '-';
+            const pt = transformarPortalCompras(contrato?.portal_de_compras);
+            const portalCell = pt?.url
+                ? `<a href="${pt.url}" target="_blank" class="compra-link" title="Acessar no ComprasMG">${pt.texto}</a>`
+                : (pt?.texto || '-');
+            return `
             <tr>
                 <td><strong>${f.nome||'-'}</strong></td>
                 <td>${f.conselho||'-'}</td>
                 <td>${f.cargo||'-'}</td>
+                <td class="text-center">${ano}</td>
                 <td>${f.contrato||'-'}</td>
-                <td>${truncate(f.obra,40)}</td>
+                <td>${portalCell}</td>
                 <td class="text-center"><button class="btn-action" title="Ver contrato" onclick="verDetalhesContrato('${f.contrato}')"><span class="material-icons" style="font-size:15px">visibility</span></button></td>
-            </tr>`).join('');
+            </tr>`;
+        }).join('');
         const badge = document.getElementById('totalFiscaisBadge');
         if (badge) badge.textContent = `${total} registros`;
         renderizarPaginacao('fiscais', totalPags, inicio, fim, total);
@@ -1554,7 +1714,7 @@
                 </div>
             </div>
             <div class="consulta-buttons-row">
-                <button class="btn-pesquisa" onclick="aplicarFiltrosValores()"><span class="material-icons">search</span> Pesquisar</button>
+                <button class="btn-pesquisa" onclick="aplicarFiltrosValores()"><span class="material-icons">tune</span> Atualizar Filtros</button>
                 <button class="btn-secondary-custom" onclick="limparFiltrosValores()"><span class="material-icons">clear</span> Limpar Filtros</button>
             </div>
         </div>
@@ -1661,169 +1821,483 @@
     }
 
     // ============================================================
-    // MODAL DE DETALHES
+    // MODAL DE DETALHES — PAINEL ÚNICO REORGANIZADO
     // ============================================================
     window.verDetalhesContrato = async function(contratoId) {
         const contrato = currentDisplayData.contratos.find(c => c.contrato === contratoId);
         if (!contrato) return;
-        modalContratoAtual = contrato; // guarda referência para exportações
-        const obras        = currentDisplayData.obras.filter(o => o.contrato === contratoId);
-        const fiscais      = currentDisplayData.fiscais.filter(f => f.contrato === contratoId);
-        const municipios   = currentDisplayData.municipios.filter(m => m.contrato === contratoId);
-        const coordenadas  = currentDisplayData.coordenadas.filter(c => c.contrato === contratoId);
-        const trechos      = currentDisplayData.trechos.filter(t => t.contrato === contratoId);
-        const situacoes    = [...currentDisplayData.situacao.filter(s => s.contrato === contratoId)].sort((a,b)=>(b.data||'').localeCompare(a.data||''));
+        modalContratoAtual = contrato;
+
+        const obras       = currentDisplayData.obras.filter(o => o.contrato === contratoId);
+        const fiscais     = currentDisplayData.fiscais.filter(f => f.contrato === contratoId);
+        const municipios  = currentDisplayData.municipios.filter(m => m.contrato === contratoId);
+        const coordenadas = currentDisplayData.coordenadas.filter(c => c.contrato === contratoId);
+        const trechos     = currentDisplayData.trechos.filter(t => t.contrato === contratoId);
+        const situacoes   = [...currentDisplayData.situacao.filter(s => s.contrato === contratoId)].sort((a,b)=>(b.data||'').localeCompare(a.data||''));
         const primeiraCoord = coordenadas.find(c => c.latitude && c.longitude);
         const lat = primeiraCoord ? parseFloat(primeiraCoord.latitude.replace(',','.')).toFixed(6) : null;
         const lng = primeiraCoord ? parseFloat(primeiraCoord.longitude.replace(',','.')).toFixed(6) : null;
 
-        const situacaoHTML = situacoes.length > 0 ? `
-            <div class="info-card mt-3">
-                <div class="info-label">Histórico de Situações</div>
-                <div style="max-height:200px;overflow-y:auto;margin-top:8px;">
-                    <table class="table table-sm" style="font-size:11px">
-                        <thead><tr><th>Data</th><th>Status</th><th>Motivo</th><th>Responsável</th><th>Previsão de Retorno</th></tr></thead>
-                        <tbody>${situacoes.map(s=>`
-                            <tr>
-                                <td>${formatarData(s.data)||'-'}</td>
-                                <td><span class="${getSituacaoClass(s.status)}">${s.status||'-'}</span></td>
-                                <td>${s.descricao_do_motivo||'-'}</td>
-                                <td>${s.responsavel||'-'}</td>
-                                <td>${(s.status||'').toLowerCase().includes('paralisad') ? '<span style="font-size:11px;color:#555">Não há data definida para a retomada da obra. A paralisação encontra-se devidamente motivada e registrada no processo administrativo, com acompanhamento contínuo pelos setores competentes, que realizam avaliações periódicas quanto à sua evolução. Ressalta-se que a situação poderá ensejar, conforme o caso, a adoção de medidas contratuais cabíveis, como reequilíbrio econômico-financeiro, prorrogação de prazos ou eventual rescisão contratual, nos termos da legislação vigente.</span>' : '-'}</td>
-                            </tr>`).join('')}</tbody>
-                    </table>
-                </div>
+        const portalTransformado = transformarPortalCompras(contrato.portal_de_compras);
+        const portalTexto = portalTransformado.texto || contrato.portal_de_compras || '-';
+        const portalUrl   = portalTransformado.url;
+        const numContrato = extrairNumeroContrato(contrato.contrato);
+
+        // ── LICITAÇÃO (portal_licitacoes_mg) ────────────────────────
+        const lic = await carregarLicitacoes();
+        const dadosLic = numContrato ? lic[numContrato] : null;
+        const edital   = dadosLic?.edital   || '';
+        const contLink = dadosLic?.contrato || '';
+
+        // ── PAINEL (painel.csv) ──────────────────────────────────────
+        const painelContrato = (currentDisplayData.painel || []).filter(p => p.contrato === contratoId);
+        const painelColunas  = painelContrato.length > 0 ? Object.keys(painelContrato[0]) : [];
+        const colMap = {
+            'Empenho':        painelColunas.find(c => /empenho|nota_empenho|numero_empenho/i.test(c)),
+            'Ano':            painelColunas.find(c => /^ano$/i.test(c) || /ano_empenho|ano_referencia/i.test(c)),
+            'Unidade Gestora':painelColunas.find(c => /unidade_gestora|ug_|orgao/i.test(c)),
+            'Valor Empenhado':painelColunas.find(c => /valor_empenh/i.test(c)),
+            'Valor Liquidado':painelColunas.find(c => /liquidado|liquidac/i.test(c)),
+            'Valor Pago':     painelColunas.find(c => /valor_pag|pago(?!r)/i.test(c)),
+            'Data':           painelColunas.find(c => /^data/i.test(c) && !/cancelamento/i.test(c)),
+            'Fonte':          painelColunas.find(c => /fonte|recurso/i.test(c)),
+            'Função':         painelColunas.find(c => /funcao|programa/i.test(c)),
+        };
+        const colsVisiveis   = Object.entries(colMap).filter(([_, v]) => v);
+        const colsParaExibir = colsVisiveis.length > 0
+            ? colsVisiveis
+            : painelColunas.filter(c => c !== 'contrato').map(c => [c, c]);
+        const colValorEmp  = colMap['Valor Empenhado'];
+        const colValorLiq  = colMap['Valor Liquidado'];
+        const colValorPago = colMap['Valor Pago'];
+        const somaEmp  = colValorEmp  ? painelContrato.reduce((a,r)=>a+(parseFloat(String(r[colValorEmp]||'0').replace(',','.'))||0),0) : null;
+        const somaLiq  = colValorLiq  ? painelContrato.reduce((a,r)=>a+(parseFloat(String(r[colValorLiq]||'0').replace(',','.'))||0),0) : null;
+        const somaPago = colValorPago ? painelContrato.reduce((a,r)=>a+(parseFloat(String(r[colValorPago]||'0').replace(',','.'))||0),0) : null;
+
+        // ── SEÇÕES CONDICIONAIS ──────────────────────────────────────
+        // Cabeçalho de seção reutilizável
+        const secHead = (icon, label, cor='#20445d') =>
+            `<div style="display:flex;align-items:center;gap:8px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid #e9ecef;">
+                <span class="material-icons" style="font-size:16px;color:${cor}">${icon}</span>
+                <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:${cor}">${label}</span>
+            </div>`;
+
+        // — Obras vinculadas
+        const obrasHTML = obras.length > 0 ? `
+            ${secHead('construction','Obras Vinculadas')}
+            <div class="table-responsive" style="border-radius:6px;overflow:hidden;border:1px solid #e2e8f0;">
+                <table class="table" style="margin:0;font-size:11px;">
+                    <thead><tr><th>Obra</th><th>Tipo</th><th>Valor Total</th><th>Saldo</th><th>% Exec.</th></tr></thead>
+                    <tbody>${obras.map(o=>{
+                        const p=o.valor_total_da_obra?((o.valor_total_da_obra-(o.saldo_de_valor_da_obra||0))/o.valor_total_da_obra*100).toFixed(2):'0.00';
+                        return`<tr><td>${o.obra||'-'}</td><td>${o.detipoobra||'-'}</td><td class="text-right">R$ ${formatarMoeda(o.valor_total_da_obra)}</td><td class="text-right">R$ ${formatarMoeda(o.saldo_de_valor_da_obra)}</td><td class="text-center">${p}%</td></tr>`;
+                    }).join('')}</tbody>
+                </table>
             </div>` : '';
 
+        // — Trechos rodoviários
+        const trechosHTML = trechos.length > 0 ? `
+            ${secHead('route','Trechos Rodoviários')}
+            <div class="table-responsive" style="border-radius:6px;overflow:hidden;border:1px solid #e2e8f0;">
+                <table class="table" style="margin:0;font-size:11px;">
+                    <thead><tr><th>Rodovia</th><th>Descrição</th><th>KM Inicial</th><th>KM Final</th></tr></thead>
+                    <tbody>${trechos.slice(0,8).map(t=>`<tr><td>${t.rodovia||'-'}</td><td>${t.descricao_trecho||'-'}</td><td>${t.km_inicial||'-'}</td><td>${t.km_final||'-'}</td></tr>`).join('')}
+                    ${trechos.length>8?`<tr><td colspan="4" class="text-muted text-center" style="font-size:10px;">+ ${trechos.length-8} trechos</td></tr>`:''}</tbody>
+                </table>
+            </div>` : '';
+
+        // — Histórico de situações
+        const isParalisado = contrato.situacao?.includes('Paralisado');
+        const situacaoHTML = situacoes.length > 0 ? `
+            ${secHead('history','Histórico de Situações','#8e44ad')}
+            <div style="max-height:200px;overflow-y:auto;border-radius:6px;overflow:hidden;border:1px solid #e2e8f0;">
+                <table class="table" style="margin:0;font-size:11px;">
+                    <thead><tr><th>Data</th><th>Status</th><th>Motivo</th><th>Responsável</th></tr></thead>
+                    <tbody>${situacoes.map(s=>`
+                        <tr>
+                            <td style="white-space:nowrap">${formatarData(s.data)||'-'}</td>
+                            <td><span class="${getSituacaoClass(s.status)}">${s.status||'-'}</span></td>
+                            <td>${s.descricao_do_motivo||'-'}</td>
+                            <td>${s.responsavel||'-'}</td>
+                        </tr>`).join('')}
+                    </tbody>
+                </table>
+            </div>
+            ${isParalisado ? `
+            <div style="margin-top:12px;padding:14px 16px;border-left:4px solid #b93c42;background:rgba(185,60,66,0.05);border-radius:0 8px 8px 0;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                    <span class="material-icons" style="font-size:15px;color:#8b1a22;">event_busy</span>
+                    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#8b1a22;">Previsão de Retorno</span>
+                </div>
+                <div style="font-size:12px;font-weight:400;line-height:1.7;color:#5a3030;">
+                    Não há data definida para a retomada da obra. A paralisação encontra-se devidamente motivada e registrada no processo administrativo, com acompanhamento contínuo pelos setores competentes, que realizam avaliações periódicas quanto à sua evolução. Ressalta-se que a situação poderá ensejar, conforme o caso, a adoção de medidas contratuais cabíveis, como reequilíbrio econômico-financeiro, prorrogação de prazos ou eventual rescisão contratual, nos termos da legislação vigente.
+                </div>
+            </div>` : ''}` : (isParalisado ? `
+            ${secHead('history','Histórico de Situações','#8e44ad')}
+            <div style="padding:14px 16px;border-left:4px solid #b93c42;background:rgba(185,60,66,0.05);border-radius:0 8px 8px 0;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                    <span class="material-icons" style="font-size:15px;color:#8b1a22;">event_busy</span>
+                    <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#8b1a22;">Previsão de Retorno</span>
+                </div>
+                <div style="font-size:12px;font-weight:400;line-height:1.7;color:#5a3030;">
+                    Não há data definida para a retomada da obra. A paralisação encontra-se devidamente motivada e registrada no processo administrativo, com acompanhamento contínuo pelos setores competentes, que realizam avaliações periódicas quanto à sua evolução. Ressalta-se que a situação poderá ensejar, conforme o caso, a adoção de medidas contratuais cabíveis, como reequilíbrio econômico-financeiro, prorrogação de prazos ou eventual rescisão contratual, nos termos da legislação vigente.
+                </div>
+            </div>` : '');
+
+        // — Licitação
+        const licitacaoHTML = dadosLic && (edital || contLink || dadosLic.objeto) ? `
+            ${secHead('gavel','Processo de Compra / Licitação','#b93c42')}
+            <div class="row g-2 mb-2">
+                <div class="col-md-4">
+                    <div class="info-label">Nº Processo Compra (SIAD)</div>
+                    <div class="info-value">${portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto} <span class="material-icons" style="font-size:11px">open_in_new</span></a>`:(portalTexto||'-')}</div>
+                </div>
+                <div class="col-md-2"><div class="info-label">Ano Criação</div><div class="info-value">${dadosLic.ano_criacao||'-'}</div></div>
+                <div class="col-md-3"><div class="info-label">Modalidade / Grupo</div><div class="info-value">${dadosLic.grupo||'-'}</div></div>
+                <div class="col-md-3"><div class="info-label">Critério de Julgamento</div><div class="info-value">${dadosLic.criterio||'-'}</div></div>
+                ${dadosLic.valor_referencia?`<div class="col-md-3"><div class="info-label">Valor de Referência</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic.valor_referencia).replace(',','.'))||0)}</div></div>`:''}
+                ${dadosLic.valor_homologado?`<div class="col-md-3"><div class="info-label">Valor Homologado</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic.valor_homologado).replace(',','.'))||0)}</div></div>`:''}
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+                ${edital  ?`<a href="${edital}"   target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">description</span> Edital / Licitação</a>`:''}
+                ${contLink?`<a href="${contLink}" target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">article</span> Contrato / Aditivos</a>`:''}
+                ${portalUrl?`<a href="${portalUrl}" target="_blank" class="btn-secondary-custom" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">open_in_new</span> Portal ComprasMG</a>`:''}
+            </div>` : (portalUrl ? `
+            ${secHead('gavel','Processo de Compra','#b93c42')}
+            <div class="row g-2 mb-2">
+                <div class="col-md-6"><div class="info-label">Nº Processo Compra (SIAD)</div>
+                    <div class="info-value"><a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto} <span class="material-icons" style="font-size:11px">open_in_new</span></a></div>
+                </div>
+            </div>
+            <a href="${portalUrl}" target="_blank" class="btn-secondary-custom" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">open_in_new</span> Portal ComprasMG</a>` : '');
+
+        // — Empenhos/Painel
+        const empenhosHTML = painelContrato.length > 0 ? `
+            ${secHead('receipt_long','Empenhos e Pagamentos','#28a745')}
+            ${(somaEmp!==null||somaLiq!==null||somaPago!==null)?`
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+                ${somaEmp !==null?`<div class="info-card" style="flex:1;min-width:130px;"><div class="info-label">Total Empenhado</div><div class="info-value" style="color:#1a3a5c">R$ ${formatarMoeda(somaEmp)}</div></div>`:''}
+                ${somaLiq !==null?`<div class="info-card" style="flex:1;min-width:130px;"><div class="info-label">Total Liquidado</div><div class="info-value" style="color:#17a2b8">R$ ${formatarMoeda(somaLiq)}</div></div>`:''}
+                ${somaPago!==null?`<div class="info-card" style="flex:1;min-width:130px;"><div class="info-label">Total Pago</div><div class="info-value" style="color:#28a745">R$ ${formatarMoeda(somaPago)}</div></div>`:''}
+            </div>`:'' }
+            <div class="table-responsive" style="border-radius:6px;overflow:hidden;border:1px solid #e2e8f0;max-height:280px;overflow-y:auto;">
+                <table class="table" style="margin:0;font-size:11px;">
+                    <thead><tr>${colsParaExibir.map(([label])=>`<th>${label}</th>`).join('')}</tr></thead>
+                    <tbody>${painelContrato.map(row=>`<tr>${colsParaExibir.map(([_,col])=>{
+                        const val=row[col]||'-';
+                        const isVal=colValorEmp===col||colValorLiq===col||colValorPago===col;
+                        if(isVal){const n=parseFloat(String(val).replace(',','.'));return`<td class="text-right">R$ ${isNaN(n)?val:formatarMoeda(n)}</td>`;}
+                        return`<td>${val}</td>`;
+                    }).join('')}</tr>`).join('')}</tbody>
+                </table>
+            </div>` : '';
+
+        // ── MONTAR CONTEÚDO FINAL ────────────────────────────────────
         document.getElementById('detalhesContent').innerHTML = `
-            <div style="background:linear-gradient(135deg,#20445d 0%,#162f42 100%);color:white;padding:13px 18px;border-radius:10px;margin-bottom:16px;display:flex;align-items:center;gap:14px;">
-                <span class="material-icons" style="font-size:32px;opacity:0.7">assignment</span>
-                <div>
-                    <div style="font-size:15px;font-weight:700">${contrato.contrato||'-'}</div>
-                    <div style="font-size:11px;opacity:0.85;margin-top:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+
+            <!-- CABEÇALHO DO CONTRATO -->
+            <div style="background:linear-gradient(135deg,#20445d 0%,#162f42 100%);color:white;padding:14px 18px;border-radius:10px;margin-bottom:16px;display:flex;align-items:center;gap:14px;">
+                <span class="material-icons" style="font-size:30px;opacity:0.6">assignment</span>
+                <div style="flex:1;min-width:0;">
+                    <div style="font-size:15px;font-weight:700;line-height:1.3">${contrato.contrato||'-'}</div>
+                    <div style="font-size:11px;opacity:0.85;margin-top:5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                         <span><strong>Ano:</strong> ${contrato.ano_assinatura||'-'}</span>
-                        <span>|</span>
+                        <span style="opacity:0.5">|</span>
+                        <span><strong>Vigência:</strong> ${formatarData(contrato.data_assinatura)} → ${formatarData(contrato.termino_execucao)}</span>
+                        <span style="opacity:0.5">|</span>
                         <span class="${getSituacaoClass(contrato.situacao)}">${contrato.situacao||'-'}</span>
                     </div>
                 </div>
             </div>
 
-            <div class="info-grid">
-                <div class="info-card"><div class="info-label">Órgão Contratante</div><div class="info-value">${contrato.orgao_entidade_contratante||'-'}</div></div>
-                <div class="info-card"><div class="info-label">Empresa</div><div class="info-value">${contrato.empresa||'-'}</div></div>
-                <div class="info-card"><div class="info-label">Portal de Compras</div><div class="info-value">${contrato.portal_de_compras||'-'}</div></div>
-                <div class="info-card"><div class="info-label">Vigência</div><div class="info-value">${formatarData(contrato.data_assinatura)} a ${formatarData(contrato.termino_execucao)}</div></div>
+            <!-- BLOCO 1: PARTES E IDENTIFICAÇÃO -->
+            ${secHead('business','Partes e Identificação')}
+            <div class="row g-2 mb-1">
+                <div class="col-md-6"><div class="info-card"><div class="info-label">Órgão Contratante</div><div class="info-value">${contrato.orgao_entidade_contratante||'-'}</div></div></div>
+                <div class="col-md-6"><div class="info-card"><div class="info-label">Empresa Contratada</div><div class="info-value">${contrato.empresa||'-'}</div></div></div>
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Processo de Compras (SIAD)</div>
+                    <div class="info-value">${portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto}</a>`:portalTexto}</div>
+                </div></div>
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Municípios</div><div class="info-value" style="font-size:12px;font-weight:400">${municipios.map(m=>m.municipio).join(', ')||'Não informado'}</div></div></div>
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Fiscais Designados</div><div class="info-value" style="font-size:12px;font-weight:400;max-height:70px;overflow-y:auto">${fiscais.map(f=>f.nome).join('<br>')||'Não informado'}</div></div></div>
+            </div>
+            <div class="info-card mb-2">
+                <div class="info-label">Objeto</div>
+                <div class="info-value" style="font-size:12px;font-weight:400;line-height:1.5">${contrato.objeto||'Objeto não informado'}</div>
             </div>
 
-            <div class="objeto-container">
-                <h5><span class="material-icons" style="font-size:14px">subject</span> Objeto</h5>
-                <div class="info-value" style="font-size:12px;font-weight:400">${contrato.objeto||'Objeto não informado'}</div>
+            <!-- BLOCO 2: VALORES CONTRATUAIS -->
+            ${secHead('attach_money','Valores Contratuais','#39a585')}
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+                <div class="info-card" style="flex:1;min-width:130px;">
+                    <div class="info-label">Valor Inicial</div>
+                    <div class="info-value" style="font-size:13px">R$ ${formatarMoeda(contrato.valor_inicial_do_contrato)}</div>
+                </div>
+                <div class="info-card" style="flex:1;min-width:130px;">
+                    <div class="info-label">Aditivos</div>
+                    <div class="info-value" style="font-size:13px;color:#f28c28">R$ ${formatarMoeda(contrato.valor_em_aditivos)}</div>
+                </div>
+                <div class="info-card" style="flex:1;min-width:130px;border-left:3px solid #20445d;">
+                    <div class="info-label">Valor Total do Contrato</div>
+                    <div class="info-value highlight">R$ ${formatarMoeda(contrato.valor_total_do_contrato)}</div>
+                </div>
             </div>
-
-            <div class="info-grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
-                <div class="info-card"><div class="info-label">Valor Inicial</div><div class="info-value" style="font-size:13px">R$ ${formatarMoeda(contrato.valor_inicial_do_contrato)}</div></div>
-                <div class="info-card"><div class="info-label">Aditivos</div><div class="info-value" style="font-size:13px">R$ ${formatarMoeda(contrato.valor_em_aditivos)}</div></div>
-                <div class="info-card"><div class="info-label">Valor Total</div><div class="info-value highlight">R$ ${formatarMoeda(contrato.valor_total_do_contrato)}</div></div>
-                <div class="info-card"><div class="info-label">Total Medido</div><div class="info-value" style="font-size:13px">R$ ${formatarMoeda(contrato.total_medido)}</div></div>
-                <div class="info-card"><div class="info-label">Saldo</div><div class="info-value" style="font-size:13px">R$ ${formatarMoeda(contrato.saldo_contratual)}</div></div>
-                <div class="info-card">
-                    <div class="info-label">% Executado</div>
-                    <div class="progresso-barra" style="margin-top:6px"><div class="progresso-preenchimento" style="width:${Math.min(contrato.percentual_execucao_contrato,100)}%"></div></div>
-                    <div class="info-value" style="font-size:13px;margin-top:3px">${contrato.percentual_execucao_contrato.toFixed(2)}%</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+                <div class="info-card" style="flex:1;min-width:130px;">
+                    <div class="info-label">Medido (Preços Iniciais)</div>
+                    <div class="info-value" style="font-size:13px;color:#17a2b8">R$ ${formatarMoeda(contrato.valor_medido_precos_iniciais)}</div>
+                </div>
+                <div class="info-card" style="flex:1;min-width:130px;">
+                    <div class="info-label">Medido (Reajuste)</div>
+                    <div class="info-value" style="font-size:13px;color:#8e44ad">R$ ${formatarMoeda(contrato.valor_medido_reajuste)}</div>
+                </div>
+                <div class="info-card" style="flex:1;min-width:130px;border-left:3px solid #28a745;">
+                    <div class="info-label">Total Medido</div>
+                    <div class="info-value" style="font-size:13px;color:#28a745">R$ ${formatarMoeda(contrato.total_medido)}</div>
+                </div>
+                <div class="info-card" style="flex:1;min-width:130px;border-left:3px solid ${contrato.saldo_contratual<0?'#b93c42':'#39a585'};">
+                    <div class="info-label">Saldo Contratual</div>
+                    <div class="info-value" style="font-size:13px;color:${contrato.saldo_contratual<0?'#b93c42':'#39a585'}">R$ ${formatarMoeda(contrato.saldo_contratual)}</div>
+                </div>
+            </div>
+            <!-- Barra de progresso -->
+            <div class="info-card" style="margin-bottom:4px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                    <div class="info-label" style="margin:0">Progresso de Execução Financeira</div>
+                    <strong style="font-size:13px;color:#20445d">${contrato.percentual_execucao_contrato.toFixed(2)}%</strong>
+                </div>
+                <div style="background:#e9ecef;border-radius:20px;height:12px;overflow:hidden;">
+                    <div style="background:linear-gradient(90deg,#28a745,#39a585);height:100%;width:${Math.min(contrato.percentual_execucao_contrato,100).toFixed(1)}%;border-radius:20px;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;margin-top:4px;">
+                    <span>${contrato.percentual_execucao_contrato.toFixed(2)}% executado</span>
+                    <span>${(100-Math.min(contrato.percentual_execucao_contrato,100)).toFixed(2)}% restante</span>
                 </div>
             </div>
 
-            <div class="row g-2 mb-2">
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Municípios</div><div class="info-value" style="font-size:12px;font-weight:400">${municipios.map(m=>m.municipio).join(', ')||'Não informado'}</div></div></div>
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Fiscais Designados</div><div class="info-value" style="font-size:12px;font-weight:400;max-height:80px;overflow-y:auto">${fiscais.map(f=>f.nome).join('<br>')||'Não informado'}</div></div></div>
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Localização</div>${lat&&lng?`<a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" class="btn-export mt-1"><span class="material-icons">map</span> Ver no Mapa</a><br><small style="font-size:10px;color:#6c757d">Lat: ${lat} | Lon: ${lng}</small>`:'<div class="info-value" style="font-size:12px;font-weight:400">Coordenadas não disponíveis</div>'}</div></div>
-            </div>
+            <!-- BLOCO 3: EMPENHOS (painel.csv) -->
+            ${empenhosHTML}
 
-            ${obras.length>0?`
-            <div class="info-card mt-2">
-                <div class="info-label" style="margin-bottom:8px">Obras Vinculadas (${obras.length})</div>
-                <div class="table-responsive"><table class="table table-sm" style="font-size:11px">
-                    <thead><tr><th>Obra</th><th>Tipo</th><th>Valor Total</th><th>Saldo</th><th>% Exec.</th></tr></thead>
-                    <tbody>${obras.map(o=>{const p=o.valor_total_da_obra?((o.valor_total_da_obra-(o.saldo_de_valor_da_obra||0))/o.valor_total_da_obra*100).toFixed(2):0;return`<tr><td>${o.obra}</td><td>${o.detipoobra||'-'}</td><td>R$ ${formatarMoeda(o.valor_total_da_obra)}</td><td>R$ ${formatarMoeda(o.saldo_de_valor_da_obra)}</td><td>${p}%</td></tr>`;}).join('')}</tbody>
-                </table></div>
-            </div>`:''
-            }
+            <!-- BLOCO 4: LICITAÇÃO -->
+            ${licitacaoHTML}
 
-            ${trechos.length>0?`
-            <div class="info-card mt-2">
-                <div class="info-label" style="margin-bottom:8px">Trechos Rodoviários (${trechos.length})</div>
-                <div class="table-responsive"><table class="table table-sm" style="font-size:11px">
-                    <thead><tr><th>Rodovia</th><th>Descrição</th><th>KM Inicial</th><th>KM Final</th></tr></thead>
-                    <tbody>${trechos.slice(0,5).map(t=>`<tr><td>${t.rodovia||'-'}</td><td>${t.descricao_trecho||'-'}</td><td>${t.km_inicial||'-'}</td><td>${t.km_final||'-'}</td></tr>`).join('')}
-                    ${trechos.length>5?`<tr><td colspan="4" class="text-muted text-center" style="font-size:10px">... mais ${trechos.length-5} trechos</td></tr>`:''}</tbody>
-                </table></div>
-            </div>`:''
-            }
+            <!-- BLOCO 5: OBRAS VINCULADAS -->
+            ${obrasHTML}
 
+            <!-- BLOCO 6: TRECHOS RODOVIÁRIOS -->
+            ${trechosHTML}
+
+            <!-- BLOCO 7: HISTÓRICO DE SITUAÇÕES -->
             ${situacaoHTML}
 
-            <div class="row mt-3">
-                <div class="col-md-8 mb-2">
-                    <div style="background:linear-gradient(135deg,#1a3a5c 0%,#0f2a44 100%);border-radius:10px;padding:18px 20px;display:flex;align-items:center;gap:16px;box-shadow:0 4px 14px rgba(26,58,92,0.2);">
-                        <div style="width:48px;height:48px;min-width:48px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;">
-                            <span class="material-icons" style="font-size:26px;color:#ffc107">photo_library</span>
-                        </div>
-                        <div>
-                        <div style="font-size:10px;text-transform:uppercase;color:rgba(255,255,255,0.7);font-weight:600;letter-spacing:0.8px;margin-bottom:3px">Acompanhamento da Obra</div>
-                            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">Relatórios Trimestrais e Fotos</div>
-                            <div style="font-size:12px;color:rgba(255,255,255,0.85);margin-bottom:10px">Copie o número <strong style="color:#ffc107">${contrato.contrato||''}</strong> para acessar Relatórios Trimestrais e Fotos da Obra.</div>
-                            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-                                <button onclick="navigator.clipboard.writeText('${(contrato.contrato||'').replace(/'/g,"\\'")}').then(()=>{const t=document.getElementById('toastSucesso');t.style.display='flex';setTimeout(()=>t.style.display='none',2500);})" style="display:inline-flex;align-items:center;gap:6px;background:#ffc107;color:#1a3a5c;padding:7px 16px;border-radius:6px;font-weight:700;font-size:12px;border:none;cursor:pointer;">
-                                    <span class="material-icons" style="font-size:14px">content_copy</span> Copiar Número
-                                </button>
-                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMzkwZGM3MGItZGUyNS00NGMzLThkY2YtNTNhYzk0OGYwMzM5IiwidCI6IjUyZTU3MzMxLWYyNzgtNGNhMC05NmZkLTk0YzVhYjFmODUyNCJ9" target="_blank"
-                                   style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.18);color:#fff;padding:7px 16px;border-radius:6px;font-weight:700;font-size:12px;text-decoration:none;">
-                                    <span class="material-icons" style="font-size:14px">open_in_new</span> Acessar Painel
-                                </a>
-                            </div>
+            <!-- BLOCO 8: LOCALIZAÇÃO E LINKS -->
+            ${secHead('place','Localização e Acompanhamento','#17a2b8')}
+            <div class="row g-2 mt-0">
+                ${lat&&lng?`
+                <div class="col-md-4">
+                    <div class="info-card" style="height:100%">
+                        <div class="info-label">Coordenadas</div>
+                        <div style="font-size:11px;color:#6c757d;margin-bottom:8px">Lat: ${lat} | Lon: ${lng}</div>
+                        <a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" class="btn-export" style="justify-content:center;width:100%">
+                            <span class="material-icons">map</span> Ver no Google Maps
+                        </a>
+                    </div>
+                </div>`:''}
+                <div class="${lat&&lng?'col-md-4':'col-md-6'}">
+                    <div style="background:linear-gradient(135deg,#1a3a5c 0%,#0f2a44 100%);border-radius:10px;padding:14px 16px;height:100%;box-shadow:0 3px 10px rgba(26,58,92,0.15);">
+                        <div style="font-size:10px;text-transform:uppercase;color:rgba(255,255,255,0.65);font-weight:600;letter-spacing:.7px;margin-bottom:4px">Acompanhamento da Obra</div>
+                        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px">Relatórios Trimestrais e Fotos</div>
+                        <div style="font-size:11px;color:rgba(255,255,255,0.8);margin-bottom:10px">Copie o número <strong style="color:#ffc107">${contrato.contrato||''}</strong> para pesquisar no painel.</div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                            <button onclick="navigator.clipboard.writeText('${(contrato.contrato||'').replace(/'/g,"\\'")}').then(()=>{const t=document.getElementById('toastSucesso');t.style.display='flex';setTimeout(()=>t.style.display='none',2500);})" style="display:inline-flex;align-items:center;gap:5px;background:#ffc107;color:#1a3a5c;padding:6px 14px;border-radius:6px;font-weight:700;font-size:11px;border:none;cursor:pointer;">
+                                <span class="material-icons" style="font-size:13px">content_copy</span> Copiar Nº
+                            </button>
+                            <a href="https://app.powerbi.com/view?r=eyJrIjoiMzkwZGM3MGItZGUyNS00NGMzLThkY2YtNTNhYzk0OGYwMzM5IiwidCI6IjUyZTU3MzMxLWYyNzgtNGNhMC05NmZkLTk0YzVhYjFmODUyNCJ9" target="_blank" style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.15);color:#fff;padding:6px 14px;border-radius:6px;font-weight:700;font-size:11px;text-decoration:none;">
+                                <span class="material-icons" style="font-size:13px">open_in_new</span> Painel DER
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-2">
+                <div class="${lat&&lng?'col-md-4':'col-md-6'}">
                     <div class="info-card" style="height:100%;display:flex;flex-direction:column;justify-content:center;gap:10px;">
                         <div style="display:flex;align-items:center;gap:10px;">
-                            <div style="width:36px;height:36px;background:#e8f4f8;border-radius:50%;display:flex;align-items:center;justify-content:center;"><span class="material-icons" style="font-size:18px;color:#1a3a5c">map</span></div>
-                            <div><div style="font-size:12px;font-weight:700;color:#1a3a5c">Mapa de Obras</div><div style="font-size:10px;color:#6c757d">Visualização geográfica</div></div>
+                            <div style="width:34px;height:34px;background:#e8f4f8;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                <span class="material-icons" style="font-size:17px;color:#1a3a5c">map</span>
+                            </div>
+                            <div><div style="font-size:12px;font-weight:700;color:#1a3a5c">Mapa de Obras</div><div style="font-size:10px;color:#6c757d">Visualização geográfica DER/MG</div></div>
                         </div>
                         <a href="https://portal.der.mg.gov.br/obras-gov-map/#/map" target="_blank" class="btn-export" style="justify-content:center">
                             <span class="material-icons">open_in_new</span> Ver Mapa
                         </a>
                     </div>
                 </div>
-            </div>`;
-
-        // Busca dados de licitação correspondentes ao número do contrato
-        const numContrato = extrairNumeroContrato(contrato.contrato);
-        const lic = await carregarLicitacoes();
-        const dadosLic = numContrato ? lic[numContrato] : null;
-
-        const licitacoesHTML = (() => {
-            const edital  = dadosLic?.edital  || '';
-            const contLink = dadosLic?.contrato || '';
-            if (!edital && !contLink) {
-                return `<div class="info-card mt-3" style="border-left:4px solid #e0e0e0;">
-                    <div class="info-label" style="margin-bottom:6px"><span class="material-icons" style="font-size:14px;vertical-align:middle;margin-right:4px">gavel</span>Processo Licitatório e Contrato</div>
-                    <div style="font-size:12px;color:#6c757d;">Não foram encontrados dados de licitação para este contrato nas planilhas disponíveis.</div>
-                </div>`;
-            }
-            const btnEdital  = edital  ? `<a href="${edital}"  target="_blank" class="btn-export" style="font-size:12px;"><span class="material-icons" style="font-size:13px">description</span> Edital / Processo Licitatório</a>`  : '';
-            const btnContrato = contLink ? `<a href="${contLink}" target="_blank" class="btn-export" style="font-size:12px;"><span class="material-icons" style="font-size:13px">article</span> Contrato / Termos Aditivos</a>` : '';
-            return `<div class="info-card mt-3" style="border-left:4px solid #20445d;">
-                <div class="info-label" style="margin-bottom:8px"><span class="material-icons" style="font-size:14px;vertical-align:middle;margin-right:4px">gavel</span>Processo Licitatório e Contrato</div>
-                <div style="font-size:12px;color:#444;margin-bottom:10px;">Documentos do processo de compra referente ao contrato <strong>${contrato.contrato||''}</strong> (nº <strong>${numContrato}</strong>):</div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;">${btnEdital}${btnContrato}</div>
-            </div>`;
-        })();
-
-        // Injeta o bloco de licitação antes do fechamento do conteúdo
-        document.getElementById('detalhesContent').innerHTML += licitacoesHTML;
+            </div>
+        `;
 
         new bootstrap.Modal(document.getElementById('detalhesModal')).show();
+    };
+
+    // ============================================================
+    // RENDERIZAÇÃO — DICIONÁRIO DE DADOS
+    // ============================================================
+    const DICIONARIO_OBRAS = {
+        contratos: [
+            { campo: 'contrato',                      descricao: 'Número do contrato da obra (ex: DC-9493122/2026). Prefixos como DC, CT, DE etc. identificam o tipo de instrumento contratual.', tipo: 'Texto' },
+            { campo: 'portal_de_compras',              descricao: 'Número compacto do processo no portal ComprasMG. Lógica de decodificação: primeiros 7 dígitos = código da unidade compradora; dígitos intermediários = número do processo (completado com zeros à esquerda até 6 dígitos); últimos 2 dígitos = sufixo do ano (ex: 25 → 2025). Exemplos: 230152003425 → 2301520 000034/2025 | 23017620125 → 2301762 000001/2025.', tipo: 'Texto (numérico compacto)' },
+            { campo: 'orgao_entidade_contratante',     descricao: 'Nome do órgão ou entidade pública responsável pelo contrato.', tipo: 'Texto' },
+            { campo: 'empresa',                        descricao: 'Razão social da empresa contratada para execução da obra.', tipo: 'Texto' },
+            { campo: 'objeto',                         descricao: 'Descrição detalhada do objeto do contrato — serviços ou obras a serem executados.', tipo: 'Texto' },
+            { campo: 'situacao',                       descricao: 'Situação atual do contrato. Valores: "Em Andamento", "Obra concluída", "Encerrado", "Paralisado".', tipo: 'Texto' },
+            { campo: 'data_assinatura',                descricao: 'Data de assinatura do contrato.', tipo: 'Data (AAAA-MM-DD)' },
+            { campo: 'termino_execucao',               descricao: 'Data prevista para término da execução contratual.', tipo: 'Data (AAAA-MM-DD)' },
+            { campo: 'valor_inicial_do_contrato',      descricao: 'Valor inicial do contrato em reais, conforme assinatura.', tipo: 'Número (R$)' },
+            { campo: 'valor_em_aditivos',              descricao: 'Valor total acumulado em termos aditivos ao contrato.', tipo: 'Número (R$)' },
+            { campo: 'valor_total_do_contrato',        descricao: 'Valor total do contrato após aditivos (valor_inicial + valor_em_aditivos).', tipo: 'Número (R$)' },
+            { campo: 'valor_medido_precos_iniciais',   descricao: 'Valor medido a preços iniciais do contrato, sem reajuste.', tipo: 'Número (R$)' },
+            { campo: 'valor_medido_reajuste',          descricao: 'Valor de reajuste aplicado sobre as medições realizadas.', tipo: 'Número (R$)' },
+            { campo: 'total_medido',                   descricao: 'Total medido da obra em reais (preços iniciais + reajuste).', tipo: 'Número (R$)' },
+            { campo: 'saldo_contratual',               descricao: 'Saldo contratual restante a executar (valor_total - total_medido).', tipo: 'Número (R$)' },
+            { campo: 'percentual_execucao_contrato',   descricao: 'Percentual de execução física/financeira do contrato (0 a 100).', tipo: 'Número (%)' },
+        ],
+        obras: [
+            { campo: 'contrato',               descricao: 'Número do contrato ao qual a obra está vinculada. Chave de ligação com a tabela contratos.', tipo: 'Texto' },
+            { campo: 'obra',                   descricao: 'Identificador ou nome da obra específica vinculada ao contrato.', tipo: 'Texto' },
+            { campo: 'detipoobra',             descricao: 'Descrição do tipo da obra (ex: Pavimentação, Ponte, Viaduto, Edificação etc.).', tipo: 'Texto' },
+            { campo: 'valor_inicial_da_obra',  descricao: 'Valor inicial contratado para a obra específica.', tipo: 'Número (R$)' },
+            { campo: 'valor_total_da_obra',    descricao: 'Valor total da obra após eventuais aditivos.', tipo: 'Número (R$)' },
+            { campo: 'valor_medido_precos_iniciais', descricao: 'Valor já medido/executado a preços iniciais.', tipo: 'Número (R$)' },
+            { campo: 'saldo_de_valor_da_obra', descricao: 'Saldo restante a executar na obra.', tipo: 'Número (R$)' },
+        ],
+        fiscais: [
+            { campo: 'contrato',  descricao: 'Número do contrato ao qual o fiscal está vinculado.', tipo: 'Texto' },
+            { campo: 'nome',      descricao: 'Nome completo do fiscal designado.', tipo: 'Texto' },
+            { campo: 'conselho',  descricao: 'Número de registro do fiscal no conselho profissional (ex: CREA, CAU, CFT).', tipo: 'Texto' },
+            { campo: 'cargo',     descricao: 'Cargo ou função do fiscal (ex: Engenheiro, Fiscal de Obras, Arquiteto).', tipo: 'Texto' },
+            { campo: 'obra',      descricao: 'Identificador da obra fiscalizada.', tipo: 'Texto' },
+        ],
+        municipios: [
+            { campo: 'contrato',   descricao: 'Número do contrato ao qual o município está vinculado.', tipo: 'Texto' },
+            { campo: 'municipio',  descricao: 'Nome do município onde a obra está sendo executada.', tipo: 'Texto' },
+        ],
+        coordenadas: [
+            { campo: 'contrato',   descricao: 'Número do contrato ao qual as coordenadas estão vinculadas.', tipo: 'Texto' },
+            { campo: 'latitude',   descricao: 'Latitude geográfica do ponto de localização da obra (formato decimal).', tipo: 'Número' },
+            { campo: 'longitude',  descricao: 'Longitude geográfica do ponto de localização da obra (formato decimal).', tipo: 'Número' },
+        ],
+        trechos: [
+            { campo: 'contrato',         descricao: 'Número do contrato ao qual o trecho rodoviário pertence.', tipo: 'Texto' },
+            { campo: 'rodovia',          descricao: 'Identificação da rodovia (ex: MG-030, BR-040).', tipo: 'Texto' },
+            { campo: 'descricao_trecho', descricao: 'Descrição do trecho rodoviário contemplado pela obra.', tipo: 'Texto' },
+            { campo: 'km_inicial',       descricao: 'Quilômetro inicial do trecho da obra.', tipo: 'Número' },
+            { campo: 'km_final',         descricao: 'Quilômetro final do trecho da obra.', tipo: 'Número' },
+        ],
+        situacao: [
+            { campo: 'contrato',              descricao: 'Número do contrato ao qual o registro de situação está vinculado.', tipo: 'Texto' },
+            { campo: 'data',                  descricao: 'Data do registro da situação.', tipo: 'Data (AAAA-MM-DD)' },
+            { campo: 'status',                descricao: 'Situação registrada nesta data (ex: "Em Andamento", "Paralisado", "Obra concluída").', tipo: 'Texto' },
+            { campo: 'descricao_do_motivo',   descricao: 'Descrição detalhada do motivo da situação (especialmente em caso de paralisação).', tipo: 'Texto' },
+            { campo: 'responsavel',           descricao: 'Nome do responsável pelo registro da situação.', tipo: 'Texto' },
+        ],
+        painel: [
+            { campo: 'contrato',              descricao: 'Número do contrato ao qual o registro financeiro/empenho está vinculado. Chave de ligação com a tabela contratos.', tipo: 'Texto' },
+            { campo: 'empenho',               descricao: 'Número da nota de empenho vinculada ao contrato (quando disponível).', tipo: 'Texto' },
+            { campo: 'ano',                   descricao: 'Ano de referência do empenho ou pagamento.', tipo: 'Número' },
+            { campo: 'valor_empenhado',       descricao: 'Valor total empenhado para o contrato no período, em reais.', tipo: 'Número (R$)' },
+            { campo: 'valor_liquidado',       descricao: 'Valor liquidado (aceito pela administração após comprovação da entrega do serviço/obra), em reais.', tipo: 'Número (R$)' },
+            { campo: 'valor_pago',            descricao: 'Valor efetivamente pago ao contratado, em reais.', tipo: 'Número (R$)' },
+        ],
+    };
+
+    function renderizarDicionario() {
+        const container = document.getElementById('dicionario-content');
+        if (!container) return;
+
+        const labelsTabela = { contratos: 'Contratos', obras: 'Obras', fiscais: 'Fiscais', municipios: 'Municípios', coordenadas: 'Coordenadas', trechos: 'Trechos', situacao: 'Situação' };
+        const coresTabela  = { contratos: '#1a3a5c', obras: '#28a745', fiscais: '#b93c42', municipios: '#17a2b8', coordenadas: '#8e44ad', trechos: '#f28c28', situacao: '#39a585' };
+        const tabelas = Object.keys(DICIONARIO_OBRAS);
+
+        container.innerHTML = `
+        <div class="filter-container">
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                <span class="material-icons" style="font-size:32px;color:#20445d;">menu_book</span>
+                <div>
+                    <h5 style="font-size:15px;font-weight:700;color:#20445d;margin:0;">Dicionário de Dados</h5>
+                    <p style="color:#6c757d;font-size:12px;margin:0;">Descrição de todas as colunas de cada tabela do dataset de Obras Públicas</p>
+                </div>
+            </div>
+            <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <input type="text" id="dicBusca" class="form-control" style="height:36px;font-size:12px;max-width:340px;padding:4px 12px;" placeholder="Buscar campo ou descrição em qualquer tabela..." oninput="buscarDicionario(this.value)">
+            </div>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="dicTabs">
+            <button class="dic-tab-btn active" onclick="mostrarTabelaDic('todas',this)">Todas as Tabelas</button>
+            ${tabelas.map(t=>`<button class="dic-tab-btn" onclick="mostrarTabelaDic('${t}',this)">${labelsTabela[t]||t}</button>`).join('')}
+        </div>
+
+        <div id="dicConteudo">
+            ${tabelas.map(tabela => `
+            <div class="metadata-container dic-section" data-tabela="${tabela}">
+                <div class="metadata-header">
+                    <span class="material-icons" style="font-size:16px;vertical-align:middle;">table_chart</span>
+                    ${labelsTabela[tabela]||tabela}
+                    <span style="margin-left:8px;background:rgba(255,255,255,0.2);padding:2px 10px;border-radius:10px;font-size:11px;">${DICIONARIO_OBRAS[tabela].length} campos</span>
+                </div>
+                <div class="table-responsive">
+                    <table class="metadata-table" id="dicTabela_${tabela}">
+                        <thead><tr>
+                            <th>Campo</th>
+                            <th>Descrição</th>
+                            <th>Tipo</th>
+                            <th>Tabela</th>
+                        </tr></thead>
+                        <tbody>
+                            ${DICIONARIO_OBRAS[tabela].map(row=>`<tr class="dic-linha">
+                                <td><code>${row.campo}</code></td>
+                                <td>${row.descricao}</td>
+                                <td><span style="background:#e2e8f0;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:600;color:#475569;">${row.tipo}</span></td>
+                                <td><span style="background:${coresTabela[tabela]||'#1a3a5c'};color:white;padding:2px 10px;border-radius:12px;font-size:10px;font-weight:600;">${labelsTabela[tabela]||tabela}</span></td>
+                            </tr>`).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>`).join('')}
+        </div>`;
+
+        setTimeout(iframeUpdateHeight, 300);
+    }
+
+    window.mostrarTabelaDic = function(qual, btnEl) {
+        document.querySelectorAll('.dic-tab-btn').forEach(b => b.classList.remove('active'));
+        if (btnEl) btnEl.classList.add('active');
+        document.querySelectorAll('.dic-section').forEach(s => {
+            s.style.display = (qual === 'todas' || s.dataset.tabela === qual) ? 'block' : 'none';
+        });
+        const busca = document.getElementById('dicBusca');
+        if (busca) busca.value = '';
+        document.querySelectorAll('.dic-linha').forEach(r => { r.style.display = ''; r.classList.remove('dic-row-highlight'); });
+    };
+
+    window.buscarDicionario = function(termo) {
+        const t = (termo||'').toLowerCase().trim();
+        document.querySelectorAll('.dic-section').forEach(s => s.style.display = 'block');
+        document.querySelectorAll('.dic-tab-btn').forEach(b => b.classList.remove('active'));
+        const btnTodas = document.querySelector('.dic-tab-btn');
+        if (btnTodas) btnTodas.classList.add('active');
+        if (!t) {
+            document.querySelectorAll('.dic-linha').forEach(r => { r.style.display = ''; r.classList.remove('dic-row-highlight'); });
+            return;
+        }
+        document.querySelectorAll('.dic-linha').forEach(row => {
+            const texto = row.textContent.toLowerCase();
+            const match = texto.includes(t);
+            row.style.display = match ? '' : 'none';
+            if (match) row.classList.add('dic-row-highlight'); else row.classList.remove('dic-row-highlight');
+        });
+        document.querySelectorAll('.dic-section').forEach(s => {
+            const visiveis = s.querySelectorAll('.dic-linha:not([style*="display: none"])').length;
+            s.style.display = visiveis > 0 ? 'block' : 'none';
+        });
     };
 
     // ============================================================
@@ -1870,93 +2344,6 @@
             </div>
         </div>
 
-        <div class="metadata-section">
-            <h5><span class="material-icons" style="font-size:14px;vertical-align:middle;margin-right:6px;">info</span>Metadados — Estrutura de Dados</h5>
-
-            <h6>CONTRATOS</h6>
-            <div class="table-responsive mb-3"><table class="table table-bordered" style="font-size:12px">
-                <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
-                <tbody>
-                    <tr><td><code>contrato</code></td><td>Número do contrato da obra</td><td>Texto</td></tr>
-                    <tr><td><code>portal_de_compras</code></td><td>Número do processo no portal de compras</td><td>Texto</td></tr>
-                    <tr><td><code>orgao_entidade_contratante</code></td><td>Órgão ou entidade responsável pelo contrato</td><td>Texto</td></tr>
-                    <tr><td><code>empresa</code></td><td>Empresa contratada para execução da obra</td><td>Texto</td></tr>
-                    <tr><td><code>objeto</code></td><td>Descrição detalhada do objeto do contrato</td><td>Texto</td></tr>
-                    <tr><td><code>situacao</code></td><td>Situação atual do contrato</td><td>Texto</td></tr>
-                    <tr><td><code>data_assinatura</code></td><td>Data de assinatura do contrato</td><td>Data (AAAA-MM-DD)</td></tr>
-                    <tr><td><code>termino_execucao</code></td><td>Data prevista para término da execução</td><td>Data (AAAA-MM-DD)</td></tr>
-                    <tr><td><code>valor_inicial_do_contrato</code></td><td>Valor inicial do contrato em R$</td><td>Número</td></tr>
-                    <tr><td><code>valor_em_aditivos</code></td><td>Valor total de aditivos ao contrato em R$</td><td>Número</td></tr>
-                    <tr><td><code>valor_total_do_contrato</code></td><td>Valor total após aditivos em R$</td><td>Número</td></tr>
-                    <tr><td><code>valor_medido_precos_iniciais</code></td><td>Valor medido a preços iniciais em R$</td><td>Número</td></tr>
-                    <tr><td><code>valor_medido_reajuste</code></td><td>Valor medido com reajuste em R$</td><td>Número</td></tr>
-                    <tr><td><code>total_medido</code></td><td>Total medido da obra em R$</td><td>Número</td></tr>
-                    <tr><td><code>saldo_contratual</code></td><td>Saldo contratual restante em R$</td><td>Número</td></tr>
-                    <tr><td><code>percentual_execucao_contrato</code></td><td>Percentual de execução do contrato</td><td>Número</td></tr>
-                </tbody>
-            </table></div>
-
-            <h6>FISCAIS</h6>
-            <div class="table-responsive mb-3"><table class="table table-bordered" style="font-size:12px">
-                <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
-                <tbody>
-                    <tr><td><code>contrato</code></td><td>Número do contrato onde atua o fiscal</td><td>Texto</td></tr>
-                    <tr><td><code>obra</code></td><td>Identificador da obra</td><td>Texto</td></tr>
-                    <tr><td><code>nome</code></td><td>Nome completo do fiscal responsável</td><td>Texto</td></tr>
-                    <tr><td><code>conselho</code></td><td>Número de registro no conselho profissional</td><td>Texto</td></tr>
-                    <tr><td><code>cargo</code></td><td>Cargo ou função do fiscal na obra</td><td>Texto</td></tr>
-                </tbody>
-            </table></div>
-
-            <h6>OBRAS</h6>
-            <div class="table-responsive mb-3"><table class="table table-bordered" style="font-size:12px">
-                <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
-                <tbody>
-                    <tr><td><code>contrato</code></td><td>Número do contrato da obra</td><td>Texto</td></tr>
-                    <tr><td><code>obra</code></td><td>Identificador da obra</td><td>Texto</td></tr>
-                    <tr><td><code>detipoobra</code></td><td>Tipo detalhado da obra</td><td>Texto</td></tr>
-                    <tr><td><code>descricao_da_obra</code></td><td>Descrição detalhada do escopo da obra</td><td>Texto</td></tr>
-                    <tr><td><code>valor_inicial_da_obra</code></td><td>Valor inicial contratado em R$</td><td>Número</td></tr>
-                    <tr><td><code>valor_total_da_obra</code></td><td>Valor total após aditivos em R$</td><td>Número</td></tr>
-                    <tr><td><code>saldo_de_valor_da_obra</code></td><td>Saldo restante do valor da obra em R$</td><td>Número</td></tr>
-                </tbody>
-            </table></div>
-
-            <h6>MUNICÍPIOS</h6>
-            <div class="table-responsive mb-3"><table class="table table-bordered" style="font-size:12px">
-                <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
-                <tbody>
-                    <tr><td><code>contrato</code></td><td>Número do contrato</td><td>Texto</td></tr>
-                    <tr><td><code>obra</code></td><td>Identificador da obra</td><td>Texto</td></tr>
-                    <tr><td><code>municipio</code></td><td>Nome do município onde a obra está localizada</td><td>Texto</td></tr>
-                </tbody>
-            </table></div>
-
-            <h6>TRECHOS</h6>
-            <div class="table-responsive mb-3"><table class="table table-bordered" style="font-size:12px">
-                <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
-                <tbody>
-                    <tr><td><code>contrato</code></td><td>Número do contrato</td><td>Texto</td></tr>
-                    <tr><td><code>rodovia</code></td><td>Código da rodovia (MG, LMG, CMG, etc.)</td><td>Texto</td></tr>
-                    <tr><td><code>descricao_trecho</code></td><td>Descrição específica do trecho</td><td>Texto</td></tr>
-                    <tr><td><code>km_inicial</code></td><td>Quilometragem inicial do trecho</td><td>Número</td></tr>
-                    <tr><td><code>km_final</code></td><td>Quilometragem final do trecho</td><td>Número</td></tr>
-                </tbody>
-            </table></div>
-
-            <h6>SITUAÇÃO</h6>
-            <div class="table-responsive mb-3"><table class="table table-bordered" style="font-size:12px">
-                <thead><tr><th>Campo</th><th>Descrição</th><th>Tipo</th></tr></thead>
-                <tbody>
-                    <tr><td><code>contrato</code></td><td>Número do contrato</td><td>Texto</td></tr>
-                    <tr><td><code>status</code></td><td>Status atual da obra</td><td>Texto</td></tr>
-                    <tr><td><code>descricao_do_motivo</code></td><td>Descrição do motivo quando há alteração de status</td><td>Texto</td></tr>
-                    <tr><td><code>data</code></td><td>Data da atualização do status</td><td>Data (AAAA-MM-DD)</td></tr>
-                    <tr><td><code>responsavel</code></td><td>Responsável pela atualização do status</td><td>Texto</td></tr>
-                </tbody>
-            </table></div>
-        </div>
-
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
             <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
@@ -1997,13 +2384,16 @@
         renderizarContratos();
     };
     window.aplicarFiltrosFiscais = function() {
+        filtrosAtivos.fiscais.ano      = document.getElementById('filtroFiscalAno')?.value||'';
         filtrosAtivos.fiscais.nome     = document.getElementById('filtroFiscalNome')?.value||'';
+        filtrosAtivos.fiscais.conselho = document.getElementById('filtroFiscalConselho')?.value||'';
+        filtrosAtivos.fiscais.cargo    = document.getElementById('filtroFiscalCargo')?.value||'';
         filtrosAtivos.fiscais.contrato = document.getElementById('filtroFiscalContrato')?.value||'';
-        filtrosAtivos.fiscais.orgao    = document.getElementById('filtroFiscalOrgao')?.value||'';
+        filtrosAtivos.fiscais.portal   = document.getElementById('filtroFiscalPortal')?.value||'';
         filtrarFiscais();
     };
     window.limparFiltrosFiscais = function() {
-        filtrosAtivos.fiscais = { nome:'', contrato:'', orgao:'', buscaTabela:'' };
+        filtrosAtivos.fiscais = { ano:'', nome:'', conselho:'', cargo:'', contrato:'', portal:'', orgao:'', buscaTabela:'' };
         dadosFiltrados.fiscais = [...currentDisplayData.fiscais];
         paginacao.fiscais.page = 1;
         renderizarFiscais();
@@ -2020,9 +2410,10 @@
         paginacao.valores.page = 1;
         renderizarValores();
     };
-    window.irParaContratos = function(orgao, ano) {
+    window.irParaContratos = function(orgao, ano, municipio) {
         filtrosAtivos.contratos.orgao = orgao;
         if (ano) filtrosAtivos.contratos.ano = ano;
+        if (municipio) filtrosAtivos.contratos.municipio = municipio;
         filtrarContratos();
         document.getElementById('contratos-tab').click();
         setTimeout(() => renderizarContratos(), 300);
