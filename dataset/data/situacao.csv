@@ -1,4 +1,5 @@
 ﻿contrato;status;descricao_do_motivo;data;responsavel
+DC-007/2024;Andamento;;2026-05-04;-
 PRC-29.008/2017-E;Andamento;;2026-04-13;-
 DM-017/2024-A;Andamento;;2026-05-02;-
 DM-014/2024-A;Andamento;;2026-05-01;-
@@ -25,6 +26,8 @@ DM-005/2024-A;Andamento;;2026-03-18;-
 DP-026/2023;Andamento;;2026-03-04;-
 DC-9493529/2026;Andamento;;2026-03-04;-
 DC-016/2023;Andamento;;2026-03-16;-
+AMA-9499286/2026;Andamento;;2026-04-06;-
+DM-9504058/2026;Andamento;;2026-05-11;-
 DC-013/2022;Andamento;;2024-04-02;-
 DC-022/2023;Andamento;;2024-07-05;-
 DM-017/2023;Andamento;;2024-12-06;-
@@ -61,11 +64,11 @@ DM-018/2024;Andamento;;2024-04-24;-
 DM-014/2024;Andamento;;2024-05-01;-
 DC-002/2023;Andamento;;2025-01-02;-
 DO-001/2021- C;Andamento;;2026-03-29;-
+DM-9497685/2026;Andamento;;2026-05-11;-
 DM-9502116/2026;Andamento;;2026-04-28;-
 DC-9498666/2026;Andamento;;2026-04-01;-
 DM-9493137/2026;Andamento;;2026-05-11;-
 DPEI-030/2023;Andamento;;2026-04-27;-
-DC-007/2024;Andamento;;2026-05-04;-
 DM-9473163/2025;Andamento;;2025-08-11;-
 DC-9472756/2025;Andamento;;2025-08-25;-
 DC-9468321/2025;Andamento;;2025-08-11;-
@@ -1095,6 +1098,7 @@ DC-002/2021;Execução concluída;;2023-11-20;-
 DM-025/2023;Execução concluída;;2024-12-28;-
 PRC-22.015/2017-E;Execução concluída;;2023-08-31;-
 DM-039/2022;Execução concluída;;2023-11-15;-
+DM-010/2024;Execução concluída;;2026-04-07;-
 DM-009/2024;Execução concluída;;2026-04-09;-
 DOV-001/2022-A;Execução concluída;;2025-12-08;-
 DC-002/2023;Execução concluída;;2025-11-06;-
@@ -1525,9 +1529,10 @@ DM-016/2024;A Iniciar;;2024-04-25;-
 DC-9497471/2026;A Iniciar;;2026-03-24;-
 DC-9498666/2026;A Iniciar;;2026-03-20;-
 DM-9502116/2026;A Iniciar;;2026-04-16;-
-AMA-9499286/2026;A Iniciar;;2026-03-31;-
 DC-9501601/2026;A Iniciar;;2026-04-23;-
 DM-9497685/2026;A Iniciar;;2026-03-31;-
+DC-9505062/2026;A Iniciar;;2026-05-06;-
+DM-9504058/2026;A Iniciar;;2026-05-07;-
 DC-9496643/2026;A Iniciar;;2026-03-17;-
 DC-9493529/2026;A Iniciar;;2026-02-13;-
 DC-9495596/2026;A Iniciar;;2026-03-10;-

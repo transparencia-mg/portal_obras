@@ -20,6 +20,7 @@ AMA-9458828/2025;Obra 1;Jequitibá
 AMA-9461425/2025;Obra 1;Belo Horizonte
 AMA-9461425/2025;Obra 2;Belo Horizonte
 AMA-9499286/2026;Obra 1;Belo Horizonte
+AMA-9499286/2026;Obra 1;Belo Horizonte
 ASG-001/2021;Obra 1;Belo Horizonte
 ASG-002/2021;Obra 1;Belo Horizonte
 ASG-003/2021;Obra 1;Belo Horizonte
@@ -30,6 +31,7 @@ ATA RP-LOTE 4;Obra 1;Cataguases
 ATA RP-LOTE 5;Obra 1;Luz
 ATA RP-LOTE 6;Obra 1;Varginha
 D0-009482032/2025-L6;Obra 1;Açucena
+D0-009482032/2025-L6;Obra 1;Belo Horizonte
 D0-009482032/2025-L6;Obra 1;Caputira
 D0-009482032/2025-L6;Obra 1;Cataguases
 D0-009482032/2025-L6;Obra 1;Dionísio
@@ -313,6 +315,7 @@ DC-9498666/2026;Obra 1;Belo Horizonte
 DC-9501601/2026;Obra 1;Pintópolis
 DC-9501601/2026;Obra 2;Pintópolis
 DC-9501601/2026;Obra 3;Pintópolis
+DC-9505062/2026;Obra 1;Munhoz
 DER-30.014/2025;Obra 1;Uberaba
 DF-012/2021-A;Obra 1;Belo Horizonte
 DF/GTIC-9444079;Obra 1;Belo Horizonte
@@ -3659,6 +3662,13 @@ DM-9497685/2026;Obra 1;Barbacena
 DM-9497685/2026;Obra 1;Capela Nova
 DM-9497685/2026;Obra 1;Carandaí
 DM-9502116/2026;Obra 1;Belo Horizonte
+DM-9504058/2026;Obra 1;Belo Horizonte
+DM-9504058/2026;Obra 1;Confins
+DM-9504058/2026;Obra 1;Lagoa Santa
+DM-9504058/2026;Obra 1;Pedro Leopoldo
+DM-9504058/2026;Obra 1;Ribeirão das Neves
+DM-9504058/2026;Obra 1;São José da Lapa
+DM-9504058/2026;Obra 1;Vespasiano
 DO-001/2021;Obra 2;Belo Horizonte
 DO-001/2021;Obra 2;Minas Gerais
 DO-001/2021- B;Obra 2;Belo Horizonte
@@ -3695,6 +3705,7 @@ DO-009482017/2025-L3;Obra 1;Abadia dos Dourados
 DO-009482017/2025-L3;Obra 1;Alpinópolis
 DO-009482017/2025-L3;Obra 1;Alterosa
 DO-009482017/2025-L3;Obra 1;Arceburgo
+DO-009482017/2025-L3;Obra 1;Belo Horizonte
 DO-009482017/2025-L3;Obra 1;Campina Verde
 DO-009482017/2025-L3;Obra 1;Capetinga
 DO-009482017/2025-L3;Obra 1;Conceição da Aparecida
@@ -3734,8 +3745,10 @@ DO-009482046/2025-L2;Obra 1;São João Del Rei
 DO-009482046/2025-L2;Obra 1;São João da Mata
 DO-009482046/2025-L2;Obra 1;São Tomé das Letras
 DO-009482046/2025-L2;Obra 1;Três Corações
+DO-009482046/2025-L2;Obra 1;Vera Cruz
 DO-009482055/2025-L5;Obra 1;Alvorada de Minas
 DO-009482055/2025-L5;Obra 1;Araçuaí
+DO-009482055/2025-L5;Obra 1;Belo Horizonte
 DO-009482055/2025-L5;Obra 1;Capelinha
 DO-009482055/2025-L5;Obra 1;Carbonita
 DO-009482055/2025-L5;Obra 1;Carlos Chagas
@@ -3763,6 +3776,7 @@ DO-009482055/2025-L5;Obra 1;Umburatiba
 DO-009482055/2025-L5;Obra 1;Virginópolis
 DO-009482055/2025-L5;Obra 1;Água Boa
 DO-9481987/2025-L7;Obra 1;Belo Horizonte
+DO-9493205/2026-L4;Obra 1;Belo Horizonte
 DO-9493205/2026-L4;Obra 1;Bocaiúva
 DO-9493205/2026-L4;Obra 1;Bonfinópolis de Minas
 DO-9493205/2026-L4;Obra 1;Buritis
