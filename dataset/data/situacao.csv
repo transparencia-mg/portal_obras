@@ -1,4 +1,7 @@
 ﻿contrato;status;descricao_do_motivo;data;responsavel
+DC-9498666/2026;Andamento;;2026-04-01;-
+DM-9493137/2026;Andamento;;2026-05-11;-
+DPEI-030/2023;Andamento;;2026-04-27;-
 DC-007/2024;Andamento;;2026-05-04;-
 PRC-29.008/2017-E;Andamento;;2026-04-13;-
 DM-017/2024-A;Andamento;;2026-05-02;-
@@ -66,9 +69,6 @@ DC-002/2023;Andamento;;2025-01-02;-
 DO-001/2021- C;Andamento;;2026-03-29;-
 DM-9497685/2026;Andamento;;2026-05-11;-
 DM-9502116/2026;Andamento;;2026-04-28;-
-DC-9498666/2026;Andamento;;2026-04-01;-
-DM-9493137/2026;Andamento;;2026-05-11;-
-DPEI-030/2023;Andamento;;2026-04-27;-
 DM-9473163/2025;Andamento;;2025-08-11;-
 DC-9472756/2025;Andamento;;2025-08-25;-
 DC-9468321/2025;Andamento;;2025-08-11;-
@@ -1063,6 +1063,7 @@ DM-002/2023;Paralisado;Outros tipos de paralisação;2023-12-15;Diretor Geral
 DC-015/2023;Paralisado;Caso Fortuito ou Força Maior;2024-04-06;Diretor Geral
 DP-027/2023;Paralisado;Outros tipos de paralisação;2026-04-17;Diretor Geral
 DP-004/2023;Paralisado;Outros tipos de paralisação;2026-04-30;Diretor Geral
+DP-021/2023;Paralisado;Outros tipos de paralisação;2026-04-30;Diretor Geral
 DC-007/2024;Paralisado;Outros tipos de paralisação;2026-02-20;Diretor Geral
 DP-025/2023;Paralisado;Outros tipos de paralisação;2026-03-20;Diretor Geral
 PRC-24.014/2018;Paralisado;Outros tipos de paralisação;2026-03-05;Diretor Geral
@@ -1070,6 +1071,7 @@ DC-003/2024;Paralisado;Caso Fortuito ou Força Maior;2026-03-20;Diretor Geral
 DP-005/2023;Paralisado;Outros tipos de paralisação;2026-03-30;Diretor Geral
 DP-026/2023;Paralisado;Outros tipos de paralisação;2026-02-19;Diretor Geral
 DP-020/2023;Paralisado;Outros tipos de paralisação;2026-02-10;Diretor Geral
+DOV-005/2022-A;Execução concluída;;2025-12-08;-
 DM-032/2023;Execução concluída;;2025-08-10;-
 DM-036/2022;Execução concluída;;2025-09-12;-
 DC-001/2024;Execução concluída;;2025-12-09;-
@@ -1104,6 +1106,8 @@ DOV-001/2022-A;Execução concluída;;2025-12-08;-
 DC-002/2023;Execução concluída;;2025-11-06;-
 DM-011/2024;Execução concluída;;2026-04-07;-
 DM-018/2024;Execução concluída;;2026-04-23;-
+DM-016/2024;Execução concluída;;2026-04-25;-
+DO-001/2021- B;Execução concluída;;2026-03-31;-
 DM-001/2024-A;Execução concluída;;2026-02-19;-
 DPEI-004/2024;Execução concluída;;2026-03-18;-
 DPEI-005/2024;Execução concluída;;2026-03-10;-
@@ -1114,7 +1118,6 @@ DPEI-006/2024;Execução concluída;;2026-03-18;-
 DM-005/2024;Execução concluída;;2026-03-17;-
 DC-9439921/2024;Execução concluída;;2026-02-28;-
 DC-9445591/2024;Execução concluída;;2026-02-28;-
-DOV-005/2022-A;Execução concluída;;2025-12-08;-
 DC-017/2023;Execução concluída;;2025-04-30;-
 DC-018/2023;Execução concluída;;2025-08-31;-
 PRC-29.008/2017-ANO 4;Execução concluída;;2025-06-13;-
