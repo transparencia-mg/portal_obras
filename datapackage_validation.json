@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.547,
+  "time": 0.553,
   "errors": [],
   "tasks": [
     {
@@ -137,13 +137,13 @@
         "scheme": "file",
         "title": "Contratos de Obras",
         "stats": {
-          "hash": "0ef68d6fe71cb455f919259cc2798e75",
-          "bytes": 521290,
+          "hash": "ead670b0e60bdc83a3273facd2207a95",
+          "bytes": 521377,
           "fields": 29,
           "rows": 624
         }
       },
-      "time": 0.071,
+      "time": 0.072,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -211,7 +211,7 @@
           "rows": 860
         }
       },
-      "time": 0.02,
+      "time": 0.021,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -281,13 +281,13 @@
         "scheme": "file",
         "title": "Fiscais de Obras",
         "stats": {
-          "hash": "c396b4b993c3788937d6721779a823ea",
-          "bytes": 536059,
+          "hash": "37b576d0b4ade71c7d1e159c92bcf763",
+          "bytes": 535093,
           "fields": 6,
-          "rows": 5081
+          "rows": 5068
         }
       },
-      "time": 0.091,
+      "time": 0.094,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -345,13 +345,13 @@
         "scheme": "file",
         "title": "Municípios",
         "stats": {
-          "hash": "c6fe4a5f94713d12c8b76a53373e92b7",
-          "bytes": 291732,
+          "hash": "f1b57d618f4fe069e2cce6cb102b5925",
+          "bytes": 291793,
           "fields": 3,
-          "rows": 8074
+          "rows": 8076
         }
       },
-      "time": 0.107,
+      "time": 0.106,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -437,8 +437,8 @@
         "scheme": "file",
         "title": "Obra",
         "stats": {
-          "hash": "ca3be0be58d86f0bf41feb750660c33c",
-          "bytes": 144703,
+          "hash": "c4de6c294768bcbea1e79893a4cea2b3",
+          "bytes": 144722,
           "fields": 10,
           "rows": 713
         }
@@ -509,13 +509,13 @@
         "scheme": "file",
         "title": "Situação da Obra",
         "stats": {
-          "hash": "2cbe80cf38134ba0c632fcc00999c996",
-          "bytes": 94591,
+          "hash": "4da70a9b9ff8dedd9f1f62a1bb5d31fc",
+          "bytes": 94768,
           "fields": 5,
-          "rows": 2043
+          "rows": 2046
         }
       },
-      "time": 0.052,
+      "time": 0.053,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -593,13 +593,13 @@
         "scheme": "file",
         "title": "Trechos da Obra",
         "stats": {
-          "hash": "e5213eccb9945b7d1fd7e5240bae593c",
+          "hash": "0fcbf76d6640a7e7168f911a9e3cdb60",
           "bytes": 477135,
           "fields": 8,
           "rows": 4781
         }
       },
-      "time": 0.106,
+      "time": 0.109,
       "scope": [
         "hash-count-error",
         "byte-count-error",
