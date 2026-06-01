@@ -626,11 +626,6 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" id="valores-tab" data-bs-toggle="tab" data-bs-target="#valores">
-                        <span class="material-icons">attach_money</span>Valores
-                    </button>
-                </li>
-                <li class="nav-item">
                     <button class="nav-link" id="dicionario-tab" data-bs-toggle="tab" data-bs-target="#dicionario">
                         <span class="material-icons">menu_book</span>Dicionário de Dados
                     </button>
@@ -771,7 +766,7 @@
     };
     let opcoesCache = { anos: [], orgaos: [], situacoes: [], municipios: [], empresas: [], fiscais: [], tiposObra: [] };
     let filtrosAtivos = {
-        visaoGeral: { ano: '', situacao: '', orgao: '', municipio: '' },
+        visaoGeral: { ano: '', situacao: '', orgao: '', municipio: '', contrato: '' },
         contratos:  { ano: '', situacao: '', numero: '', portal: '', empresa: '', orgao: '', municipio: '', objeto: '', buscaTabela: '' },
         fiscais:    { ano: '', nome: '', conselho: '', cargo: '', contrato: '', portal: '', orgao: '', buscaTabela: '' },
         valores:    { ano: '', contrato: '', situacao: '', buscaTabela: '' }
@@ -1179,8 +1174,21 @@
     }
 
     window.mudarPagina = function(tipo, pagina) {
-        const dados = tipo==='geral' ? agruparPorOrgao(currentDisplayData.contratos) : tipo==='contratos' ? dadosFiltrados.contratos : tipo==='fiscais' ? dadosFiltrados.fiscais : dadosFiltrados.valores;
-        const totalPaginas = Math.ceil(dados.length / paginacao[tipo].itemsPerPage);
+        let total;
+        if (tipo === 'geral') {
+            let dadosVG = [...currentDisplayData.contratos];
+            const fvg = filtrosAtivos.visaoGeral;
+            if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
+            if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
+            if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+            if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
+            if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
+            total = dadosVG.length;
+        } else {
+            const dados = tipo==='contratos' ? dadosFiltrados.contratos : tipo==='fiscais' ? dadosFiltrados.fiscais : dadosFiltrados.valores;
+            total = dados.length;
+        }
+        const totalPaginas = Math.ceil(total / paginacao[tipo].itemsPerPage);
         if (pagina < 1 || pagina > totalPaginas) return;
         paginacao[tipo].page = pagina;
         if      (tipo==='geral')     renderizarVisaoGeral();
@@ -1213,24 +1221,50 @@
         if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
         if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
         if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+        if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
         if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
 
-        let dadosOrgao = agruparPorOrgao(dadosVG);
-        ordenarArray(dadosOrgao, sortConfig.geral.coluna, sortConfig.geral.direcao);
+        // Para os gráficos, calcular por ano
+        const anosInicial = {}, anosTotal = {};
+        dadosVG.forEach(c => {
+            if (c.ano_assinatura) {
+                anosInicial[c.ano_assinatura] = (anosInicial[c.ano_assinatura]||0) + (c.valor_inicial_do_contrato||0);
+                anosTotal[c.ano_assinatura]   = (anosTotal[c.ano_assinatura]||0)   + (c.valor_total_do_contrato||0);
+            }
+        });
 
-        const totalOrgaos = dadosOrgao.length;
-        const totalPaginas = Math.ceil(totalOrgaos / paginacao.geral.itemsPerPage);
-        const inicio = (paginacao.geral.page - 1) * paginacao.geral.itemsPerPage;
-        const fim = Math.min(inicio + paginacao.geral.itemsPerPage, totalOrgaos);
-        const dadosPagina = dadosOrgao.slice(inicio, fim);
+        let dadosOrdenados = [...dadosVG];
+        // Ordenação da tabela VG (por contrato, orgao, valor_inicial, valor_total, total_medido, saldo, pct)
+        const scVG = sortConfig.geral;
+        const mapCols = {
+            contrato: 'contrato', orgao: 'orgao_entidade_contratante',
+            valor_inicial: 'valor_inicial_do_contrato', aditivos: 'valor_em_aditivos',
+            valor_total: 'valor_total_do_contrato', total_medido: 'total_medido',
+            saldo: 'saldo_contratual', pct: 'percentual_execucao_contrato'
+        };
+        dadosOrdenados.sort((a, b) => {
+            const field = mapCols[scVG.coluna] || scVG.coluna;
+            const numCols = new Set(['valor_inicial_do_contrato','valor_em_aditivos','valor_total_do_contrato','total_medido','saldo_contratual','percentual_execucao_contrato']);
+            const mult = scVG.direcao === 'asc' ? 1 : -1;
+            let va = a[field] ?? (numCols.has(field) ? 0 : '');
+            let vb = b[field] ?? (numCols.has(field) ? 0 : '');
+            if (typeof va === 'string') return mult * va.toLowerCase().localeCompare(vb.toLowerCase());
+            return mult * (va - vb);
+        });
 
-        const totalContratos = dadosVG.length;
+        const totalContratos = dadosOrdenados.length;
         const andamento  = dadosVG.filter(c => c.situacao?.includes('Andamento')).length;
         const concluidas = dadosVG.filter(c => c.situacao?.includes('concluída')).length;
         const encerradas = dadosVG.filter(c => c.situacao?.includes('Encerrado')).length;
         const valorTotal = dadosVG.reduce((acc, c) => acc + (c.valor_total_do_contrato||0), 0);
+        const totalOrgaos = new Set(dadosVG.map(c=>c.orgao_entidade_contratante).filter(Boolean)).size;
 
-        const sc = sortConfig.geral;
+        const totalPaginas = Math.ceil(totalContratos / paginacao.geral.itemsPerPage);
+        const inicio = (paginacao.geral.page - 1) * paginacao.geral.itemsPerPage;
+        const fim = Math.min(inicio + paginacao.geral.itemsPerPage, totalContratos);
+        const dadosPagina = dadosOrdenados.slice(inicio, fim);
+
+        const sc = scVG;
         const iconCol = (col) => sc.coluna===col ? (sc.direcao==='asc'?'arrow_upward':'arrow_downward') : 'unfold_more';
 
         container.innerHTML = `
@@ -1244,13 +1278,6 @@
                         ${opcoesCache.anos.map(a=>`<option value="${a}" ${fvg.ano===a?'selected':''}>${a}</option>`).join('')}
                     </select>
                 </div>
-                <div class="filter-group" style="flex:0 0 auto;min-width:170px">
-                    <label class="filter-label">Situação</label>
-                    <select class="form-select modern-select" id="filtroSituacaoVG">
-                        <option value="">Todas</option>
-                        ${opcoesCache.situacoes.map(s=>`<option value="${s}" ${fvg.situacao===s?'selected':''}>${s}</option>`).join('')}
-                    </select>
-                </div>
                 <div class="filter-group">
                     <label class="filter-label">Órgão</label>
                     <input class="form-control" list="orgaosListVG" id="filtroOrgaoVG" placeholder="Digite ou selecione..." value="${fvg.orgao||''}">
@@ -1260,6 +1287,18 @@
                     <label class="filter-label">Município</label>
                     <input class="form-control" list="municipiosListVG" id="filtroMunicipioVG" placeholder="Digite ou selecione..." value="${fvg.municipio||''}">
                     <datalist id="municipiosListVG">${opcoesCache.municipios.map(m=>`<option value="${m}">`).join('')}</datalist>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Contrato</label>
+                    <input class="form-control" list="contratosListVG" id="filtroContratoVG" placeholder="Digite ou selecione..." value="${fvg.contrato||''}">
+                    <datalist id="contratosListVG">${[...new Set(currentDisplayData.contratos.map(c=>c.contrato).filter(Boolean))].sort().map(c=>`<option value="${c}">`).join('')}</datalist>
+                </div>
+                <div class="filter-group" style="flex:0 0 auto;min-width:170px">
+                    <label class="filter-label">Situação</label>
+                    <select class="form-select modern-select" id="filtroSituacaoVG">
+                        <option value="">Todas</option>
+                        ${opcoesCache.situacoes.map(s=>`<option value="${s}" ${fvg.situacao===s?'selected':''}>${s}</option>`).join('')}
+                    </select>
                 </div>
             </div>
             <div class="botoes-abaixo">
@@ -1296,18 +1335,18 @@
             </div>
         </div>
 
-        <!-- GRÁFICOS -->
+        <!-- GRÁFICOS: Valor Inicial por Ano e Valor Total por Ano -->
         <div class="row g-3 mb-4">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="chart-container">
-                    <div class="chart-header"><h4 class="chart-title">Contratos por Situação</h4></div>
-                    <div class="chart-wrapper"><canvas id="chartSituacao"></canvas></div>
+                    <div class="chart-header"><h4 class="chart-title">Valor Inicial por Ano (R$)</h4></div>
+                    <div class="chart-wrapper"><canvas id="chartVGInicial"></canvas></div>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="chart-container">
-                    <div class="chart-header"><h4 class="chart-title">Investimento por Ano (R$)</h4></div>
-                    <div class="chart-wrapper"><canvas id="chartAno"></canvas></div>
+                    <div class="chart-header"><h4 class="chart-title">Valor Total por Ano (R$)</h4></div>
+                    <div class="chart-wrapper"><canvas id="chartVGTotal"></canvas></div>
                 </div>
             </div>
         </div>
@@ -1320,44 +1359,47 @@
                 <button class="btn-export" onclick="copiarLinkDireto()"><span class="material-icons">link</span> Copiar Link</button>
             </div>
             <div class="toolbar-right">
-                <span class="table-badge">${totalOrgaos} órgãos</span>
+                <span class="table-badge" id="totalVGBadge">${totalContratos} contratos</span>
                 <select class="items-per-page" id="itensPorPaginaGeral" onchange="alterarItensPorPagina('geral')">
                     ${[10,25,50,100].map(n=>`<option value="${n}" ${paginacao.geral.itemsPerPage===n?'selected':''}>${n} / pág</option>`).join('')}
                 </select>
             </div>
         </div>
 
-        <!-- TABELA -->
+        <!-- TABELA DE CONTRATOS -->
         <div class="table-container">
             <div class="table-fixed-header-container">
                 <table class="table">
                     <thead><tr>
-                        <th class="sortable-header" onclick="ordenarTabela('geral','orgao')">Órgão/Entidade <span class="material-icons">${iconCol('orgao')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','total','number')">Total <span class="material-icons">${iconCol('total')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','andamento','number')">Andamento <span class="material-icons">${iconCol('andamento')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','concluidas','number')">Concluídas <span class="material-icons">${iconCol('concluidas')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','encerradas','number')">Encerradas <span class="material-icons">${iconCol('encerradas')}</span></th>
-                        <th class="sortable-header text-right" onclick="ordenarTabela('geral','valor','number')">Valor Total (R$) <span class="material-icons">${iconCol('valor')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabelaVG('contrato')">Nº Contrato <span class="material-icons">${iconCol('contrato')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabelaVG('orgao')">Órgão/Entidade <span class="material-icons">${iconCol('orgao')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('valor_inicial')">Valor Inicial (R$) <span class="material-icons">${iconCol('valor_inicial')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('aditivos')">Aditivos (R$) <span class="material-icons">${iconCol('aditivos')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('valor_total')">Valor Total (R$) <span class="material-icons">${iconCol('valor_total')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('total_medido')">Valor Medido (R$) <span class="material-icons">${iconCol('total_medido')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('saldo')">Saldo (R$) <span class="material-icons">${iconCol('saldo')}</span></th>
+                        <th class="sortable-header text-center" onclick="ordenarTabelaVG('pct')">% Execução <span class="material-icons">${iconCol('pct')}</span></th>
+                        <th class="text-center">Ações</th>
                     </tr></thead>
                     <tbody>
-                        ${dadosPagina.map(item=>`
-                        <tr>
-                            <td><a class="orgao-link" href="#" onclick="irParaContratos('${item.orgao.replace(/'/g,"\\'")}','${fvg.ano}','${(fvg.municipio||'').replace(/'/g,"\\'")}');return false;">${item.orgao}</a></td>
-                            <td class="text-center fw-bold">${item.total}</td>
-                            <td class="text-center"><span class="tag-andamento">${item.andamento}</span></td>
-                            <td class="text-center"><span class="tag-concluida">${item.concluidas}</span></td>
-                            <td class="text-center"><span class="tag-encerrado">${item.encerradas}</span></td>
-                            <td class="text-right">R$ ${formatarMoeda(item.valor)}</td>
+                        ${dadosPagina.map(c=>`
+                        <tr style="cursor:pointer" onclick="irParaContratosVG('${(c.contrato||'').replace(/'/g,"\\'")}')">
+                            <td><strong style="color:#006a82">${c.contrato||'-'}</strong></td>
+                            <td>${truncate(c.orgao_entidade_contratante,35)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.valor_inicial_do_contrato)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.valor_em_aditivos)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.valor_total_do_contrato)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.total_medido)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.saldo_contratual)}</td>
+                            <td class="text-center">
+                                <div class="progresso-barra"><div class="progresso-preenchimento" style="width:${Math.min(c.percentual_execucao_contrato||0,100)}%"></div></div>
+                                <small style="font-size:10px">${(c.percentual_execucao_contrato||0).toFixed(2)}%</small>
+                            </td>
+                            <td class="text-center" onclick="event.stopPropagation()">
+                                <button class="btn-action" title="Ver detalhes" onclick="verDetalhesContrato('${c.contrato}')"><span class="material-icons" style="font-size:15px">visibility</span></button>
+                            </td>
                         </tr>`).join('')}
                     </tbody>
-                    <tfoot><tr>
-                        <td><strong>TOTAL GERAL</strong></td>
-                        <td class="text-center">${totalContratos.toLocaleString('pt-BR')}</td>
-                        <td class="text-center">${andamento.toLocaleString('pt-BR')}</td>
-                        <td class="text-center">${concluidas.toLocaleString('pt-BR')}</td>
-                        <td class="text-center">${encerradas.toLocaleString('pt-BR')}</td>
-                        <td class="text-right">R$ ${formatarMoeda(valorTotal)}</td>
-                    </tr></tfoot>
                 </table>
             </div>
             <div class="pagination-container" id="paginacaoContainerGeral"></div>
@@ -1367,38 +1409,38 @@
             <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
-        renderizarGraficosSituacao({ andamento, concluidas, encerradas, outras: totalContratos-andamento-concluidas-encerradas });
-        renderizarGraficosAno(dadosVG);
-        renderizarPaginacao('geral', totalPaginas, inicio, fim, totalOrgaos);
+        // Renderizar gráficos de valor inicial e valor total por ano
+        if (charts.vgInicial) charts.vgInicial.destroy();
+        if (charts.vgTotal)   charts.vgTotal.destroy();
+        const optsBar = (label, color) => ({
+            type:'bar',
+            data:{ labels: Object.keys(label).sort(), datasets:[{ data: Object.keys(label).sort().map(a=>label[a]), backgroundColor: color, borderRadius: 4 }] },
+            options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label:(ctx)=>`R$ ${formatarMoeda(ctx.raw)}` } } }, scales:{ x:{ grid:{ display:false } }, y:{ grid:{ display:false }, beginAtZero:true, ticks:{ callback:(v)=>'R$ '+formatarMoeda(v), font:{ size:9 } } } } }
+        });
+        const ctxI = document.getElementById('chartVGInicial')?.getContext('2d');
+        if (ctxI) charts.vgInicial = new Chart(ctxI, optsBar(anosInicial, '#39a585'));
+        const ctxT = document.getElementById('chartVGTotal')?.getContext('2d');
+        if (ctxT) charts.vgTotal = new Chart(ctxT, optsBar(anosTotal, '#2f4b63'));
 
+        renderizarPaginacao('geral', totalPaginas, inicio, fim, totalContratos);
         setTimeout(() => { document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el)); }, 100);
         setTimeout(iframeUpdateHeight, 300);
     }
 
-    function renderizarGraficosSituacao(dados) {
-        if (charts.situacao) charts.situacao.destroy();
-        const ctx = document.getElementById('chartSituacao')?.getContext('2d');
-        if (!ctx) return;
-        charts.situacao = new Chart(ctx, {
-            type: 'doughnut',
-            data: { labels: ['Em Andamento','Concluídas','Encerradas','Outras'], datasets: [{ data: [dados.andamento,dados.concluidas,dados.encerradas,dados.outras], backgroundColor: ['#ffc107','#28a745','#17a2b8','#6c757d'], borderWidth: 2, borderColor: '#fff' }] },
-            options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } }, tooltip: { callbacks: { label: (ctx) => { const t=ctx.dataset.data.reduce((a,b)=>a+b,0); const p=((ctx.raw/t)*100).toFixed(1); return `${ctx.label}: ${ctx.raw} (${p}%)`; } } } } }
-        });
-    }
+    window.ordenarTabelaVG = function(coluna) {
+        const sc = sortConfig.geral;
+        if (sc.coluna === coluna) sc.direcao = sc.direcao === 'asc' ? 'desc' : 'asc';
+        else { sc.coluna = coluna; sc.direcao = ['contrato','orgao'].includes(coluna) ? 'asc' : 'desc'; }
+        paginacao.geral.page = 1;
+        renderizarVisaoGeral();
+    };
 
-    function renderizarGraficosAno(dados) {
-        if (charts.ano) charts.ano.destroy();
-        const ctx = document.getElementById('chartAno')?.getContext('2d');
-        if (!ctx) return;
-        const anosMap = {};
-        dados.forEach(c => { if (c.ano_assinatura) anosMap[c.ano_assinatura] = (anosMap[c.ano_assinatura]||0) + (c.valor_total_do_contrato||0); });
-        const anos = Object.keys(anosMap).sort();
-        charts.ano = new Chart(ctx, {
-            type: 'bar',
-            data: { labels: anos, datasets: [{ data: anos.map(a=>anosMap[a]), backgroundColor: chartPalette[0], borderRadius: 4 }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => `R$ ${formatarMoeda(ctx.raw)}` } } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false }, beginAtZero: true, ticks: { callback: (v) => 'R$ '+formatarMoeda(v), font: { size: 9 } } } } }
-        });
-    }
+    window.irParaContratosVG = function(contrato) {
+        filtrosAtivos.contratos.numero = contrato;
+        filtrarContratos();
+        document.getElementById('contratos-tab').click();
+        setTimeout(() => renderizarContratos(), 300);
+    };
 
     // ============================================================
     // RENDERIZAÇÃO — CONTRATOS
@@ -1420,6 +1462,11 @@
                     </select>
                 </div>
                 <div class="consulta-filter-group">
+                    <label class="filter-label">Órgão</label>
+                    <input class="form-control" list="orgaosListContrato" id="filtroOrgaoContrato" placeholder="Digite ou selecione...">
+                    <datalist id="orgaosListContrato">${opcoesCache.orgaos.map(o=>`<option value="${o}">`).join('')}</datalist>
+                </div>
+                <div class="consulta-filter-group">
                     <label class="filter-label">Situação</label>
                     <select class="form-select modern-select" id="filtroSituacaoContrato">
                         <option value="">Todas</option>
@@ -1427,12 +1474,12 @@
                     </select>
                 </div>
                 <div class="consulta-filter-group">
-                    <label class="filter-label">Nº Contrato</label>
-                    <input type="text" class="form-control" id="filtroNumeroContrato" placeholder="Digite o número...">
-                </div>
-                <div class="consulta-filter-group">
                     <label class="filter-label">Processo de Compras</label>
                     <input type="text" class="form-control" id="filtroPortalContrato" placeholder="Nº processo...">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Nº Contrato</label>
+                    <input type="text" class="form-control" id="filtroNumeroContrato" placeholder="Digite o número...">
                 </div>
                 <div class="consulta-filter-group">
                     <label class="filter-label">Empresa</label>
@@ -1440,18 +1487,13 @@
                     <datalist id="empresasListContrato">${opcoesCache.empresas.map(e=>`<option value="${e}">`).join('')}</datalist>
                 </div>
                 <div class="consulta-filter-group">
-                    <label class="filter-label">Órgão</label>
-                    <input class="form-control" list="orgaosListContrato" id="filtroOrgaoContrato" placeholder="Digite ou selecione...">
-                    <datalist id="orgaosListContrato">${opcoesCache.orgaos.map(o=>`<option value="${o}">`).join('')}</datalist>
+                    <label class="filter-label">Objeto</label>
+                    <input type="text" class="form-control" id="filtroObjetoContrato" placeholder="Palavra-chave...">
                 </div>
                 <div class="consulta-filter-group">
                     <label class="filter-label">Município</label>
                     <input class="form-control" list="municipiosListContrato" id="filtroMunicipioContrato" placeholder="Digite ou selecione...">
                     <datalist id="municipiosListContrato">${opcoesCache.municipios.map(m=>`<option value="${m}">`).join('')}</datalist>
-                </div>
-                <div class="consulta-filter-group">
-                    <label class="filter-label">Objeto</label>
-                    <input type="text" class="form-control" id="filtroObjetoContrato" placeholder="Palavra-chave...">
                 </div>
             </div>
             <div class="consulta-buttons-row">
@@ -2358,11 +2400,12 @@
         filtrosAtivos.visaoGeral.situacao  = document.getElementById('filtroSituacaoVG')?.value||'';
         filtrosAtivos.visaoGeral.orgao     = document.getElementById('filtroOrgaoVG')?.value||'';
         filtrosAtivos.visaoGeral.municipio = document.getElementById('filtroMunicipioVG')?.value||'';
+        filtrosAtivos.visaoGeral.contrato  = document.getElementById('filtroContratoVG')?.value||'';
         paginacao.geral.page = 1;
         renderizarVisaoGeral();
     };
     window.limparFiltrosVG = function() {
-        filtrosAtivos.visaoGeral = { ano:'', situacao:'', orgao:'', municipio:'' };
+        filtrosAtivos.visaoGeral = { ano:'', situacao:'', orgao:'', municipio:'', contrato:'' };
         paginacao.geral.page = 1;
         renderizarVisaoGeral();
     };
@@ -2490,16 +2533,30 @@
     // EXPORTAÇÕES
     // ============================================================
     window.exportarVisaoGeralCSV = function() {
-        const dados = agruparPorOrgao(currentDisplayData.contratos);
-        const linhas = dados.map(i=>[i.orgao,i.total,i.andamento,i.concluidas,i.encerradas,i.valor].map(c=>`"${String(c).replace(/"/g,'""')}"`).join(';'));
-        const blob = new Blob(['\uFEFF'+['Órgão;Total;Andamento;Concluídas;Encerradas;Valor Total (R$)',...linhas].join('\n')],{type:'text/csv'});
+        let dadosVG = [...currentDisplayData.contratos];
+        const fvg = filtrosAtivos.visaoGeral;
+        if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
+        if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
+        if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+        if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
+        if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
+        const cabecalhos = ['contrato','orgao_entidade_contratante','valor_inicial_do_contrato','valor_em_aditivos','valor_total_do_contrato','total_medido','saldo_contratual','percentual_execucao_contrato'];
+        const linhas = dadosVG.map(c=>cabecalhos.map(h=>`"${String(c[h]||'').replace(/"/g,'""')}"`).join(';'));
+        const blob = new Blob(['\uFEFF'+[cabecalhos.join(';'),...linhas].join('\n')],{type:'text/csv'});
         saveAs(blob,'visao_geral_obras.csv');
     };
     window.exportarVisaoGeralPDF = function() {
+        let dadosVG = [...currentDisplayData.contratos];
+        const fvg = filtrosAtivos.visaoGeral;
+        if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
+        if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
+        if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+        if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
+        if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
         const {jsPDF}=window.jspdf; const doc=new jsPDF({orientation:'landscape'});
         doc.setFontSize(11); doc.text('Visão Geral — Obras Públicas',14,10);
-        const dados=agruparPorOrgao(currentDisplayData.contratos).map(i=>[i.orgao,i.total.toString(),i.andamento.toString(),i.concluidas.toString(),i.encerradas.toString(),'R$ '+formatarMoeda(i.valor)]);
-        doc.autoTable({head:[['Órgão','Total','Andamento','Concluídas','Encerradas','Valor Total (R$)']],body:dados,startY:16,styles:{fontSize:8},headStyles:{fillColor:[32,68,93]},didDrawPage:()=>{doc.setFontSize(9);doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`,14,doc.internal.pageSize.height-5);}});
+        const dados=dadosVG.map(c=>[c.contrato||'-',truncate(c.orgao_entidade_contratante,20),'R$ '+formatarMoeda(c.valor_inicial_do_contrato),'R$ '+formatarMoeda(c.valor_em_aditivos),'R$ '+formatarMoeda(c.valor_total_do_contrato),'R$ '+formatarMoeda(c.total_medido),'R$ '+formatarMoeda(c.saldo_contratual),(c.percentual_execucao_contrato||0).toFixed(2)+'%']);
+        doc.autoTable({head:[['Contrato','Órgão/Entidade','Valor Inicial','Aditivos','Valor Total','Valor Medido','Saldo','% Exec.']],body:dados,startY:16,styles:{fontSize:7},headStyles:{fillColor:[32,68,93]},didDrawPage:()=>{doc.setFontSize(9);doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`,14,doc.internal.pageSize.height-5);}});
         doc.save('visao_geral_obras.pdf');
     };
     window.exportarContratosCSV = function() {
