@@ -621,13 +621,13 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" id="fiscais-tab" data-bs-toggle="tab" data-bs-target="#fiscais">
-                        <span class="material-icons">badge</span>Fiscais
+                    <button class="nav-link" id="itens-tab" data-bs-toggle="tab" data-bs-target="#itens">
+                        <span class="material-icons">list_alt</span>Itens da Obra
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="nav-link" id="valores-tab" data-bs-toggle="tab" data-bs-target="#valores">
-                        <span class="material-icons">attach_money</span>Valores
+                    <button class="nav-link" id="fiscais-tab" data-bs-toggle="tab" data-bs-target="#fiscais">
+                        <span class="material-icons">badge</span>Fiscais
                     </button>
                 </li>
                 <li class="nav-item">
@@ -658,6 +658,9 @@
             </div>
             <div class="tab-pane fade" id="contratos" role="tabpanel">
                 <div id="contratos-content"></div>
+            </div>
+            <div class="tab-pane fade" id="itens" role="tabpanel">
+                <div id="itens-content"></div>
             </div>
             <div class="tab-pane fade" id="fiscais" role="tabpanel">
                 <div id="fiscais-content"></div>
@@ -747,13 +750,16 @@
         coordenadas: 'coordenadas.csv',
         trechos: 'trechos.csv',
         situacao: 'situacao.csv',
-        painel: 'painel.csv'
+        painel: 'painel.csv',
+        contratos_siad: 'contratos_siad.csv',
+        itens: 'itens.csv'
     };
 
     const dataCache = {};
     let currentDisplayData = {
         contratos: [], obras: [], fiscais: [], municipios: [],
         coordenadas: [], trechos: [], situacao: [], painel: [],
+        contratos_siad: [], itens: [],
         metrica: { totalContratos: 0, totalAndamento: 0, totalConcluidas: 0, totalEncerradas: 0, valorTotal: 0 }
     };
     let dadosFiltrados = { contratos: [], fiscais: [], valores: [] };
@@ -771,14 +777,33 @@
     };
     let opcoesCache = { anos: [], orgaos: [], situacoes: [], municipios: [], empresas: [], fiscais: [], tiposObra: [] };
     let filtrosAtivos = {
-        visaoGeral: { ano: '', situacao: '', orgao: '', municipio: '' },
-        contratos:  { ano: '', situacao: '', numero: '', portal: '', empresa: '', orgao: '', municipio: '', objeto: '', buscaTabela: '' },
+        visaoGeral: { ano: '', situacao: '', orgao: '', municipio: '', contrato: '' },
+        contratos:  { ano: '', situacao: '', numero: '', portal: '', empresa: '', orgao: '', municipio: '', objeto: '', modLicitacao: '', buscaTabela: '' },
         fiscais:    { ano: '', nome: '', conselho: '', cargo: '', contrato: '', portal: '', orgao: '', buscaTabela: '' },
         valores:    { ano: '', contrato: '', situacao: '', buscaTabela: '' }
     };
     const chartPalette = ['#2f4b63','#39a585','#5f6f7f','#f28c28','#7aa6c2','#8e44ad','#c0392b','#16a085','#d35400','#2980b9'];
     let charts = {};
     let modalContratoAtual = null; // contrato atualmente aberto no modal
+
+    // Configuração de colunas visíveis na tabela de contratos
+    // Colunas fixas: contrato_siad, contrato_der (opcional), processo_compra (obrigatórias)
+    const COLUNAS_CONTRATOS = {
+        contrato_original:  { label: 'CONTRATO DER (opcional)',  visivel: true  },
+        situacao:           { label: 'Situação',                 visivel: true  },
+        legislacao:         { label: 'Legislação',               visivel: false },
+        proc_espec:         { label: 'Mod. Licitação',           visivel: true  },
+        ano:                { label: 'Ano',                      visivel: false },
+        orgao:              { label: 'Órgão',                    visivel: true  },
+        razao_social:       { label: 'Empresa',                  visivel: true  },
+        cnpj:               { label: 'CNPJ/CPF',                visivel: true  },
+        objeto:             { label: 'Objeto',                   visivel: true  },
+        inicio:             { label: 'Data Assinatura',          visivel: true  },
+        vigencia:           { label: 'Data Vigência',            visivel: true  },
+        termino:            { label: 'Fim da Vigência',          visivel: true  },
+        valor:              { label: 'Valor do Contrato',        visivel: true  },
+        proc_det1:          { label: 'Proc. Cont. Det.1',        visivel: false },
+    };
 
     // Cache global para dados de licitações (numero_contrato → {edital, contrato})
     let licitacoesCache = null;
@@ -803,13 +828,18 @@
                             objeto: (row.objeto_processo||'').trim(),
                             modalidade: (row.procedimento_contratacao_detalhamento_1||'').trim(),
                             grupo: (row.procedimento_contratacao_grupo||'').trim(),
+                            especializacao: (row.procedimento_contratacao_especializacao||'').trim(),
                             situacao: (row.situacao_processo||'').trim(),
                             numero_processo: (row.numero_processo_formatado||'').trim(),
                             ano_criacao: (row.ano_criacao_pedido||'').trim(),
+                            ano_assinatura: (row.ano_assinatura_contrato||'').trim(),
                             data_licitacao: (row.data_licitacao||'').trim(),
                             criterio: (row.criterio_julgamento||'').trim(),
                             valor_referencia: (row.valor_total_referencia_item_processo||'').trim(),
-                            valor_homologado: (row.valor_total_homologado||'').trim()
+                            valor_homologado: (row.valor_total_homologado||'').trim(),
+                            razao_social: (row.razao_social_fornecedor||row.nome_empresarial_nome_fornecedor||'').trim(),
+                            cnpj: (row.cnpj_cpf||'').trim(),
+                            numero_contrato_siad: num
                         };
                     });
                     resolve();
@@ -920,7 +950,22 @@
     }
 
     function formatarMoeda(v) { return (v||0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-    function formatarData(d) { return d ? d.split('-').reverse().join('/') : '-'; }
+    function formatarData(d) {
+        if (!d) return '-';
+        const s = String(d).trim();
+        // Formato ISO: AAAA-MM-DD (ou AAAA-MM-DDThh:mm:ss)
+        const isoMatch = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (isoMatch) return `${isoMatch[3]}/${isoMatch[2]}/${isoMatch[1]}`;
+        // Formato estranho: "DD HH:MM:SS/MM/AAAA" → ex: "10 00:00:00/09/2027"
+        const estrMatch = s.match(/^(\d{1,2})\s+[\d:]+\/(\d{2})\/(\d{4})/);
+        if (estrMatch) return `${String(estrMatch[1]).padStart(2,'0')}/${estrMatch[2]}/${estrMatch[3]}`;
+        // Já no formato DD/MM/AAAA
+        if (/^\d{2}\/\d{2}\/\d{4}$/.test(s)) return s;
+        // Fallback: tenta separar por traço
+        const parts = s.split('-');
+        if (parts.length === 3 && parts[0].length === 4) return `${parts[2].substring(0,2)}/${parts[1]}/${parts[0]}`;
+        return s;
+    }
     function truncate(s, l) { return s?.length > l ? s.substring(0, l) + '...' : s || '-'; }
     function getSituacaoClass(s) {
         if (!s) return 'tag-encerrado';
@@ -976,6 +1021,7 @@
             atualizarOpcoesCache();
             renderizarVisaoGeral();
             renderizarContratos();
+            renderizarItens();
             renderizarFiscais();
             renderizarValores();
             renderizarDicionario();
@@ -989,26 +1035,83 @@
     }
 
     function processarDados() {
+        // ── CONTRATOS_SIAD: indexar por Número Contrato ──────────────
+        const siadPorNumero = {};
+        if (dataCache.contratos_siad) {
+            currentDisplayData.contratos_siad = dataCache.contratos_siad.map(r => ({...r}));
+            dataCache.contratos_siad.forEach(r => {
+                const num = (r['Número Contrato']||r['numero_contrato']||'').trim();
+                if (num) {
+                    if (!siadPorNumero[num]) siadPorNumero[num] = [];
+                    siadPorNumero[num].push(r);
+                }
+            });
+        }
+        // ── ITENS: indexar por Número Contrato ───────────────────────
+        const itensPorContrato = {};
+        if (dataCache.itens) {
+            currentDisplayData.itens = dataCache.itens.map(r => ({...r}));
+            dataCache.itens.forEach(r => {
+                const num = (r['Número Contrato']||r['numero_contrato']||'').trim();
+                if (num) {
+                    if (!itensPorContrato[num]) itensPorContrato[num] = [];
+                    itensPorContrato[num].push(r);
+                }
+            });
+        }
+
         if (dataCache.contratos) {
-            currentDisplayData.contratos = dataCache.contratos.map(c => ({
-                contrato: c.contrato?.trim() || '',
-                portal_de_compras: c.portal_de_compras?.trim() || '',
-                orgao_entidade_contratante: c.orgao_entidade_contratante?.trim() || '',
-                empresa: c.empresa?.trim() || '',
-                objeto: c.objeto?.trim() || '',
-                situacao: c.situacao?.trim() || '',
-                data_assinatura: c.data_assinatura?.trim() || '',
-                termino_execucao: c.termino_execucao?.trim() || '',
-                valor_inicial_do_contrato:      parseFloat(String(c.valor_inicial_do_contrato||'0').replace(',','.'))      || 0,
-                valor_em_aditivos:              parseFloat(String(c.valor_em_aditivos||'0').replace(',','.'))              || 0,
-                valor_total_do_contrato:        parseFloat(String(c.valor_total_do_contrato||'0').replace(',','.'))        || 0,
-                valor_medido_precos_iniciais:   parseFloat(String(c.valor_medido_precos_iniciais||'0').replace(',','.'))   || 0,
-                valor_medido_reajuste:          parseFloat(String(c.valor_medido_reajuste||'0').replace(',','.'))          || 0,
-                total_medido:                   parseFloat(String(c.total_medido||'0').replace(',','.'))                   || 0,
-                saldo_contratual:               parseFloat(String(c.saldo_contratual||'0').replace(',','.'))               || 0,
-                percentual_execucao_contrato:   parseFloat(String(c.percentual_execucao_contrato||'0').replace(',','.'))   || 0,
-                ano_assinatura: c.data_assinatura ? c.data_assinatura.split('-')[0] : ''
-            }));
+            currentDisplayData.contratos = dataCache.contratos.map(c => {
+                const numContrato = extrairNumeroContrato(c.contrato?.trim()||'');
+                // Busca primeiro registro SIAD correspondente
+                const siadRows = numContrato ? (siadPorNumero[numContrato] || []) : [];
+                const siad = siadRows[0] || null;
+                // Dados que vêm do SIAD (prioridade) com fallback para contrato original
+                const contrato_siad_raw   = siad ? (siad['Contrato_SIAD']||siad['contrato_siad']||siad['Número Contrato']||'').trim() : '';
+                const razao_social_siad   = siad ? (siad['Razão Social Fornecedor']||siad['Nome Empresarial/Nome Fornecedor']||siad['razao_social_fornecedor']||'').trim() : '';
+                const cnpj_siad           = siad ? (siad['CNPJ/CPF']||siad['cnpj_cpf']||'').trim() : '';
+                const numero_processo_siad= siad ? (siad['Número Processo - Formatado']||siad['numero_processo_formatado']||'').trim() : '';
+                const contrato_link_siad  = siad ? (siad['Contrato_TermoAditivo Arquivos']||siad['contrato_termoaditivo_arquivos']||'').trim() : '';
+                const edital_link_siad    = siad ? (siad['Edital_Retificação Arquivos']||siad['edital_retificacao_arquivos']||'').trim() : '';
+                const proc_grupo          = siad ? (siad['Procedimento Contratação - Grupo']||siad['procedimento_contratacao_grupo']||'').trim() : '';
+                const proc_det1           = siad ? (siad['Procedimento Contratação - Detalhamento 1']||siad['procedimento_contratacao_detalhamento_1']||'').trim() : '';
+                const proc_espec          = siad ? (siad['Procedimento Contratação - Especialização']||siad['procedimento_contratacao_especializacao']||'').trim() : '';
+                const ano_ass_siad        = siad ? (siad['Ano Assinatura Contrato']||siad['ano_assinatura_contrato']||'').trim() : '';
+
+                return {
+                    contrato: c.contrato?.trim() || '',
+                    contrato_siad_raw: contrato_siad_raw,
+                    numero_contrato_siad: contrato_siad_raw || '',
+                    portal_de_compras: c.portal_de_compras?.trim() || '',
+                    numero_processo_siad: numero_processo_siad,
+                    contrato_link_siad: contrato_link_siad,
+                    edital_link_siad: edital_link_siad,
+                    orgao_entidade_contratante: c.orgao_entidade_contratante?.trim() || '',
+                    empresa: c.empresa?.trim() || '',
+                    razao_social_siad: razao_social_siad,
+                    cnpj_siad: cnpj_siad,
+                    proc_grupo: proc_grupo,
+                    proc_det1: proc_det1,
+                    proc_espec: proc_espec,
+                    ano_ass_siad: ano_ass_siad,
+                    objeto: c.objeto?.trim() || '',
+                    situacao: c.situacao?.trim() || '',
+                    data_assinatura: c.data_assinatura?.trim() || '',
+                    data_inicio_vigencia: (c.data_inicio_vigencia||c['data_inicio_vigencia']||c.data_assinatura||'').trim(),
+                    termino_execucao: c.termino_execucao?.trim() || '',
+                    valor_inicial_do_contrato:      parseFloat(String(c.valor_inicial_do_contrato||'0').replace(',','.'))      || 0,
+                    valor_em_aditivos:              parseFloat(String(c.valor_em_aditivos||'0').replace(',','.'))              || 0,
+                    valor_total_do_contrato:        parseFloat(String(c.valor_total_do_contrato||'0').replace(',','.'))        || 0,
+                    valor_medido_precos_iniciais:   parseFloat(String(c.valor_medido_precos_iniciais||'0').replace(',','.'))   || 0,
+                    valor_medido_reajuste:          parseFloat(String(c.valor_medido_reajuste||'0').replace(',','.'))          || 0,
+                    total_medido:                   parseFloat(String(c.total_medido||'0').replace(',','.'))                   || 0,
+                    saldo_contratual:               parseFloat(String(c.saldo_contratual||'0').replace(',','.'))               || 0,
+                    percentual_execucao_contrato:   parseFloat(String(c.percentual_execucao_contrato||'0').replace(',','.'))   || 0,
+                    ano_assinatura: c.data_assinatura ? c.data_assinatura.split('-')[0] : (ano_ass_siad || ''),
+                    siad_rows: siadRows,
+                    itens_siad: contrato_siad_raw ? (itensPorContrato[contrato_siad_raw] || []) : (numContrato ? (itensPorContrato[numContrato] || []) : [])
+                };
+            });
         }
         if (dataCache.obras)      currentDisplayData.obras      = dataCache.obras.map(o      => ({ ...o, contrato: o.contrato?.trim()||'', obra: o.obra?.trim()||'', detipoobra: o.detipoobra?.trim()||'', valor_inicial_da_obra: parseFloat(String(o.valor_inicial_da_obra||'0').replace(',','.'))||0, valor_total_da_obra: parseFloat(String(o.valor_total_da_obra||'0').replace(',','.'))||0, valor_medido_precos_iniciais: parseFloat(String(o.valor_medido_precos_iniciais||'0').replace(',','.'))||0, saldo_de_valor_da_obra: parseFloat(String(o.saldo_de_valor_da_obra||'0').replace(',','.'))||0 }));
         if (dataCache.fiscais)    currentDisplayData.fiscais    = dataCache.fiscais.map(f    => ({ ...f, contrato: f.contrato?.trim()||'', nome: f.nome?.trim()||'', conselho: f.conselho?.trim()||'', cargo: f.cargo?.trim()||'', obra: f.obra?.trim()||'' }));
@@ -1059,7 +1162,10 @@
         opcoesCache.orgaos    = [...new Set(c.map(c => c.orgao_entidade_contratante).filter(Boolean))].sort();
         opcoesCache.situacoes = [...new Set(c.map(c => c.situacao).filter(Boolean))].sort();
         opcoesCache.municipios= [...new Set(currentDisplayData.municipios.map(m => m.municipio).filter(Boolean))].sort();
-        opcoesCache.empresas  = [...new Set(c.map(c => c.empresa).filter(Boolean))].sort();
+        // Empresas: combina razao_social_siad (SIAD) e empresa (original), sem duplicatas
+        const empresasSet = new Set();
+        c.forEach(ct => { if (ct.razao_social_siad) empresasSet.add(ct.razao_social_siad); else if (ct.empresa) empresasSet.add(ct.empresa); });
+        opcoesCache.empresas  = [...empresasSet].sort();
         opcoesCache.fiscais   = [...new Set(currentDisplayData.fiscais.map(f => f.nome).filter(Boolean))].sort();
         opcoesCache.tiposObra = [...new Set(currentDisplayData.obras.map(o => o.detipoobra).filter(Boolean))].sort();
     }
@@ -1078,7 +1184,7 @@
     }
 
     function ordenarArray(array, coluna, direcao) {
-        const mapas = { orgao: 'orgao_entidade_contratante', portal: 'portal_de_compras', ano: 'ano_assinatura', empresa: 'empresa', objeto: 'objeto', inicio: 'data_assinatura', termino: 'termino_execucao', situacao: 'situacao', fiscal: 'nome', conselho: 'conselho', cargo: 'cargo', obra: 'obra', processo_compra: 'portal_de_compras' };
+        const mapas = { orgao: 'orgao_entidade_contratante', portal: 'portal_de_compras', ano: 'ano_assinatura', empresa: 'empresa', objeto: 'objeto', inicio: 'data_assinatura', termino: 'termino_execucao', situacao: 'situacao', fiscal: 'nome', conselho: 'conselho', cargo: 'cargo', obra: 'obra', processo_compra: 'portal_de_compras', contrato_siad: 'contrato_siad_raw', contrato: 'contrato', valor: 'valor_total_do_contrato' };
         const numericCols = new Set(['total','andamento','concluidas','encerradas','valor','valor_inicial_do_contrato','valor_em_aditivos','valor_total_do_contrato','valor_medido_precos_iniciais','valor_medido_reajuste','total_medido','saldo_contratual','percentual_execucao_contrato']);
         const mult = direcao === 'asc' ? 1 : -1;
         array.sort((a, b) => {
@@ -1097,15 +1203,16 @@
     function filtrarContratos() {
         let f = [...currentDisplayData.contratos];
         const fc = filtrosAtivos.contratos;
-        if (fc.ano)       f = f.filter(c => c.ano_assinatura === fc.ano);
-        if (fc.situacao)  f = f.filter(c => c.situacao === fc.situacao);
-        if (fc.numero)    f = f.filter(c => c.contrato?.toLowerCase().includes(fc.numero.toLowerCase()));
-        if (fc.portal)    f = f.filter(c => c.portal_de_compras?.toLowerCase().includes(fc.portal.toLowerCase()));
-        if (fc.empresa)   f = f.filter(c => c.empresa?.toLowerCase().includes(fc.empresa.toLowerCase()));
-        if (fc.orgao)     f = f.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fc.orgao.toLowerCase()));
-        if (fc.objeto)    f = f.filter(c => c.objeto?.toLowerCase().includes(fc.objeto.toLowerCase()));
-        if (fc.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fc.municipio.toLowerCase())).map(m => m.contrato); f = f.filter(c => mcs.includes(c.contrato)); }
-        if (fc.buscaTabela) { const t = fc.buscaTabela.toLowerCase(); f = f.filter(c => c.contrato?.toLowerCase().includes(t)||c.orgao_entidade_contratante?.toLowerCase().includes(t)||c.empresa?.toLowerCase().includes(t)||c.objeto?.toLowerCase().includes(t)); }
+        if (fc.ano)          f = f.filter(c => c.ano_assinatura === fc.ano);
+        if (fc.situacao)     f = f.filter(c => c.situacao === fc.situacao);
+        if (fc.numero)       f = f.filter(c => c.contrato?.toLowerCase().includes(fc.numero.toLowerCase()) || c.numero_contrato_siad?.toLowerCase().includes(fc.numero.toLowerCase()));
+        if (fc.portal)       f = f.filter(c => c.portal_de_compras?.toLowerCase().includes(fc.portal.toLowerCase()) || c.numero_processo_siad?.toLowerCase().includes(fc.portal.toLowerCase()));
+        if (fc.empresa)      f = f.filter(c => (c.razao_social_siad||c.empresa)?.toLowerCase().includes(fc.empresa.toLowerCase()));
+        if (fc.orgao)        f = f.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fc.orgao.toLowerCase()));
+        if (fc.objeto)       f = f.filter(c => c.objeto?.toLowerCase().includes(fc.objeto.toLowerCase()));
+        if (fc.modLicitacao) f = f.filter(c => c.proc_espec?.toLowerCase().includes(fc.modLicitacao.toLowerCase()) || c.proc_det1?.toLowerCase().includes(fc.modLicitacao.toLowerCase()) || c.proc_grupo?.toLowerCase().includes(fc.modLicitacao.toLowerCase()));
+        if (fc.municipio)    { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fc.municipio.toLowerCase())).map(m => m.contrato); f = f.filter(c => mcs.includes(c.contrato)); }
+        if (fc.buscaTabela)  { const t = fc.buscaTabela.toLowerCase(); f = f.filter(c => c.contrato?.toLowerCase().includes(t)||c.numero_contrato_siad?.toLowerCase().includes(t)||c.orgao_entidade_contratante?.toLowerCase().includes(t)||(c.razao_social_siad||c.empresa)?.toLowerCase().includes(t)||c.objeto?.toLowerCase().includes(t)||c.numero_processo_siad?.toLowerCase().includes(t)); }
         dadosFiltrados.contratos = f;
         paginacao.contratos.page = 1;
         renderizarTabelaContratos();
@@ -1179,8 +1286,21 @@
     }
 
     window.mudarPagina = function(tipo, pagina) {
-        const dados = tipo==='geral' ? agruparPorOrgao(currentDisplayData.contratos) : tipo==='contratos' ? dadosFiltrados.contratos : tipo==='fiscais' ? dadosFiltrados.fiscais : dadosFiltrados.valores;
-        const totalPaginas = Math.ceil(dados.length / paginacao[tipo].itemsPerPage);
+        let total;
+        if (tipo === 'geral') {
+            let dadosVG = [...currentDisplayData.contratos];
+            const fvg = filtrosAtivos.visaoGeral;
+            if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
+            if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
+            if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+            if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
+            if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
+            total = dadosVG.length;
+        } else {
+            const dados = tipo==='contratos' ? dadosFiltrados.contratos : tipo==='fiscais' ? dadosFiltrados.fiscais : dadosFiltrados.valores;
+            total = dados.length;
+        }
+        const totalPaginas = Math.ceil(total / paginacao[tipo].itemsPerPage);
         if (pagina < 1 || pagina > totalPaginas) return;
         paginacao[tipo].page = pagina;
         if      (tipo==='geral')     renderizarVisaoGeral();
@@ -1213,24 +1333,50 @@
         if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
         if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
         if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+        if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
         if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
 
-        let dadosOrgao = agruparPorOrgao(dadosVG);
-        ordenarArray(dadosOrgao, sortConfig.geral.coluna, sortConfig.geral.direcao);
+        // Para os gráficos, calcular por ano
+        const anosInicial = {}, anosTotal = {};
+        dadosVG.forEach(c => {
+            if (c.ano_assinatura) {
+                anosInicial[c.ano_assinatura] = (anosInicial[c.ano_assinatura]||0) + (c.valor_inicial_do_contrato||0);
+                anosTotal[c.ano_assinatura]   = (anosTotal[c.ano_assinatura]||0)   + (c.valor_total_do_contrato||0);
+            }
+        });
 
-        const totalOrgaos = dadosOrgao.length;
-        const totalPaginas = Math.ceil(totalOrgaos / paginacao.geral.itemsPerPage);
-        const inicio = (paginacao.geral.page - 1) * paginacao.geral.itemsPerPage;
-        const fim = Math.min(inicio + paginacao.geral.itemsPerPage, totalOrgaos);
-        const dadosPagina = dadosOrgao.slice(inicio, fim);
+        let dadosOrdenados = [...dadosVG];
+        // Ordenação da tabela VG (por contrato, orgao, valor_inicial, valor_total, total_medido, saldo, pct)
+        const scVG = sortConfig.geral;
+        const mapCols = {
+            contrato_siad: 'contrato_siad_raw', contrato: 'contrato', orgao: 'orgao_entidade_contratante',
+            valor_inicial: 'valor_inicial_do_contrato', aditivos: 'valor_em_aditivos',
+            valor_total: 'valor_total_do_contrato', total_medido: 'total_medido',
+            saldo: 'saldo_contratual', pct: 'percentual_execucao_contrato'
+        };
+        dadosOrdenados.sort((a, b) => {
+            const field = mapCols[scVG.coluna] || scVG.coluna;
+            const numCols = new Set(['valor_inicial_do_contrato','valor_em_aditivos','valor_total_do_contrato','total_medido','saldo_contratual','percentual_execucao_contrato']);
+            const mult = scVG.direcao === 'asc' ? 1 : -1;
+            let va = a[field] ?? (numCols.has(field) ? 0 : '');
+            let vb = b[field] ?? (numCols.has(field) ? 0 : '');
+            if (typeof va === 'string') return mult * va.toLowerCase().localeCompare(vb.toLowerCase());
+            return mult * (va - vb);
+        });
 
-        const totalContratos = dadosVG.length;
+        const totalContratos = dadosOrdenados.length;
         const andamento  = dadosVG.filter(c => c.situacao?.includes('Andamento')).length;
         const concluidas = dadosVG.filter(c => c.situacao?.includes('concluída')).length;
         const encerradas = dadosVG.filter(c => c.situacao?.includes('Encerrado')).length;
         const valorTotal = dadosVG.reduce((acc, c) => acc + (c.valor_total_do_contrato||0), 0);
+        const totalOrgaos = new Set(dadosVG.map(c=>c.orgao_entidade_contratante).filter(Boolean)).size;
 
-        const sc = sortConfig.geral;
+        const totalPaginas = Math.ceil(totalContratos / paginacao.geral.itemsPerPage);
+        const inicio = (paginacao.geral.page - 1) * paginacao.geral.itemsPerPage;
+        const fim = Math.min(inicio + paginacao.geral.itemsPerPage, totalContratos);
+        const dadosPagina = dadosOrdenados.slice(inicio, fim);
+
+        const sc = scVG;
         const iconCol = (col) => sc.coluna===col ? (sc.direcao==='asc'?'arrow_upward':'arrow_downward') : 'unfold_more';
 
         container.innerHTML = `
@@ -1244,13 +1390,6 @@
                         ${opcoesCache.anos.map(a=>`<option value="${a}" ${fvg.ano===a?'selected':''}>${a}</option>`).join('')}
                     </select>
                 </div>
-                <div class="filter-group" style="flex:0 0 auto;min-width:170px">
-                    <label class="filter-label">Situação</label>
-                    <select class="form-select modern-select" id="filtroSituacaoVG">
-                        <option value="">Todas</option>
-                        ${opcoesCache.situacoes.map(s=>`<option value="${s}" ${fvg.situacao===s?'selected':''}>${s}</option>`).join('')}
-                    </select>
-                </div>
                 <div class="filter-group">
                     <label class="filter-label">Órgão</label>
                     <input class="form-control" list="orgaosListVG" id="filtroOrgaoVG" placeholder="Digite ou selecione..." value="${fvg.orgao||''}">
@@ -1260,6 +1399,18 @@
                     <label class="filter-label">Município</label>
                     <input class="form-control" list="municipiosListVG" id="filtroMunicipioVG" placeholder="Digite ou selecione..." value="${fvg.municipio||''}">
                     <datalist id="municipiosListVG">${opcoesCache.municipios.map(m=>`<option value="${m}">`).join('')}</datalist>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Contrato</label>
+                    <input class="form-control" list="contratosListVG" id="filtroContratoVG" placeholder="Digite ou selecione..." value="${fvg.contrato||''}">
+                    <datalist id="contratosListVG">${[...new Set(currentDisplayData.contratos.map(c=>c.contrato).filter(Boolean))].sort().map(c=>`<option value="${c}">`).join('')}</datalist>
+                </div>
+                <div class="filter-group" style="flex:0 0 auto;min-width:170px">
+                    <label class="filter-label">Situação</label>
+                    <select class="form-select modern-select" id="filtroSituacaoVG">
+                        <option value="">Todas</option>
+                        ${opcoesCache.situacoes.map(s=>`<option value="${s}" ${fvg.situacao===s?'selected':''}>${s}</option>`).join('')}
+                    </select>
                 </div>
             </div>
             <div class="botoes-abaixo">
@@ -1296,18 +1447,18 @@
             </div>
         </div>
 
-        <!-- GRÁFICOS -->
+        <!-- GRÁFICOS: Valor Inicial por Ano e Valor Total por Ano -->
         <div class="row g-3 mb-4">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="chart-container">
-                    <div class="chart-header"><h4 class="chart-title">Contratos por Situação</h4></div>
-                    <div class="chart-wrapper"><canvas id="chartSituacao"></canvas></div>
+                    <div class="chart-header"><h4 class="chart-title">Valor Inicial por Ano (R$)</h4></div>
+                    <div class="chart-wrapper"><canvas id="chartVGInicial"></canvas></div>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="chart-container">
-                    <div class="chart-header"><h4 class="chart-title">Investimento por Ano (R$)</h4></div>
-                    <div class="chart-wrapper"><canvas id="chartAno"></canvas></div>
+                    <div class="chart-header"><h4 class="chart-title">Valor Total por Ano (R$)</h4></div>
+                    <div class="chart-wrapper"><canvas id="chartVGTotal"></canvas></div>
                 </div>
             </div>
         </div>
@@ -1320,44 +1471,49 @@
                 <button class="btn-export" onclick="copiarLinkDireto()"><span class="material-icons">link</span> Copiar Link</button>
             </div>
             <div class="toolbar-right">
-                <span class="table-badge">${totalOrgaos} órgãos</span>
+                <span class="table-badge" id="totalVGBadge">${totalContratos} contratos</span>
                 <select class="items-per-page" id="itensPorPaginaGeral" onchange="alterarItensPorPagina('geral')">
                     ${[10,25,50,100].map(n=>`<option value="${n}" ${paginacao.geral.itemsPerPage===n?'selected':''}>${n} / pág</option>`).join('')}
                 </select>
             </div>
         </div>
 
-        <!-- TABELA -->
+        <!-- TABELA DE CONTRATOS -->
         <div class="table-container">
             <div class="table-fixed-header-container">
                 <table class="table">
                     <thead><tr>
-                        <th class="sortable-header" onclick="ordenarTabela('geral','orgao')">Órgão/Entidade <span class="material-icons">${iconCol('orgao')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','total','number')">Total <span class="material-icons">${iconCol('total')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','andamento','number')">Andamento <span class="material-icons">${iconCol('andamento')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','concluidas','number')">Concluídas <span class="material-icons">${iconCol('concluidas')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('geral','encerradas','number')">Encerradas <span class="material-icons">${iconCol('encerradas')}</span></th>
-                        <th class="sortable-header text-right" onclick="ordenarTabela('geral','valor','number')">Valor Total (R$) <span class="material-icons">${iconCol('valor')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabelaVG('contrato_siad')">CONTRATO SIAD <span class="material-icons">${iconCol('contrato_siad')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabelaVG('contrato')">CONTRATO DER <span class="material-icons">${iconCol('contrato')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabelaVG('orgao')">Órgão/Entidade <span class="material-icons">${iconCol('orgao')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('valor_inicial')">Valor Inicial (R$) <span class="material-icons">${iconCol('valor_inicial')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('aditivos')">Aditivos (R$) <span class="material-icons">${iconCol('aditivos')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('valor_total')">Valor Total (R$) <span class="material-icons">${iconCol('valor_total')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('total_medido')">Valor Medido (R$) <span class="material-icons">${iconCol('total_medido')}</span></th>
+                        <th class="sortable-header text-right" onclick="ordenarTabelaVG('saldo')">Saldo (R$) <span class="material-icons">${iconCol('saldo')}</span></th>
+                        <th class="sortable-header text-center" onclick="ordenarTabelaVG('pct')">% Execução <span class="material-icons">${iconCol('pct')}</span></th>
+                        <th class="text-center">Ações</th>
                     </tr></thead>
                     <tbody>
-                        ${dadosPagina.map(item=>`
-                        <tr>
-                            <td><a class="orgao-link" href="#" onclick="irParaContratos('${item.orgao.replace(/'/g,"\\'")}','${fvg.ano}','${(fvg.municipio||'').replace(/'/g,"\\'")}');return false;">${item.orgao}</a></td>
-                            <td class="text-center fw-bold">${item.total}</td>
-                            <td class="text-center"><span class="tag-andamento">${item.andamento}</span></td>
-                            <td class="text-center"><span class="tag-concluida">${item.concluidas}</span></td>
-                            <td class="text-center"><span class="tag-encerrado">${item.encerradas}</span></td>
-                            <td class="text-right">R$ ${formatarMoeda(item.valor)}</td>
+                        ${dadosPagina.map(c=>`
+                        <tr style="cursor:pointer" onclick="irParaContratosVG('${(c.contrato||'').replace(/'/g,"\\'")}')">
+                            <td><strong style="color:#006a82">${c.contrato_siad_raw||c.numero_contrato_siad||'-'}</strong></td>
+                            <td><strong style="color:#006a82">${c.contrato||'-'}</strong></td>
+                            <td>${truncate(c.orgao_entidade_contratante,35)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.valor_inicial_do_contrato)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.valor_em_aditivos)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.valor_total_do_contrato)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.total_medido)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(c.saldo_contratual)}</td>
+                            <td class="text-center">
+                                <div class="progresso-barra"><div class="progresso-preenchimento" style="width:${Math.min(c.percentual_execucao_contrato||0,100)}%"></div></div>
+                                <small style="font-size:10px">${(c.percentual_execucao_contrato||0).toFixed(2)}%</small>
+                            </td>
+                            <td class="text-center" onclick="event.stopPropagation()">
+                                <button class="btn-action" title="Ver detalhes" onclick="verDetalhesContrato('${c.contrato}')"><span class="material-icons" style="font-size:15px">visibility</span></button>
+                            </td>
                         </tr>`).join('')}
                     </tbody>
-                    <tfoot><tr>
-                        <td><strong>TOTAL GERAL</strong></td>
-                        <td class="text-center">${totalContratos.toLocaleString('pt-BR')}</td>
-                        <td class="text-center">${andamento.toLocaleString('pt-BR')}</td>
-                        <td class="text-center">${concluidas.toLocaleString('pt-BR')}</td>
-                        <td class="text-center">${encerradas.toLocaleString('pt-BR')}</td>
-                        <td class="text-right">R$ ${formatarMoeda(valorTotal)}</td>
-                    </tr></tfoot>
                 </table>
             </div>
             <div class="pagination-container" id="paginacaoContainerGeral"></div>
@@ -1367,38 +1523,38 @@
             <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
         </div>`;
 
-        renderizarGraficosSituacao({ andamento, concluidas, encerradas, outras: totalContratos-andamento-concluidas-encerradas });
-        renderizarGraficosAno(dadosVG);
-        renderizarPaginacao('geral', totalPaginas, inicio, fim, totalOrgaos);
+        // Renderizar gráficos de valor inicial e valor total por ano
+        if (charts.vgInicial) charts.vgInicial.destroy();
+        if (charts.vgTotal)   charts.vgTotal.destroy();
+        const optsBar = (label, color) => ({
+            type:'bar',
+            data:{ labels: Object.keys(label).sort(), datasets:[{ data: Object.keys(label).sort().map(a=>label[a]), backgroundColor: color, borderRadius: 4 }] },
+            options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label:(ctx)=>`R$ ${formatarMoeda(ctx.raw)}` } } }, scales:{ x:{ grid:{ display:false } }, y:{ grid:{ display:false }, beginAtZero:true, ticks:{ callback:(v)=>'R$ '+formatarMoeda(v), font:{ size:9 } } } } }
+        });
+        const ctxI = document.getElementById('chartVGInicial')?.getContext('2d');
+        if (ctxI) charts.vgInicial = new Chart(ctxI, optsBar(anosInicial, '#39a585'));
+        const ctxT = document.getElementById('chartVGTotal')?.getContext('2d');
+        if (ctxT) charts.vgTotal = new Chart(ctxT, optsBar(anosTotal, '#2f4b63'));
 
+        renderizarPaginacao('geral', totalPaginas, inicio, fim, totalContratos);
         setTimeout(() => { document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el)); }, 100);
         setTimeout(iframeUpdateHeight, 300);
     }
 
-    function renderizarGraficosSituacao(dados) {
-        if (charts.situacao) charts.situacao.destroy();
-        const ctx = document.getElementById('chartSituacao')?.getContext('2d');
-        if (!ctx) return;
-        charts.situacao = new Chart(ctx, {
-            type: 'doughnut',
-            data: { labels: ['Em Andamento','Concluídas','Encerradas','Outras'], datasets: [{ data: [dados.andamento,dados.concluidas,dados.encerradas,dados.outras], backgroundColor: ['#ffc107','#28a745','#17a2b8','#6c757d'], borderWidth: 2, borderColor: '#fff' }] },
-            options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } }, tooltip: { callbacks: { label: (ctx) => { const t=ctx.dataset.data.reduce((a,b)=>a+b,0); const p=((ctx.raw/t)*100).toFixed(1); return `${ctx.label}: ${ctx.raw} (${p}%)`; } } } } }
-        });
-    }
+    window.ordenarTabelaVG = function(coluna) {
+        const sc = sortConfig.geral;
+        if (sc.coluna === coluna) sc.direcao = sc.direcao === 'asc' ? 'desc' : 'asc';
+        else { sc.coluna = coluna; sc.direcao = ['contrato_siad','contrato','orgao'].includes(coluna) ? 'asc' : 'desc'; }
+        paginacao.geral.page = 1;
+        renderizarVisaoGeral();
+    };
 
-    function renderizarGraficosAno(dados) {
-        if (charts.ano) charts.ano.destroy();
-        const ctx = document.getElementById('chartAno')?.getContext('2d');
-        if (!ctx) return;
-        const anosMap = {};
-        dados.forEach(c => { if (c.ano_assinatura) anosMap[c.ano_assinatura] = (anosMap[c.ano_assinatura]||0) + (c.valor_total_do_contrato||0); });
-        const anos = Object.keys(anosMap).sort();
-        charts.ano = new Chart(ctx, {
-            type: 'bar',
-            data: { labels: anos, datasets: [{ data: anos.map(a=>anosMap[a]), backgroundColor: chartPalette[0], borderRadius: 4 }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => `R$ ${formatarMoeda(ctx.raw)}` } } }, scales: { x: { grid: { display: false } }, y: { grid: { display: false }, beginAtZero: true, ticks: { callback: (v) => 'R$ '+formatarMoeda(v), font: { size: 9 } } } } }
-        });
-    }
+    window.irParaContratosVG = function(contrato) {
+        filtrosAtivos.contratos.numero = contrato;
+        filtrarContratos();
+        document.getElementById('contratos-tab').click();
+        setTimeout(() => renderizarContratos(), 300);
+    };
 
     // ============================================================
     // RENDERIZAÇÃO — CONTRATOS
@@ -1420,6 +1576,11 @@
                     </select>
                 </div>
                 <div class="consulta-filter-group">
+                    <label class="filter-label">Órgão</label>
+                    <input class="form-control" list="orgaosListContrato" id="filtroOrgaoContrato" placeholder="Digite ou selecione...">
+                    <datalist id="orgaosListContrato">${opcoesCache.orgaos.map(o=>`<option value="${o}">`).join('')}</datalist>
+                </div>
+                <div class="consulta-filter-group">
                     <label class="filter-label">Situação</label>
                     <select class="form-select modern-select" id="filtroSituacaoContrato">
                         <option value="">Todas</option>
@@ -1427,12 +1588,12 @@
                     </select>
                 </div>
                 <div class="consulta-filter-group">
-                    <label class="filter-label">Nº Contrato</label>
-                    <input type="text" class="form-control" id="filtroNumeroContrato" placeholder="Digite o número...">
-                </div>
-                <div class="consulta-filter-group">
                     <label class="filter-label">Processo de Compras</label>
                     <input type="text" class="form-control" id="filtroPortalContrato" placeholder="Nº processo...">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Nº Contrato</label>
+                    <input type="text" class="form-control" id="filtroNumeroContrato" placeholder="Digite o número...">
                 </div>
                 <div class="consulta-filter-group">
                     <label class="filter-label">Empresa</label>
@@ -1440,18 +1601,17 @@
                     <datalist id="empresasListContrato">${opcoesCache.empresas.map(e=>`<option value="${e}">`).join('')}</datalist>
                 </div>
                 <div class="consulta-filter-group">
-                    <label class="filter-label">Órgão</label>
-                    <input class="form-control" list="orgaosListContrato" id="filtroOrgaoContrato" placeholder="Digite ou selecione...">
-                    <datalist id="orgaosListContrato">${opcoesCache.orgaos.map(o=>`<option value="${o}">`).join('')}</datalist>
+                    <label class="filter-label">Objeto</label>
+                    <input type="text" class="form-control" id="filtroObjetoContrato" placeholder="Palavra-chave...">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Mod. Licitação</label>
+                    <input type="text" class="form-control" id="filtroModLicitacaoContrato" placeholder="Modalidade...">
                 </div>
                 <div class="consulta-filter-group">
                     <label class="filter-label">Município</label>
                     <input class="form-control" list="municipiosListContrato" id="filtroMunicipioContrato" placeholder="Digite ou selecione...">
                     <datalist id="municipiosListContrato">${opcoesCache.municipios.map(m=>`<option value="${m}">`).join('')}</datalist>
-                </div>
-                <div class="consulta-filter-group">
-                    <label class="filter-label">Objeto</label>
-                    <input type="text" class="form-control" id="filtroObjetoContrato" placeholder="Palavra-chave...">
                 </div>
             </div>
             <div class="consulta-buttons-row">
@@ -1465,6 +1625,9 @@
                 <button class="btn-export" onclick="exportarContratosCSV()"><span class="material-icons">description</span> CSV</button>
                 <button class="btn-export" onclick="exportarContratosPDF()"><span class="material-icons">print</span> PDF</button>
                 <button class="btn-export" onclick="copiarLinkDireto()"><span class="material-icons">link</span> Copiar Link</button>
+                <button class="btn-export" onclick="abrirGerenciadorColunas()" title="Adicionar/Remover Colunas" style="background:#17a2b8;border-color:#17a2b8;">
+                    <span class="material-icons">view_column</span> Colunas
+                </button>
                 <div class="table-search-container">
                     <span class="material-icons" style="font-size:14px;color:#94a3b8;">search</span>
                     <input type="text" class="table-search-input" id="buscaTabelaContratos" placeholder="Busca rápida..." oninput="filtrosAtivos.contratos.buscaTabela=this.value;filtrarContratos()">
@@ -1480,23 +1643,29 @@
 
         <div class="table-container">
             <div class="table-fixed-header-container">
-                <table class="table">
-                    <thead><tr>
-                        <th class="sortable-header" onclick="ordenarTabela('contratos','contrato')">Contrato <span class="material-icons">${iconCol('contrato')}</span></th>
-                        <th class="sortable-header" onclick="ordenarTabela('contratos','portal')">Processo de Compras <span class="material-icons">${iconCol('portal')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('contratos','ano','number')">Ano <span class="material-icons">${iconCol('ano')}</span></th>
-                        <th class="sortable-header" onclick="ordenarTabela('contratos','orgao')">Órgão <span class="material-icons">${iconCol('orgao')}</span></th>
-                        <th class="sortable-header" onclick="ordenarTabela('contratos','empresa')">Empresa <span class="material-icons">${iconCol('empresa')}</span></th>
-                        <th class="sortable-header" onclick="ordenarTabela('contratos','objeto')">Objeto <span class="material-icons">${iconCol('objeto')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('contratos','inicio')">Início <span class="material-icons">${iconCol('inicio')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('contratos','termino')">Término <span class="material-icons">${iconCol('termino')}</span></th>
-                        <th class="sortable-header text-center" onclick="ordenarTabela('contratos','situacao')">Situação <span class="material-icons">${iconCol('situacao')}</span></th>
-                        <th class="text-center">Ações</th>
-                    </tr></thead>
+                <table class="table" id="tabelaContratos">
+                    <thead><tr id="tabelaContratosHead"></tr></thead>
                     <tbody id="contratosTableBody"></tbody>
                 </table>
             </div>
             <div class="pagination-container" id="paginacaoContainerContratos"></div>
+        </div>
+
+        <!-- Modal gerenciador de colunas -->
+        <div id="modalColunas" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9999;align-items:center;justify-content:center;">
+            <div style="background:white;border-radius:12px;padding:24px;max-width:480px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;border-bottom:2px solid #e9ecef;padding-bottom:12px;">
+                    <span class="material-icons" style="color:#1a3a5c;font-size:22px">view_column</span>
+                    <span style="font-size:15px;font-weight:700;color:#1a3a5c">Gerenciar Colunas — Tabela de Contratos</span>
+                    <button onclick="fecharGerenciadorColunas()" style="margin-left:auto;background:none;border:none;cursor:pointer;font-size:20px;color:#6c757d;">✕</button>
+                </div>
+                <p style="font-size:11px;color:#6c757d;margin-bottom:12px;">As colunas <strong>CONTRATO SIAD</strong> e <strong>Processo de Compras</strong> são fixas. Marque as demais que deseja exibir. A coluna <strong>Legislação</strong> é opcional (desmarcada por padrão):</p>
+                <div id="listaColunasGerenciador" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;"></div>
+                <div style="display:flex;gap:8px;justify-content:flex-end;">
+                    <button onclick="fecharGerenciadorColunas()" class="btn-secondary-custom" style="height:34px;font-size:12px;">Cancelar</button>
+                    <button onclick="aplicarColunasGerenciador()" class="btn-pesquisa" style="height:34px;font-size:12px;"><span class="material-icons" style="font-size:14px">check</span> Aplicar</button>
+                </div>
+            </div>
         </div>
 
         <div style="display:flex;justify-content:flex-end;margin-top:12px;">
@@ -1511,6 +1680,8 @@
         document.getElementById('filtroOrgaoContrato').value      = filtrosAtivos.contratos.orgao||'';
         document.getElementById('filtroMunicipioContrato').value  = filtrosAtivos.contratos.municipio||'';
         document.getElementById('filtroObjetoContrato').value     = filtrosAtivos.contratos.objeto||'';
+        const modLic = document.getElementById('filtroModLicitacaoContrato');
+        if (modLic) modLic.value = filtrosAtivos.contratos.modLicitacao||'';
         document.getElementById('buscaTabelaContratos').value     = filtrosAtivos.contratos.buscaTabela||'';
         renderizarTabelaContratos();
     }
@@ -1521,31 +1692,113 @@
         const total = dados.length;
         const pp = paginacao.contratos.itemsPerPage, page = paginacao.contratos.page;
         const totalPags = Math.ceil(total/pp), inicio = (page-1)*pp, fim = Math.min(inicio+pp,total);
+        const sc = sortConfig.contratos;
+        const iconCol = (col) => sc.coluna===col ? (sc.direcao==='asc'?'arrow_upward':'arrow_downward') : 'unfold_more';
+
+        // Montar cabeçalho dinâmico
+        const head = document.getElementById('tabelaContratosHead');
+        if (head) {
+            let thHtml = `
+                <th class="sortable-header" onclick="ordenarTabela('contratos','contrato_siad')">CONTRATO SIAD <span class="material-icons">${iconCol('contrato_siad')}</span></th>`;
+            if (COLUNAS_CONTRATOS.contrato_original.visivel) thHtml += `<th class="sortable-header" onclick="ordenarTabela('contratos','contrato')">CONTRATO DER <span class="material-icons">${iconCol('contrato')}</span></th>`;
+            thHtml += `<th>Processo de Compras</th>`;
+            if (COLUNAS_CONTRATOS.situacao.visivel)   thHtml += `<th class="sortable-header text-center" onclick="ordenarTabela('contratos','situacao')">Situação <span class="material-icons">${iconCol('situacao')}</span></th>`;
+            if (COLUNAS_CONTRATOS.legislacao.visivel) thHtml += `<th>Legislação</th>`;
+            if (COLUNAS_CONTRATOS.proc_espec.visivel) thHtml += `<th>Mod. Licitação</th>`;
+            if (COLUNAS_CONTRATOS.ano.visivel)        thHtml += `<th class="sortable-header text-center" onclick="ordenarTabela('contratos','ano','number')">Ano <span class="material-icons">${iconCol('ano')}</span></th>`;
+            if (COLUNAS_CONTRATOS.orgao.visivel)      thHtml += `<th class="sortable-header" onclick="ordenarTabela('contratos','orgao')">Órgão <span class="material-icons">${iconCol('orgao')}</span></th>`;
+            if (COLUNAS_CONTRATOS.razao_social.visivel) thHtml += `<th class="sortable-header" onclick="ordenarTabela('contratos','empresa')">Empresa <span class="material-icons">${iconCol('empresa')}</span></th>`;
+            if (COLUNAS_CONTRATOS.cnpj.visivel)       thHtml += `<th>CNPJ/CPF</th>`;
+            if (COLUNAS_CONTRATOS.objeto.visivel)     thHtml += `<th class="sortable-header" onclick="ordenarTabela('contratos','objeto')">Objeto <span class="material-icons">${iconCol('objeto')}</span></th>`;
+            if (COLUNAS_CONTRATOS.inicio.visivel)     thHtml += `<th class="sortable-header text-center" onclick="ordenarTabela('contratos','inicio')">Data Assinatura <span class="material-icons">${iconCol('inicio')}</span></th>`;
+            if (COLUNAS_CONTRATOS.vigencia.visivel)   thHtml += `<th class="text-center">Data Vigência</th>`;
+            if (COLUNAS_CONTRATOS.termino.visivel)    thHtml += `<th class="sortable-header text-center" onclick="ordenarTabela('contratos','termino')">Fim da Vigência <span class="material-icons">${iconCol('termino')}</span></th>`;
+            if (COLUNAS_CONTRATOS.valor.visivel)      thHtml += `<th class="sortable-header text-right" onclick="ordenarTabela('contratos','valor','number')">Valor do Contrato <span class="material-icons">${iconCol('valor')}</span></th>`;
+            if (COLUNAS_CONTRATOS.proc_det1.visivel)  thHtml += `<th>Proc. Detalh.1</th>`;
+            thHtml += `<th class="text-center">Ações</th>`;
+            head.innerHTML = thHtml;
+        }
+
         const tbody = document.getElementById('contratosTableBody');
         if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(c=>{
-            const pt = transformarPortalCompras(c.portal_de_compras);
-            const portalCell = pt.url
-                ? `<a href="${pt.url}" target="_blank" class="compra-link" title="Acessar no ComprasMG">${pt.texto}</a>`
-                : (pt.texto || '-');
-            return `
-            <tr>
-                <td><strong>${c.contrato||'-'}</strong></td>
-                <td>${portalCell}</td>
-                <td class="text-center">${c.ano_assinatura||'-'}</td>
-                <td>${truncate(c.orgao_entidade_contratante,30)}</td>
-                <td>${truncate(c.empresa,25)}</td>
-                <td title="${c.objeto||''}">${truncate(c.objeto,40)}</td>
-                <td class="text-center">${formatarData(c.data_assinatura)}</td>
-                <td class="text-center">${formatarData(c.termino_execucao)}</td>
-                <td class="text-center"><span class="${getSituacaoClass(c.situacao)}">${c.situacao||'-'}</span></td>
-                <td class="text-center"><button class="btn-action" title="Ver detalhes" onclick="verDetalhesContrato('${c.contrato}')"><span class="material-icons" style="font-size:15px">visibility</span></button></td>
+            // CONTRATO SIAD sem ícone de setinha
+            const numSiad = c.contrato_siad_raw || c.numero_contrato_siad || '-';
+            const linkDocSiad = c.contrato_link_siad;
+            const numSiadCell = linkDocSiad
+                ? `<a href="${linkDocSiad}" target="_blank" class="compra-link" title="Ver contrato/aditivos no SIAD">${numSiad}</a>`
+                : `${numSiad}`;
+
+            // Processo de Compras sem ícone de setinha
+            let processoCelula = '-';
+            if (c.numero_processo_siad) {
+                const pt = transformarPortalCompras(c.portal_de_compras);
+                const editalLink = c.edital_link_siad;
+                if (editalLink) {
+                    processoCelula = `<a href="${editalLink}" target="_blank" class="compra-link" title="Ver edital/retificação">${c.numero_processo_siad}</a>`;
+                } else if (pt.url) {
+                    processoCelula = `<a href="${pt.url}" target="_blank" class="compra-link" title="Acessar no ComprasMG">${c.numero_processo_siad}</a>`;
+                } else {
+                    processoCelula = c.numero_processo_siad;
+                }
+            } else {
+                const pt = transformarPortalCompras(c.portal_de_compras);
+                processoCelula = pt.url ? `<a href="${pt.url}" target="_blank" class="compra-link">${pt.texto}</a>` : (pt.texto || '-');
+            }
+
+            // Empresa: razao_social_siad tem prioridade; fallback para empresa original
+            const empresaNome = c.razao_social_siad || c.empresa || '-';
+
+            let rowHtml = `<tr>
+                <td>${numSiadCell}</td>`;
+            if (COLUNAS_CONTRATOS.contrato_original.visivel) rowHtml += `<td>${c.contrato||'-'}</td>`;
+            rowHtml += `<td>${processoCelula}</td>`;
+            if (COLUNAS_CONTRATOS.situacao.visivel)   rowHtml += `<td class="text-center"><span class="${getSituacaoClass(c.situacao)}">${c.situacao||'-'}</span></td>`;
+            if (COLUNAS_CONTRATOS.legislacao.visivel) rowHtml += `<td><small>${c.proc_grupo||'-'}</small></td>`;
+            if (COLUNAS_CONTRATOS.proc_espec.visivel) rowHtml += `<td><small>${c.proc_espec||'-'}</small></td>`;
+            if (COLUNAS_CONTRATOS.ano.visivel)        rowHtml += `<td class="text-center">${c.ano_assinatura||'-'}</td>`;
+            if (COLUNAS_CONTRATOS.orgao.visivel)      rowHtml += `<td>${truncate(c.orgao_entidade_contratante,30)}</td>`;
+            if (COLUNAS_CONTRATOS.razao_social.visivel) rowHtml += `<td>${truncate(empresaNome,25)}</td>`;
+            if (COLUNAS_CONTRATOS.cnpj.visivel)       rowHtml += `<td><small>${c.cnpj_siad||'-'}</small></td>`;
+            if (COLUNAS_CONTRATOS.objeto.visivel)     rowHtml += `<td title="${c.objeto||''}">${truncate(c.objeto,40)}</td>`;
+            if (COLUNAS_CONTRATOS.inicio.visivel)     rowHtml += `<td class="text-center">${formatarData(c.data_assinatura)}</td>`;
+            if (COLUNAS_CONTRATOS.vigencia.visivel)   rowHtml += `<td class="text-center">${formatarData(c.data_inicio_vigencia||c.data_assinatura)}</td>`;
+            if (COLUNAS_CONTRATOS.termino.visivel)    rowHtml += `<td class="text-center">${formatarData(c.termino_execucao)}</td>`;
+            if (COLUNAS_CONTRATOS.valor.visivel)      rowHtml += `<td class="text-right">R$ ${formatarMoeda(c.valor_total_do_contrato)}</td>`;
+            if (COLUNAS_CONTRATOS.proc_det1.visivel)  rowHtml += `<td><small>${c.proc_det1||'-'}</small></td>`;
+            rowHtml += `<td class="text-center"><button class="btn-action" title="Ver detalhes" onclick="verDetalhesContrato('${(c.contrato||'').replace(/'/g,"\\'")}')"><span class="material-icons" style="font-size:15px">visibility</span></button></td>
             </tr>`;
+            return rowHtml;
         }).join('');
         const badge = document.getElementById('totalContratosBadge');
         if (badge) badge.textContent = `${total} contratos`;
         renderizarPaginacao('contratos', totalPags, inicio, fim, total);
         setTimeout(iframeUpdateHeight, 100);
     }
+
+    // ── Gerenciador de Colunas ────────────────────────────────────
+    window.abrirGerenciadorColunas = function() {
+        const modal = document.getElementById('modalColunas');
+        const lista = document.getElementById('listaColunasGerenciador');
+        if (!modal || !lista) return;
+        lista.innerHTML = Object.entries(COLUNAS_CONTRATOS).map(([key, cfg]) => `
+            <label style="display:flex;align-items:center;gap:8px;font-size:12px;padding:6px 10px;border-radius:6px;border:1px solid #e9ecef;cursor:pointer;background:${cfg.visivel?'#e8f4f8':'#f8fafd'};">
+                <input type="checkbox" data-col="${key}" ${cfg.visivel?'checked':''} style="width:15px;height:15px;cursor:pointer;">
+                ${cfg.label}
+            </label>`).join('');
+        modal.style.display = 'flex';
+    };
+    window.fecharGerenciadorColunas = function() {
+        const modal = document.getElementById('modalColunas');
+        if (modal) modal.style.display = 'none';
+    };
+    window.aplicarColunasGerenciador = function() {
+        document.querySelectorAll('#listaColunasGerenciador input[type=checkbox]').forEach(cb => {
+            const key = cb.dataset.col;
+            if (COLUNAS_CONTRATOS[key]) COLUNAS_CONTRATOS[key].visivel = cb.checked;
+        });
+        fecharGerenciadorColunas();
+        renderizarTabelaContratos();
+    };
 
     // ============================================================
     // RENDERIZAÇÃO — FISCAIS
@@ -1620,7 +1873,8 @@
                         <th class="sortable-header" onclick="ordenarTabela('fiscais','conselho')">Conselho <span class="material-icons">${iconCol('conselho')}</span></th>
                         <th class="sortable-header" onclick="ordenarTabela('fiscais','cargo')">Cargo <span class="material-icons">${iconCol('cargo')}</span></th>
                         <th class="sortable-header text-center" onclick="ordenarTabela('fiscais','ano')">Ano <span class="material-icons">${iconCol('ano')}</span></th>
-                        <th class="sortable-header" onclick="ordenarTabela('fiscais','contrato')">Contrato <span class="material-icons">${iconCol('contrato')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabela('fiscais','contrato_siad')">CONTRATO SIAD <span class="material-icons">${iconCol('contrato_siad')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabela('fiscais','contrato')">CONTRATO DER <span class="material-icons">${iconCol('contrato')}</span></th>
                         <th class="sortable-header" onclick="ordenarTabela('fiscais','processo_compra')">Processo de Compras <span class="material-icons">${iconCol('processo_compra')}</span></th>
                         <th class="text-center">Ações</th>
                     </tr></thead>
@@ -1654,6 +1908,7 @@
         if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(f=>{
             const contrato = currentDisplayData.contratos.find(c => c.contrato === f.contrato);
             const ano = contrato?.ano_assinatura || '-';
+            const contrato_siad_disp = contrato?.contrato_siad_raw || contrato?.numero_contrato_siad || '-';
             const pt = transformarPortalCompras(contrato?.portal_de_compras);
             const portalCell = pt?.url
                 ? `<a href="${pt.url}" target="_blank" class="compra-link" title="Acessar no ComprasMG">${pt.texto}</a>`
@@ -1664,9 +1919,10 @@
                 <td>${f.conselho||'-'}</td>
                 <td>${f.cargo||'-'}</td>
                 <td class="text-center">${ano}</td>
+                <td><strong style="color:#006a82">${contrato_siad_disp}</strong></td>
                 <td>${f.contrato||'-'}</td>
                 <td>${portalCell}</td>
-                <td class="text-center"><button class="btn-action" title="Ver contrato" onclick="verDetalhesContrato('${f.contrato}')"><span class="material-icons" style="font-size:15px">visibility</span></button></td>
+                <td class="text-center"><button class="btn-action" title="Ver contrato" onclick="verDetalhesContrato('${(f.contrato||'').replace(/'/g,"\\'")}')"><span class="material-icons" style="font-size:15px">visibility</span></button></td>
             </tr>`;
         }).join('');
         const badge = document.getElementById('totalFiscaisBadge');
@@ -1674,6 +1930,209 @@
         renderizarPaginacao('fiscais', totalPags, inicio, fim, total);
         setTimeout(iframeUpdateHeight, 100);
     }
+
+    // ============================================================
+    // RENDERIZAÇÃO — ITENS DA OBRA
+    // ============================================================
+    let dadosFiltradosItens = [];
+    let paginacaoItens = { page: 1, itemsPerPage: 25 };
+    let sortConfigItens = { coluna: 'contrato_siad', direcao: 'asc' };
+    let filtrosItens = { contrato: '', contrato_siad: '', descricao: '', cod_mat: '', cod_elem: '', elem_despesa: '', buscaTabela: '' };
+
+    function renderizarItens() {
+        const container = document.getElementById('itens-content');
+        if (!container) return;
+
+        const sc = sortConfigItens;
+        const iconCol = (col) => sc.coluna===col ? (sc.direcao==='asc'?'arrow_upward':'arrow_downward') : 'unfold_more';
+
+        // Montar lista de itens enriquecida com dados do contrato
+        if (!dadosFiltradosItens.length && currentDisplayData.itens.length) {
+            filtrarItens(false);
+        }
+
+        container.innerHTML = `
+        <div class="filter-container">
+            <div class="consulta-filters-row">
+                <div class="consulta-filter-group">
+                    <label class="filter-label">CONTRATO SIAD</label>
+                    <input type="text" class="form-control" id="filtroItensSiad" placeholder="Nº contrato SIAD..." value="${filtrosItens.contrato_siad||''}">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">CONTRATO DER</label>
+                    <input type="text" class="form-control" id="filtroItensContrato" placeholder="Ex: DE-011/2021..." value="${filtrosItens.contrato||''}">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Item Material/Serviço</label>
+                    <input type="text" class="form-control" id="filtroItensDescricao" placeholder="Palavra-chave..." value="${filtrosItens.descricao||''}">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Cód. Material/Serviço</label>
+                    <input type="text" class="form-control" id="filtroItensCodMat" placeholder="Código..." value="${filtrosItens.cod_mat||''}">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Cód. Elem. Despesa</label>
+                    <input type="text" class="form-control" id="filtroItensCodElem" placeholder="Código..." value="${filtrosItens.cod_elem||''}">
+                </div>
+                <div class="consulta-filter-group">
+                    <label class="filter-label">Elem. Despesa</label>
+                    <input type="text" class="form-control" id="filtroItensElemDespesa" placeholder="Descrição..." value="${filtrosItens.elem_despesa||''}">
+                </div>
+            </div>
+            <div class="consulta-buttons-row">
+                <button class="btn-pesquisa" onclick="aplicarFiltrosItens()"><span class="material-icons">tune</span> Atualizar Filtros</button>
+                <button class="btn-secondary-custom" onclick="limparFiltrosItens()"><span class="material-icons">clear</span> Limpar Filtros</button>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <div class="table-search-container">
+                    <span class="material-icons" style="font-size:14px;color:#94a3b8;">search</span>
+                    <input type="text" class="table-search-input" id="buscaTabelaItens" placeholder="Busca rápida..." value="${filtrosItens.buscaTabela||''}" oninput="filtrosItens.buscaTabela=this.value;filtrarItens()">
+                </div>
+            </div>
+            <div class="toolbar-right">
+                <span class="table-badge" id="totalItensBadge">${dadosFiltradosItens.length} itens</span>
+                <select class="items-per-page" id="itensPorPaginaItens" onchange="paginacaoItens.itemsPerPage=parseInt(this.value);paginacaoItens.page=1;renderizarTabelaItens()">
+                    ${[10,25,50,100].map(n=>`<option value="${n}" ${paginacaoItens.itemsPerPage===n?'selected':''}>${n} / pág</option>`).join('')}
+                </select>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-fixed-header-container">
+                <table class="table">
+                    <thead><tr>
+                        <th class="sortable-header" onclick="ordenarTabelaItens('contrato_siad')">CONTRATO SIAD <span class="material-icons">${iconCol('contrato_siad')}</span></th>
+                        <th class="sortable-header" onclick="ordenarTabelaItens('contrato')">CONTRATO DER <span class="material-icons">${iconCol('contrato')}</span></th>
+                        <th class="text-center">Nº Item</th>
+                        <th>Cód. Material/Serviço</th>
+                        <th class="sortable-header" onclick="ordenarTabelaItens('descricao')">Item Material/Serviço <span class="material-icons">${iconCol('descricao')}</span></th>
+                        <th>Cód. Elem. Despesa</th>
+                        <th>Elem. Despesa</th>
+                        <th class="text-right">Qtd.</th>
+                        <th class="text-right">Vl. Unit. Ref. (R$)</th>
+                        <th class="text-right">Vl. Total Ref. (R$)</th>
+                        <th class="text-right">Vl. Homolog. (R$)</th>
+                        <th class="text-center">Ações</th>
+                    </tr></thead>
+                    <tbody id="itensTableBody"></tbody>
+                </table>
+            </div>
+            <div class="pagination-container" id="paginacaoContainerItens"></div>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;margin-top:12px;">
+            <button class="btn-topo" onclick="voltarAoTopo()"><span class="material-icons">arrow_upward</span> Voltar ao topo</button>
+        </div>`;
+
+        renderizarTabelaItens();
+    }
+
+    function filtrarItens(rerender=true) {
+        let dados = currentDisplayData.itens.map(it => {
+            const numContrato = (it['Número Contrato']||it['numero_contrato']||'').trim();
+            const contrato = currentDisplayData.contratos.find(c => c.numero_contrato_siad === numContrato || c.contrato_siad_raw === numContrato);
+            return {
+                ...it,
+                _contrato_der: contrato ? contrato.contrato : '',
+                _contrato_siad: it['Número Contrato']||it['numero_contrato']||it['Contrato_SIAD']||it['contrato_siad']||'',
+                _descricao: it['Item Material/Serviço']||it['item_material_servico']||'',
+                _contrato_ref: contrato
+            };
+        });
+        if (filtrosItens.contrato_siad) dados = dados.filter(it => it._contrato_siad?.toLowerCase().includes(filtrosItens.contrato_siad.toLowerCase()));
+        if (filtrosItens.contrato)      dados = dados.filter(it => it._contrato_der?.toLowerCase().includes(filtrosItens.contrato.toLowerCase()));
+        if (filtrosItens.descricao)     dados = dados.filter(it => it._descricao?.toLowerCase().includes(filtrosItens.descricao.toLowerCase()));
+        if (filtrosItens.cod_mat)       dados = dados.filter(it => (it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'').toString().toLowerCase().includes(filtrosItens.cod_mat.toLowerCase()));
+        if (filtrosItens.cod_elem)      dados = dados.filter(it => (it['Código Elemento Item Despesa']||it['codigo_elemento_item_despesa']||'').toString().toLowerCase().includes(filtrosItens.cod_elem.toLowerCase()));
+        if (filtrosItens.elem_despesa)  dados = dados.filter(it => (it['Nome Elemento Item Despesa']||it['nome_elemento_item_despesa']||'').toLowerCase().includes(filtrosItens.elem_despesa.toLowerCase()));
+        if (filtrosItens.buscaTabela) {
+            const t = filtrosItens.buscaTabela.toLowerCase();
+            dados = dados.filter(it => it._contrato_siad?.toLowerCase().includes(t)||it._contrato_der?.toLowerCase().includes(t)||it._descricao?.toLowerCase().includes(t));
+        }
+        // Ordenação
+        const sc = sortConfigItens;
+        const mult = sc.direcao === 'asc' ? 1 : -1;
+        dados.sort((a,b) => {
+            let va='', vb='';
+            if (sc.coluna==='contrato_siad') { va=a._contrato_siad||''; vb=b._contrato_siad||''; }
+            else if (sc.coluna==='contrato') { va=a._contrato_der||''; vb=b._contrato_der||''; }
+            else if (sc.coluna==='descricao') { va=a._descricao||''; vb=b._descricao||''; }
+            return mult * va.toLowerCase().localeCompare(vb.toLowerCase());
+        });
+        dadosFiltradosItens = dados;
+        paginacaoItens.page = 1;
+        if (rerender) renderizarTabelaItens();
+    }
+
+    function renderizarTabelaItens() {
+        const dados = dadosFiltradosItens;
+        const total = dados.length;
+        const pp = paginacaoItens.itemsPerPage, page = paginacaoItens.page;
+        const totalPags = Math.ceil(total/pp)||1, inicio = (page-1)*pp, fim = Math.min(inicio+pp,total);
+        const tbody = document.getElementById('itensTableBody');
+        if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(it=>{
+            const numItem   = it['Número Item Pedido']||it['numero_item_pedido']||'-';
+            const codMat    = it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'-';
+            const descMat   = it['Item Material/Serviço']||it['item_material_servico']||'-';
+            const codElem   = it['Código Elemento Item Despesa']||it['codigo_elemento_item_despesa']||'-';
+            const descElem  = it['Nome Elemento Item Despesa']||it['nome_elemento_item_despesa']||'-';
+            const qtd       = it['Quantidade Item Pedido']||it['quantidade_item_pedido']||'-';
+            const vlUnit    = parseFloat(String(it['Valor Unitário Referência Item Processo']||it['valor_unitario_referencia']||'0').replace(',','.'))||0;
+            const vlTotalR  = parseFloat(String(it['Valor Total Referência Item Processo']||it['valor_total_referencia']||'0').replace(',','.'))||0;
+            const vlHomolog = parseFloat(String(it['Valor Total Homologado']||it['valor_total_homologado']||'0').replace(',','.'))||0;
+            const contratoId = it._contrato_der || '';
+            return `<tr>
+                <td><strong style="color:#006a82">${it._contrato_siad||'-'}</strong></td>
+                <td>${it._contrato_der||'-'}</td>
+                <td class="text-center">${numItem}</td>
+                <td><small>${codMat}</small></td>
+                <td title="${descMat}">${truncate(descMat,35)}</td>
+                <td><small>${codElem}</small></td>
+                <td><small>${truncate(descElem,20)}</small></td>
+                <td class="text-right">${qtd}</td>
+                <td class="text-right">R$ ${formatarMoeda(vlUnit)}</td>
+                <td class="text-right">R$ ${formatarMoeda(vlTotalR)}</td>
+                <td class="text-right">R$ ${formatarMoeda(vlHomolog)}</td>
+                <td class="text-center">${contratoId?`<button class="btn-action" title="Ver contrato" onclick="verDetalhesContrato('${contratoId.replace(/'/g,"\\'")}')"><span class="material-icons" style="font-size:15px">visibility</span></button>`:'-'}</td>
+            </tr>`;
+        }).join('');
+        const badge = document.getElementById('totalItensBadge');
+        if (badge) badge.textContent = `${total} itens`;
+        // Paginação simples
+        const pcEl = document.getElementById('paginacaoContainerItens');
+        if (pcEl) {
+            let html = `<div class="pagination-info">Mostrando ${inicio+1}–${fim} de ${total.toLocaleString('pt-BR')} itens</div><nav><ul class="pagination mb-0">`;
+            html += `<li class="page-item ${page===1?'disabled':''}"><a class="page-link" href="#" onclick="paginacaoItens.page=${page-1};renderizarTabelaItens();return false;">«</a></li>`;
+            let ini=Math.max(1,page-2), fim2=Math.min(totalPags,ini+4);
+            for(let i=ini;i<=fim2;i++) html+=`<li class="page-item ${i===page?'active':''}"><a class="page-link" href="#" onclick="paginacaoItens.page=${i};renderizarTabelaItens();return false;">${i}</a></li>`;
+            html += `<li class="page-item ${page===totalPags?'disabled':''}"><a class="page-link" href="#" onclick="paginacaoItens.page=${page+1};renderizarTabelaItens();return false;">»</a></li></ul></nav>`;
+            pcEl.innerHTML = html;
+        }
+        setTimeout(iframeUpdateHeight, 100);
+    }
+
+    window.aplicarFiltrosItens = function() {
+        filtrosItens.contrato_siad  = document.getElementById('filtroItensSiad')?.value || '';
+        filtrosItens.contrato       = document.getElementById('filtroItensContrato')?.value || '';
+        filtrosItens.descricao      = document.getElementById('filtroItensDescricao')?.value || '';
+        filtrosItens.cod_mat        = document.getElementById('filtroItensCodMat')?.value || '';
+        filtrosItens.cod_elem       = document.getElementById('filtroItensCodElem')?.value || '';
+        filtrosItens.elem_despesa   = document.getElementById('filtroItensElemDespesa')?.value || '';
+        filtrarItens();
+    };
+    window.limparFiltrosItens = function() {
+        filtrosItens = { contrato:'', contrato_siad:'', descricao:'', cod_mat:'', cod_elem:'', elem_despesa:'', buscaTabela:'' };
+        renderizarItens();
+    };
+    window.ordenarTabelaItens = function(col) {
+        if (sortConfigItens.coluna === col) sortConfigItens.direcao = sortConfigItens.direcao==='asc'?'desc':'asc';
+        else { sortConfigItens.coluna = col; sortConfigItens.direcao = 'asc'; }
+        filtrarItens();
+        renderizarItens();
+    };
 
     // ============================================================
     // RENDERIZAÇÃO — VALORES
@@ -1846,11 +2305,23 @@
         // ── LICITAÇÃO (portal_licitacoes_mg) ────────────────────────
         const lic = await carregarLicitacoes();
         const dadosLic = numContrato ? lic[numContrato] : null;
-        const edital   = dadosLic?.edital   || '';
-        const contLink = dadosLic?.contrato || '';
+        const edital   = contrato.edital_link_siad   || dadosLic?.edital   || '';
+        const contLink = contrato.contrato_link_siad || dadosLic?.contrato || '';
+
+        // Empresa / CNPJ do SIAD
+        const empresaSiad    = contrato.razao_social_siad || contrato.empresa || '-';
+        const cnpjSiad       = contrato.cnpj_siad || '-';
+        const procGrupo      = contrato.proc_grupo || (dadosLic?.grupo||'');
+        const procDet1       = contrato.proc_det1  || (dadosLic?.modalidade||'');
+        const procEspec      = contrato.proc_espec || '';
+        const numProcessoSiad = contrato.numero_processo_siad || (dadosLic?.numero_processo||'');
 
         // ── PAINEL (painel.csv) ──────────────────────────────────────
         const painelContrato = (currentDisplayData.painel || []).filter(p => p.contrato === contratoId);
+
+        // ── SIAD (contratos_siad) ────────────────────────────────────
+        const siadRows = contrato.siad_rows || [];
+        const itensSiad = contrato.itens_siad || [];
         const painelColunas  = painelContrato.length > 0 ? Object.keys(painelContrato[0]) : [];
         const colMap = {
             'Empenho':        painelColunas.find(c => /empenho|nota_empenho|numero_empenho/i.test(c)),
@@ -1881,6 +2352,47 @@
                 <span class="material-icons" style="font-size:16px;color:${cor}">${icon}</span>
                 <span style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:${cor}">${label}</span>
             </div>`;
+
+        // — Itens do Contrato (SIAD)
+        const itensHTML = itensSiad.length > 0 ? `
+            ${secHead('list_alt','Itens do Contrato (SIAD)','#f28c28')}
+            <div class="table-responsive" style="border-radius:6px;overflow:hidden;border:1px solid #e2e8f0;max-height:300px;overflow-y:auto;">
+                <table class="table" style="margin:0;font-size:11px;">
+                    <thead><tr>
+                        <th>Nº Item</th>
+                        <th>Cód.Material/Serviço</th>
+                        <th>Item Material/Serviço</th>
+                        <th>Cód.Elem.Despesa</th>
+                        <th>Elem.Despesa</th>
+                        <th class="text-right">Qtd.</th>
+                        <th class="text-right">Vl.Unit.Ref.(R$)</th>
+                        <th class="text-right">Vl.Total Ref.(R$)</th>
+                        <th class="text-right">Vl.Total Homolog.(R$)</th>
+                    </tr></thead>
+                    <tbody>${itensSiad.map(it=>{
+                        const numItem   = it['Número Item Pedido']||it['numero_item_pedido']||'-';
+                        const codMat    = it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'-';
+                        const descMat   = it['Item Material/Serviço']||it['item_material_servico']||'-';
+                        const codElem   = it['Código Elemento Item Despesa']||it['codigo_elemento_item_despesa']||'-';
+                        const descElem  = it['Nome Elemento Item Despesa']||it['nome_elemento_item_despesa']||'-';
+                        const qtd       = it['Quantidade Item Pedido']||it['quantidade_item_pedido']||'-';
+                        const vlUnit    = parseFloat(String(it['Valor Unitário Referência Item Processo']||it['valor_unitario_referencia']||'0').replace(',','.'))||0;
+                        const vlTotalR  = parseFloat(String(it['Valor Total Referência Item Processo']||it['valor_total_referencia']||'0').replace(',','.'))||0;
+                        const vlHomolog = parseFloat(String(it['Valor Total Homologado']||it['valor_total_homologado']||'0').replace(',','.'))||0;
+                        return `<tr>
+                            <td class="text-center">${numItem}</td>
+                            <td>${codMat}</td>
+                            <td title="${descMat}">${truncate(descMat,30)}</td>
+                            <td>${codElem}</td>
+                            <td title="${descElem}">${truncate(descElem,25)}</td>
+                            <td class="text-right">${qtd}</td>
+                            <td class="text-right">R$ ${formatarMoeda(vlUnit)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(vlTotalR)}</td>
+                            <td class="text-right">R$ ${formatarMoeda(vlHomolog)}</td>
+                        </tr>`;
+                    }).join('')}</tbody>
+                </table>
+            </div>` : '';
 
         // — Obras vinculadas
         const obrasHTML = obras.length > 0 ? `
@@ -1949,12 +2461,14 @@
             ${secHead('gavel','Processo de Compra / Licitação','#b93c42')}
             <div class="row g-2 mb-2">
                 <div class="col-md-4">
-                    <div class="info-label">Nº Processo Compra (SIAD)</div>
-                    <div class="info-value">${portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto} <span class="material-icons" style="font-size:11px">open_in_new</span></a>`:(portalTexto||'-')}</div>
+                    <div class="info-label">Nº Processo Compra</div>
+                    <div class="info-value">${numProcessoSiad ? (edital?`<a href="${edital}" target="_blank" class="compra-link">${numProcessoSiad} <span class="material-icons" style="font-size:11px">open_in_new</span></a>`:numProcessoSiad) : (portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto} <span class="material-icons" style="font-size:11px">open_in_new</span></a>`:(portalTexto||'-'))}</div>
                 </div>
                 <div class="col-md-2"><div class="info-label">Ano Criação</div><div class="info-value">${dadosLic.ano_criacao||'-'}</div></div>
-                <div class="col-md-3"><div class="info-label">Modalidade / Grupo</div><div class="info-value">${dadosLic.grupo||'-'}</div></div>
+                <div class="col-md-3"><div class="info-label">Grupo Contratação</div><div class="info-value">${procGrupo||dadosLic.grupo||'-'}</div></div>
                 <div class="col-md-3"><div class="info-label">Critério de Julgamento</div><div class="info-value">${dadosLic.criterio||'-'}</div></div>
+                ${procDet1?`<div class="col-md-4"><div class="info-label">Detalhamento 1</div><div class="info-value">${procDet1}</div></div>`:''}
+                ${procEspec?`<div class="col-md-4"><div class="info-label">Especialização</div><div class="info-value">${procEspec}</div></div>`:''}
                 ${dadosLic.valor_referencia?`<div class="col-md-3"><div class="info-label">Valor de Referência</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic.valor_referencia).replace(',','.'))||0)}</div></div>`:''}
                 ${dadosLic.valor_homologado?`<div class="col-md-3"><div class="info-label">Valor Homologado</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic.valor_homologado).replace(',','.'))||0)}</div></div>`:''}
             </div>
@@ -1962,14 +2476,21 @@
                 ${edital  ?`<a href="${edital}"   target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">description</span> Edital / Licitação</a>`:''}
                 ${contLink?`<a href="${contLink}" target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">article</span> Contrato / Aditivos</a>`:''}
                 ${portalUrl?`<a href="${portalUrl}" target="_blank" class="btn-secondary-custom" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">open_in_new</span> Portal ComprasMG</a>`:''}
-            </div>` : (portalUrl ? `
+            </div>` : (portalUrl || edital || contLink ? `
             ${secHead('gavel','Processo de Compra','#b93c42')}
             <div class="row g-2 mb-2">
-                <div class="col-md-6"><div class="info-label">Nº Processo Compra (SIAD)</div>
-                    <div class="info-value"><a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto} <span class="material-icons" style="font-size:11px">open_in_new</span></a></div>
+                <div class="col-md-6"><div class="info-label">Nº Processo Compra</div>
+                    <div class="info-value">${numProcessoSiad||(portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto}</a>`:portalTexto)||'-'}</div>
                 </div>
+                ${procGrupo?`<div class="col-md-3"><div class="info-label">Grupo</div><div class="info-value">${procGrupo}</div></div>`:''}
+                ${procDet1?`<div class="col-md-3"><div class="info-label">Detalhamento 1</div><div class="info-value">${procDet1}</div></div>`:''}
+                ${procEspec?`<div class="col-md-4"><div class="info-label">Especialização</div><div class="info-value">${procEspec}</div></div>`:''}
             </div>
-            <a href="${portalUrl}" target="_blank" class="btn-secondary-custom" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">open_in_new</span> Portal ComprasMG</a>` : '');
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                ${edital  ?`<a href="${edital}"   target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">description</span> Edital / Licitação</a>`:''}
+                ${contLink?`<a href="${contLink}" target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">article</span> Contrato / Aditivos</a>`:''}
+                ${portalUrl?`<a href="${portalUrl}" target="_blank" class="btn-secondary-custom" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">open_in_new</span> Portal ComprasMG</a>`:''}
+            </div>` : '');
 
         // — Empenhos/Painel
         const empenhosHTML = painelContrato.length > 0 ? `
@@ -1999,11 +2520,17 @@
             <div style="background:linear-gradient(135deg,#20445d 0%,#162f42 100%);color:white;padding:14px 18px;border-radius:10px;margin-bottom:16px;display:flex;align-items:center;gap:14px;">
                 <span class="material-icons" style="font-size:30px;opacity:0.6">assignment</span>
                 <div style="flex:1;min-width:0;">
-                    <div style="font-size:15px;font-weight:700;line-height:1.3">${contrato.contrato||'-'}</div>
+                    <div style="font-size:10px;opacity:0.7;text-transform:uppercase;letter-spacing:0.7px;margin-bottom:2px">Nº Contrato SIAD</div>
+                    <div style="font-size:17px;font-weight:700;line-height:1.3">
+                        ${contLink ? `<a href="${contLink}" target="_blank" style="color:#ffc107;text-decoration:none;" title="Ver contrato/aditivos">${contrato.numero_contrato_siad||contrato.contrato||'-'} <span class="material-icons" style="font-size:14px;vertical-align:middle">open_in_new</span></a>` : (contrato.numero_contrato_siad||contrato.contrato||'-')}
+                    </div>
+                    ${contrato.contrato !== (contrato.numero_contrato_siad||'') ? `<div style="font-size:10px;opacity:0.6;margin-top:2px">Ref. interna: ${contrato.contrato}</div>` : ''}
                     <div style="font-size:11px;opacity:0.85;margin-top:5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                         <span><strong>Ano:</strong> ${contrato.ano_assinatura||'-'}</span>
                         <span style="opacity:0.5">|</span>
-                        <span><strong>Vigência:</strong> ${formatarData(contrato.data_assinatura)} → ${formatarData(contrato.termino_execucao)}</span>
+                        <span><strong>Assinatura:</strong> ${formatarData(contrato.data_assinatura)}</span>
+                        <span style="opacity:0.5">|</span>
+                        <span><strong>Vigência:</strong> ${formatarData(contrato.data_inicio_vigencia||contrato.data_assinatura)} → ${formatarData(contrato.termino_execucao)}</span>
                         <span style="opacity:0.5">|</span>
                         <span class="${getSituacaoClass(contrato.situacao)}">${contrato.situacao||'-'}</span>
                     </div>
@@ -2014,12 +2541,29 @@
             ${secHead('business','Partes e Identificação')}
             <div class="row g-2 mb-1">
                 <div class="col-md-6"><div class="info-card"><div class="info-label">Órgão Contratante</div><div class="info-value">${contrato.orgao_entidade_contratante||'-'}</div></div></div>
-                <div class="col-md-6"><div class="info-card"><div class="info-label">Empresa Contratada</div><div class="info-value">${contrato.empresa||'-'}</div></div></div>
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Processo de Compras (SIAD)</div>
-                    <div class="info-value">${portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto}</a>`:portalTexto}</div>
+                <div class="col-md-6"><div class="info-card"><div class="info-label">Empresa Contratada (SIAD)</div><div class="info-value">${empresaSiad}</div>${cnpjSiad!=='-'?`<div class="info-label" style="margin-top:4px">CNPJ/CPF</div><div style="font-size:12px;color:#475569">${cnpjSiad}</div>`:''}</div></div>
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Processo de Compras</div>
+                    <div class="info-value">${numProcessoSiad ? (edital ? `<a href="${edital}" target="_blank" class="compra-link">${numProcessoSiad} <span class="material-icons" style="font-size:11px">open_in_new</span></a>` : (portalUrl ? `<a href="${portalUrl}" target="_blank" class="compra-link">${numProcessoSiad}</a>` : numProcessoSiad)) : (portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto}</a>`:portalTexto)}</div>
                 </div></div>
+                ${procGrupo||procDet1||procEspec ? `
+                <div class="col-md-8"><div class="info-card">
+                    <div class="info-label">Procedimento de Contratação</div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;">
+                        ${procGrupo?`<span style="background:#e8f4f8;color:#1a3a5c;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600">${procGrupo}</span>`:''}
+                        ${procDet1?`<span style="background:#fff3cd;color:#856404;padding:2px 8px;border-radius:4px;font-size:11px;">${procDet1}</span>`:''}
+                        ${procEspec?`<span style="background:#e2e8f0;color:#475569;padding:2px 8px;border-radius:4px;font-size:11px;">${procEspec}</span>`:''}
+                    </div>
+                </div></div>` : ''}
                 <div class="col-md-4"><div class="info-card"><div class="info-label">Municípios</div><div class="info-value" style="font-size:12px;font-weight:400">${municipios.map(m=>m.municipio).join(', ')||'Não informado'}</div></div></div>
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Fiscais Designados</div><div class="info-value" style="font-size:12px;font-weight:400;max-height:70px;overflow-y:auto">${fiscais.map(f=>f.nome).join('<br>')||'Não informado'}</div></div></div>
+                <div class="col-md-4"><div class="info-card"><div class="info-label">Fiscais Designados</div>
+                    ${fiscais.length > 0 ? `<div style="display:flex;flex-direction:column;gap:4px;margin-top:4px;">
+                    ${fiscais.map(f=>`<div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 6px;background:#f8fafd;border-radius:4px;">
+                        <span class="material-icons" style="font-size:13px;color:#1a3a5c">badge</span>
+                        <span><strong>${f.nome||'-'}</strong>${f.cargo?` — ${f.cargo}`:''}</span>
+                        ${f.conselho?`<span style="color:#6c757d;font-size:10px">(${f.conselho})</span>`:''}
+                    </div>`).join('')}
+                    </div>` : `<div class="info-value" style="font-size:12px;font-weight:400">Não informado</div>`}
+                </div></div>
             </div>
             <div class="info-card mb-2">
                 <div class="info-label">Objeto</div>
@@ -2081,6 +2625,9 @@
             <!-- BLOCO 4: LICITAÇÃO -->
             ${licitacaoHTML}
 
+            <!-- BLOCO 4b: ITENS DO CONTRATO (SIAD) -->
+            ${itensHTML}
+
             <!-- BLOCO 5: OBRAS VINCULADAS -->
             ${obrasHTML}
 
@@ -2134,7 +2681,10 @@
             </div>
         `;
 
-        new bootstrap.Modal(document.getElementById('detalhesModal')).show();
+        const modalEl = document.getElementById('detalhesModal');
+        let bsModal = bootstrap.Modal.getInstance(modalEl);
+        if (!bsModal) bsModal = new bootstrap.Modal(modalEl, { backdrop: true, keyboard: true });
+        bsModal.show();
     };
 
     // ============================================================
@@ -2143,13 +2693,24 @@
     const DICIONARIO_OBRAS = {
         contratos: [
             { campo: 'contrato',                      descricao: 'Número do contrato da obra (ex: DC-9493122/2026). Prefixos como DC, CT, DE etc. identificam o tipo de instrumento contratual.', tipo: 'Texto' },
+            { campo: 'numero_contrato_siad',           descricao: 'Número limpo do contrato extraído para cruzamento com o SIAD (apenas a parte numérica, sem prefixo ou sufixo de ano).', tipo: 'Texto' },
+            { campo: 'contrato_siad_raw',              descricao: 'Número do contrato SIAD como exibido na coluna principal da tabela de contratos.', tipo: 'Texto' },
             { campo: 'portal_de_compras',              descricao: 'Número compacto do processo no portal ComprasMG. Lógica de decodificação: primeiros 7 dígitos = código da unidade compradora; dígitos intermediários = número do processo (completado com zeros à esquerda até 6 dígitos); últimos 2 dígitos = sufixo do ano (ex: 25 → 2025). Exemplos: 230152003425 → 2301520 000034/2025 | 23017620125 → 2301762 000001/2025.', tipo: 'Texto (numérico compacto)' },
+            { campo: 'numero_processo_siad',           descricao: 'Número do processo de compras formatado conforme registrado no SIAD (Número Processo - Formatado). Utilizado como referência principal do processo de compras quando disponível.', tipo: 'Texto' },
+            { campo: 'razao_social_siad',              descricao: 'Razão social do fornecedor conforme registrado no SIAD. Substitui o campo empresa quando disponível.', tipo: 'Texto' },
+            { campo: 'cnpj_siad',                      descricao: 'CNPJ ou CPF do fornecedor conforme registrado no SIAD.', tipo: 'Texto' },
+            { campo: 'contrato_link_siad',             descricao: 'URL para o documento do contrato/termo aditivo disponível no portal SIAD (coluna Contrato_TermoAditivo Arquivos).', tipo: 'URL' },
+            { campo: 'edital_link_siad',               descricao: 'URL para o edital/retificação disponível no portal SIAD (coluna Edital_Retificação Arquivos). Utilizado como link do processo de compras na tabela.', tipo: 'URL' },
+            { campo: 'proc_grupo',                     descricao: 'Procedimento Contratação - Grupo (campo do SIAD). Classificação do grupo do procedimento. Exibido na coluna opcional "Legislação".', tipo: 'Texto' },
+            { campo: 'proc_det1',                      descricao: 'Procedimento Contratação - Detalhamento 1 (campo do SIAD). Modalidade de contratação utilizada.', tipo: 'Texto' },
+            { campo: 'proc_espec',                     descricao: 'Procedimento Contratação - Especialização (campo do SIAD). Exibido na coluna "Mod. Licitação" na tabela de contratos e disponível como filtro.', tipo: 'Texto' },
             { campo: 'orgao_entidade_contratante',     descricao: 'Nome do órgão ou entidade pública responsável pelo contrato.', tipo: 'Texto' },
-            { campo: 'empresa',                        descricao: 'Razão social da empresa contratada para execução da obra.', tipo: 'Texto' },
+            { campo: 'empresa',                        descricao: 'Razão social da empresa contratada (fonte: contratos.csv). Ver também razao_social_siad para o dado do SIAD.', tipo: 'Texto' },
             { campo: 'objeto',                         descricao: 'Descrição detalhada do objeto do contrato — serviços ou obras a serem executados.', tipo: 'Texto' },
             { campo: 'situacao',                       descricao: 'Situação atual do contrato. Valores: "Em Andamento", "Obra concluída", "Encerrado", "Paralisado".', tipo: 'Texto' },
             { campo: 'data_assinatura',                descricao: 'Data de assinatura do contrato.', tipo: 'Data (AAAA-MM-DD)' },
-            { campo: 'termino_execucao',               descricao: 'Data prevista para término da execução contratual.', tipo: 'Data (AAAA-MM-DD)' },
+            { campo: 'data_inicio_vigencia',           descricao: 'Data de início da vigência do contrato (quando diferente da data de assinatura). Utilizada na coluna "Data Vigência" da tabela.', tipo: 'Data (AAAA-MM-DD)' },
+            { campo: 'termino_execucao',               descricao: 'Data prevista para término da execução contratual. Coluna "Fim da Vigência" na tabela. Aceita formatos ISO (AAAA-MM-DD) ou composto (ex: "10 00:00:00/09/2027"), sendo normalizado para DD/MM/AAAA na exibição.', tipo: 'Data (vários formatos → exibido DD/MM/AAAA)' },
             { campo: 'valor_inicial_do_contrato',      descricao: 'Valor inicial do contrato em reais, conforme assinatura.', tipo: 'Número (R$)' },
             { campo: 'valor_em_aditivos',              descricao: 'Valor total acumulado em termos aditivos ao contrato.', tipo: 'Número (R$)' },
             { campo: 'valor_total_do_contrato',        descricao: 'Valor total do contrato após aditivos (valor_inicial + valor_em_aditivos).', tipo: 'Número (R$)' },
@@ -2206,14 +2767,39 @@
             { campo: 'valor_liquidado',       descricao: 'Valor liquidado (aceito pela administração após comprovação da entrega do serviço/obra), em reais.', tipo: 'Número (R$)' },
             { campo: 'valor_pago',            descricao: 'Valor efetivamente pago ao contratado, em reais.', tipo: 'Número (R$)' },
         ],
+        contratos_siad: [
+            { campo: 'Número Contrato',                            descricao: 'Número do contrato no sistema SIAD — identificador primário utilizado no dashboard como número principal do contrato.', tipo: 'Texto' },
+            { campo: 'Ano Assinatura Contrato',                    descricao: 'Ano de assinatura do contrato conforme registrado no SIAD.', tipo: 'Número' },
+            { campo: 'Número Processo - Formatado',                descricao: 'Número do processo de compra formatado, oriundo do SIAD. Utilizado como referência principal do processo de compras no dashboard.', tipo: 'Texto' },
+            { campo: 'Razão Social Fornecedor',                    descricao: 'Razão social da empresa fornecedora/contratada conforme cadastro no SIAD. Substitui o campo "empresa" do arquivo contratos.csv como fonte primária.', tipo: 'Texto' },
+            { campo: 'CNPJ/CPF',                                   descricao: 'CNPJ ou CPF do fornecedor/contratado conforme cadastro no SIAD.', tipo: 'Texto' },
+            { campo: 'Contrato_TermoAditivo Arquivos',             descricao: 'URL para acesso ao documento do contrato e/ou termos aditivos disponível no portal. Utilizado como link principal do número do contrato na tabela.', tipo: 'URL' },
+            { campo: 'Edital_Retificação Arquivos',                descricao: 'URL para acesso ao edital e retificações da licitação. Utilizado como link do número do processo de compras na tabela de contratos.', tipo: 'URL' },
+            { campo: 'Procedimento Contratação - Grupo',           descricao: 'Classificação do grupo do procedimento de contratação (ex: Licitação, Dispensa, Inexigibilidade).', tipo: 'Texto' },
+            { campo: 'Procedimento Contratação - Detalhamento 1',  descricao: 'Detalhamento do procedimento de contratação — modalidade utilizada (ex: Concorrência, Pregão, Tomada de Preço).', tipo: 'Texto' },
+            { campo: 'Procedimento Contratação - Especialização',  descricao: 'Especialização do procedimento de contratação (ex: Eletrônico, Presencial, Internacional).', tipo: 'Texto' },
+        ],
+        itens: [
+            { campo: 'Número Contrato',                          descricao: 'Número do contrato SIAD ao qual o item está vinculado. Chave de ligação com a tabela contratos_siad.', tipo: 'Texto' },
+            { campo: 'Número Item Pedido',                       descricao: 'Número sequencial do item no pedido de compra vinculado ao contrato.', tipo: 'Número' },
+            { campo: 'Código Item Material/Serviço - Numérico',  descricao: 'Código numérico do item de material ou serviço conforme cadastro no CATMAT/CATSERV.', tipo: 'Número' },
+            { campo: 'Item Material/Serviço',                    descricao: 'Descrição do item de material ou serviço contratado.', tipo: 'Texto' },
+            { campo: 'Código Elemento Item Despesa',             descricao: 'Código do elemento de despesa ao qual o item está classificado na execução orçamentária.', tipo: 'Texto' },
+            { campo: 'Nome Elemento Item Despesa',               descricao: 'Descrição do elemento de despesa (ex: Obras e Instalações, Serviços de Consultoria).', tipo: 'Texto' },
+            { campo: 'Quantidade Item Pedido',                   descricao: 'Quantidade do item prevista no pedido de compra.', tipo: 'Número' },
+            { campo: 'Valor Unitário Referência Item Processo',  descricao: 'Valor unitário de referência do item no processo de contratação, em reais.', tipo: 'Número (R$)' },
+            { campo: 'Valor Total Referência Item Processo',     descricao: 'Valor total de referência do item (quantidade × valor unitário), em reais.', tipo: 'Número (R$)' },
+            { campo: 'Valor Total Homologado',                   descricao: 'Valor total homologado para o item após adjudicação do processo licitatório, em reais.', tipo: 'Número (R$)' },
+            { campo: 'Ano Assinatura Contrato',                  descricao: 'Ano de assinatura do contrato ao qual os itens pertencem.', tipo: 'Número' },
+        ],
     };
 
     function renderizarDicionario() {
         const container = document.getElementById('dicionario-content');
         if (!container) return;
 
-        const labelsTabela = { contratos: 'Contratos', obras: 'Obras', fiscais: 'Fiscais', municipios: 'Municípios', coordenadas: 'Coordenadas', trechos: 'Trechos', situacao: 'Situação' };
-        const coresTabela  = { contratos: '#1a3a5c', obras: '#28a745', fiscais: '#b93c42', municipios: '#17a2b8', coordenadas: '#8e44ad', trechos: '#f28c28', situacao: '#39a585' };
+        const labelsTabela = { contratos: 'Contratos', obras: 'Obras', fiscais: 'Fiscais', municipios: 'Municípios', coordenadas: 'Coordenadas', trechos: 'Trechos', situacao: 'Situação', painel: 'Painel (Empenhos)', contratos_siad: 'Contratos SIAD', itens: 'Itens SIAD' };
+        const coresTabela  = { contratos: '#1a3a5c', obras: '#28a745', fiscais: '#b93c42', municipios: '#17a2b8', coordenadas: '#8e44ad', trechos: '#f28c28', situacao: '#39a585', painel: '#28a745', contratos_siad: '#2980b9', itens: '#c0392b' };
         const tabelas = Object.keys(DICIONARIO_OBRAS);
 
         container.innerHTML = `
@@ -2358,27 +2944,29 @@
         filtrosAtivos.visaoGeral.situacao  = document.getElementById('filtroSituacaoVG')?.value||'';
         filtrosAtivos.visaoGeral.orgao     = document.getElementById('filtroOrgaoVG')?.value||'';
         filtrosAtivos.visaoGeral.municipio = document.getElementById('filtroMunicipioVG')?.value||'';
+        filtrosAtivos.visaoGeral.contrato  = document.getElementById('filtroContratoVG')?.value||'';
         paginacao.geral.page = 1;
         renderizarVisaoGeral();
     };
     window.limparFiltrosVG = function() {
-        filtrosAtivos.visaoGeral = { ano:'', situacao:'', orgao:'', municipio:'' };
+        filtrosAtivos.visaoGeral = { ano:'', situacao:'', orgao:'', municipio:'', contrato:'' };
         paginacao.geral.page = 1;
         renderizarVisaoGeral();
     };
     window.aplicarFiltrosContratos = function() {
-        filtrosAtivos.contratos.ano       = document.getElementById('filtroAnoContrato')?.value||'';
-        filtrosAtivos.contratos.situacao  = document.getElementById('filtroSituacaoContrato')?.value||'';
-        filtrosAtivos.contratos.numero    = document.getElementById('filtroNumeroContrato')?.value||'';
-        filtrosAtivos.contratos.portal    = document.getElementById('filtroPortalContrato')?.value||'';
-        filtrosAtivos.contratos.empresa   = document.getElementById('filtroEmpresaContrato')?.value||'';
-        filtrosAtivos.contratos.orgao     = document.getElementById('filtroOrgaoContrato')?.value||'';
-        filtrosAtivos.contratos.municipio = document.getElementById('filtroMunicipioContrato')?.value||'';
-        filtrosAtivos.contratos.objeto    = document.getElementById('filtroObjetoContrato')?.value||'';
+        filtrosAtivos.contratos.ano          = document.getElementById('filtroAnoContrato')?.value||'';
+        filtrosAtivos.contratos.situacao     = document.getElementById('filtroSituacaoContrato')?.value||'';
+        filtrosAtivos.contratos.numero       = document.getElementById('filtroNumeroContrato')?.value||'';
+        filtrosAtivos.contratos.portal       = document.getElementById('filtroPortalContrato')?.value||'';
+        filtrosAtivos.contratos.empresa      = document.getElementById('filtroEmpresaContrato')?.value||'';
+        filtrosAtivos.contratos.orgao        = document.getElementById('filtroOrgaoContrato')?.value||'';
+        filtrosAtivos.contratos.municipio    = document.getElementById('filtroMunicipioContrato')?.value||'';
+        filtrosAtivos.contratos.objeto       = document.getElementById('filtroObjetoContrato')?.value||'';
+        filtrosAtivos.contratos.modLicitacao = document.getElementById('filtroModLicitacaoContrato')?.value||'';
         filtrarContratos();
     };
     window.limparFiltrosContratos = function() {
-        filtrosAtivos.contratos = { ano:'', situacao:'', numero:'', portal:'', empresa:'', orgao:'', municipio:'', objeto:'', buscaTabela:'' };
+        filtrosAtivos.contratos = { ano:'', situacao:'', numero:'', portal:'', empresa:'', orgao:'', municipio:'', objeto:'', modLicitacao:'', buscaTabela:'' };
         dadosFiltrados.contratos = [...currentDisplayData.contratos];
         paginacao.contratos.page = 1;
         renderizarContratos();
@@ -2490,16 +3078,30 @@
     // EXPORTAÇÕES
     // ============================================================
     window.exportarVisaoGeralCSV = function() {
-        const dados = agruparPorOrgao(currentDisplayData.contratos);
-        const linhas = dados.map(i=>[i.orgao,i.total,i.andamento,i.concluidas,i.encerradas,i.valor].map(c=>`"${String(c).replace(/"/g,'""')}"`).join(';'));
-        const blob = new Blob(['\uFEFF'+['Órgão;Total;Andamento;Concluídas;Encerradas;Valor Total (R$)',...linhas].join('\n')],{type:'text/csv'});
+        let dadosVG = [...currentDisplayData.contratos];
+        const fvg = filtrosAtivos.visaoGeral;
+        if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
+        if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
+        if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+        if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
+        if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
+        const cabecalhos = ['contrato','orgao_entidade_contratante','valor_inicial_do_contrato','valor_em_aditivos','valor_total_do_contrato','total_medido','saldo_contratual','percentual_execucao_contrato'];
+        const linhas = dadosVG.map(c=>cabecalhos.map(h=>`"${String(c[h]||'').replace(/"/g,'""')}"`).join(';'));
+        const blob = new Blob(['\uFEFF'+[cabecalhos.join(';'),...linhas].join('\n')],{type:'text/csv'});
         saveAs(blob,'visao_geral_obras.csv');
     };
     window.exportarVisaoGeralPDF = function() {
+        let dadosVG = [...currentDisplayData.contratos];
+        const fvg = filtrosAtivos.visaoGeral;
+        if (fvg.ano)       dadosVG = dadosVG.filter(c => c.ano_assinatura === fvg.ano);
+        if (fvg.situacao)  dadosVG = dadosVG.filter(c => c.situacao === fvg.situacao);
+        if (fvg.orgao)     dadosVG = dadosVG.filter(c => c.orgao_entidade_contratante?.toLowerCase().includes(fvg.orgao.toLowerCase()));
+        if (fvg.contrato)  dadosVG = dadosVG.filter(c => c.contrato?.toLowerCase().includes(fvg.contrato.toLowerCase()));
+        if (fvg.municipio) { const mcs = currentDisplayData.municipios.filter(m => m.municipio?.toLowerCase().includes(fvg.municipio.toLowerCase())).map(m => m.contrato); dadosVG = dadosVG.filter(c => mcs.includes(c.contrato)); }
         const {jsPDF}=window.jspdf; const doc=new jsPDF({orientation:'landscape'});
         doc.setFontSize(11); doc.text('Visão Geral — Obras Públicas',14,10);
-        const dados=agruparPorOrgao(currentDisplayData.contratos).map(i=>[i.orgao,i.total.toString(),i.andamento.toString(),i.concluidas.toString(),i.encerradas.toString(),'R$ '+formatarMoeda(i.valor)]);
-        doc.autoTable({head:[['Órgão','Total','Andamento','Concluídas','Encerradas','Valor Total (R$)']],body:dados,startY:16,styles:{fontSize:8},headStyles:{fillColor:[32,68,93]},didDrawPage:()=>{doc.setFontSize(9);doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`,14,doc.internal.pageSize.height-5);}});
+        const dados=dadosVG.map(c=>[c.contrato||'-',truncate(c.orgao_entidade_contratante,20),'R$ '+formatarMoeda(c.valor_inicial_do_contrato),'R$ '+formatarMoeda(c.valor_em_aditivos),'R$ '+formatarMoeda(c.valor_total_do_contrato),'R$ '+formatarMoeda(c.total_medido),'R$ '+formatarMoeda(c.saldo_contratual),(c.percentual_execucao_contrato||0).toFixed(2)+'%']);
+        doc.autoTable({head:[['Contrato','Órgão/Entidade','Valor Inicial','Aditivos','Valor Total','Valor Medido','Saldo','% Exec.']],body:dados,startY:16,styles:{fontSize:7},headStyles:{fillColor:[32,68,93]},didDrawPage:()=>{doc.setFontSize(9);doc.text(`Emitido em: ${new Date().toLocaleString('pt-BR')}`,14,doc.internal.pageSize.height-5);}});
         doc.save('visao_geral_obras.pdf');
     };
     window.exportarContratosCSV = function() {
