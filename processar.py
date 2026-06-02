@@ -14,6 +14,15 @@ ARQ_DEPARA = REPO / "de_para.xlsx"
 
 ARQ_OBRASCONTRATOS = PASTA_UPLOAD / "OBRASCONTRATOS.xlsx"
 
+de_para = pd.read_excel(
+    ARQ_DEPARA,
+    dtype={
+        "Contrato": str,
+        "Contrato_SIAD": str,
+        "Portal de Compras": str
+    }
+)
+
 # =====================================================
 # GERA CONTRATOS_SIAD E ITENS
 # =====================================================
@@ -52,6 +61,59 @@ if ARQ_OBRASCONTRATOS.exists():
         # remove linha utilizada como cabeçalho
         df = df.iloc[1:]
 
+        # -----------------------------------------
+        # ADICIONA CONTRATO A PARTIR DO SIAD
+        # -----------------------------------------
+
+        if "Número Contrato" in df.columns:
+
+            mapa_contrato = (
+                de_para[
+                    ["Contrato_SIAD", "Contrato"]
+                ]
+                .drop_duplicates()
+            )
+
+            mapa_contrato["Contrato_SIAD"] = (
+                mapa_contrato["Contrato_SIAD"]
+                .astype(str)
+                .str.strip()
+            )
+
+            df["Número Contrato"] = (
+                df["Número Contrato"]
+                .astype(str)
+                .str.strip()
+            )
+
+            df = df.merge(
+                mapa_contrato,
+                left_on="Número Contrato",
+                right_on="Contrato_SIAD",
+                how="left"
+            )
+
+            if "Contrato_SIAD" in df.columns:
+                df.drop(
+                    columns=["Contrato_SIAD"],
+                    inplace=True
+                )
+
+            if "Contrato" in df.columns:
+
+                cols = list(df.columns)
+
+                cols.remove("Contrato")
+
+                idx = cols.index("Número Contrato") + 1
+
+                cols.insert(
+                    idx,
+                    "Contrato"
+                )
+
+                df = df[cols]
+
         destino = PASTA_UPLOAD / arquivo_saida
 
         df.to_excel(
@@ -65,10 +127,14 @@ if ARQ_OBRASCONTRATOS.exists():
         ARQ_OBRASCONTRATOS.unlink()
         print("OBRASCONTRATOS.xlsx removido.")
     except Exception as e:
-        print(f"Não foi possível remover OBRASCONTRATOS.xlsx: {e}")
+        print(
+            f"Não foi possível remover "
+            f"OBRASCONTRATOS.xlsx: {e}"
+        )
 
 else:
     print("OBRASCONTRATOS.xlsx não encontrado.")
+
 
 # =====================================================
 # DE PARA
@@ -76,24 +142,20 @@ else:
 
 print("\nAtualizando arquivos...")
 
-de_para = pd.read_excel(
-    ARQ_DEPARA,
-    dtype={
-        "Contrato": str,
-        "Contrato_SIAD": str,
-        "Portal de Compras": str
-    }
-)
-
 de_para.columns = de_para.columns.str.strip()
 
-de_para = de_para[
-    [
-        "Contrato",
-        "Contrato_SIAD",
-        "Portal de Compras"
-    ]
-]
+de_para["Contrato"] = (
+    de_para["Contrato"]
+    .astype(str)
+    .str.strip()
+)
+
+de_para["Contrato_SIAD"] = (
+    de_para["Contrato_SIAD"]
+    .astype(str)
+    .str.strip()
+)
+
 
 ARQUIVOS = [
     "Contratos.xlsx",
