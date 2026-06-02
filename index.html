@@ -1052,7 +1052,7 @@
         if (dataCache.itens) {
             currentDisplayData.itens = dataCache.itens.map(r => ({...r}));
             dataCache.itens.forEach(r => {
-                const num = (r['Número Contrato']||r['numero_contrato']||'').trim();
+                const num = (r['contrato_siad']||r['Número Contrato']||r['numero_contrato']||'').trim();
                 if (num) {
                     if (!itensPorContrato[num]) itensPorContrato[num] = [];
                     itensPorContrato[num].push(r);
@@ -1067,10 +1067,12 @@
                 const siadRows = numContrato ? (siadPorNumero[numContrato] || []) : [];
                 const siad = siadRows[0] || null;
                 // Dados que vêm do SIAD (prioridade) com fallback para contrato original
-                const contrato_siad_raw   = siad ? (siad['Contrato_SIAD']||siad['contrato_siad']||siad['Número Contrato']||'').trim() : '';
+                // contrato_siad vem direto da coluna contrato_siad em todas as tabelas
+                const contrato_siad_raw   = (c.contrato_siad||'').trim() || (siad ? (siad['Número Contrato']||'').trim() : '');
                 const razao_social_siad   = siad ? (siad['Razão Social Fornecedor']||siad['Nome Empresarial/Nome Fornecedor']||siad['razao_social_fornecedor']||'').trim() : '';
                 const cnpj_siad           = siad ? (siad['CNPJ/CPF']||siad['cnpj_cpf']||'').trim() : '';
                 const numero_processo_siad= siad ? (siad['Número Processo - Formatado']||siad['numero_processo_formatado']||'').trim() : '';
+                // Links direto das colunas da tabela contratos_siad
                 const contrato_link_siad  = siad ? (siad['Contrato_TermoAditivo Arquivos']||siad['contrato_termoaditivo_arquivos']||'').trim() : '';
                 const edital_link_siad    = siad ? (siad['Edital_Retificação Arquivos']||siad['edital_retificacao_arquivos']||'').trim() : '';
                 const proc_grupo          = siad ? (siad['Procedimento Contratação - Grupo']||siad['procedimento_contratacao_grupo']||'').trim() : '';
@@ -1109,7 +1111,7 @@
                     percentual_execucao_contrato:   parseFloat(String(c.percentual_execucao_contrato||'0').replace(',','.'))   || 0,
                     ano_assinatura: c.data_assinatura ? c.data_assinatura.split('-')[0] : (ano_ass_siad || ''),
                     siad_rows: siadRows,
-                    itens_siad: contrato_siad_raw ? (itensPorContrato[contrato_siad_raw] || []) : (numContrato ? (itensPorContrato[numContrato] || []) : [])
+                    itens_siad: contrato_siad_raw ? (itensPorContrato[contrato_siad_raw] || []) : []
                 };
             });
         }
@@ -1492,11 +1494,10 @@
                         <th class="sortable-header text-right" onclick="ordenarTabelaVG('total_medido')">Valor Medido (R$) <span class="material-icons">${iconCol('total_medido')}</span></th>
                         <th class="sortable-header text-right" onclick="ordenarTabelaVG('saldo')">Saldo (R$) <span class="material-icons">${iconCol('saldo')}</span></th>
                         <th class="sortable-header text-center" onclick="ordenarTabelaVG('pct')">% Execução <span class="material-icons">${iconCol('pct')}</span></th>
-                        <th class="text-center">Ações</th>
                     </tr></thead>
                     <tbody>
                         ${dadosPagina.map(c=>`
-                        <tr style="cursor:pointer" onclick="irParaContratosVG('${(c.contrato||'').replace(/'/g,"\\'")}')">
+                        <tr style="cursor:pointer" onclick="verDetalhesContrato('${c.contrato}')">
                             <td><strong style="color:#006a82">${c.contrato_siad_raw||c.numero_contrato_siad||'-'}</strong></td>
                             <td><strong style="color:#006a82">${c.contrato||'-'}</strong></td>
                             <td>${truncate(c.orgao_entidade_contratante,35)}</td>
@@ -1508,9 +1509,6 @@
                             <td class="text-center">
                                 <div class="progresso-barra"><div class="progresso-preenchimento" style="width:${Math.min(c.percentual_execucao_contrato||0,100)}%"></div></div>
                                 <small style="font-size:10px">${(c.percentual_execucao_contrato||0).toFixed(2)}%</small>
-                            </td>
-                            <td class="text-center" onclick="event.stopPropagation()">
-                                <button class="btn-action" title="Ver detalhes" onclick="verDetalhesContrato('${c.contrato}')"><span class="material-icons" style="font-size:15px">visibility</span></button>
                             </td>
                         </tr>`).join('')}
                     </tbody>
@@ -2037,7 +2035,7 @@
             return {
                 ...it,
                 _contrato_der: contrato ? contrato.contrato : '',
-                _contrato_siad: it['Número Contrato']||it['numero_contrato']||it['Contrato_SIAD']||it['contrato_siad']||'',
+                _contrato_siad: it['contrato_siad']||it['Número Contrato']||it['numero_contrato']||it['Contrato_SIAD']||'',
                 _descricao: it['Item Material/Serviço']||it['item_material_servico']||'',
                 _contrato_ref: contrato
             };
@@ -2045,7 +2043,7 @@
         if (filtrosItens.contrato_siad) dados = dados.filter(it => it._contrato_siad?.toLowerCase().includes(filtrosItens.contrato_siad.toLowerCase()));
         if (filtrosItens.contrato)      dados = dados.filter(it => it._contrato_der?.toLowerCase().includes(filtrosItens.contrato.toLowerCase()));
         if (filtrosItens.descricao)     dados = dados.filter(it => it._descricao?.toLowerCase().includes(filtrosItens.descricao.toLowerCase()));
-        if (filtrosItens.cod_mat)       dados = dados.filter(it => (it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'').toString().toLowerCase().includes(filtrosItens.cod_mat.toLowerCase()));
+        if (filtrosItens.cod_mat)       dados = dados.filter(it => (it['codigo_item_material_servico_numerico']||it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'').toString().toLowerCase().includes(filtrosItens.cod_mat.toLowerCase()));
         if (filtrosItens.cod_elem)      dados = dados.filter(it => (it['Código Elemento Item Despesa']||it['codigo_elemento_item_despesa']||'').toString().toLowerCase().includes(filtrosItens.cod_elem.toLowerCase()));
         if (filtrosItens.elem_despesa)  dados = dados.filter(it => (it['Nome Elemento Item Despesa']||it['nome_elemento_item_despesa']||'').toLowerCase().includes(filtrosItens.elem_despesa.toLowerCase()));
         if (filtrosItens.buscaTabela) {
@@ -2075,7 +2073,7 @@
         const tbody = document.getElementById('itensTableBody');
         if (tbody) tbody.innerHTML = dados.slice(inicio,fim).map(it=>{
             const numItem   = it['Número Item Pedido']||it['numero_item_pedido']||'-';
-            const codMat    = it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'-';
+            const codMat    = it['codigo_item_material_servico_numerico']||it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'-';
             const descMat   = it['Item Material/Serviço']||it['item_material_servico']||'-';
             const codElem   = it['Código Elemento Item Despesa']||it['codigo_elemento_item_despesa']||'-';
             const descElem  = it['Nome Elemento Item Despesa']||it['nome_elemento_item_despesa']||'-';
@@ -2300,13 +2298,15 @@
         const portalTransformado = transformarPortalCompras(contrato.portal_de_compras);
         const portalTexto = portalTransformado.texto || contrato.portal_de_compras || '-';
         const portalUrl   = portalTransformado.url;
-        const numContrato = extrairNumeroContrato(contrato.contrato);
 
-        // ── LICITAÇÃO (portal_licitacoes_mg) ────────────────────────
+        // ── LINKS: direto das colunas da tabela contratos_siad ──────
+        const edital   = contrato.edital_link_siad   || '';
+        const contLink = contrato.contrato_link_siad || '';
+
+        // ── LICITAÇÃO: dados complementares (criterio, valores etc.) ─
+        const numContrato = extrairNumeroContrato(contrato.contrato);
         const lic = await carregarLicitacoes();
         const dadosLic = numContrato ? lic[numContrato] : null;
-        const edital   = contrato.edital_link_siad   || dadosLic?.edital   || '';
-        const contLink = contrato.contrato_link_siad || dadosLic?.contrato || '';
 
         // Empresa / CNPJ do SIAD
         const empresaSiad    = contrato.razao_social_siad || contrato.empresa || '-';
@@ -2371,7 +2371,7 @@
                     </tr></thead>
                     <tbody>${itensSiad.map(it=>{
                         const numItem   = it['Número Item Pedido']||it['numero_item_pedido']||'-';
-                        const codMat    = it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'-';
+                        const codMat    = it['codigo_item_material_servico_numerico']||it['Código Item Material/Serviço - Numérico']||it['codigo_item_material_servico']||'-';
                         const descMat   = it['Item Material/Serviço']||it['item_material_servico']||'-';
                         const codElem   = it['Código Elemento Item Despesa']||it['codigo_elemento_item_despesa']||'-';
                         const descElem  = it['Nome Elemento Item Despesa']||it['nome_elemento_item_despesa']||'-';
@@ -2457,40 +2457,26 @@
             </div>` : '');
 
         // — Licitação
-        const licitacaoHTML = dadosLic && (edital || contLink || dadosLic.objeto) ? `
+        const licitacaoHTML = (edital || contLink || numProcessoSiad || portalUrl || (dadosLic && dadosLic.objeto)) ? `
             ${secHead('gavel','Processo de Compra / Licitação','#b93c42')}
             <div class="row g-2 mb-2">
                 <div class="col-md-4">
                     <div class="info-label">Nº Processo Compra</div>
                     <div class="info-value">${numProcessoSiad ? (edital?`<a href="${edital}" target="_blank" class="compra-link">${numProcessoSiad} <span class="material-icons" style="font-size:11px">open_in_new</span></a>`:numProcessoSiad) : (portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto} <span class="material-icons" style="font-size:11px">open_in_new</span></a>`:(portalTexto||'-'))}</div>
                 </div>
-                <div class="col-md-2"><div class="info-label">Ano Criação</div><div class="info-value">${dadosLic.ano_criacao||'-'}</div></div>
-                <div class="col-md-3"><div class="info-label">Grupo Contratação</div><div class="info-value">${procGrupo||dadosLic.grupo||'-'}</div></div>
-                <div class="col-md-3"><div class="info-label">Critério de Julgamento</div><div class="info-value">${dadosLic.criterio||'-'}</div></div>
+                <div class="col-md-2"><div class="info-label">Ano Criação</div><div class="info-value">${dadosLic?.ano_criacao||'-'}</div></div>
+                <div class="col-md-3"><div class="info-label">Grupo Contratação</div><div class="info-value">${procGrupo||dadosLic?.grupo||'-'}</div></div>
+                <div class="col-md-3"><div class="info-label">Critério de Julgamento</div><div class="info-value">${dadosLic?.criterio||'-'}</div></div>
                 ${procDet1?`<div class="col-md-4"><div class="info-label">Detalhamento 1</div><div class="info-value">${procDet1}</div></div>`:''}
                 ${procEspec?`<div class="col-md-4"><div class="info-label">Especialização</div><div class="info-value">${procEspec}</div></div>`:''}
-                ${dadosLic.valor_referencia?`<div class="col-md-3"><div class="info-label">Valor de Referência</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic.valor_referencia).replace(',','.'))||0)}</div></div>`:''}
-                ${dadosLic.valor_homologado?`<div class="col-md-3"><div class="info-label">Valor Homologado</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic.valor_homologado).replace(',','.'))||0)}</div></div>`:''}
+                ${dadosLic?.valor_referencia?`<div class="col-md-3"><div class="info-label">Valor de Referência</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic?.valor_referencia||'0').replace(',','.'))||0)}</div></div>`:''}
+                ${dadosLic?.valor_homologado?`<div class="col-md-3"><div class="info-label">Valor Homologado</div><div class="info-value">R$ ${formatarMoeda(parseFloat(String(dadosLic?.valor_homologado||'0').replace(',','.'))||0)}</div></div>`:''}
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
                 ${edital  ?`<a href="${edital}"   target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">description</span> Edital / Licitação</a>`:''}
                 ${contLink?`<a href="${contLink}" target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">article</span> Contrato / Aditivos</a>`:''}
                 ${portalUrl?`<a href="${portalUrl}" target="_blank" class="btn-secondary-custom" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">open_in_new</span> Portal ComprasMG</a>`:''}
-            </div>` : (portalUrl || edital || contLink ? `
-            ${secHead('gavel','Processo de Compra','#b93c42')}
-            <div class="row g-2 mb-2">
-                <div class="col-md-6"><div class="info-label">Nº Processo Compra</div>
-                    <div class="info-value">${numProcessoSiad||(portalUrl?`<a href="${portalUrl}" target="_blank" class="compra-link">${portalTexto}</a>`:portalTexto)||'-'}</div>
-                </div>
-                ${procGrupo?`<div class="col-md-3"><div class="info-label">Grupo</div><div class="info-value">${procGrupo}</div></div>`:''}
-                ${procDet1?`<div class="col-md-3"><div class="info-label">Detalhamento 1</div><div class="info-value">${procDet1}</div></div>`:''}
-                ${procEspec?`<div class="col-md-4"><div class="info-label">Especialização</div><div class="info-value">${procEspec}</div></div>`:''}
-            </div>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                ${edital  ?`<a href="${edital}"   target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">description</span> Edital / Licitação</a>`:''}
-                ${contLink?`<a href="${contLink}" target="_blank" class="btn-pesquisa" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">article</span> Contrato / Aditivos</a>`:''}
-                ${portalUrl?`<a href="${portalUrl}" target="_blank" class="btn-secondary-custom" style="font-size:11px;height:30px;padding:0 12px;"><span class="material-icons" style="font-size:12px">open_in_new</span> Portal ComprasMG</a>`:''}
-            </div>` : '');
+            </div>` : '';
 
         // — Empenhos/Painel
         const empenhosHTML = painelContrato.length > 0 ? `
@@ -2555,20 +2541,29 @@
                     </div>
                 </div></div>` : ''}
                 <div class="col-md-4"><div class="info-card"><div class="info-label">Municípios</div><div class="info-value" style="font-size:12px;font-weight:400">${municipios.map(m=>m.municipio).join(', ')||'Não informado'}</div></div></div>
-                <div class="col-md-4"><div class="info-card"><div class="info-label">Fiscais Designados</div>
-                    ${fiscais.length > 0 ? `<div style="display:flex;flex-direction:column;gap:4px;margin-top:4px;">
-                    ${fiscais.map(f=>`<div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 6px;background:#f8fafd;border-radius:4px;">
-                        <span class="material-icons" style="font-size:13px;color:#1a3a5c">badge</span>
-                        <span><strong>${f.nome||'-'}</strong>${f.cargo?` — ${f.cargo}`:''}</span>
-                        ${f.conselho?`<span style="color:#6c757d;font-size:10px">(${f.conselho})</span>`:''}
-                    </div>`).join('')}
-                    </div>` : `<div class="info-value" style="font-size:12px;font-weight:400">Não informado</div>`}
-                </div></div>
             </div>
             <div class="info-card mb-2">
                 <div class="info-label">Objeto</div>
                 <div class="info-value" style="font-size:12px;font-weight:400;line-height:1.5">${contrato.objeto||'Objeto não informado'}</div>
             </div>
+
+            <!-- FISCAIS DESIGNADOS -->
+            ${secHead('badge','Fiscais Designados','#1a3a5c')}
+            ${fiscais.length > 0 ? `
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:12px;">
+                ${fiscais.map(f=>`
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:#f4f7fb;border-radius:8px;border:1px solid #dce6f0;">
+                    <div style="width:36px;height:36px;background:#1a3a5c;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                        <span class="material-icons" style="font-size:18px;color:#fff">person</span>
+                    </div>
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-size:12px;font-weight:700;color:#1a3a5c;line-height:1.3">${f.nome||'-'}</div>
+                        ${f.cargo?`<div style="font-size:11px;color:#475569;margin-top:2px">${f.cargo}</div>`:''}
+                        ${f.conselho?`<div style="display:inline-block;margin-top:4px;background:#e8f0f8;color:#20445d;padding:1px 7px;border-radius:10px;font-size:10px;font-weight:600;">${f.conselho}</div>`:''}
+                        ${f.obra?`<div style="font-size:10px;color:#6c757d;margin-top:3px">Obra: ${f.obra}</div>`:''}
+                    </div>
+                </div>`).join('')}
+            </div>` : `<div style="padding:10px 0;font-size:12px;color:#6c757d;margin-bottom:8px">Não informado</div>`}
 
             <!-- BLOCO 2: VALORES CONTRATUAIS -->
             ${secHead('attach_money','Valores Contratuais','#39a585')}
