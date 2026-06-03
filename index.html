@@ -1498,8 +1498,8 @@
                     <tbody>
                         ${dadosPagina.map(c=>`
                         <tr style="cursor:pointer" onclick="verDetalhesContrato('${c.contrato}')">
-                            <td><strong style="color:#006a82">${c.contrato_siad_raw||c.numero_contrato_siad||'-'}</strong></td>
-                            <td><strong style="color:#006a82">${c.contrato||'-'}</strong></td>
+                            <td><span class="orgao-link" onclick="event.stopPropagation();irParaConsultaIndividual('${(c.contrato||'').replace(/'/g,"\\'")}');return false;" title="Ver consulta individual">${c.contrato_siad_raw||c.numero_contrato_siad||'-'}</span></td>
+                            <td>${c.contrato||'-'}</td>
                             <td>${truncate(c.orgao_entidade_contratante,35)}</td>
                             <td class="text-right">R$ ${formatarMoeda(c.valor_inicial_do_contrato)}</td>
                             <td class="text-right">R$ ${formatarMoeda(c.valor_em_aditivos)}</td>
@@ -1548,6 +1548,14 @@
     };
 
     window.irParaContratosVG = function(contrato) {
+        filtrosAtivos.contratos.numero = contrato;
+        filtrarContratos();
+        document.getElementById('contratos-tab').click();
+        setTimeout(() => renderizarContratos(), 300);
+    };
+
+    // Visão Geral: clique em CONTRATO SIAD leva para aba Contratos com filtro aplicado
+    window.irParaConsultaIndividual = function(contrato) {
         filtrosAtivos.contratos.numero = contrato;
         filtrarContratos();
         document.getElementById('contratos-tab').click();
@@ -1907,17 +1915,31 @@
             const contrato = currentDisplayData.contratos.find(c => c.contrato === f.contrato);
             const ano = contrato?.ano_assinatura || '-';
             const contrato_siad_disp = contrato?.contrato_siad_raw || contrato?.numero_contrato_siad || '-';
+            const contrato_link_siad_f = contrato?.contrato_link_siad || '';
+            const edital_link_siad_f   = contrato?.edital_link_siad   || '';
             const pt = transformarPortalCompras(contrato?.portal_de_compras);
-            const portalCell = pt?.url
-                ? `<a href="${pt.url}" target="_blank" class="compra-link" title="Acessar no ComprasMG">${pt.texto}</a>`
-                : (pt?.texto || '-');
+            const siadCell = contrato_link_siad_f
+                ? `<a href="${contrato_link_siad_f}" target="_blank" class="compra-link" title="Ver contrato/aditivos no SIAD">${contrato_siad_disp}</a>`
+                : contrato_siad_disp;
+            let portalCell;
+            if (contrato?.numero_processo_siad) {
+                if (edital_link_siad_f) {
+                    portalCell = `<a href="${edital_link_siad_f}" target="_blank" class="compra-link" title="Ver edital/retificação">${contrato.numero_processo_siad}</a>`;
+                } else if (pt?.url) {
+                    portalCell = `<a href="${pt.url}" target="_blank" class="compra-link" title="Acessar no ComprasMG">${contrato.numero_processo_siad}</a>`;
+                } else {
+                    portalCell = contrato.numero_processo_siad;
+                }
+            } else {
+                portalCell = pt?.url ? `<a href="${pt.url}" target="_blank" class="compra-link">${pt.texto}</a>` : (pt?.texto || '-');
+            }
             return `
             <tr>
                 <td><strong>${f.nome||'-'}</strong></td>
                 <td>${f.conselho||'-'}</td>
                 <td>${f.cargo||'-'}</td>
                 <td class="text-center">${ano}</td>
-                <td><strong style="color:#006a82">${contrato_siad_disp}</strong></td>
+                <td>${siadCell}</td>
                 <td>${f.contrato||'-'}</td>
                 <td>${portalCell}</td>
                 <td class="text-center"><button class="btn-action" title="Ver contrato" onclick="verDetalhesContrato('${(f.contrato||'').replace(/'/g,"\\'")}')"><span class="material-icons" style="font-size:15px">visibility</span></button></td>
@@ -2082,8 +2104,12 @@
             const vlTotalR  = parseFloat(String(it['Valor Total Referência Item Processo']||it['valor_total_referencia']||'0').replace(',','.'))||0;
             const vlHomolog = parseFloat(String(it['Valor Total Homologado']||it['valor_total_homologado']||'0').replace(',','.'))||0;
             const contratoId = it._contrato_der || '';
+            const siadLinkItens = it._contrato_ref?.contrato_link_siad || '';
+            const siadCellItens = siadLinkItens
+                ? `<a href="${siadLinkItens}" target="_blank" class="compra-link" title="Ver contrato/aditivos no SIAD">${it._contrato_siad||'-'}</a>`
+                : `<strong style="color:#006a82">${it._contrato_siad||'-'}</strong>`;
             return `<tr>
-                <td><strong style="color:#006a82">${it._contrato_siad||'-'}</strong></td>
+                <td>${siadCellItens}</td>
                 <td>${it._contrato_der||'-'}</td>
                 <td class="text-center">${numItem}</td>
                 <td><small>${codMat}</small></td>
