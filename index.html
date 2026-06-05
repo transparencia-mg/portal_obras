@@ -1040,10 +1040,16 @@
         if (dataCache.contratos_siad) {
             currentDisplayData.contratos_siad = dataCache.contratos_siad.map(r => ({...r}));
             dataCache.contratos_siad.forEach(r => {
-                const num = (r['Número Contrato']||r['numero_contrato']||'').trim();
-                if (num) {
-                    if (!siadPorNumero[num]) siadPorNumero[num] = [];
-                    siadPorNumero[num].push(r);
+                const numRaw = (r['Número Contrato']||r['numero_contrato']||'').trim();
+                if (numRaw) {
+                    // Indexa pelo número bruto E pelo número normalizado (sem zeros à esquerda/prefixos)
+                    // para garantir o match independente do formato em ambos os lados
+                    const numNorm = extrairNumeroContrato(numRaw) || numRaw;
+                    const keys = new Set([numRaw, numNorm]);
+                    keys.forEach(k => {
+                        if (!siadPorNumero[k]) siadPorNumero[k] = [];
+                        siadPorNumero[k].push(r);
+                    });
                 }
             });
         }
@@ -1062,13 +1068,17 @@
 
         if (dataCache.contratos) {
             currentDisplayData.contratos = dataCache.contratos.map(c => {
-                const numContrato = extrairNumeroContrato(c.contrato?.trim()||'');
-                // Busca primeiro registro SIAD correspondente
-                const siadRows = numContrato ? (siadPorNumero[numContrato] || []) : [];
+                // Usa diretamente a coluna contrato_siad (já mapeada em todos os arquivos)
+                // com fallback para extração do número a partir do campo contrato (legado)
+                const contrato_siad_direto = (c.contrato_siad||'').trim();
+                const numContratoLegado    = extrairNumeroContrato(c.contrato?.trim()||'');
+                // Busca no índice SIAD: prioridade para contrato_siad direto, depois legado
+                const siadRows = contrato_siad_direto
+                    ? (siadPorNumero[contrato_siad_direto] || siadPorNumero[extrairNumeroContrato(contrato_siad_direto)||''] || [])
+                    : (numContratoLegado ? (siadPorNumero[numContratoLegado] || []) : []);
                 const siad = siadRows[0] || null;
-                // Dados que vêm do SIAD (prioridade) com fallback para contrato original
-                // contrato_siad vem direto da coluna contrato_siad em todas as tabelas
-                const contrato_siad_raw   = (c.contrato_siad||'').trim() || (siad ? (siad['Número Contrato']||'').trim() : '');
+                // contrato_siad_raw: usa coluna direta (prioridade) ou fallback do SIAD
+                const contrato_siad_raw   = contrato_siad_direto || (siad ? (siad['Número Contrato']||'').trim() : '');
                 const razao_social_siad   = siad ? (siad['Razão Social Fornecedor']||siad['Nome Empresarial/Nome Fornecedor']||siad['razao_social_fornecedor']||'').trim() : '';
                 const cnpj_siad           = siad ? (siad['CNPJ/CPF']||siad['cnpj_cpf']||'').trim() : '';
                 const numero_processo_siad= siad ? (siad['Número Processo - Formatado']||siad['numero_processo_formatado']||'').trim() : '';
