@@ -1130,7 +1130,7 @@
         if (dataCache.municipios) currentDisplayData.municipios = dataCache.municipios.map(m => ({ ...m, contrato: m.contrato?.trim()||'', municipio: m.municipio?.trim()||'' }));
         if (dataCache.coordenadas) currentDisplayData.coordenadas = dataCache.coordenadas.map(coord => ({ ...coord, contrato: coord.contrato?.trim()||'', latitude: coord.latitude?.trim()||'', longitude: coord.longitude?.trim()||'' }));
         if (dataCache.trechos)    currentDisplayData.trechos    = dataCache.trechos.map(t    => ({ ...t, contrato: t.contrato?.trim()||'' }));
-        if (dataCache.situacao)   currentDisplayData.situacao   = dataCache.situacao.map(s   => ({ ...s, contrato: s.contrato?.trim()||'', status: s.status?.trim()||'', descricao_do_motivo: s.descricao_do_motivo?.trim()||'', data: s.data?.trim()||'', responsavel: (s.responsavel?.trim()||'').replace(/\bDiretor Geral\b(?!\s*-\s*DRE)/g, 'Diretor Geral - DRE') }));
+        if (dataCache.situacao)   currentDisplayData.situacao   = dataCache.situacao.map(s   => ({ ...s, contrato: s.contrato?.trim()||'', status: s.status?.trim()||'', descricao_do_motivo: s.descricao_do_motivo?.trim()||'', data: s.data?.trim()||'', responsavel: (s.responsavel?.trim()||'').replace(/\bDiretor Geral\b(?!\s*-\s*DER)/g, 'Diretor Geral - DER') }));
         if (dataCache.painel)     currentDisplayData.painel     = dataCache.painel.map(p => ({ ...p, contrato: p.contrato?.trim()||'' }));
 
         const situacaoPorContrato = {};
