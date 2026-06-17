@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.797,
+  "time": 0.855,
   "errors": [],
   "tasks": [
     {
@@ -142,13 +142,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "7ffa5050e392df6469b8ce0c73414fdf",
-          "bytes": 557546,
+          "hash": "a9d7534c1eb65e10250f77b129ccdbf7",
+          "bytes": 555346,
           "fields": 30,
-          "rows": 636
+          "rows": 633
         }
       },
-      "time": 0.074,
+      "time": 0.084,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -371,13 +371,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "edd76111d354808358889abcab382f8f",
-          "bytes": 292898,
+          "hash": "057f4f603a71002e442d2ad11171ad68",
+          "bytes": 292904,
           "fields": 44,
           "rows": 291
         }
       },
-      "time": 0.088,
+      "time": 0.092,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -448,10 +448,10 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "8f4f9f89468d9c0eb573db7dc76455b0",
-          "bytes": 61059,
+          "hash": "dbdcc72f0a47c6e6aa6add066226752e",
+          "bytes": 61022,
           "fields": 6,
-          "rows": 878
+          "rows": 875
         }
       },
       "time": 0.024,
@@ -529,13 +529,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "01f7214e532bee5aec9704362408e523",
-          "bytes": 613559,
+          "hash": "04404d83f4644b5873ed2643591e2697",
+          "bytes": 617135,
           "fields": 7,
-          "rows": 5110
+          "rows": 5136
         }
       },
-      "time": 0.102,
+      "time": 0.104,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -1274,6 +1274,33 @@
             "CREA 30.791",
             "Fiscal do Contrato"
           ],
+          "rowNumber": 3756,
+          "rowPosition": 3757,
+          "code": "type-error",
+          "name": "Type Error",
+          "tags": [
+            "#table",
+            "#row",
+            "#cell"
+          ],
+          "note": "type is \"integer/default\"",
+          "message": "Type error in the cell \"Em andamento\" in row \"3757\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "description": "The value does not match the schema type and format for this field."
+        },
+        {
+          "cell": "Em andamento",
+          "fieldName": "contrato_siad",
+          "fieldNumber": 2,
+          "fieldPosition": 2,
+          "cells": [
+            "DPEI-030/2023",
+            "Em andamento",
+            "Obra 1",
+            "Não Disponível",
+            "Felipe Dutra de Resende",
+            "128102/04-D",
+            "Representante do Meio Ambiente"
+          ],
           "rowNumber": 3757,
           "rowPosition": 3758,
           "code": "type-error",
@@ -1297,8 +1324,8 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Felipe Dutra de Resende",
-            "128102/04-D",
+            "Andrea de Oliveira Prado",
+            "CREAMG - 109.983/D",
             "Representante do Meio Ambiente"
           ],
           "rowNumber": 3758,
@@ -1324,9 +1351,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Andrea de Oliveira Prado",
-            "CREAMG - 109.983/D",
-            "Representante do Meio Ambiente"
+            "Diogo Miranda Amaral",
+            "CREA 105715/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3759,
           "rowPosition": 3760,
@@ -1351,9 +1378,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Diogo Miranda Amaral",
-            "CREA 105715/D",
-            "Representante do Serviço de Medições"
+            "Willian Barros Valamiel",
+            "CREA 57.228/D",
+            "Gerente"
           ],
           "rowNumber": 3760,
           "rowPosition": 3761,
@@ -1378,9 +1405,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Willian Barros Valamiel",
-            "CREA 57.228/D",
-            "Gerente"
+            "CAMILA HILARIO BETHONICO DE MELO ",
+            "CREA 184928/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3761,
           "rowPosition": 3762,
@@ -1405,8 +1432,8 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "CAMILA HILARIO BETHONICO DE MELO ",
-            "CREA 184928/D",
+            "BRUNO ALBERTO VIANA ROCHA",
+            "CREA 183272/D",
             "Representante do Serviço de Medições"
           ],
           "rowNumber": 3762,
@@ -1432,9 +1459,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "BRUNO ALBERTO VIANA ROCHA",
-            "CREA 183272/D",
-            "Representante do Serviço de Medições"
+            "André Luis Cairo de Azevedo",
+            "CREA 6.052-6",
+            "Diretor"
           ],
           "rowNumber": 3763,
           "rowPosition": 3764,
@@ -1457,11 +1484,11 @@
           "cells": [
             "DPEI-030/2023",
             "Em andamento",
-            "Obra 1",
+            "Obra 2",
             "Não Disponível",
-            "André Luis Cairo de Azevedo",
-            "CREA 6.052-6",
-            "Diretor"
+            "José Eustáquio Ferreira Caldas",
+            "CREA 30.791",
+            "Fiscal do Contrato"
           ],
           "rowNumber": 3764,
           "rowPosition": 3765,
@@ -1486,9 +1513,9 @@
             "Em andamento",
             "Obra 2",
             "Não Disponível",
-            "José Eustáquio Ferreira Caldas",
-            "CREA 30.791",
-            "Fiscal do Contrato"
+            "Felipe Dutra de Resende",
+            "128102/04-D",
+            "Representante do Meio Ambiente"
           ],
           "rowNumber": 3765,
           "rowPosition": 3766,
@@ -1513,8 +1540,8 @@
             "Em andamento",
             "Obra 2",
             "Não Disponível",
-            "Felipe Dutra de Resende",
-            "128102/04-D",
+            "Andrea de Oliveira Prado",
+            "CREAMG - 109.983/D",
             "Representante do Meio Ambiente"
           ],
           "rowNumber": 3766,
@@ -1540,9 +1567,9 @@
             "Em andamento",
             "Obra 2",
             "Não Disponível",
-            "Andrea de Oliveira Prado",
-            "CREAMG - 109.983/D",
-            "Representante do Meio Ambiente"
+            "Diogo Miranda Amaral",
+            "CREA 105715/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3767,
           "rowPosition": 3768,
@@ -1567,9 +1594,9 @@
             "Em andamento",
             "Obra 2",
             "Não Disponível",
-            "Diogo Miranda Amaral",
-            "CREA 105715/D",
-            "Representante do Serviço de Medições"
+            "Willian Barros Valamiel",
+            "CREA 57.228/D",
+            "Gerente"
           ],
           "rowNumber": 3768,
           "rowPosition": 3769,
@@ -1594,9 +1621,9 @@
             "Em andamento",
             "Obra 2",
             "Não Disponível",
-            "Willian Barros Valamiel",
-            "CREA 57.228/D",
-            "Gerente"
+            "CAMILA HILARIO BETHONICO DE MELO ",
+            "CREA 184928/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3769,
           "rowPosition": 3770,
@@ -1621,8 +1648,8 @@
             "Em andamento",
             "Obra 2",
             "Não Disponível",
-            "CAMILA HILARIO BETHONICO DE MELO ",
-            "CREA 184928/D",
+            "BRUNO ALBERTO VIANA ROCHA",
+            "CREA 183272/D",
             "Representante do Serviço de Medições"
           ],
           "rowNumber": 3770,
@@ -1648,9 +1675,9 @@
             "Em andamento",
             "Obra 2",
             "Não Disponível",
-            "BRUNO ALBERTO VIANA ROCHA",
-            "CREA 183272/D",
-            "Representante do Serviço de Medições"
+            "André Luis Cairo de Azevedo",
+            "CREA 6.052-6",
+            "Diretor"
           ],
           "rowNumber": 3771,
           "rowPosition": 3772,
@@ -1673,11 +1700,11 @@
           "cells": [
             "DPEI-030/2023",
             "Em andamento",
-            "Obra 2",
+            "Obra 3",
             "Não Disponível",
-            "André Luis Cairo de Azevedo",
-            "CREA 6.052-6",
-            "Diretor"
+            "José Eustáquio Ferreira Caldas",
+            "CREA 30.791",
+            "Fiscal do Contrato"
           ],
           "rowNumber": 3772,
           "rowPosition": 3773,
@@ -1702,9 +1729,9 @@
             "Em andamento",
             "Obra 3",
             "Não Disponível",
-            "José Eustáquio Ferreira Caldas",
-            "CREA 30.791",
-            "Fiscal do Contrato"
+            "Felipe Dutra de Resende",
+            "128102/04-D",
+            "Representante do Meio Ambiente"
           ],
           "rowNumber": 3773,
           "rowPosition": 3774,
@@ -1729,8 +1756,8 @@
             "Em andamento",
             "Obra 3",
             "Não Disponível",
-            "Felipe Dutra de Resende",
-            "128102/04-D",
+            "Andrea de Oliveira Prado",
+            "CREAMG - 109.983/D",
             "Representante do Meio Ambiente"
           ],
           "rowNumber": 3774,
@@ -1756,9 +1783,9 @@
             "Em andamento",
             "Obra 3",
             "Não Disponível",
-            "Andrea de Oliveira Prado",
-            "CREAMG - 109.983/D",
-            "Representante do Meio Ambiente"
+            "Diogo Miranda Amaral",
+            "CREA 105715/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3775,
           "rowPosition": 3776,
@@ -1783,9 +1810,9 @@
             "Em andamento",
             "Obra 3",
             "Não Disponível",
-            "Diogo Miranda Amaral",
-            "CREA 105715/D",
-            "Representante do Serviço de Medições"
+            "Willian Barros Valamiel",
+            "CREA 57.228/D",
+            "Gerente"
           ],
           "rowNumber": 3776,
           "rowPosition": 3777,
@@ -1810,9 +1837,9 @@
             "Em andamento",
             "Obra 3",
             "Não Disponível",
-            "Willian Barros Valamiel",
-            "CREA 57.228/D",
-            "Gerente"
+            "CAMILA HILARIO BETHONICO DE MELO ",
+            "CREA 184928/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3777,
           "rowPosition": 3778,
@@ -1837,8 +1864,8 @@
             "Em andamento",
             "Obra 3",
             "Não Disponível",
-            "CAMILA HILARIO BETHONICO DE MELO ",
-            "CREA 184928/D",
+            "BRUNO ALBERTO VIANA ROCHA",
+            "CREA 183272/D",
             "Representante do Serviço de Medições"
           ],
           "rowNumber": 3778,
@@ -1864,9 +1891,9 @@
             "Em andamento",
             "Obra 3",
             "Não Disponível",
-            "BRUNO ALBERTO VIANA ROCHA",
-            "CREA 183272/D",
-            "Representante do Serviço de Medições"
+            "André Luis Cairo de Azevedo",
+            "CREA 6.052-6",
+            "Diretor"
           ],
           "rowNumber": 3779,
           "rowPosition": 3780,
@@ -1889,11 +1916,11 @@
           "cells": [
             "DPEI-030/2023",
             "Em andamento",
-            "Obra 3",
+            "Obra 4",
             "Não Disponível",
-            "André Luis Cairo de Azevedo",
-            "CREA 6.052-6",
-            "Diretor"
+            "José Eustáquio Ferreira Caldas",
+            "CREA 30.791",
+            "Fiscal do Contrato"
           ],
           "rowNumber": 3780,
           "rowPosition": 3781,
@@ -1918,9 +1945,9 @@
             "Em andamento",
             "Obra 4",
             "Não Disponível",
-            "José Eustáquio Ferreira Caldas",
-            "CREA 30.791",
-            "Fiscal do Contrato"
+            "Felipe Dutra de Resende",
+            "128102/04-D",
+            "Representante do Meio Ambiente"
           ],
           "rowNumber": 3781,
           "rowPosition": 3782,
@@ -1945,8 +1972,8 @@
             "Em andamento",
             "Obra 4",
             "Não Disponível",
-            "Felipe Dutra de Resende",
-            "128102/04-D",
+            "Andrea de Oliveira Prado",
+            "CREAMG - 109.983/D",
             "Representante do Meio Ambiente"
           ],
           "rowNumber": 3782,
@@ -1972,9 +1999,9 @@
             "Em andamento",
             "Obra 4",
             "Não Disponível",
-            "Andrea de Oliveira Prado",
-            "CREAMG - 109.983/D",
-            "Representante do Meio Ambiente"
+            "Diogo Miranda Amaral",
+            "CREA 105715/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3783,
           "rowPosition": 3784,
@@ -1999,9 +2026,9 @@
             "Em andamento",
             "Obra 4",
             "Não Disponível",
-            "Diogo Miranda Amaral",
-            "CREA 105715/D",
-            "Representante do Serviço de Medições"
+            "Willian Barros Valamiel",
+            "CREA 57.228/D",
+            "Gerente"
           ],
           "rowNumber": 3784,
           "rowPosition": 3785,
@@ -2026,9 +2053,9 @@
             "Em andamento",
             "Obra 4",
             "Não Disponível",
-            "Willian Barros Valamiel",
-            "CREA 57.228/D",
-            "Gerente"
+            "CAMILA HILARIO BETHONICO DE MELO ",
+            "CREA 184928/D",
+            "Representante do Serviço de Medições"
           ],
           "rowNumber": 3785,
           "rowPosition": 3786,
@@ -2053,8 +2080,8 @@
             "Em andamento",
             "Obra 4",
             "Não Disponível",
-            "CAMILA HILARIO BETHONICO DE MELO ",
-            "CREA 184928/D",
+            "BRUNO ALBERTO VIANA ROCHA",
+            "CREA 183272/D",
             "Representante do Serviço de Medições"
           ],
           "rowNumber": 3786,
@@ -2080,9 +2107,9 @@
             "Em andamento",
             "Obra 4",
             "Não Disponível",
-            "BRUNO ALBERTO VIANA ROCHA",
-            "CREA 183272/D",
-            "Representante do Serviço de Medições"
+            "André Luis Cairo de Azevedo",
+            "CREA 6.052-6",
+            "Diretor"
           ],
           "rowNumber": 3787,
           "rowPosition": 3788,
@@ -2103,16 +2130,16 @@
           "fieldNumber": 2,
           "fieldPosition": 2,
           "cells": [
-            "DPEI-030/2023",
+            "DOV-002/2021-B",
             "Em andamento",
-            "Obra 4",
+            "Obra 1",
             "Não Disponível",
-            "André Luis Cairo de Azevedo",
-            "CREA 6.052-6",
-            "Diretor"
+            "Beatriz A. B. Pinheiro",
+            "141763/D",
+            "Gerente"
           ],
-          "rowNumber": 3788,
-          "rowPosition": 3789,
+          "rowNumber": 4401,
+          "rowPosition": 4402,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -2121,7 +2148,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Em andamento\" in row \"3789\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Em andamento\" in row \"4402\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -2134,9 +2161,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Beatriz A. B. Pinheiro",
-            "141763/D",
-            "Gerente"
+            "Daniel Freitas Caputo Oliveira",
+            "167857/D",
+            "Fiscal de Transportes e Obras Rodoviárias"
           ],
           "rowNumber": 4402,
           "rowPosition": 4403,
@@ -2161,9 +2188,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Daniel Freitas Caputo Oliveira",
-            "167857/D",
-            "Fiscal de Transportes e Obras Rodoviárias"
+            "Cristiano Francisco F. S. Coelho",
+            "174451/D",
+            "Diretor"
           ],
           "rowNumber": 4403,
           "rowPosition": 4404,
@@ -2188,9 +2215,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Cristiano Francisco F. S. Coelho",
-            "174451/D",
-            "Diretor"
+            "Daniel Avelar Maia da Silva",
+            "79598/D",
+            "Representante da Firma"
           ],
           "rowNumber": 4404,
           "rowPosition": 4405,
@@ -2215,8 +2242,8 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Daniel Avelar Maia da Silva",
-            "79598/D",
+            "Roberto Paixão e Silva",
+            "136751/D",
             "Representante da Firma"
           ],
           "rowNumber": 4405,
@@ -2242,9 +2269,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Roberto Paixão e Silva",
-            "136751/D",
-            "Representante da Firma"
+            "Marcela Cardoso Bastos",
+            "CREA 82739D",
+            "Fiscal do Contrato"
           ],
           "rowNumber": 4406,
           "rowPosition": 4407,
@@ -2269,8 +2296,8 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Marcela Cardoso Bastos",
-            "CREA 82739D",
+            "Flávia Cristina Teixeira Guimarães",
+            "CREA 168283D",
             "Fiscal do Contrato"
           ],
           "rowNumber": 4407,
@@ -2296,9 +2323,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Flávia Cristina Teixeira Guimarães",
-            "CREA 168283D",
-            "Fiscal do Contrato"
+            "Rodrigo Santos Colares",
+            "DER: X601872",
+            "Diretor"
           ],
           "rowNumber": 4408,
           "rowPosition": 4409,
@@ -2311,33 +2338,6 @@
           ],
           "note": "type is \"integer/default\"",
           "message": "Type error in the cell \"Em andamento\" in row \"4409\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
-          "description": "The value does not match the schema type and format for this field."
-        },
-        {
-          "cell": "Em andamento",
-          "fieldName": "contrato_siad",
-          "fieldNumber": 2,
-          "fieldPosition": 2,
-          "cells": [
-            "DOV-002/2021-B",
-            "Em andamento",
-            "Obra 1",
-            "Não Disponível",
-            "Rodrigo Santos Colares",
-            "DER: X601872",
-            "Diretor"
-          ],
-          "rowNumber": 4409,
-          "rowPosition": 4410,
-          "code": "type-error",
-          "name": "Type Error",
-          "tags": [
-            "#table",
-            "#row",
-            "#cell"
-          ],
-          "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Em andamento\" in row \"4410\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         }
       ],
@@ -2429,13 +2429,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "411af9196b6347a83f7726952e831808",
+          "hash": "a52fea1d8dcde691a6569e100946bdf6",
           "bytes": 183876,
           "fields": 16,
           "rows": 796
         }
       },
-      "time": 0.041,
+      "time": 0.042,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2502,13 +2502,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "9ab86c1af3e8f0851a68fb032c3bf9e3",
-          "bytes": 523991,
+          "hash": "3589673e090aa9c0aa347d426d124730",
+          "bytes": 524022,
           "fields": 5,
           "rows": 8201
         }
       },
-      "time": 0.13,
+      "time": 0.129,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2603,13 +2603,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "f67a2505e927c996f23e00024189f07c",
-          "bytes": 167927,
+          "hash": "65ccf422aa6109e5b55e3c1f4f5b04b9",
+          "bytes": 167352,
           "fields": 12,
-          "rows": 727
+          "rows": 724
         }
       },
-      "time": 0.033,
+      "time": 0.034,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2684,13 +2684,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "4f6a5cda27c5b8397b705740e7ba8ac0",
-          "bytes": 172126,
+          "hash": "c2d5cb020a886894c3a5eb11580861f4",
+          "bytes": 172298,
           "fields": 7,
-          "rows": 2067
+          "rows": 2069
         }
       },
-      "time": 0.06,
+      "time": 0.07,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2777,13 +2777,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "65f73321febb3b932673bb55c59832d4",
-          "bytes": 611735,
+          "hash": "c149fc9faef2c1000c7f5eff6929617a",
+          "bytes": 611689,
           "fields": 10,
-          "rows": 4795
+          "rows": 4792
         }
       },
-      "time": 0.122,
+      "time": 0.143,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2853,8 +2853,8 @@
             "",
             "2301520 000021/2021"
           ],
-          "rowNumber": 4450,
-          "rowPosition": 4451,
+          "rowNumber": 4451,
+          "rowPosition": 4452,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -2863,7 +2863,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Rescindido\" in row \"4451\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Rescindido\" in row \"4452\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -2883,8 +2883,8 @@
             "",
             "2301601 000001/2023"
           ],
-          "rowNumber": 4460,
-          "rowPosition": 4461,
+          "rowNumber": 4461,
+          "rowPosition": 4462,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -2893,7 +2893,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Registro de Preços\" in row \"4461\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Registro de Preços\" in row \"4462\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -2913,8 +2913,8 @@
             "",
             "2301601 000001/2023"
           ],
-          "rowNumber": 4462,
-          "rowPosition": 4463,
+          "rowNumber": 4463,
+          "rowPosition": 4464,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -2923,7 +2923,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Registro de Preços\" in row \"4463\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Registro de Preços\" in row \"4464\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -2943,8 +2943,8 @@
             "",
             "2301601 000001/2023"
           ],
-          "rowNumber": 4491,
-          "rowPosition": 4492,
+          "rowNumber": 4492,
+          "rowPosition": 4493,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -2953,7 +2953,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Registro de Preços\" in row \"4492\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Registro de Preços\" in row \"4493\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -2973,8 +2973,8 @@
             "",
             "2301601 000001/2023"
           ],
-          "rowNumber": 4526,
-          "rowPosition": 4527,
+          "rowNumber": 4527,
+          "rowPosition": 4528,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -2983,7 +2983,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Registro de Preços\" in row \"4527\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Registro de Preços\" in row \"4528\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3003,8 +3003,8 @@
             "",
             "2301520 000001/2021"
           ],
-          "rowNumber": 4538,
-          "rowPosition": 4539,
+          "rowNumber": 4539,
+          "rowPosition": 4540,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3013,7 +3013,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Rescindido\" in row \"4539\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Rescindido\" in row \"4540\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3033,8 +3033,8 @@
             "",
             "2301520 000006/2020"
           ],
-          "rowNumber": 4599,
-          "rowPosition": 4600,
+          "rowNumber": 4598,
+          "rowPosition": 4599,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3043,7 +3043,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Rescindido\" in row \"4600\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Rescindido\" in row \"4599\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3063,8 +3063,8 @@
             "",
             "2301601 000001/2023"
           ],
-          "rowNumber": 4601,
-          "rowPosition": 4602,
+          "rowNumber": 4600,
+          "rowPosition": 4601,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3073,7 +3073,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Registro de Preços\" in row \"4602\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Registro de Preços\" in row \"4601\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3093,8 +3093,8 @@
             "",
             "2301601 000001/2023"
           ],
-          "rowNumber": 4603,
-          "rowPosition": 4604,
+          "rowNumber": 4602,
+          "rowPosition": 4603,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3103,7 +3103,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Registro de Preços\" in row \"4604\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Registro de Preços\" in row \"4603\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3123,8 +3123,8 @@
             "",
             "Não Disponível"
           ],
-          "rowNumber": 4614,
-          "rowPosition": 4615,
+          "rowNumber": 4613,
+          "rowPosition": 4614,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3133,7 +3133,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Concluído\" in row \"4615\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Concluído\" in row \"4614\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3145,6 +3145,36 @@
             "DPEI-030/2023",
             "Em andamento",
             "Obra 2",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "Não Disponível"
+          ],
+          "rowNumber": 4635,
+          "rowPosition": 4636,
+          "code": "type-error",
+          "name": "Type Error",
+          "tags": [
+            "#table",
+            "#row",
+            "#cell"
+          ],
+          "note": "type is \"integer/default\"",
+          "message": "Type error in the cell \"Em andamento\" in row \"4636\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "description": "The value does not match the schema type and format for this field."
+        },
+        {
+          "cell": "Em andamento",
+          "fieldName": "contrato_siad",
+          "fieldNumber": 2,
+          "fieldPosition": 2,
+          "cells": [
+            "DPEI-030/2023",
+            "Em andamento",
+            "Obra 1",
             "",
             "",
             "",
@@ -3174,36 +3204,6 @@
           "cells": [
             "DPEI-030/2023",
             "Em andamento",
-            "Obra 1",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "Não Disponível"
-          ],
-          "rowNumber": 4637,
-          "rowPosition": 4638,
-          "code": "type-error",
-          "name": "Type Error",
-          "tags": [
-            "#table",
-            "#row",
-            "#cell"
-          ],
-          "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Em andamento\" in row \"4638\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
-          "description": "The value does not match the schema type and format for this field."
-        },
-        {
-          "cell": "Em andamento",
-          "fieldName": "contrato_siad",
-          "fieldNumber": 2,
-          "fieldPosition": 2,
-          "cells": [
-            "DPEI-030/2023",
-            "Em andamento",
             "Obra 3",
             "",
             "",
@@ -3213,8 +3213,8 @@
             "",
             "Não Disponível"
           ],
-          "rowNumber": 4655,
-          "rowPosition": 4656,
+          "rowNumber": 4654,
+          "rowPosition": 4655,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3223,7 +3223,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Em andamento\" in row \"4656\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Em andamento\" in row \"4655\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3243,8 +3243,8 @@
             "",
             "2301762 000016/2017"
           ],
-          "rowNumber": 4697,
-          "rowPosition": 4698,
+          "rowNumber": 4696,
+          "rowPosition": 4697,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3253,7 +3253,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Concluído\" in row \"4698\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Concluído\" in row \"4697\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3273,8 +3273,8 @@
             "",
             "2301520 000013/2021"
           ],
-          "rowNumber": 4720,
-          "rowPosition": 4721,
+          "rowNumber": 4717,
+          "rowPosition": 4718,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3283,7 +3283,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Extinto\" in row \"4721\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Extinto\" in row \"4718\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3303,8 +3303,8 @@
             "",
             "2301520 000006/2020"
           ],
-          "rowNumber": 4725,
-          "rowPosition": 4726,
+          "rowNumber": 4722,
+          "rowPosition": 4723,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3313,7 +3313,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Rescindido\" in row \"4726\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Rescindido\" in row \"4723\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         },
         {
@@ -3333,8 +3333,8 @@
             "",
             "Não Disponível"
           ],
-          "rowNumber": 4789,
-          "rowPosition": 4790,
+          "rowNumber": 4786,
+          "rowPosition": 4787,
           "code": "type-error",
           "name": "Type Error",
           "tags": [
@@ -3343,7 +3343,7 @@
             "#cell"
           ],
           "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Em andamento\" in row \"4790\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "message": "Type error in the cell \"Em andamento\" in row \"4787\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         }
       ],
