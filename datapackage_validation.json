@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.831,
+  "time": 0.865,
   "errors": [],
   "tasks": [
     {
@@ -142,13 +142,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "e574152c7737ad1f80b1b04ab99cda4e",
-          "bytes": 558407,
+          "hash": "ddb958d8dd8ce7286abcf2ee981c41e1",
+          "bytes": 558483,
           "fields": 30,
           "rows": 636
         }
       },
-      "time": 0.078,
+      "time": 0.082,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -377,7 +377,7 @@
           "rows": 291
         }
       },
-      "time": 0.092,
+      "time": 0.097,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -529,13 +529,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "f87a0303c552d58bbde8486daf7bf086",
-          "bytes": 621765,
+          "hash": "1e2f2388d5848aa5fb2608aa1530beb0",
+          "bytes": 624717,
           "fields": 7,
-          "rows": 5175
+          "rows": 5197
         }
       },
-      "time": 0.103,
+      "time": 0.109,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2246,33 +2246,6 @@
             "141763/D",
             "Gerente"
           ],
-          "rowNumber": 4424,
-          "rowPosition": 4425,
-          "code": "type-error",
-          "name": "Type Error",
-          "tags": [
-            "#table",
-            "#row",
-            "#cell"
-          ],
-          "note": "type is \"integer/default\"",
-          "message": "Type error in the cell \"Em andamento\" in row \"4425\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
-          "description": "The value does not match the schema type and format for this field."
-        },
-        {
-          "cell": "Em andamento",
-          "fieldName": "contrato_siad",
-          "fieldNumber": 2,
-          "fieldPosition": 2,
-          "cells": [
-            "DOV-002/2021-B",
-            "Em andamento",
-            "Obra 1",
-            "Não Disponível",
-            "Daniel Freitas Caputo Oliveira",
-            "167857/D",
-            "Fiscal de Transportes e Obras Rodoviárias"
-          ],
           "rowNumber": 4425,
           "rowPosition": 4426,
           "code": "type-error",
@@ -2296,9 +2269,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Cristiano Francisco F. S. Coelho",
-            "174451/D",
-            "Diretor"
+            "Daniel Freitas Caputo Oliveira",
+            "167857/D",
+            "Fiscal de Transportes e Obras Rodoviárias"
           ],
           "rowNumber": 4426,
           "rowPosition": 4427,
@@ -2323,9 +2296,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Daniel Avelar Maia da Silva",
-            "79598/D",
-            "Representante da Firma"
+            "Cristiano Francisco F. S. Coelho",
+            "174451/D",
+            "Diretor"
           ],
           "rowNumber": 4427,
           "rowPosition": 4428,
@@ -2350,8 +2323,8 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Roberto Paixão e Silva",
-            "136751/D",
+            "Daniel Avelar Maia da Silva",
+            "79598/D",
             "Representante da Firma"
           ],
           "rowNumber": 4428,
@@ -2377,9 +2350,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Marcela Cardoso Bastos",
-            "CREA 82739D",
-            "Fiscal do Contrato"
+            "Roberto Paixão e Silva",
+            "136751/D",
+            "Representante da Firma"
           ],
           "rowNumber": 4429,
           "rowPosition": 4430,
@@ -2404,8 +2377,8 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Flávia Cristina Teixeira Guimarães",
-            "CREA 168283D",
+            "Marcela Cardoso Bastos",
+            "CREA 82739D",
             "Fiscal do Contrato"
           ],
           "rowNumber": 4430,
@@ -2431,9 +2404,9 @@
             "Em andamento",
             "Obra 1",
             "Não Disponível",
-            "Rodrigo Santos Colares",
-            "DER: X601872",
-            "Diretor"
+            "Flávia Cristina Teixeira Guimarães",
+            "CREA 168283D",
+            "Fiscal do Contrato"
           ],
           "rowNumber": 4431,
           "rowPosition": 4432,
@@ -2446,6 +2419,33 @@
           ],
           "note": "type is \"integer/default\"",
           "message": "Type error in the cell \"Em andamento\" in row \"4432\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
+          "description": "The value does not match the schema type and format for this field."
+        },
+        {
+          "cell": "Em andamento",
+          "fieldName": "contrato_siad",
+          "fieldNumber": 2,
+          "fieldPosition": 2,
+          "cells": [
+            "DOV-002/2021-B",
+            "Em andamento",
+            "Obra 1",
+            "Não Disponível",
+            "Rodrigo Santos Colares",
+            "DER: X601872",
+            "Diretor"
+          ],
+          "rowNumber": 4432,
+          "rowPosition": 4433,
+          "code": "type-error",
+          "name": "Type Error",
+          "tags": [
+            "#table",
+            "#row",
+            "#cell"
+          ],
+          "note": "type is \"integer/default\"",
+          "message": "Type error in the cell \"Em andamento\" in row \"4433\" and field \"contrato_siad\" at position \"2\": type is \"integer/default\"",
           "description": "The value does not match the schema type and format for this field."
         }
       ],
@@ -2543,7 +2543,7 @@
           "rows": 796
         }
       },
-      "time": 0.042,
+      "time": 0.044,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2610,13 +2610,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "28e0ef428fa82149ccd95c35c07611f5",
-          "bytes": 526709,
+          "hash": "bb2f1a038b0eb2b2bd4f918d614175e9",
+          "bytes": 526768,
           "fields": 5,
-          "rows": 8229
+          "rows": 8230
         }
       },
-      "time": 0.127,
+      "time": 0.134,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2711,13 +2711,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "2b2e24f1eb997a06f8b3b697a2a0df2a",
-          "bytes": 168569,
+          "hash": "c6948f8576d14c6c8c1b21f4cddbe299",
+          "bytes": 168589,
           "fields": 12,
           "rows": 730
         }
       },
-      "time": 0.033,
+      "time": 0.035,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2792,13 +2792,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "f0dfce39435f8b4aeae58a4b480d0aa2",
-          "bytes": 173159,
+          "hash": "1538f4e48164159d930a79f392b2a2ab",
+          "bytes": 173044,
           "fields": 7,
-          "rows": 2080
+          "rows": 2079
         }
       },
-      "time": 0.069,
+      "time": 0.072,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2891,7 +2891,7 @@
           "rows": 4798
         }
       },
-      "time": 0.123,
+      "time": 0.129,
       "scope": [
         "hash-count-error",
         "byte-count-error",
