@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.434,
+  "time": 0.842,
   "errors": [],
   "tasks": [
     {
@@ -148,7 +148,7 @@
           "rows": 634
         }
       },
-      "time": 0.051,
+      "time": 0.089,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -371,13 +371,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "057f4f603a71002e442d2ad11171ad68",
-          "bytes": 292904,
+          "hash": "2d16d82f534056718c89edcafef7fd2c",
+          "bytes": 293849,
           "fields": 44,
-          "rows": 291
+          "rows": 292
         }
       },
-      "time": 0.048,
+      "time": 0.094,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -454,7 +454,7 @@
           "rows": 875
         }
       },
-      "time": 0.014,
+      "time": 0.025,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -535,7 +535,7 @@
           "rows": 5199
         }
       },
-      "time": 0.055,
+      "time": 0.107,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2537,13 +2537,13 @@
         "scheme": "file",
         "title": "Insira um título humanamente legível para este recurso.",
         "stats": {
-          "hash": "a52fea1d8dcde691a6569e100946bdf6",
-          "bytes": 183876,
+          "hash": "611132d8a40e3b72b402d8a08d8c5e87",
+          "bytes": 184326,
           "fields": 16,
-          "rows": 796
+          "rows": 798
         }
       },
-      "time": 0.021,
+      "time": 0.042,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2616,7 +2616,7 @@
           "rows": 8229
         }
       },
-      "time": 0.067,
+      "time": 0.131,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2717,7 +2717,7 @@
           "rows": 726
         }
       },
-      "time": 0.018,
+      "time": 0.034,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2798,7 +2798,7 @@
           "rows": 2079
         }
       },
-      "time": 0.034,
+      "time": 0.07,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -2891,7 +2891,7 @@
           "rows": 4794
         }
       },
-      "time": 0.064,
+      "time": 0.128,
       "scope": [
         "hash-count-error",
         "byte-count-error",
