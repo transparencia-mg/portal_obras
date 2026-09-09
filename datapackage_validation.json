@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.559,
+  "time": 0.723,
   "errors": [],
   "tasks": [
     {
@@ -147,7 +147,7 @@
           "rows": 0
         }
       },
-      "time": 0.083,
+      "time": 0.106,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -52378,7 +52378,7 @@
           "rows": 0
         }
       },
-      "time": 0.066,
+      "time": 0.094,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -136486,7 +136486,7 @@
           "rows": 0
         }
       },
-      "time": 0.036,
+      "time": 0.048,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -164569,7 +164569,7 @@
           "rows": 0
         }
       },
-      "time": 0.04,
+      "time": 0.053,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -193688,7 +193688,7 @@
           "rows": 0
         }
       },
-      "time": 0.045,
+      "time": 0.059,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -227769,7 +227769,7 @@
           "rows": 0
         }
       },
-      "time": 0.035,
+      "time": 0.046,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -254872,7 +254872,7 @@
           "rows": 0
         }
       },
-      "time": 0.047,
+      "time": 0.059,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -286932,7 +286932,7 @@
           "fieldPosition": 13,
           "cells": [
             "DC-9441355/2024 ",
-            "",
+            "9441355",
             "Obra 1",
             "Trevo de Acesso",
             "Melhoramento e pavimentação da interseção de acesso ao Hospital Regional de Teófilo Otoni, na rodovia BR-116",
@@ -286966,7 +286966,7 @@
           "fieldPosition": 14,
           "cells": [
             "DC-9441355/2024 ",
-            "",
+            "9441355",
             "Obra 1",
             "Trevo de Acesso",
             "Melhoramento e pavimentação da interseção de acesso ao Hospital Regional de Teófilo Otoni, na rodovia BR-116",
@@ -288955,7 +288955,7 @@
           "rows": 0
         }
       },
-      "time": 0.045,
+      "time": 0.058,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -318050,7 +318050,7 @@
           "rows": 0
         }
       },
-      "time": 0.047,
+      "time": 0.059,
       "scope": [
         "hash-count-error",
         "byte-count-error",
