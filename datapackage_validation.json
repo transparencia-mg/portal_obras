@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.799,
+  "time": 0.894,
   "errors": [],
   "tasks": [
     {
@@ -141,13 +141,13 @@
         "scheme": "file",
         "title": "Contratos",
         "stats": {
-          "hash": "6154c2520840fa90e14410ac819638fb",
-          "bytes": 583049,
+          "hash": "12fbfbc2edc4140cd42c8324241aaeb9",
+          "bytes": 583070,
           "fields": 30,
           "rows": 662
         }
       },
-      "time": 0.072,
+      "time": 0.093,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -375,7 +375,7 @@
           "rows": 0
         }
       },
-      "time": 0.074,
+      "time": 0.083,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -84483,7 +84483,7 @@
           "rows": 917
         }
       },
-      "time": 0.026,
+      "time": 0.027,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -84563,7 +84563,7 @@
           "rows": 5470
         }
       },
-      "time": 0.099,
+      "time": 0.112,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -86354,7 +86354,7 @@
           "rows": 0
         }
       },
-      "time": 0.054,
+      "time": 0.059,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -120435,7 +120435,7 @@
           "rows": 8608
         }
       },
-      "time": 0.134,
+      "time": 0.141,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -120535,7 +120535,7 @@
           "rows": 757
         }
       },
-      "time": 0.031,
+      "time": 0.038,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -120707,7 +120707,7 @@
           "rows": 4825
         }
       },
-      "time": 0.118,
+      "time": 0.128,
       "scope": [
         "hash-count-error",
         "byte-count-error",
