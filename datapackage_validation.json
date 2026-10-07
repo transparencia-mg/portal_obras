@@ -1,6 +1,6 @@
 {
   "version": "4.16.6",
-  "time": 0.622,
+  "time": 0.89,
   "errors": [],
   "tasks": [
     {
@@ -141,13 +141,13 @@
         "scheme": "file",
         "title": "Contratos",
         "stats": {
-          "hash": "c5f4e3c40f3aa17594a2e592da7645bf",
-          "bytes": 588821,
+          "hash": "a7046c3d4b09ec8390df08260b7f0feb",
+          "bytes": 588849,
           "fields": 30,
           "rows": 669
         }
       },
-      "time": 0.064,
+      "time": 0.093,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -375,7 +375,7 @@
           "rows": 0
         }
       },
-      "time": 0.057,
+      "time": 0.084,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -84483,7 +84483,7 @@
           "rows": 925
         }
       },
-      "time": 0.019,
+      "time": 0.026,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -84563,7 +84563,7 @@
           "rows": 5505
         }
       },
-      "time": 0.083,
+      "time": 0.113,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -86786,7 +86786,7 @@
           "rows": 0
         }
       },
-      "time": 0.038,
+      "time": 0.058,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -120867,7 +120867,7 @@
           "rows": 8651
         }
       },
-      "time": 0.102,
+      "time": 0.135,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -120967,7 +120967,7 @@
           "rows": 764
         }
       },
-      "time": 0.026,
+      "time": 0.035,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -121047,7 +121047,7 @@
           "rows": 2147
         }
       },
-      "time": 0.047,
+      "time": 0.073,
       "scope": [
         "hash-count-error",
         "byte-count-error",
@@ -121139,7 +121139,7 @@
           "rows": 4832
         }
       },
-      "time": 0.094,
+      "time": 0.128,
       "scope": [
         "hash-count-error",
         "byte-count-error",
