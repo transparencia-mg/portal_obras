@@ -68,10 +68,9 @@ if ARQ_OBRASCONTRATOS.exists():
         if "Número Contrato" in df.columns:
 
             mapa_contrato = (
-                de_para[
-                    ["Contrato_SIAD", "Contrato"]
-                ]
+                de_para[["Contrato_SIAD", "Contrato"]]
                 .drop_duplicates()
+                .copy()
             )
 
             mapa_contrato["Contrato_SIAD"] = (
@@ -94,32 +93,18 @@ if ARQ_OBRASCONTRATOS.exists():
             )
 
             if "Contrato_SIAD" in df.columns:
-                df.drop(
-                    columns=["Contrato_SIAD"],
-                    inplace=True
-                )
+                df.drop(columns=["Contrato_SIAD"], inplace=True)
 
             if "Contrato" in df.columns:
-
                 cols = list(df.columns)
-
                 cols.remove("Contrato")
-
                 idx = cols.index("Número Contrato") + 1
-
-                cols.insert(
-                    idx,
-                    "Contrato"
-                )
-
+                cols.insert(idx, "Contrato")
                 df = df[cols]
 
         destino = PASTA_UPLOAD / arquivo_saida
 
-        df.to_excel(
-            destino,
-            index=False
-        )
+        df.to_excel(destino, index=False)
 
         print(f"Criado: {arquivo_saida}")
 
@@ -127,10 +112,7 @@ if ARQ_OBRASCONTRATOS.exists():
         ARQ_OBRASCONTRATOS.unlink()
         print("OBRASCONTRATOS.xlsx removido.")
     except Exception as e:
-        print(
-            f"Não foi possível remover "
-            f"OBRASCONTRATOS.xlsx: {e}"
-        )
+        print(f"Não foi possível remover OBRASCONTRATOS.xlsx: {e}")
 
 else:
     print("OBRASCONTRATOS.xlsx não encontrado.")
@@ -144,17 +126,15 @@ print("\nAtualizando arquivos...")
 
 de_para.columns = de_para.columns.str.strip()
 
-de_para["Contrato"] = (
-    de_para["Contrato"]
-    .astype(str)
-    .str.strip()
-)
-
-de_para["Contrato_SIAD"] = (
-    de_para["Contrato_SIAD"]
-    .astype(str)
-    .str.strip()
-)
+for col in ["Contrato", "Contrato_SIAD", "Portal de Compras"]:
+    if col in de_para.columns:
+        de_para[col] = (
+            de_para[col]
+            .astype(str)
+            .str.strip()
+            # evita que células vazias virem o texto "nan"
+            .replace({"nan": pd.NA, "None": pd.NA, "": pd.NA})
+        )
 
 
 ARQUIVOS = [
@@ -183,16 +163,15 @@ for nome_arquivo in ARQUIVOS:
 
     print(f"\nProcessando {nome_arquivo}")
 
-    df = pd.read_excel(
-        caminho,
-        dtype=str
-    )
+    df = pd.read_excel(caminho, dtype=str)
 
     df.columns = df.columns.str.strip()
 
     if "Contrato" not in df.columns:
         print(f"Coluna Contrato não encontrada em {nome_arquivo}")
         continue
+
+    df["Contrato"] = df["Contrato"].astype(str).str.strip()
 
     # -------------------------------------------------
     # MERGE COM DE-PARA
@@ -212,47 +191,31 @@ for nome_arquivo in ARQUIVOS:
     if "Contrato_SIAD_novo" in df.columns:
 
         nao_mapeados = df[
-            df["Contrato_SIAD_novo"]
-            .fillna("")
-            .str.strip()
-            .eq("")
+            df["Contrato_SIAD_novo"].fillna("").str.strip().eq("")
         ]
 
         if not nao_mapeados.empty:
-
             contratos_sem_mapeamento.update(
-                nao_mapeados["Contrato"]
-                .dropna()
-                .astype(str)
-                .tolist()
+                nao_mapeados["Contrato"].dropna().astype(str).tolist()
             )
 
     # -------------------------------------------------
-    # ATUALIZA CONTRATO_SIAD
-    # TODOS OS 7 ARQUIVOS
+    # ATUALIZA CONTRATO_SIAD (TODOS OS 7 ARQUIVOS)
     # -------------------------------------------------
 
     if "Contrato_SIAD_novo" in df.columns:
 
         if "Contrato_SIAD" in df.columns:
-
             df["Contrato_SIAD"] = (
-                df["Contrato_SIAD_novo"]
-                .combine_first(df["Contrato_SIAD"])
+                df["Contrato_SIAD_novo"].combine_first(df["Contrato_SIAD"])
             )
-
         else:
-
             df["Contrato_SIAD"] = df["Contrato_SIAD_novo"]
 
-        df.drop(
-            columns=["Contrato_SIAD_novo"],
-            inplace=True
-        )
+        df.drop(columns=["Contrato_SIAD_novo"], inplace=True)
 
     # -------------------------------------------------
-    # PORTAL DE COMPRAS
-    # SOMENTE CONTRATOS E FISCAIS
+    # PORTAL DE COMPRAS (SOMENTE CONTRATOS E FISCAIS)
     # -------------------------------------------------
 
     if nome_arquivo in ["Contratos.xlsx", "Fiscais.xlsx"]:
@@ -260,123 +223,96 @@ for nome_arquivo in ARQUIVOS:
         if "Portal de Compras_novo" in df.columns:
 
             if "Portal de Compras" in df.columns:
-
                 df["Portal de Compras"] = (
                     df["Portal de Compras_novo"]
                     .combine_first(df["Portal de Compras"])
                 )
-
             else:
+                df["Portal de Compras"] = df["Portal de Compras_novo"]
 
-                df["Portal de Compras"] = (
-                    df["Portal de Compras_novo"]
-                )
-
-            df.drop(
-                columns=["Portal de Compras_novo"],
-                inplace=True
-            )
+            df.drop(columns=["Portal de Compras_novo"], inplace=True)
 
     else:
-
+        # em quem não deve ter Portal de Compras, remove o que veio do de_para
         if "Portal de Compras_novo" in df.columns:
-
-            df.drop(
-                columns=["Portal de Compras_novo"],
-                inplace=True
-            )
+            df.drop(columns=["Portal de Compras_novo"], inplace=True)
 
     # -------------------------------------------------
     # REMOVE COLUNAS AUXILIARES
     # -------------------------------------------------
 
-    for coluna in [
-        "Contrato_SIAD_novo",
-        "Portal de Compras_novo"
-    ]:
-
+    for coluna in ["Contrato_SIAD_novo", "Portal de Compras_novo"]:
         if coluna in df.columns:
-            df.drop(
-                columns=[coluna],
-                inplace=True
-            )
+            df.drop(columns=[coluna], inplace=True)
 
     # -------------------------------------------------
-    # POSICIONA CONTRATO_SIAD
-    # LOGO APÓS CONTRATO
+    # POSICIONA CONTRATO_SIAD LOGO APÓS CONTRATO
     # -------------------------------------------------
 
     if "Contrato_SIAD" in df.columns:
-
         colunas = list(df.columns)
-
         colunas.remove("Contrato_SIAD")
-
         indice = colunas.index("Contrato") + 1
-
-        colunas.insert(
-            indice,
-            "Contrato_SIAD"
-        )
-
+        colunas.insert(indice, "Contrato_SIAD")
         df = df[colunas]
 
     # -------------------------------------------------
     # SALVA
     # -------------------------------------------------
 
-    with pd.ExcelWriter(
-        caminho,
-        engine="openpyxl"
-    ) as writer:
-
-        df.to_excel(
-            writer,
-            index=False
-        )
+    with pd.ExcelWriter(caminho, engine="openpyxl") as writer:
+        df.to_excel(writer, index=False)
 
     print(f"{nome_arquivo} atualizado")
 
+
+if contratos_sem_mapeamento:
+    print("\nContratos sem mapeamento no de_para:")
+    for c in sorted(contratos_sem_mapeamento):
+        print(f"  - {c}")
+
+
 # =====================================================
-# GIT
+# GIT - ENVIA TODAS AS ALTERAÇÕES DO REPOSITÓRIO
 # =====================================================
+
+def git(*args, check=True):
+    return subprocess.run(
+        ["git", *args],
+        cwd=REPO,
+        capture_output=True,
+        text=True,
+        check=check
+    )
+
 
 print("\nVerificando alterações...")
 
-resultado = subprocess.run(
-    ["git", "status", "--porcelain"],
-    cwd=REPO,
-    capture_output=True,
-    text=True
-)
+status = git("status", "--porcelain").stdout.strip()
 
-if not resultado.stdout.strip():
+if not status:
     print("Nenhuma alteração encontrada.")
     raise SystemExit(0)
 
-print("Enviando alterações para o GitHub...")
+print("Arquivos alterados:")
+print(status)
 
-subprocess.run(
-    ["git", "add", "upload"],
-    cwd=REPO,
-    check=True
-)
+try:
+    # adiciona TUDO: arquivos novos, modificados e removidos
+    # (inclui de_para.xlsx, processar.py, pasta upload etc.)
+    git("add", "-A")
 
-subprocess.run(
-    [
-        "git",
-        "commit",
-        "-m",
-        "Atualização automática portal obras"
-    ],
-    cwd=REPO,
-    check=True
-)
+    git("commit", "-m", "Atualização automática portal obras")
 
-subprocess.run(
-    ["git", "push"],
-    cwd=REPO,
-    check=True
-)
+    # traz alterações remotas antes de enviar, evitando rejeição do push
+    git("pull", "--rebase", "--autostash")
 
-print("GitHub atualizado com sucesso.")
+    git("push")
+
+    print("\nGitHub atualizado com sucesso.")
+
+except subprocess.CalledProcessError as e:
+    print("\nErro ao executar o git:")
+    print(e.stdout)
+    print(e.stderr)
+    raise SystemExit(1)
