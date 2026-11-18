@@ -703,6 +703,152 @@
       },
       "scheme": "file",
       "title": "Trechos"
+    },
+    {
+      "path": "data/Obras_Contratos.csv",
+      "name": "obras_contratos",
+      "profile": "tabular-data-resource",
+      "scheme": "file",
+      "format": "csv",
+      "hashing": "md5",
+      "encoding": "utf-8-sig",
+      "dialect": {
+        "delimiter": ";"
+      },
+      "schema": {
+        "fields": [
+          {
+            "name": "unnamed_0",
+            "type": "any"
+          },
+          {
+            "name": "unnamed_1",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_2",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_3",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_4",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_5",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_6",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_7",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_8",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_9",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_10",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_11",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_12",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_13",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_14",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_15",
+            "type": "any"
+          },
+          {
+            "name": "unnamed_16",
+            "type": "any"
+          },
+          {
+            "name": "unnamed_17",
+            "type": "any"
+          },
+          {
+            "name": "unnamed_18",
+            "type": "any"
+          },
+          {
+            "name": "unnamed_19",
+            "type": "any"
+          },
+          {
+            "name": "unnamed_20",
+            "type": "any"
+          },
+          {
+            "name": "unnamed_21",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_22",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_23",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_24",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_25",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_26",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_27",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_28",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_29",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_30",
+            "type": "string"
+          },
+          {
+            "name": "unnamed_31",
+            "type": "string"
+          }
+        ]
+      },
+      "title": "Insira um título humanamente legível para este recurso.",
+      "description": "Insira a descrição/explicação detalhada deste recurso."
     }
   ],
   "title": "Obras Públicas"
